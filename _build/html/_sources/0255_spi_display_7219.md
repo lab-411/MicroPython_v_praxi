@@ -60,7 +60,7 @@ Adresné bity (D11 ... D08) majú nasledujúci význam
 
 ```{figure} ./img/ic_max7219_4.png
 :width: 400px
-:name: mp_0255g
+:name: mp_0255x
 
 Dekódovanie adresných bitov.
 ```
@@ -104,7 +104,7 @@ Príklad pripojenie modulu displeja ku kitu NUCLEO-64.
 
 ```{figure} ./img/spi2_led_max7219.png
 :width: 300px
-:name: mp_0255a
+:name: mp_0255g
 
 Pripojenie modulu displeja.
 ```

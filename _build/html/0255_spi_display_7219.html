@@ -165,10 +165,15 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0074_veliciny.html">Základné veličiny elektroniky</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0095_prototyp.html">Prototypy obvodov</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
 <ul class="nav bd-sidenav">
@@ -211,10 +216,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0505_mod_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_mod_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0064_nucleo144.html">STM32 Nucleo-144</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0015_mcp_install.html">Inštalácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0017_mcp_editor.html">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0016_mcp_firmware.html">Inštalácia Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0018_mcp_editor.html">Externý editor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0050_mcp_library.html">Knižnice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0055_mcp_filesystem.html">Súborový systém</a></li>
 </ul>
@@ -391,7 +403,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/display_led_max7219.png"><img alt="_images/display_led_max7219.png" src="_images/display_led_max7219.png" style="width: 500px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Modul displeja.</span><a class="headerlink" href="#mp-0255c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 22 </span><span class="caption-text">Modul displeja.</span><a class="headerlink" href="#mp-0255c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="popis">
@@ -401,7 +413,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_1.png"><img alt="_images/ic_max7219_1.png" src="_images/ic_max7219_1.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 15 </span><span class="caption-text">Vnútorné zapojenie obvodu <a class="reference download internal" download="" href="_downloads/7e7566ede8c77ea0b795f9ff879a578b/max7219.pdf"><span class="xref download myst">MAX7219</span></a>.</span><a class="headerlink" href="#mp-0255d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 23 </span><span class="caption-text">Vnútorné zapojenie obvodu <a class="reference download internal" download="" href="_downloads/7e7566ede8c77ea0b795f9ff879a578b/max7219.pdf"><span class="xref download myst">MAX7219</span></a>.</span><a class="headerlink" href="#mp-0255d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Obvod obsahuje 16-bitový posuvný register, ktorého obsah je po naplnení z rozhrania SPI dekódovaný podľa nasledujúceho formátu</p>
@@ -409,7 +421,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_3.png"><img alt="_images/ic_max7219_3.png" src="_images/ic_max7219_3.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Sériový formát dát v posuvnom registri.</span><a class="headerlink" href="#mp-0255f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 24 </span><span class="caption-text">Sériový formát dát v posuvnom registri.</span><a class="headerlink" href="#mp-0255f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Popis polí vo formáte dát</p>
@@ -419,11 +431,11 @@ document.write(`
 <li><p><strong>D07 … D00</strong> - dáta pre register alebo adresovaný znak</p></li>
 </ul>
 <p>Adresné bity (D11 … D08) majú nasledujúci význam</p>
-<figure class="align-default" id="mp-0255g">
+<figure class="align-default" id="mp-0255x">
 <a class="reference internal image-reference" href="_images/ic_max7219_4.png"><img alt="_images/ic_max7219_4.png" src="_images/ic_max7219_4.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Dekódovanie adresných bitov.</span><a class="headerlink" href="#mp-0255g" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 25 </span><span class="caption-text">Dekódovanie adresných bitov.</span><a class="headerlink" href="#mp-0255x" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Popis registrov</p>
@@ -440,7 +452,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_6.png"><img alt="_images/ic_max7219_6.png" src="_images/ic_max7219_6.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Nastavenie typu dekódovania dát pre znaky displeja.</span><a class="headerlink" href="#mp-0255h" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 26 </span><span class="caption-text">Nastavenie typu dekódovania dát pre znaky displeja.</span><a class="headerlink" href="#mp-0255h" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -451,7 +463,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_2.png"><img alt="_images/ic_max7219_2.png" src="_images/ic_max7219_2.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Zapojenie displeja.</span><a class="headerlink" href="#mp-0255e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 27 </span><span class="caption-text">Zapojenie displeja.</span><a class="headerlink" href="#mp-0255e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Príklad pripojenie modulu displeja ku kitu NUCLEO-64.</p>
@@ -462,11 +474,11 @@ CS   -&gt; PB1
 GND 
 </pre></div>
 </div>
-<figure class="align-default" id="mp-0255a">
+<figure class="align-default" id="mp-0255g">
 <a class="reference internal image-reference" href="_images/spi2_led_max7219.png"><img alt="_images/spi2_led_max7219.png" src="_images/spi2_led_max7219.png" style="width: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Pripojenie modulu displeja.</span><a class="headerlink" href="#mp-0255a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 28 </span><span class="caption-text">Pripojenie modulu displeja.</span><a class="headerlink" href="#mp-0255g" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

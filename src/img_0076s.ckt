@@ -1,0 +1,60 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+define(`source_DC',`[
+    S: source($1,); rarrow($2, ->, 0.2);
+    dx = 0.2;
+    dy = 0.05;
+    line from S.c-(dx, -dy) to S.c+(dx, dy);
+    line from S.c-(dx, dy) to S.c+(dx, -dy);
+    N: S.n;
+    S: S.s;
+    C: S.c;
+]')
+
+
+Origin: Here 
+
+d = 1.5;
+move to (3.5, 2.5);
+
+D1: dot
+line -> from D1 left d/2; {"\textit{$i_1$}" at last line.end above}
+line left d/4; 
+R1: resistor(down_ d,,E); llabel(,R_1,);
+
+line -> from D1 right d/2; {"\textit{$i_2$}" at last line.end above}
+line right d/4; 
+R2: resistor(down_ d,,E); rlabel(,R_2,);
+
+line from R1.end right (d/2+d/4); 
+D2: dot;
+line to R2.end;
+
+move to R1.centre - (d, -d/2);
+S: source(down_ d, I);
+line from S.start up_ d/2; 
+line -> right d; {"\textit{$i$}" at last line.end above}
+line to (D1.x, Here.y) to D1
+
+line from S.end down_ d/2; 
+line right d;
+line to (D2.x, Here.y) to D2
+
+line -> from D1 -(0, 0.2) to D2 + (0, 0.2); {"\textit{$u$}" at last line.c ljust}
+
+.PE

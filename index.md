@@ -32,10 +32,15 @@
 
 ```{toctree}
 :titlesonly: True
-:caption: Platformy
-0062_nucleo32.md
-0060_nucleo64.md
+:caption: Základy elektroniky
+0074_veliciny.md
+0075_analog.md
+0090_digital.md
+0095_prototyp.md
 ```
+
+
+
 
 ```{toctree}
 :titlesonly: True
@@ -68,12 +73,24 @@
 
 ```{toctree}
 :titlesonly: True
+:caption: Platformy
+0062_nucleo32.md
+0060_nucleo64.md
+0064_nucleo144.md
+```
+
+
+```{toctree}
+:titlesonly: True
 :caption: Prílohy
 0015_mcp_install.md
-0017_mcp_editor.md
+0016_mcp_firmware.md
+0018_mcp_editor.md
 0050_mcp_library.md
 0055_mcp_filesystem.md
 ```
+
+
 
 
 

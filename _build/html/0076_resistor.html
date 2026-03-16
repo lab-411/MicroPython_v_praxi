@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Inštalácia &#8212; Micro_Python  documentation</title>
+    <title>Rezistor &#8212; Micro_Python  documentation</title>
   
   
   
@@ -46,9 +46,13 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '0017_mcp_terminal';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0076_resistor';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Digitálna elektronika" href="0090_digital.html" />
+    <link rel="prev" title="Analogová elektronika" href="0075_analog.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -111,8 +115,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -165,10 +167,15 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0074_veliciny.html">Základné veličiny elektroniky</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  Rezistor  </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0095_prototyp.html">Prototypy obvodov</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
 <ul class="nav bd-sidenav">
@@ -211,10 +218,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0505_mod_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_mod_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0064_nucleo144.html">STM32 Nucleo-144</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0015_mcp_install.html">Inštalácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0017_mcp_editor.html">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0016_mcp_firmware.html">Inštalácia Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0018_mcp_editor.html">Externý editor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0050_mcp_library.html">Knižnice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0055_mcp_filesystem.html">Súborový systém</a></li>
 </ul>
@@ -271,7 +285,7 @@
       
       
       
-      <li><a href="_sources/0017_mcp_terminal.md" target="_blank"
+      <li><a href="_sources/0076_resistor.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +369,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Inštalácia</h1>
+    <h1><font color='#4B9DA9'>  Rezistor  </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -365,9 +379,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#firmware">Firmware</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompilacia-zdrojoveho-kodu">Kompilácia zdrojového kódu</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-instalacie">Test inštalácie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-standardnych-rezistorov"><font color="#547792"> Hodnoty štandardných rezistorov  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladne-zapojenia-rezistorov"><font color="#547792"> Základné zapojenia rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -379,89 +396,136 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="instalacia">
-<h1>Inštalácia<a class="headerlink" href="#instalacia" title="Link to this heading">#</a></h1>
-<p><strong>MicroPython</strong> môžeme nainštalovať priamo naprogramovaním mikrokontroléru pomocou predkompilovaného firmware dostupného na stránkach <a class="reference external" href="https://micropython.org/download/">projektu</a> alebo  kompiláciu zo zdrojového kódu z <a class="reference external" href="https://github.com/micropython/micropython">githubu</a>. Výhodou druhého spôsobu je možnosť modifikácie <strong>MicroPython</strong>-u, rozširovanie o vlastné knižnice a moduly vytvorené v Pythone alebo v C.</p>
-<p>V oboch prípadoch pre prácu s <strong>MicroPython</strong>-om na STM32 potrebujeme vhodný program - terminálovú konzolu, pomocou ktorého budeme interaktívne komunikovať s <strong>MicroPython</strong>-om. Vhodným jednoduchým programom je napríklad <em>picocom</em>, štandardne dostupný v repozitároch linuxových distribúcií.</p>
-<p><strong>Ubuntu</strong></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install picocom
+  <section class="tex2jax_ignore mathjax_ignore" id="rezistor">
+<h1><font color='#4B9DA9'>  Rezistor  </font><a class="headerlink" href="#rezistor" title="Link to this heading">#</a></h1>
+<p>V elektronických obvodoch je odpor reprezentovaný vlastným odporom prepojovacích vodičov medzi komponentami a špeciálnym elektronickým komponentom - rezistorom (ľudové pomenovanie odpor nie je správne). Technologicky sú rezistory vyrábané roznymi postupmi v závislosti od účelu ich použitia, zvyčajne s využitím materiálov s rôznym merným odporom ako vodičov s rôznym prierezom alebo vo forme tenkých vrstiev nanesených na nevodivý materiál (keramika).</p>
+<figure class="align-default" id="mp-0076a">
+<a class="reference internal image-reference" href="_images/resistor_1.jpg"><img alt="_images/resistor_1.jpg" src="_images/resistor_1.jpg" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 5 </span><span class="caption-text">Typy rezistorov.</span><a class="headerlink" href="#mp-0076a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>TODO SMD</p>
+<p>V niektorých prípadoch je vhodné použiť rezistor, ktorého hodnotu možeme mechanicky meniť, označujú sa ako potenciometre, trimre, premenné rezistory</p>
+<figure class="align-default" id="mp-0076b">
+<a class="reference internal image-reference" href="_images/resistor_3.jpg"><img alt="_images/resistor_3.jpg" src="_images/resistor_3.jpg" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 6 </span><span class="caption-text">Premenné rezistory.</span><a class="headerlink" href="#mp-0076b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>V schémach zapojenia sa používajú pre rezistory nasledujúce značky</p>
+<p>TODO Značky</p>
+<section id="hodnoty-standardnych-rezistorov">
+<h2><font color='#547792'> Hodnoty štandardných rezistorov  </font><a class="headerlink" href="#hodnoty-standardnych-rezistorov" title="Link to this heading">#</a></h2>
+<p>Hodnoty rezistorov sa môžu pohybovať v širokom rozsahu niekoľkých rádov. Aby bolo možné vyrábať rezistory v definovanom počte hodnôt, boli určené rady hodnôt. Hodnoty sú určené tak, aby v logaritmickej mierke boli približne rovnako rozložené v rámci jedného rádu,  podľa vzťahu</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
+\end{equation*}\]</div>
+<p>kde <span class="math notranslate nohighlight">\(m\)</span> je počet hodnôt v ráde a <span class="math notranslate nohighlight">\(n=0 \dots m-1\)</span>. Napríklad hodnoty všetkých rezitorov pre radu E6 spočítame nasledujúcim programom</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>      <span class="c1"># 0 .. m-1</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>   
+    <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>   
 </pre></div>
 </div>
-<p><strong>Fedora</strong></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo dnf install picocom
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+1.5
+2.2
+3.2
+4.6
+6.8
 </pre></div>
 </div>
-<p>Ďaľšími vhodnými komunikačnými programami sú</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom">Minicom</a></p></li>
-<li><p><a class="reference external" href="https://github.com/tio/tio">Tio</a></p></li>
-<li><p><a class="reference external" href="https://www.puttygen.com/download-putty">Putty</a></p></li>
-<li><p><a class="reference external" href="https://www.gnu.org/software/screen/">Screen</a></p></li>
-</ul>
-<section id="firmware">
-<h2>Firmware<a class="headerlink" href="#firmware" title="Link to this heading">#</a></h2>
-<p>V základnej verzii je možné <strong>MicroPython</strong> pre zvolenú platformu inštalovať <strong>v štandardnej konfigurácii</strong> priamo z predpripravených skompilovaných prostredí</p>
-<ul>
-<li><p>zo stránky https://micropython.org/download/ vybrať cielovú platformu</p></li>
-<li><p>stiahnúť príslušný <strong>.hex</strong> súbor</p></li>
-<li><p>štandardným postupom pomocou STM32CubeProgrammer naprogramovať mikrokontrolér</p></li>
-<li><p>po resete mikrokontroléra <strong>MicroPython</strong> komunikuje cez terminálový program</p>
-<p>picocom -b 115200 /dev/ttyACM0</p>
-</li>
-</ul>
+</div>
+</div>
+<p>Reálne dodávané hodnoty sa v niektorých hodnotách mierne líšia, napr. v rade E6 je miesto hodnoty 3.2 použitá hodnota 3.3, miesto 4.6 hodnota 4.7. Vyrábané hodnoty sú dekadickými podielmi a násobkami týchto hodnôt, napríklad 0.1, 0.15 … 1,1.5 … 10, 15, … 2200, 3300, … 680000, …</p>
+<p>Pre radu E24 sú vyrábané hodnoty:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 
+2.0, 2.2, 2.4, 2.7, 
+3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 
+5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1
+</pre></div>
+</div>
+<p>Okrem počtu hodnôt v rade sa jednotlivé rady líšia aj toleranciou hodnôt, čím vyššia rada, tým je tolerancia hodnôt menšia.</p>
+<p>Na rezistoroch bývala niekedy hodnota vyznačená textom, čo ale pri malých rozmeroch nebolo je príliš praktické, preto sa pri označovaní rezistorov začal používať aj farebný kód v podobe prúžkov na rezistore. Výhodou tohoto značenie je, že na rozdiel od textu je viditeľné zo všetkých strán.</p>
+<figure class="align-default" id="mp-0076d">
+<a class="reference internal image-reference" href="_images/resistor_4.png"><img alt="_images/resistor_4.png" src="_images/resistor_4.png" style="width: 500px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 7 </span><span class="caption-text">Farebné značenie hodnôt rezistorov.</span><a class="headerlink" href="#mp-0076d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="kompilacia-zdrojoveho-kodu">
-<h2>Kompilácia zdrojového kódu<a class="headerlink" href="#kompilacia-zdrojoveho-kodu" title="Link to this heading">#</a></h2>
-<p>V prípade kompilácie zo zdrojových kódov z github-u je potrebné mať nainštalované vývojové prostredie pre kompiláciu aplikácii STM32.
-Z github-u stiahneme zdrojové kódy <strong>MicroPython</strong>-u</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/micropython/micropython
-</pre></div>
+<section id="zakladne-zapojenia-rezistorov">
+<h2><font color='#547792'> Základné zapojenia rezistorov  </font><a class="headerlink" href="#zakladne-zapojenia-rezistorov" title="Link to this heading">#</a></h2>
+<section id="seriove-zapojenie-rezistorov">
+<h3><font color='#E37434'> Sériové zapojenie rezistorov </font><a class="headerlink" href="#seriove-zapojenie-rezistorov" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0076r">
+<a class="reference internal image-reference" href="_images/img_0076r.png"><img alt="_images/img_0076r.png" src="_images/img_0076r.png" style="width: 210px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 8 </span><span class="caption-text">Sériové zapojenie rezistorov.</span><a class="headerlink" href="#img-0076r" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Ekvivalentný odpor séeriovho zapojenia rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+u = u_{1} + u_{2} \\
+u = R_1 i + R_2 i \\
+\frac{u}{i} = R = R_1  + R_2 
+\end{equation*}\]</div>
+<p>Napäťový delič</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{u}{R_1 + R_2} = \frac{u_2}{R_2}  
+\end{equation*}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+u_2 = \frac{R_2}{R_1 + R_2} u  
+\end{equation*}\]</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Príklad </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Delič napätia pre prevodník</p>
 </div>
-<p>Skompilujeme vlastný kompilátor Pythonu do bytecode</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd mpy-cross
-make
-</pre></div>
+</details></section>
+<section id="paralelne-zapojenie-rezistorov">
+<h3><font color='#E37434'> Paralelné zapojenie rezistorov </font><a class="headerlink" href="#paralelne-zapojenie-rezistorov" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0076s">
+<a class="reference internal image-reference" href="_images/img_0076s.png"><img alt="_images/img_0076s.png" src="_images/img_0076s.png" style="width: 260px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Paralelné zapojenie rezistorov.</span><a class="headerlink" href="#img-0076s" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Ekvivalentý odpor paraleleného zapojenia rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+i = i_1 + i_2\\
+\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}\\
+R = \frac{R_1 R_2}{R_1 + R_2}
+\end{equation*}\]</div>
+<p>Prúdový delič</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+R i = R_1 i_1 \\
+\frac{R_1 R_2}{R_1 + R_2} i = R_1 i_1 \\
+i_1 = \frac{R_2}{R_1 + R_2} i
+\end{equation*}\]</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Príklad </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 </div>
-<p>Prejdeme do adresára</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd ../ports/stm32
-</pre></div>
-</div>
-<p>a spustíme</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make submodules
-</pre></div>
-</div>
-<p>Na konci skompilujte firmware pre vašu cieľovú dosku, pre každú cieľovú dosku je vytvorený konfiguračný adresár v <em>./ports/stm32/boards</em> a meno adresára je zároveň príznakom pre kompilátor. Pre dosku napr. NUCLEO_L476RG je príkaz na kompiláciu potom</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make BOARD=NUCLEO_L476RG
-</pre></div>
-</div>
-<p>Po kompilácii vznikol adresár <em>build-NUCLEO_L476RG</em>, v ktorom sa o.i. nachádzajú súbory firmware.bin, firmware.elf …</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd ./build-NUCLEO_L476RG
-</pre></div>
-</div>
-<p>Pomocou programátora STM32Cube nahráme firmware do mikrokontroléra, resetujeme ho a spustíme terminálový program</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>picocom -b 115200 /dev/ttyACM0
-</pre></div>
-</div>
-<p>V prípade, že to s budúcim experimentovaním v MicroPython-e nejako preženiete, môžete kedykoľvek zápisom firmware systém vrátiť do pôvodného stavu.</p>
-</section>
-<section id="test-instalacie">
-<h2>Test inštalácie<a class="headerlink" href="#test-instalacie" title="Link to this heading">#</a></h2>
-<p>Po resete by sa MicroPython mal ozvať v interaktívnom móde známym promptom</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;
-</pre></div>
-</div>
-<p>Pre jednoduchšiu obsluhu hardware dosku sú pripravené hotové moduly Pythonu, príkazom</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; help()
-</pre></div>
-</div>
-<p>dostaneme výpis vlastností modulu <em>pyb</em> . Povinná jazda - bliknutie s LED na doske potom vyzerá takto</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; import pyb
-&gt;&gt;&gt; d = pyb.LED(1)
-&gt;&gt;&gt; d.on()
-&gt;&gt;&gt; d.off()
-</pre></div>
-</div>
-<p>Podrobná dokumentácia k modulom, súborovému systému, hardware a pod. je v adresári ./docs, pomocou parametru v <em>make</em> si ju môžete vygenerovať do vhodného formátu.</p>
+</details></section>
 </section>
 </section>
 
@@ -476,6 +540,24 @@ make
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="0075_analog.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analogová elektronika</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="0090_digital.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Digitálna elektronika</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -492,9 +574,12 @@ make
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#firmware">Firmware</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompilacia-zdrojoveho-kodu">Kompilácia zdrojového kódu</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-instalacie">Test inštalácie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-standardnych-rezistorov"><font color="#547792"> Hodnoty štandardných rezistorov  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladne-zapojenia-rezistorov"><font color="#547792"> Základné zapojenia rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

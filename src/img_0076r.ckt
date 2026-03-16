@@ -1,0 +1,51 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+define(`source_DC',`[
+    S: source($1,); rarrow($2, ->, 0.2);
+    dx = 0.2;
+    dy = 0.05;
+    line from S.c-(dx, -dy) to S.c+(dx, dy);
+    line from S.c-(dx, dy) to S.c+(dx, -dy);
+    N: S.n;
+    S: S.s;
+    C: S.c;
+]')
+
+Origin: Here 
+
+
+d = 1.5;
+
+#-----------------------------------------------------------------------
+move to (2.5, 3);
+down_;
+
+R1: resistor(d,,E); rlabel(,R_1,); larrow(u_{1}, ->, 0.2)
+dot;
+R2: resistor(d,,E); rlabel(,R_2,); larrow(u_{2}, ->, 0.2)
+
+move to (R1.end -(d, -d/2 )  )
+
+
+S: source_DC(down_ d, u ); 
+line from S.N to (S.N.x, R1.start.y); 
+line -> right d/2; {"\textit{i}" at last line.e above}
+line to R1.start;
+line from S.S to (S.S.x, R2.end.y) to R2.end;
+
+.PE

@@ -18,19 +18,19 @@ MicroPython je vo svojej podstate zjednodušený interpreter programovacieho jaz
 
 Pre prácu s MicroPython interpreterom preto potrebujeme  
 
-* naprogramovaný mikrokontrolér zvyčajne umiestnený na niektorom z výukových kitov, [Ako na to ?](0900_instalacia.md)
-* vhodný komunikačný program, [Ako na to ?](0900_instalacia.md)
+* naprogramovaný mikrokontrolér zvyčajne umiestnený na niektorom z výukových kitov, [Ako na to ?]
+* vhodný komunikačný program, [Ako na to ?]
 
 
 
 ```{figure} ./img/konzola.png
 :width: 600px
-:name: mp_0010a
+:name: mp_0012a
 
 Terminálový program *picocom* komunikujúci s interpreterom MicroPython v cykle *REPL*.
 ```
 
-Pre pokročilejšiu prácu s interpreterom a zadávanie dlhších skriptov a programov môžeme využiť externé programátorské editory ktorých použitie a konfigurácia je popísaná v kapitole [Externý editor](0017_mcp_editor.md). 
+Pre pokročilejšiu prácu s interpreterom a zadávanie dlhších skriptov a programov môžeme využiť externé programátorské editory ktorých použitie a konfigurácia je popísaná v kapitole [Externý editor](0018_mcp_editor.md). 
 
 
 

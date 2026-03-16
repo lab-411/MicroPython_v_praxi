@@ -165,10 +165,15 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0074_veliciny.html">Základné veličiny elektroniky</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0095_prototyp.html">Prototypy obvodov</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
 <ul class="nav bd-sidenav">
@@ -211,10 +216,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0505_mod_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_mod_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0064_nucleo144.html">STM32 Nucleo-144</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0015_mcp_install.html">Inštalácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0017_mcp_editor.html">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0016_mcp_firmware.html">Inštalácia Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0018_mcp_editor.html">Externý editor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0050_mcp_library.html">Knižnice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0055_mcp_filesystem.html">Súborový systém</a></li>
 </ul>
@@ -400,7 +412,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/img_0250b.png"><img alt="_images/img_0250b.png" src="_images/img_0250b.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 10 </span><span class="caption-text">Základné zapojenie zariadení na zbernici <em>SPI</em> (Multi-subnode).</span><a class="headerlink" href="#img-0255b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Základné zapojenie zariadení na zbernici <em>SPI</em> (Multi-subnode).</span><a class="headerlink" href="#img-0255b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>V niektorých prípadoch môžu byť zariadenia zapojené v konfigurácii reťazového zapojenia (<em>daisy chain</em>), kde je výstup predchádzajúceho <em>Slave</em> zariadenia pripojený na vstup nasledujúceho <em>Slave</em> zariadenia. Výstup posledného <em>Slave</em> zariadenia je pripojený nazad k <em>Master</em> zariadeniu. Posuvné registre jednotlivých zariadení takto tvoria jeden veľký posuvný register, v ktorom sa dáta posúvajú medzi jednotlivými zariadeniami. Táto konfigurácia vyžaduje len jeden signál SS a nie samostatné signály pre každé <em>Slave</em> zariadenie.</p>
@@ -408,7 +420,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/img_0250c.png"><img alt="_images/img_0250c.png" src="_images/img_0250c.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 11 </span><span class="caption-text">Reťazenie zariadení na zbernici <em>SPI</em> (Daisy-Chain).</span><a class="headerlink" href="#img-0255c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Reťazenie zariadení na zbernici <em>SPI</em> (Daisy-Chain).</span><a class="headerlink" href="#img-0255c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Komunikácia a spracovanie dát pomocou posuvných registrov pre riadenie LED displeja je popísaná v kapitole <a class="reference internal" href="0505_mod_funduino_01.html"><span class="doc std std-doc">Modul Funduino</span></a>.</p>
@@ -433,14 +445,14 @@ document.write(`
 <a class="reference internal image-reference" href="_images/SPI_timing.png"><img alt="_images/SPI_timing.png" src="_images/SPI_timing.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Základné módy časovania zbernice SPI.</span><a class="headerlink" href="#img-0250a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Základné módy časovania zbernice SPI.</span><a class="headerlink" href="#img-0250a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="img-0250d">
 <a class="reference internal image-reference" href="_images/spi_daisy.png"><img alt="_images/spi_daisy.png" src="_images/spi_daisy.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 13 </span><span class="caption-text">Časovanie SPI zbernice v móde daisy-chain.</span><a class="headerlink" href="#img-0250d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Časovanie SPI zbernice v móde daisy-chain.</span><a class="headerlink" href="#img-0250d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

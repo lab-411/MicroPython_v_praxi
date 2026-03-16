@@ -54,8 +54,7 @@ Oblasť použitia môžeme rozdeliť do niekokých kategórií
 
 ## Platforma STM32 
 
-Rodina mikrokontrolérov triedy **STM32** zahŕňa triedu populárnych mikrokontrolérov obsahujúcich široké spektrum typov líšiacich sa výkonom, pamäťou perifériami a možnosťami optimalizácie spotreby. Vývoj aplikácií je podporovaný firmou STM pomocou dostupných kitov Nucleo, ktoré obsahujú okrem samotného mikrokontroléra aj pomocné obvody a programátor. V distribúcii MicroPython nájdeme podporu pre niektoré typy kitov Nucleo, od jednoduchých až po výkonné typy.
-_images/nucleo64.png
+Rodina mikrokontrolérov triedy **STM32** zahŕňa triedu populárnych mikrokontrolérov obsahujúcich široké spektrum typov líšiacich sa výkonom, pamäťou a integrovanými perifériami. Vývoj aplikácií je podporovaný firmou STM pomocou dostupných vývojových kitov Nucleo, ktoré obsahujú okrem samotného mikrokontroléra aj pomocné obvody a programátor. V distribúcii MicroPython nájdeme podporu pre niektoré typy kitov Nucleo, od jednoduchých až po výkonné typy.
 
 
 ```{figure} ./img/nucleo64.jpg
@@ -65,8 +64,13 @@ _images/nucleo64.png
 Vývojový kit Nucleo-64
 ```
 
+Táto publikácia je primárne orientovaná na použitie platformy STM32
 
-Konektory na doskách **Nucleo64** umožňujú použitie vývojových modulov z platformy Arduino. 
+* vývojové kity NUCLEO sú jednoducho dostupné u množstva distribútorov
+* platforma STM32 je široko využívaná v priemysle
+* konektory na kite NUCLEO-64 umožňujú použitie vývojových modulov z platformy Arduino
+* verzia NUCLEO-32 je pinovo kompatibilná s platformou Arduino Nano.
+* MicroPython na platforme STM32 môže byť prvým krokom k profesionálnemu použitiu 
 
 ```{figure} ./img/arduino_uno.jpg
 :width: 400px
@@ -75,6 +79,6 @@ Konektory na doskách **Nucleo64** umožňujú použitie vývojových modulov z 
 Arduino Uno
 ```
 
-Verzia Nucleo32 je pinovo kompatibilná s platformou Arduino Nano.
+
 
 

@@ -25,7 +25,7 @@ Niektoré editory pre tvorbu kódu majú možnosť konfigurácie príkazov. Prí
 
 ```{figure} ./img/geany_1.png
 :width: 600px
-:name: mp_0255a
+:name: mp_0018a
 
 Skript v editore *Geany*
 ```
@@ -34,7 +34,7 @@ V konfigurácii editora doplníme príkaz pre spustenie editovaného skriptu pod
 
 ```{figure} ./img/geany_2.png
 :width: 600px
-:name: mp_0255b
+:name: mp_0018b
 
 Konfigurácia editora *Geany*
 ```

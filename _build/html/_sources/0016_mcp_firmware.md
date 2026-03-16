@@ -13,30 +13,7 @@ kernelspec:
 ---
 
 
-# Inštalácia 
-
-
-**MicroPython** môžeme nainštalovať priamo naprogramovaním mikrokontroléru pomocou predkompilovaného firmware dostupného na stránkach [projektu](https://micropython.org/download/) alebo  kompiláciu zo zdrojového kódu z [githubu](https://github.com/micropython/micropython). Výhodou druhého spôsobu je možnosť modifikácie **MicroPython**-u, rozširovanie o vlastné knižnice a moduly vytvorené v Pythone alebo v C. 
-
-V oboch prípadoch pre prácu s **MicroPython**-om na STM32 potrebujeme vhodný program - terminálovú konzolu, pomocou ktorého budeme interaktívne komunikovať s **MicroPython**-om. Vhodným jednoduchým programom je napríklad *picocom*, štandardne dostupný v repozitároch linuxových distribúcií.
-
-**Ubuntu**
-
-    sudo apt-get install picocom
-
-**Fedora**
-
-    sudo dnf install picocom
-
-Ďaľšími vhodnými komunikačnými programami sú
-
-* [Minicom](https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom)
-* [Tio](https://github.com/tio/tio)
-* [Putty](https://www.puttygen.com/download-putty)
-* [Screen](https://www.gnu.org/software/screen/)
-
-
-##  Firmware 
+# Inštalácia Firmware 
 
 V základnej verzii je možné **MicroPython** pre zvolenú platformu inštalovať **v štandardnej konfigurácii** priamo z predpripravených skompilovaných prostredí
 
