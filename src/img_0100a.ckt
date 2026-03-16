@@ -1,0 +1,37 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+Origin: Here 
+up_
+    move to (2,0)
+    gnd;
+SW: single_switch(2, OFF, V, L);
+    dot; {line -> right 2; "\sf PC13" at last line .end ljust}
+    resistor(1.5, ,E);
+    power(0.5,$\sf V_{dd}$)
+    "\sf Blue Button" at SW.e ljust
+
+move to (6,0);
+gnd;
+DD: diode(2,,R); { em_arrows(,-45, .35) at DD.center +(.3,-.3); }
+    resistor(right_ 1.5, ,E); llabel(,\sf 510,);
+    line -> right 0.5; "\sf PA5 (D13)" at last line .end ljust
+
+    #power(0.5,$\sf V_{dd}$)
+    "\sf Green LED" at DD.center + (.5,0) ljust 
+
+.PE

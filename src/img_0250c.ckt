@@ -1,0 +1,73 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+log_init
+
+command "\sf"
+
+define(`SPI_Master', `[
+  BX: box wid 2.5 ht 5*lg_pinsep;
+
+      lg_pin(BX.ne - (0, 1*lg_pinsep),  SCLK, PinCLK, e,,0 );
+      lg_pin(BX.ne - (0, 2*lg_pinsep),  MOSI, PinMOSI, e,,0 );
+      lg_pin(BX.ne - (0, 3*lg_pinsep),  MISO, PinMISO, e,,0 );
+      lg_pin(BX.ne - (0, 4*lg_pinsep),  lg_bartxt(SS), PinSS, e,,0 );
+]')
+
+define(`SPI_Slave', `[
+  BX: box wid 2 ht 5*lg_pinsep;
+
+      lg_pin(BX.nw - (0, 1*lg_pinsep),  SCLK, PinCLK, w,,0);
+      lg_pin(BX.nw - (0, 2*lg_pinsep),  MOSI, PinMOSI, w,, 0);
+      lg_pin(BX.nw - (0, 3*lg_pinsep),  MISO, PinMISO, w,, 0);
+      lg_pin(BX.nw - (0, 4*lg_pinsep),  lg_bartxt(SS), PinSS, w,,0 );
+]')
+
+M:  SPI_Master(); "SPI" at M.c +(-0.3,0) above; "Master" at M.c +(-0.3,0) below;
+    line from M.PinCLK right 0.8;  DT1: dot; 
+
+    line from DT1-> right 1.5;
+S1:SPI_Slave() with .PinCLK at last line .end; 
+    "SPI" at S1.c +(0.3,0) above; "Slave" at S1.c +(0.3,0) below;
+
+
+
+    line from DT1 down_ 2.5; DT5: dot; line -> to (S1.PinCLK, Here)
+    right_
+S2: SPI_Slave() with .PinCLK at last line .end
+    "SPI" at S2.c +(0.3,0) above; "Slave" at S2.c +(0.3,0) below;
+
+    line from DT5 down_ 2.5; ;line -> to (S1.PinCLK, Here)
+    right_
+S3: SPI_Slave() with .PinCLK at last line .end
+    "SPI" at S3.c +(0.3,0) above; "Slave" at S3.c +(0.3,0) below;
+
+    # select
+    color_blue;
+    line from M.PinSS right_ 0.45; DS: dot; line -> to S1.PinSS
+    line from DS down_ to (DS, S2.PinSS); dot; {line -> to S2.PinSS; }
+    line -> down_ to (DS, S3.PinSS) then to S3.PinSS
+
+    # chain
+    color_red;
+    line -> from M.PinMOSI to S1.PinMOSI
+    line from S1.PinMISO left_ 0.75; line -> to (Here, S2.PinMOSI) then to S2.PinMOSI;
+    line from S2.PinMISO left_ 0.75; line -> to (Here, S3.PinMOSI) then to S3.PinMOSI;
+    line from S3.PinMISO left_ 1; line -> to (Here, M.PinMISO) then to M.PinMISO;
+
+.PE

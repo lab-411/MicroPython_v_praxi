@@ -1,0 +1,48 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+command"\sf"
+
+DT1: dot; {up_; power(1, +5V);}
+
+down_; 
+D1: diode(1); rlabel(,\sf D_1,); {em_arrows(N,315,0.45) with .Tail at last [].se; }
+resistor(1,E); llabel(,\sf 1k,);
+line down_ 0.25 then right_ 1; T1: tbox(\sf D13,1,)
+
+line from DT1 left_ 1.5; DT2: dot;
+down_; 
+D2: diode(1); rlabel(,\sf D_2,); {em_arrows(N,315,0.45) with .Tail at last [].se; }
+resistor(1,E);llabel(,\sf 1k,);
+line down_ to (Here, T1)+(0,-0.5);
+line right_ to (T1.w, Here); T2: tbox(\sf D12,1,)
+
+line from DT2 left_ 1.5; DT3: dot;
+down_; 
+D3: diode(1); rlabel(,\sf D_3,); {em_arrows(N,315,0.45) with .Tail at last [].se; }
+resistor(1,E);  llabel(,\sf 1k,);
+line down_ to (Here, T2)+(0,-0.5);
+line right_ to (T2.w, Here); T3: tbox(\sf D11,1,)
+
+line from DT3 left_ 1.5; #DT3: dot;
+down_; 
+D4: diode(1); rlabel(,\sf D_4,); {em_arrows(N,315,0.45) with .Tail at last [].se; }
+resistor(1,E);  llabel(,\sf 1k,);
+line down_ to (Here, T3)+(0,-0.5);
+line right_ to (T3.w, Here); T4: tbox(\sf D10,1,)
+
+.PE

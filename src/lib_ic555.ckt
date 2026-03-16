@@ -1,0 +1,96 @@
+#=======================================================================
+# Kniznica lib_ic555.ckt
+# Obvod casovac 555
+#=======================================================================
+
+define(`IC555_1', `[
+  BX: box wid 2 ht 5*lg_pinsep;
+      linethick_(3);
+      lg_pin(BX.nw - (0, lg_pinsep),   GND, Pin1, w, 1)
+      lg_pin(BX.nw - (0, 2*lg_pinsep), TRIG, Pin2, w, 2)
+      lg_pin(BX.nw - (0, 3*lg_pinsep), OUT, Pin3, w, 3)
+      lg_pin(BX.nw - (0, 4*lg_pinsep), lg_bartxt(RESET), Pin4, w, 4)
+
+      lg_pin(BX.ne - (0, lg_pinsep), Vcc, Pin8, e, 8)
+      lg_pin(BX.ne - (0, 2*lg_pinsep), DIS, Pin7, e, 7)
+      lg_pin(BX.ne - (0, 3*lg_pinsep), THR, Pin6, e, 6)
+      lg_pin(BX.ne - (0, 4*lg_pinsep), CTRL, Pin5, e, 5)
+      linethick_();
+      arc ccw from BX.n-(.2,0) to BX.n+(0.2,0) with .c at BX.n
+]')
+
+
+define(`IC555_2', `[
+  BX: box wid 2 ht 6*lg_pinsep;
+      lg_pin(BX.nw - (0, 2*lg_pinsep), DIS, Pin7, w, 7)
+      lg_pin(BX.nw - (0, 3*lg_pinsep), THR, Pin6, w, 6)
+      lg_pin(BX.nw - (0, 4*lg_pinsep), TRIG, Pin2, w, 2)
+
+      lg_pin(BX.sw + (1.5*lg_pinsep, 0),   GND, Pin1, s, 1)
+      lg_pin(BX.sw + (3.5*lg_pinsep, 0),  CTRL, Pin5, s, 5)
+
+      lg_pin(BX.nw + (1.5*lg_pinsep, 0), lg_bartxt(RESET), Pin4, n, 4)
+      lg_pin(BX.nw + (3.5*lg_pinsep, 0), Vcc, Pin8, n, 8)
+
+      lg_pin(BX.ne - (0, 3*lg_pinsep), OUT, Pin3, e, 3)
+
+]')
+
+
+define(`IC555_3', `[
+   # RS klopny obvod
+   H1: NAND_gate(3);
+   H2: NAND_gate(2) at H1.c + (0,-2) ;
+       line from H1.Out right 0.5;
+   DT1: dot;
+       line down_ 0.75 then to Here+(-2,-1.25) then to (Here.x-2, H2.In1.y) then to H2.In1;
+       line from H2.Out right 0.5;
+   DT2: dot;
+       line up_ 0.75 then to Here+(-2, 1.25) then to (Here.x-2, H1.In3.y) then to H1.In3;
+   # Koncovy stupen
+   #    move to DT1; resistor(right_ 1.5,,E);
+   #T1: bjt_NPN(0.6,,,N);
+   #    line from T1.C right_ 1;
+   #    circle rad .075; "DIS" at last circle.e ljust; "7" at last circle.n above;
+       line from DT2 right_ 1.5;
+       circle rad .075; "OUT" at last circle.e ljust; "3" at last circle.n above;
+   # Vstupne komparatory
+       line from H1.In2 left 1;
+   CM1: opamp(right_ 1,,,,R) with .Out at Here;
+       line from H2.In2 left 1;
+   CM2: opamp(right_ 1,,,,R) with .Out at Here;
+       line from CM1.In1 left_ 0.5;
+   DT3: dot;
+       line from CM2.In2 left_ 0.5;
+   DT4: dot;
+   R1:  resistor(from DT3 to DT4,,E); "5k" at R1.c + (-0.1,0)rjust;
+
+   R2:  resistor(down_ 1.5 from DT4,,E); {"5k" at R2.c + (-0.1,0) rjust;}
+        line down_ 0.25;
+   DT5: dot;
+        line 0.25;
+        circle rad .075; "1" at last circle.w rjust; "GND" at last circle.e ljust;
+   # vybijaci tranzistor
+        line from DT1 right_ 0.5 then down_ (DT1.y - R2.end.y -0.25) then left_ 2;
+        resistor(2,,E);
+        line left_ 1;
+    T1: bjt_NPN(0.6,,L,N);
+        line from T1.E down_ (T1.E.y- DT5.y) then to DT5;
+        line from T1.C left_ 0.5;
+    C1: circle rad .075; "DIS" at last circle.w rjust; "7" at last circle.n above;
+
+        line from CM2.In1 left_ (CM2.In1.x - C1.e.x);
+        circle rad .075; "TRIG" at last circle.w rjust; "2" at last circle.n above;
+        line from CM1.In2 left_ (CM1.In1.x - C1.e.x);
+        circle rad .075; "THR" at last circle.w rjust; "6" at last circle.s below;
+    R3:  resistor(up_ 1.5 from DT3,,E); {"5k" at R3.c + (-0.1,0) rjust;}
+    C2:  circle rad .075; "Vcc" at last circle.w rjust; "8" at last circle.e ljust;
+         line from H1.In1 left_ 0.5; line up_ to (Here.x, C2.s.y);
+         circle rad .075; "lg_bartxt(RESET)" at last circle.w rjust; "4" at last circle.e ljust;
+
+         line from DT3 left_ (DT3.x - C1.e.x);
+        circle rad .075; "CTRL" at last circle.w rjust; "5" at last circle.n above;
+
+]')
+
+#=======================================================================

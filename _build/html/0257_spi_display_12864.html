@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LCD Display 12864 &#8212; Micro_Python  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0257_spi_display_12864';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="I2C" href="0200_i2c.html" />
+    <link rel="prev" title="LED Display 7219" href="0255_spi_display_7219.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_411.png" class="logo__image only-light" alt="Micro_Python  documentation - Home"/>
+    <script>document.write(`<img src="_static/logo_411.png" class="logo__image only-dark" alt="Micro_Python  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="0100_gpio.html">GPIO</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0101_gpio_basic.html">Vlastnosti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0102_gpio_pyb.html">Knižnica pyb.Pin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0105_gpio_onboard.html">LED / Tlačítko</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="0225_usart.html">USART</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0226_usart_basic.html">Vlastnosti</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="0250_spi.html">SPI</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0251_spi_basic.html">Vlastnosti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0252_spi_pyb.html">Knižnica pyb.SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0200_i2c.html">I2C</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0201_i2c_basic.html">Vlastnosti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0202_i2c_pyb.html"><font color="#1e90ff"> Knižnica pyb.I2C </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0205_i2c_lm92.html">Teplomer LM92</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0207_i2c_display.html">Display PCF8547T</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0209_i2c_mems.html">MEMS Senzory</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Časovače</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0275_timer.html">TIMER</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projekty</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0500_mod_led_matrix.html">Modul LED WS2812-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0505_mod_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0510_mod_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0015_mcp_install.html">Inštalácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0017_mcp_editor.html">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0050_mcp_library.html">Knižnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0055_mcp_filesystem.html">Súborový systém</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/0257_spi_display_12864.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color='#4B9DA9'>  LCD Display 12864  </font></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oznacenie-vyvodov"><font color="#E37434"> Označenie vývodov </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lcd-display-12864">
+<h1><font color='#4B9DA9'>  LCD Display 12864  </font><a class="headerlink" href="#lcd-display-12864" title="Link to this heading">#</a></h1>
+<p>Grafický LCD display <a class="reference download internal" download="" href="_downloads/0c51ffe1d4cac52491ed1c684052d47b/QC12864B.pdf"><span class="xref download myst">QC12864</span></a> s rozlíšením 128x64 pixlov je možné riadiť pomocou paralelného alebo sériového SPI rozhrania.</p>
+<figure class="align-default" id="mp-0257c">
+<a class="reference internal image-reference" href="_images/lcd_st7520_1.png"><img alt="_images/lcd_st7520_1.png" src="_images/lcd_st7520_1.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Displej QC12864.</span><a class="headerlink" href="#mp-0257c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="popis">
+<h2><font color='#547792'> Popis </font><a class="headerlink" href="#popis" title="Link to this heading">#</a></h2>
+<section id="oznacenie-vyvodov">
+<h3><font color='#E37434'> Označenie vývodov </font><a class="headerlink" href="#oznacenie-vyvodov" title="Link to this heading">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>GND     Ground
+VCC     Module power supply – 5 V
+VO      LCD Contrast
+RS      Register Select Pin
+R/W     Write/ Read selection
+E       Enable Signal
+D0...D7 Data Bus
+PSB     Interface selection 
+            0 for serial communication
+            1 for 8-bit parallel communication
+NC      Not Connected
+RST     Reset
+Vout    LCD Voltage Output (Vout &lt; 7V)
+BLA     Power Supply for Backlight+
+BLK     Power Supply for Backlight-
+</pre></div>
+</div>
+</section>
+</section>
+<section id="programovanie">
+<h2><font color='#547792'> Programovanie </font><a class="headerlink" href="#programovanie" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'>  Zdrojový kód knižnice </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">  2</span><span class="sd">v 0.2.4</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span><span class="sd">lcd12864 is a FrameBuffer based MicroPython driver for the graphical</span>
+<span class="linenos">  5</span><span class="sd">LiquidCrystal LCD12864 display (also known as DFR0091).</span>
+<span class="linenos">  6</span><span class="sd"> </span>
+<span class="linenos">  7</span><span class="sd">Connection: SPI</span>
+<span class="linenos">  8</span><span class="sd">Color: 1-bit monochrome</span>
+<span class="linenos">  9</span><span class="sd">Controllers: Esp8266, Esp32, RP2</span>
+<span class="linenos"> 10</span>
+<span class="linenos"> 11</span><span class="sd">Project path: https://github.com/r2d2-arduino/micropython-lcd12864</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="sd">Author: Arthur Derkach </span>
+<span class="linenos"> 14</span><span class="sd">MIT License</span>
+<span class="linenos"> 15</span>
+<span class="linenos"> 16</span><span class="sd">LCD -&gt; ESP8266</span>
+<span class="linenos"> 17</span><span class="sd">--------------</span>
+<span class="linenos"> 18</span><span class="sd">GND -&gt; GND</span>
+<span class="linenos"> 19</span><span class="sd">VCC -&gt; 5V</span>
+<span class="linenos"> 20</span><span class="sd">V0</span>
+<span class="linenos"> 21</span><span class="sd">RS  -&gt; D8 GPIO15 CS/SS</span>
+<span class="linenos"> 22</span><span class="sd">R/W -&gt; D7 GPIO13 MOSI</span>
+<span class="linenos"> 23</span><span class="sd">E   -&gt; D5 GPIO14 SCK</span>
+<span class="linenos"> 24</span><span class="sd">DB0</span>
+<span class="linenos"> 25</span><span class="sd">..</span>
+<span class="linenos"> 26</span><span class="sd">DB7</span>
+<span class="linenos"> 27</span><span class="sd">PSB -&gt; GND</span>
+<span class="linenos"> 28</span><span class="sd">NC</span>
+<span class="linenos"> 29</span><span class="sd">RST -&gt; 5V</span>
+<span class="linenos"> 30</span><span class="sd">VOUT</span>
+<span class="linenos"> 31</span><span class="sd">BLA -&gt; 3.3V</span>
+<span class="linenos"> 32</span><span class="sd">BLK -&gt; GND</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="linenos"> 37</span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep_us</span>
+<span class="linenos"> 38</span><span class="kn">from</span> <span class="nn">framebuf</span> <span class="kn">import</span> <span class="n">FrameBuffer</span><span class="p">,</span> <span class="n">MONO_HMSB</span><span class="p">,</span> <span class="n">MONO_HLSB</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="c1">#print(gc.mem_alloc())</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="n">LCD_CLS</span>          <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+<span class="linenos"> 43</span><span class="n">LCD_HOME</span>         <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x02</span><span class="p">)</span>
+<span class="linenos"> 44</span><span class="n">LCD_ADDR_INC</span>     <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x06</span><span class="p">)</span>
+<span class="linenos"> 45</span><span class="n">LCD_DISPLAY_ON</span>   <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x0C</span><span class="p">)</span>
+<span class="linenos"> 46</span><span class="n">LCD_DISPLAY_OFF</span>  <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x08</span><span class="p">)</span>
+<span class="linenos"> 47</span><span class="n">LCD_CURSOR_ON</span>    <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x0E</span><span class="p">)</span>
+<span class="linenos"> 48</span><span class="n">LCD_CURSOR_BLINK</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x0F</span><span class="p">)</span>
+<span class="linenos"> 49</span><span class="n">LCD_ENTRY_MODE</span>   <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x04</span><span class="p">)</span> <span class="c1"># +0..3</span>
+<span class="linenos"> 50</span><span class="n">LCD_SHIFT_CTRL</span>   <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x10</span><span class="p">)</span> <span class="c1"># : 10, 14, 18, 1C</span>
+<span class="linenos"> 51</span><span class="n">SET_CGRAM_ADDR</span>   <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x40</span><span class="p">)</span> <span class="c1"># +0..3F</span>
+<span class="linenos"> 52</span><span class="n">SET_DDRAM_ADDR</span>   <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x80</span><span class="p">)</span> <span class="c1"># +0..3F  </span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span><span class="n">LCD_BASIC</span>        <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x30</span><span class="p">)</span>
+<span class="linenos"> 55</span><span class="n">LCD_EXTEND</span>       <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x34</span><span class="p">)</span>
+<span class="linenos"> 56</span><span class="n">LCD_GFXMODE</span>      <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x36</span><span class="p">)</span>
+<span class="linenos"> 57</span><span class="n">LCD_TXTMODE</span>      <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x34</span><span class="p">)</span>
+<span class="linenos"> 58</span><span class="n">LCD_STANDBY</span>      <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+<span class="linenos"> 59</span><span class="n">LCD_ADDR</span>         <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0x80</span><span class="p">)</span>
+<span class="linenos"> 60</span><span class="n">LCD_COMMAND</span>      <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0xF8</span><span class="p">)</span>
+<span class="linenos"> 61</span><span class="n">LCD_DATA</span>         <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mh">0xFA</span><span class="p">)</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="n">LCD_WIDTH</span>  <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+<span class="linenos"> 64</span><span class="n">LCD_HEIGHT</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="k">class</span> <span class="nc">LCD12864_SPI</span><span class="p">(</span> <span class="n">FrameBuffer</span> <span class="p">):</span>
+<span class="linenos"> 68</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">spi</span><span class="p">,</span> <span class="n">cs_pin</span><span class="p">,</span> <span class="n">rst_pin</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+<span class="linenos"> 69</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Constructor</span>
+<span class="linenos"> 70</span><span class="sd">        Args</span>
+<span class="linenos"> 71</span><span class="sd">        spi  (object): SPI</span>
+<span class="linenos"> 72</span><span class="sd">        cs   (object): CS pin (Chip Select)</span>
+<span class="linenos"> 73</span><span class="sd">        rotation (int): Display rotation 0 = 0 degrees, 1 = 180 degrees</span>
+<span class="linenos"> 74</span><span class="sd">        &quot;&quot;&quot;</span> 
+<span class="linenos"> 75</span>        <span class="bp">self</span><span class="o">.</span><span class="n">spi</span> <span class="o">=</span> <span class="n">spi</span>
+<span class="linenos"> 76</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span>  <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span> <span class="n">cs_pin</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="linenos"> 77</span>        
+<span class="linenos"> 78</span>        <span class="k">if</span> <span class="p">(</span><span class="n">rst_pin</span><span class="p">):</span>
+<span class="linenos"> 79</span>            <span class="n">Pin</span><span class="p">(</span> <span class="n">rst_pin</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">)</span>
+<span class="linenos"> 80</span>        <span class="c1"># Other properties</span>
+<span class="linenos"> 81</span>        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">LCD_HEIGHT</span>
+<span class="linenos"> 82</span>        <span class="bp">self</span><span class="o">.</span><span class="n">width</span>  <span class="o">=</span> <span class="n">LCD_WIDTH</span>
+<span class="linenos"> 83</span>        
+<span class="linenos"> 84</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span> <span class="o">=</span> <span class="n">rotation</span>
+<span class="linenos"> 85</span>        <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos"> 86</span>        <span class="bp">self</span><span class="o">.</span><span class="n">text_wrap</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 87</span>        
+<span class="linenos"> 88</span>        <span class="c1">#order of bites in buffer depending of screen position</span>
+<span class="linenos"> 89</span>        <span class="n">fb_format</span> <span class="o">=</span> <span class="n">MONO_HLSB</span>
+<span class="linenos"> 90</span>        <span class="k">if</span> <span class="p">(</span><span class="n">rotation</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+<span class="linenos"> 91</span>            <span class="n">fb_format</span> <span class="o">=</span> <span class="n">MONO_HMSB</span>
+<span class="linenos"> 92</span>            
+<span class="linenos"> 93</span>        <span class="c1"># Buffer initialization</span>
+<span class="linenos"> 94</span>        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span> <span class="n">LCD_WIDTH</span> <span class="o">*</span> <span class="n">LCD_HEIGHT</span> <span class="o">//</span> <span class="mi">8</span> <span class="p">)</span>
+<span class="linenos"> 95</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">fb_format</span> <span class="p">)</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span>        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">100</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Initialize the LCD controler &quot;&quot;&quot;</span>
+<span class="linenos">101</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+<span class="linenos">102</span>    
+<span class="linenos">103</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_BASIC</span> <span class="p">)</span> <span class="c1"># basic instruction set</span>
+<span class="linenos">104</span>        <span class="c1">#self.write_command( LCD_EXTEND )</span>
+<span class="linenos">105</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_CLS</span> <span class="p">)</span> <span class="c1">#clear</span>
+<span class="linenos">106</span>        <span class="n">sleep_us</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#wait for clearing</span>
+<span class="linenos">107</span>        
+<span class="linenos">108</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_ADDR_INC</span> <span class="p">)</span>
+<span class="linenos">109</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_DISPLAY_ON</span> <span class="p">)</span> <span class="c1"># display on</span>
+<span class="linenos">110</span>           
+<span class="linenos">111</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+<span class="linenos">115</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Clear display &quot;&quot;&quot;</span>
+<span class="linenos">116</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+<span class="linenos">117</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_BASIC</span> <span class="p">)</span>
+<span class="linenos">118</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_CLS</span> <span class="p">)</span> <span class="c1">#clear</span>
+<span class="linenos">119</span>        <span class="n">sleep_us</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="mi">0</span> <span class="p">)</span> 
+<span class="linenos">122</span>        
+<span class="linenos">123</span>    <span class="k">def</span> <span class="nf">write_command</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span> <span class="p">):</span>
+<span class="linenos">124</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Sending a command to the display</span>
+<span class="linenos">125</span><span class="sd">        Args</span>
+<span class="linenos">126</span><span class="sd">        cmd (int): Command number, example: 0x2E</span>
+<span class="linenos">127</span><span class="sd">        &quot;&quot;&quot;</span>        
+<span class="linenos">128</span>        <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="nb">bytearray</span><span class="p">(</span> <span class="p">[</span> <span class="n">LCD_COMMAND</span><span class="p">,</span> <span class="n">cmd</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="p">(</span><span class="n">cmd</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<span class="linenos">129</span>        
+<span class="linenos">130</span>    <span class="k">def</span> <span class="nf">write_data</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">data</span> <span class="p">):</span>
+<span class="linenos">131</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Sending a data to the display</span>
+<span class="linenos">132</span><span class="sd">        Args</span>
+<span class="linenos">133</span><span class="sd">        cmd (int): Command number, example: 0x2E</span>
+<span class="linenos">134</span><span class="sd">        &quot;&quot;&quot;</span>        
+<span class="linenos">135</span>        <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="nb">bytearray</span><span class="p">(</span> <span class="p">[</span> <span class="n">LCD_DATA</span><span class="p">,</span> <span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<span class="linenos">136</span>
+<span class="linenos">137</span>    <span class="k">def</span> <span class="nf">set_font</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">font</span><span class="p">):</span>
+<span class="linenos">138</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Set font for text</span>
+<span class="linenos">139</span><span class="sd">        Args</span>
+<span class="linenos">140</span><span class="sd">        font (module): Font module generated by font_to_py.py</span>
+<span class="linenos">141</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">142</span>        <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">font</span>
+<span class="linenos">143</span>        
+<span class="linenos">144</span>    <span class="k">def</span> <span class="nf">set_text_wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="linenos">145</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Set text wrapping &quot;&quot;&quot;</span>
+<span class="linenos">146</span>        <span class="k">if</span> <span class="n">on</span><span class="p">:</span>
+<span class="linenos">147</span>            <span class="bp">self</span><span class="o">.</span><span class="n">text_wrap</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">148</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">149</span>            <span class="bp">self</span><span class="o">.</span><span class="n">text_wrap</span> <span class="o">=</span> <span class="kc">False</span>        
+<span class="linenos">150</span>
+<span class="linenos">151</span>    <span class="k">def</span> <span class="nf">draw_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="linenos">152</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Draw text on display</span>
+<span class="linenos">153</span><span class="sd">        Args</span>
+<span class="linenos">154</span><span class="sd">        x (int) : Start X position</span>
+<span class="linenos">155</span><span class="sd">        y (int) : Start Y position</span>
+<span class="linenos">156</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">157</span>        <span class="n">x_start</span> <span class="o">=</span> <span class="n">x</span>
+<span class="linenos">158</span>        <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
+<span class="linenos">159</span>        <span class="n">screen_width</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span>        <span class="n">font</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span>
+<span class="linenos">162</span>        <span class="n">wrap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_wrap</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span>        <span class="k">if</span> <span class="n">font</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">165</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Font not set&quot;</span><span class="p">)</span>
+<span class="linenos">166</span>            <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span>        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>   
+<span class="linenos">169</span>            <span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">get_ch</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="linenos">170</span>            <span class="n">glyph_height</span> <span class="o">=</span> <span class="n">glyph</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">171</span>            <span class="n">glyph_width</span>  <span class="o">=</span> <span class="n">glyph</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos">172</span>            
+<span class="linenos">173</span>            <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span><span class="p">:</span> <span class="c1"># double size for space</span>
+<span class="linenos">174</span>                <span class="n">x</span> <span class="o">+=</span> <span class="n">glyph_width</span>            
+<span class="linenos">175</span>
+<span class="linenos">176</span>            <span class="k">if</span> <span class="n">wrap</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">glyph_width</span> <span class="o">&gt;</span> <span class="n">screen_width</span><span class="p">):</span> <span class="c1"># End of row</span>
+<span class="linenos">177</span>                <span class="n">x</span> <span class="o">=</span> <span class="n">x_start</span>
+<span class="linenos">178</span>                <span class="n">y</span> <span class="o">+=</span> <span class="n">glyph_height</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span>            <span class="c1">#if y + glyph_height &gt; screen_height: # End of screen</span>
+<span class="linenos">181</span>            <span class="c1">#    break</span>
+<span class="linenos">182</span>            
+<span class="linenos">183</span>            <span class="bp">self</span><span class="o">.</span><span class="n">draw_bitmap</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="linenos">184</span>            <span class="n">x</span> <span class="o">+=</span> <span class="n">glyph_width</span>
+<span class="linenos">185</span>
+<span class="linenos">186</span>    <span class="nd">@micropython</span><span class="o">.</span><span class="n">viper</span> 
+<span class="linenos">187</span>    <span class="k">def</span> <span class="nf">draw_bitmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bitmap</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="linenos">188</span><span class="w">        </span><span class="sd">&quot;&quot;&quot; Draw a bitmap on display</span>
+<span class="linenos">189</span><span class="sd">        Args</span>
+<span class="linenos">190</span><span class="sd">        bitmap (bytes): Bitmap data</span>
+<span class="linenos">191</span><span class="sd">        x      (int): Start X position</span>
+<span class="linenos">192</span><span class="sd">        y      (int): Start Y position</span>
+<span class="linenos">193</span><span class="sd">        color  (int): Color 0 or 1</span>
+<span class="linenos">194</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">195</span>        <span class="n">fb</span> <span class="o">=</span> <span class="n">FrameBuffer</span><span class="p">(</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">bitmap</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">bitmap</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bitmap</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">MONO_HLSB</span> <span class="p">)</span>
+<span class="linenos">196</span>        <span class="bp">self</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span> <span class="n">fb</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">color</span> <span class="p">)</span>        
+<span class="linenos">197</span>              
+<span class="linenos">198</span>    <span class="nd">@micropython</span><span class="o">.</span><span class="n">viper</span>    
+<span class="linenos">199</span>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+<span class="linenos">200</span><span class="w">        </span><span class="sd">&#39;&#39;&#39; Send FrameBuffer to lcd &#39;&#39;&#39;</span>
+<span class="linenos">201</span>        <span class="c1">#Set text mode</span>
+<span class="linenos">202</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+<span class="linenos">203</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write_command</span><span class="p">(</span> <span class="n">LCD_GFXMODE</span> <span class="p">)</span>
+<span class="linenos">204</span>        
+<span class="linenos">205</span>        <span class="n">buffsize</span> <span class="o">=</span> <span class="n">LCD_WIDTH</span> <span class="o">*</span> <span class="n">LCD_HEIGHT</span> <span class="o">//</span> <span class="mi">8</span>
+<span class="linenos">206</span>        <span class="n">rotation</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span><span class="p">)</span>
+<span class="linenos">207</span>        <span class="n">buffer</span> <span class="o">=</span> <span class="n">ptr8</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="p">)</span>
+<span class="linenos">208</span>        <span class="n">row_buffer</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">3</span> <span class="p">)</span>
+<span class="linenos">209</span>        <span class="n">row_ptr</span> <span class="o">=</span> <span class="n">ptr8</span><span class="p">(</span><span class="n">row_buffer</span><span class="p">)</span>
+<span class="linenos">210</span>        
+<span class="linenos">211</span>        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
+<span class="linenos">212</span>            <span class="n">x_addr</span> <span class="o">=</span> <span class="n">LCD_ADDR</span>
+<span class="linenos">213</span>            <span class="n">y_addr</span> <span class="o">=</span> <span class="n">LCD_ADDR</span> <span class="o">+</span> <span class="n">y</span>
+<span class="linenos">214</span>                
+<span class="linenos">215</span>            <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">31</span><span class="p">:</span>
+<span class="linenos">216</span>                <span class="n">x_addr</span> <span class="o">+=</span> <span class="mi">8</span>
+<span class="linenos">217</span>                <span class="n">y_addr</span> <span class="o">-=</span> <span class="mi">32</span>
+<span class="linenos">218</span>            
+<span class="linenos">219</span>            <span class="c1">#Set addres position            </span>
+<span class="linenos">220</span>            <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="nb">bytearray</span><span class="p">(</span> <span class="p">[</span> <span class="n">LCD_COMMAND</span><span class="p">,</span> <span class="n">y_addr</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="p">(</span><span class="n">y_addr</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">,</span>
+<span class="linenos">221</span>                                         <span class="n">LCD_COMMAND</span><span class="p">,</span> <span class="n">x_addr</span> <span class="o">&amp;</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="p">(</span><span class="n">x_addr</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<span class="linenos">222</span>            <span class="n">y_offset</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">16</span>
+<span class="linenos">223</span>            <span class="c1">#Send buffer to display</span>
+<span class="linenos">224</span>            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+<span class="linenos">225</span>                <span class="n">pos</span> <span class="o">=</span> <span class="n">y_offset</span> <span class="o">+</span> <span class="n">x</span>
+<span class="linenos">226</span>                <span class="k">if</span> <span class="p">(</span> <span class="n">rotation</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">):</span>
+<span class="linenos">227</span>                    <span class="n">pos</span> <span class="o">=</span> <span class="n">buffsize</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pos</span> 
+<span class="linenos">228</span>                    
+<span class="linenos">229</span>                <span class="n">data</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span> <span class="n">pos</span> <span class="p">]</span>
+<span class="linenos">230</span>                
+<span class="linenos">231</span>                <span class="n">x_offset</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="linenos">232</span>                <span class="n">row_ptr</span><span class="p">[</span> <span class="n">x_offset</span>     <span class="p">]</span> <span class="o">=</span> <span class="n">LCD_DATA</span> 
+<span class="linenos">233</span>                <span class="n">row_ptr</span><span class="p">[</span> <span class="n">x_offset</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0xF0</span>
+<span class="linenos">234</span>                <span class="n">row_ptr</span><span class="p">[</span> <span class="n">x_offset</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span>            <span class="bp">self</span><span class="o">.</span><span class="n">spi</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">row_buffer</span> <span class="p">)</span>
+<span class="linenos">237</span>
+<span class="linenos">238</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="mi">0</span> <span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+</details><p>API Funkcie</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>clear( self ): - Clear display
+set_font(self, font): - Set font for text
+set_text_wrap(self, on = True): - Set text wrapping
+draw_text(self, text, x, y, color = 1): - Draw text on display
+draw_bitmap(self, bitmap, x, y, color = 1): - Draw a bitmap on display
+show( self ): - Send frameBuffer to lcd
+other framebuffer functions - 
+see more on https://docs.micropython.org/en/latest/library/framebuf.html#module-framebuf
+</pre></div>
+</div>
+<p>Demo program</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from pyb import SPI
+from lib.lcd12864_spi import *
+spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=1, phase=1, crc=None)
+lcd = LCD12864_SPI( spi = spi, cs_pin = &#39;D6&#39;, rst_pin = &#39;D2&#39;, rotation = 1 )
+
+lcd.text( &quot;123.456&quot;, 50, 25, 1 )
+lcd.rect( 0, 0, 128, 64, 1 )
+lcd.rect( 3, 3, 128-6, 64-6, 1 )
+lcd.line(0,0,20,30,1)
+lcd.ellipse(30,30,15,15,1)
+lcd.show()
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="0255_spi_display_7219.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><font color='#4B9DA9'>  LED Display 7219  </font></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="0200_i2c.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">I2C</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oznacenie-vyvodov"><font color="#E37434"> Označenie vývodov </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Peter Fabo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, pf.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

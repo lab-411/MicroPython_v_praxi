@@ -1,0 +1,8 @@
+.PS
+scale=2.54
+cct_init
+include(direction.m4)
+
+l=elen_
+# Enter your drawing code here
+.PE

@@ -1,0 +1,31 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+command"\sf"
+
+#DT1: dot; {up_; power(1, +5V);}
+
+Q1:bjt_PNP(1,1,R);  #{right_ ; move to Q1.E; power(1, +5V) at Q1.E ;}
+# line from Q1.E up_ 1; 
+move to Q1.E; line up_ 0.25; power(0.5, +5V)
+resistor(left_ 1.5 from Q1.B, E);  {rlabel(,\sf 10k,);}; tbox(\sf D3,1,,<)
+line from Q1.C down 0.5 then right_ 0.25;
+BB: buzzer(,,C) with .In1 at last line.end; "LS1"  at BB.ne above;
+line from BB.In3 left 0.25 then down_ 0.25;
+gnd();
+
+.PE

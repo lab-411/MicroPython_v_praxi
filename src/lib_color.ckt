@@ -1,0 +1,134 @@
+#=======================================================================
+# Kniznica lib_color.ckt
+# Pomenovane farby
+#=======================================================================
+#
+# color_<meno_farby>
+#
+# template
+# define(`color_'                ` setrgb( /255, /255, /255); ')
+#
+#-----------------------------------------------------------------------
+define(`color_reset',              ` setrgb(       0,       0,       0)')
+
+
+define(`color_black',              ` setrgb(       0,       0,       0) ')
+define(`color_grey',               ` setrgb( 192/255, 192/255, 192/255) ')
+define(`color_dark_grey',          ` setrgb( 169/255, 169/255, 169/255) ')
+define(`color_light_grey',         ` setrgb( 211/255, 211/255, 211/255) ')
+define(`color_slategrey',          ` setrgb( 112/255, 128/255, 144/255) ')
+define(`color_silver',             ` setrgb( 192/255, 192/255, 192/255) ')
+define(`color_ghostwhite',         ` setrgb( 248/255, 248/255, 255/255) ')
+define(`color_whitesmoke',         ` setrgb( 245/255, 245/255, 245/255) ')
+define(`color_snow',               ` setrgb( 255/255, 250/255, 250/255) ')
+define(`color_white',              ` setrgb(       1,       1,       1) ')
+
+define(`color_green',              ` setrgb(       0,       1,       0) ')
+define(`color_dark_green',         ` setrgb(  47/255,  79/255,  47/255) ')
+define(`color_mediumForestGreen',  ` setrgb( 107/255, 142/255,  35/255) ')
+define(`color_khaki',              ` setrgb( 240/255, 230/255, 140/255) ')
+define(`color_dark_khaki',         ` setrgb( 189/255, 183/255, 107/255) ')
+define(`color_olive',              ` setrgb( 128/255, 128/255,       0) ')
+
+define(`color_brown',              ` setrgb( 165/255,  42/255,  42/255) ')
+
+define(`color_yellow',             ` setrgb(       1,       1,       0) ')
+define(`color_light_yellow',       ` setrgb( 255/255, 255/255, 224/255) ')
+define(`color_lemonchiffon',       ` setrgb( 255/255, 250/255, 205/255) ')
+define(`color_gold',               ` setrgb( 204/255, 127/255,  50/255) ')
+define(`color_honeydew',           ` setrgb( 240/255, 255/255, 240/255) ')
+
+define(`color_cyan',               ` setrgb(       0,       1,       1) ')
+define(`color_dark_cyan',          ` setrgb(       0, 139/255, 139/255) ')
+
+define(`color_red',                ` setrgb(       1,       0,       0) ')
+define(`color_dark_red',           ` setrgb( 139/255,       0,       0) ')
+define(`color_firebrick',          ` setrgb( 178/255,  34/255,  34/255) ')
+
+define(`color_violet',             ` setrgb( 238/255, 130/255, 238/255) ')
+define(`color_dark_violet',        ` setrgb( 148/255,       0, 211/255) ')
+
+define(`color_mintcream',          ` setrgb( 245/255, 255/255, 250/255) ')
+define(`color_azure',              ` setrgb( 240/255, 255/255, 255/255) ')
+
+define(`color_seashell',           ` setrgb( 255/255, 245/255, 238/255) ')
+define(`color_beige',              ` setrgb( 245/255, 245/255, 220/255) ')
+define(`color_oldlace',            ` setrgb( 253/255, 248/255, 230/255) ')
+define(`color_floralwhite',        ` setrgb( 255/255, 250/255, 240/255) ')
+define(`color_ivory',              ` setrgb( 255/255, 255/255, 240/255) ')
+define(`color_antiquewhite',       ` setrgb( 255/255, 235/255, 215/255) ')
+define(`color_linien',             ` setrgb( 250/255, 240/255, 230/255) ')
+define(`color_lavenderblush',      ` setrgb( 255/255, 240/255, 245/255) ')
+define(`color_mistyrose',          ` setrgb( 255/255, 228/255, 225/255) ')
+
+# Orange colors
+define(`color_orange_red',         ` setrgb( 255/255,  69/255,   0/255) ')
+define(`color_tomato',             ` setrgb( 255/255,  99/255,  71/255) ')
+define(`color_dark_orange',        ` setrgb( 255/255, 140/255,       0) ')
+define(`color_coral',              ` setrgb( 255/255, 127/255,       0) ')
+define(`color_orange',             ` setrgb( 255/255, 165/255,       0) ')
+
+# Blue colors
+define(`color_midnight_blue',       ` setrgb(  25/255,  25/255, 112/255) ')
+define(`color_navy',                ` setrgb(   0/255,   0/255, 128/255) ')
+define(`color_dark_blue',           ` setrgb(       0,       0, 139/255) ')
+define(`color_medium_blue',         ` setrgb(       0,       0, 205/255) ')
+define(`color_blue',                ` setrgb(       0,       0,       1) ')
+define(`color_royal_blue',          ` setrgb(  65/255, 105/255, 225/255) ')
+define(`color_steel_blue',          ` setrgb(  70/255, 130/255, 180/255) ')
+define(`color_dodger_blue',         ` setrgb(  30/255, 144/255, 255/255) ')
+define(`color_deep_sky_blue',       ` setrgb(   0/255, 191/255, 255/255) ')
+define(`color_cornflower_blue',     ` setrgb( 100/255, 149/255, 237/255) ')
+define(`color_sky_blue',            ` setrgb( 136/255, 206/255, 235/255) ')
+define(`color_light_sky_blue',      ` setrgb( 135/255, 206/255, 250/255) ')
+define(`color_light_steel_blue',    ` setrgb( 176/255, 196/255, 222/255) ')
+define(`color_light_blue',          ` setrgb( 173/255, 216/255, 230/255) ')
+define(`color_powder_blue',         ` setrgb( 176/255, 224/255, 230/255) ')
+define(`color_cadet_blue',          ` setrgb(  95/255, 158/255, 160/255) ')
+define(`color_alice_blue',          ` setrgb( 240/255, 248/255, 255/255) ')
+define(`color_aquamarine',          ` setrgb( 127/255, 255/255, 212/255) ')
+
+#-----------------------------------------------------------------------
+# kody farieb pre farebnu vypln
+# rgbfill( r,g,b, {uzavreta oblast, box, circle ...})
+
+# base colors
+define(`fill_black',              `       0,       0,       0')
+define(`fill_white',              `       1,       1,       1')
+define(`fill_grey',               ` 192/255, 192/255, 192/255')
+define(`fill_dark_grey',          ` 169/255, 169/255, 169/255')
+define(`fill_light_grey',         ` 211/255, 211/255, 211/255')
+
+define(`fill_dark_red',           ` 139/255,       0,       0')
+define(`fill_red',                `       1,       0,       0')
+
+define(`fill_dark_cyan',          `       0, 139/255, 139/255')
+define(`fill_cyan',               `       0,       1,       1')
+define(`fill_brown',              ` 165/255,  42/255,  42/255')
+
+define(`fill_violet',             ` 238/255, 130/255, 238/255')
+define(`fill_dark_violet',        ` 148/255,       0, 211/255')
+
+define(`fill_yellow',             `       1,       1,       0')
+define(`fill_light_yellow',       ` 255/255, 255/255, 224/255')
+
+define(`fill_blue',               `       0,       0,       1')
+define(`fill_light_blue',         ` 173/255, 216/255, 230/255')
+
+define(`fill_green',              `       0,       1,       0')
+define(`fill_dark_green',         `  47/255,  79/255,  47/255')
+
+define(`fill_orange_red',         ` 255/255,  69/255,   0/255')
+define(`fill_tomato',             ` 255/255,  99/255,  71/255')
+define(`fill_dark_orange',        ` 255/255, 140/255,       0')
+define(`fill_coral',              ` 255/255, 127/255,       0')
+define(`fill_orange',             ` 255/255, 165/255,       0')
+
+# grey colors
+define(`fill_silver',             ` 192/255, 192/255, 192/255')
+
+#=======================================================================
+# Koniec dokumentu
+#=======================================================================
+
+

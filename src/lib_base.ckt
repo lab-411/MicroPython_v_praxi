@@ -1,0 +1,86 @@
+#=======================================================================
+# Kniznica lib_base.ckt
+#=======================================================================
+# gnd
+# power
+# Grid
+
+#=======================================================================
+# gnd - zem
+# gnd(length)
+#-----------------------------------------------------------------------
+define(`gnd',`[
+    ifelse(defn(`d'),  $1, d=1/4,  d=$1)
+    dir = index(`DULR',$2)
+    w=1/4;
+    if dir <= 0 then { DD: ( 0,-d); WW: (-w, 0); }
+    if dir == 1 then { DD: ( 0, d); WW: ( w, 0);}
+    if dir == 2 then { DD: (-d, 0); WW: ( 0, w);}
+    if dir == 3 then { DD: ( d, 0); WW: ( 0,-w);}
+
+    L: line from Here to Here + DD;
+    linethick_(2);
+    line from L.end + WW to L.end -WW
+]')
+
+#=======================================================================
+# power - napajanie
+# power(length, name)
+#-----------------------------------------------------------------------
+define(`power',`[
+    ifelse(defn(`d'),  $1, d=1/2,  d=$1);
+    dir = index(`UDLR',$3)
+    if dir <= 0 then {  up_; PWR: tconn(d, 0); "$2" at PWR.n above; }
+    if dir == 1 then {down_; PWR: tconn(d, 0); "$2" at PWR.s below; }
+    if dir == 2 then {left_; PWR: tconn(d, 0); "$2" at PWR.w rjust; }
+    if dir == 3 then {right; PWR: tconn(d, 0); "$2" at PWR.e ljust; }
+
+    #up_
+    #PWR: tconn(d, 0); "$2" at PWR.n above;
+]')
+
+
+
+#=======================================================================
+# grid - vykreslenie mriezky
+# grid(x,y) - velkost x,y - rozmery v default jednotkach
+#-----------------------------------------------------------------------
+
+define(`color_grid',               ` setrgb(       0,       0,       1) ')
+
+define(`grid',`[
+    
+    W: box ht $2+1 wid $1+1 invis
+    move to W.w + (.5,0)
+    Q: box ht $2 wid $1 invis
+
+    setrgb(0.9,0.9,0.9);
+    for i=0 to $2*2 do{
+        line from (Q.w.x, Q.s.y+i*0.5) to (Q.w.x+$1, Q.s.y+i*0.5);
+        { color_grid; sprintf("\scriptsize %g",i/2) at (Q.w.x-0.55, Q.s.y+i*0.5) ljust; setrgb(0.9,0.9,0.9); };
+    }; 
+    for i=0 to $1*2 do{
+        line from (Q.w.x + i*0.5, Q.s.y) to (Q.w.x + i*0.5, Q.s.y+$2);
+        { color_grid; sprintf("\scriptsize %g",i/2) at (Q.w.x + i*0.5, Q.s.y-0.2); setrgb(0.9,0.9,0.9); };
+    }
+    resetrgb;
+]')
+
+
+#-----------------------------------------------------------------------
+# Grid - vykreslenie mriezky a presun originu na poziciu (0,0)
+# Grid(x,y) - velkost x,y - rozmery v default jednotkach
+#-----------------------------------------------------------------------
+define(`Grid',`
+    size_x = $1
+    size_y = $2
+    move to (-0.5, size_y/2); 
+    grid(size_x, size_y); 
+    move to 0,0;
+')
+
+#=======================================================================
+# Koniec dokumentu
+#=======================================================================
+
+

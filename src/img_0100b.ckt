@@ -1,0 +1,118 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+Origin: Here 
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+Origin: Here 
+command"\sf"
+d = 2;
+
+move to (0.5, 4);
+# vstupne diody
+GP: gpio_port(5*d/8,L); {"\sf I/O Pin" at GP.n +(-.3, -.10) above}
+dot;
+{down_; diode(3*d/4,,R); gnd;}
+{up_;   diode(3*d/4,,); power(0.5, $\sf V_{dd}$); }
+
+line right_ 3*d/4; dot;
+{  down_; 
+   RUP: resistor(3*d/4,E); rlabel(,\sf R_{PD},); 
+   {
+	LUP: line from RUP.e + (.25, -0.4) to RUP.s  + (0.25, 0.4);
+	line from LUP.c right_ d/4; {"\sf on" above ljust;}; {"\sf off" below ljust;}
+   } 
+   gnd;
+}
+
+{  up_;   
+   RD: resistor(3*d/4,E);  llabel(,\sf R_{PU},);
+   {
+	LPD: line from RD.end + (0.25, -0.4)to RD.start  + (0.25, 0.4);
+	line from LPD.c right_ d/4; {"\sf on" above ljust;}; {"\sf off" below ljust;}
+   }
+   power(0.5,$\sf V_{dd}$);
+}
+
+line right_ d; DT1: dot;
+
+#============================
+# digitalna cast
+
+line down_ d+d/4 
+line right_ d/2
+DT5: dot
+
+line from DT5 up_ d/8
+#move to Here + (d/8, 0)
+T1: fet_P(d/2,R)
+
+line from DT5 down_ d/8
+#move to Here + (d/8, 0)
+T2: fet_N(d/2,R)
+move to T2.S
+gnd
+
+move to T1.D
+up_
+VD2: tconn(d/4,O); "$\sf V_{dd}$" at VD2.n above; 
+
+La: line from T1.G  right_ d/4
+Lb: line from T2.G  right_ d/4
+move to (La.end + Lb.end)/2
+boxrad=0.1 
+OC: box ht d wid 2*d/3
+"\sf Output" at OC.c above;
+"\sf Control" at OC.c below;
+
+DIN: line <- from OC.e right_ d/2
+
+# digit. komparator
+
+log_init
+line from DT1 right_ d;
+DOUT: opamp(d/2," ", " ",0.9,)
+DOUT: line -> from DOUT.Out to (DIN.end, DOUT.Out)
+
+#------------------------------
+
+# analogova cast
+move to DT1 #+ (d,d)
+line up_ d
+right_; line 1;
+single_switch_h(d, OFF); {"\sf Analog Option" at last [].n above; }
+line -> right_ to (DOUT.end, Here); {"\sf Analog" at last line.end ljust; }
+
+
+#OP: opamp(d/2,,,1,R)
+#line from DT1 to (DT1, OP.In1)
+#line from OP.In2 left_ d/4 
+#line down_ d/2-d/8
+#ACIN: line -> from Here to (DIN.end, Here)
+#ACOUT:line -> from OP.Out to (DIN.end, OP.Out)
+
+"\sf Digital In" at DOUT.end ljust; 
+"\sf Digital Out" at DIN.end ljust; 
+#"$\sf V_{comp}$" at ACIN.end ljust; 
+#"\sf CMP" at ACOUT.end ljust
+
+# ramik okolo analogoveho komparatora
+#move to DT1 + (d, d/4+d/8)
+#up_
+#ABOX: box dashed ht d wid 1.6*d
+#"\sf Analog Option" at ABOX.n above
+
+
+.PE

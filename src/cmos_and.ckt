@@ -1,0 +1,68 @@
+.PS
+scale=2.54
+cct_init
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+command"\sf"
+#Grid(14,4.5)
+
+up_
+move to (3.5,5)
+
+#    gnd();
+#Q1: fet_N(1.5,L);
+#    dot; {line right_ 1; tbox("Port Pin",1.5); }
+#Q2: fet_P(1.5,L);
+#   power(0.5, $\sf V_{cc}$)
+
+#----------------------------------------------------
+# NAND
+Q1: e_fet(down_,R,P); { "Q1" at Q1.nw ljust; }
+Q2: e_fet(down_, ,P) at Q1.c + (1.5,0); { "Q2" at Q2.ne rjust; }
+    line from Q2.S to Q1.S;
+    dot; power(1, $\sf V_{dd}$)
+    line from Q2.D to Q1.D;
+    dot;
+    line down_ 0.5;
+DT1:dot;
+    line down_ 0.25;
+#Q3: e_fet(up_,,S) with .D at last line.end;
+
+    color_red;
+Q3: mosfet(down_,R,uMEDSuB) with .S at last line.end;  { "Q3" at Q3.nw ljust; }
+    color_black;
+    
+Q4: e_fet(up_,,) with .D at Q3.D; { "Q4" at Q4.nw ljust; }
+DT2:dot(at Q4.S);
+    gnd(0.5) 
+    
+    line from Q3.B right_ 0.5;
+    line to (Here, DT2) then to DT2;
+    
+    line from Q3.G left_ 0.5; 
+    dot; {line left_ 1; tbox("A",,, <) }
+    line to (Here, Q1.G) then to Q1.G
+    
+    line from Q4.G left_ 0.5;
+    dot; {line left_ 1; tbox("B",,, <) }
+    line down_ 1.5; 
+    line to (Q2.G+(0.25,0), Here);
+    line to (Here, Q2.G) then to Q2.G;
+
+#-----------------------------------------------------------
+# invertor
+    line from DT1 right 3;
+DT3:dot;
+    line up_ 1.2 then right_ 0.25;
+Q5: e_fet(down_,R,P) with .G at last line.end;   
+    line from DT3 down_ 1.2 then right_ 0.25;
+Q6: e_fet(up_,,) with .G at last line.end;
+    gnd(0.5) at Q6.S;
+    power(1, $\sf V_{dd}$) at Q5.S;
+    line from Q5.D to Q6.D;
+DT4:0.5 between Q5.D and Q6.D; 
+    dot(at DT4); line right_ 1; {tbox("Y");}   
+.PE

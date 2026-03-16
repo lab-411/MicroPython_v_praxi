@@ -1,0 +1,817 @@
+#=======================================================================
+# Kniznica lib_user.ckt
+# Doplnkove komponenty
+
+pi=3.14159265359
+
+#=======================================================================
+# Komponenty
+#-----------------------------------------------------------------------
+# AC source
+# oprava chybneho zobrazenia v standardnej kniznici
+# ac_source(d)
+#-----------------------------------------------------------------------
+define(`ac_source',`[
+    # upravena znacka AC zdroja
+    Q: box wid 1 ht $1 invis; 
+
+    dx=.1;
+    k =12;
+
+    CX: circle diameter .7 at Q.c
+
+    for x=-pi to pi by dx do {
+        line from Q.c+(x/k, -sin(x)/k) to Q.c+((x+dx)/k, -sin(x+dx)/k );
+    }
+    line from CX.s to Q.s; 
+    line from CX.n to Q.n;
+]')
+
+#-----------------------------------------------------------------------
+# DC source
+# krajsie zobrazenie
+# dc_source(d, r, P)
+#     d - dlzka privodov
+#     r - priemer znacky
+#     P - znacky +/- 
+#-----------------------------------------------------------------------
+define(`dc_source',`[
+    # upravena znacka DC zdroja
+    Q: box wid $2 ht $1 invis;
+
+    dx = .1;
+    k  = 12;
+    r  = $2 * 0.7;
+    C: circle diameter r at Q.c
+
+    line from Q.c+(-r/2+0.1, r/10)  to Q.c+(r/2-.1, r/10)
+    line from Q.c+(-r/2+0.1, -r/10) to Q.c+(r/2-.1, -r/10)
+    line from C.s to Q.s; 
+    line from C.n to Q.n;
+    
+    ifinstr($3,P,
+        {
+         "$+$" at C.n above ljust;
+         "$-$" at C.s below ljust;
+        },
+        { })
+        
+]')
+
+
+#-----------------------------------------------------------------------
+# register 32 bit horizontal
+#-----------------------------------------------------------------------
+define(`reg32_h',`[
+    right;
+    boxrad=0.1;
+    w=0.5
+    h=0.5
+    color_light_grey;
+    BD: box ht h wid 7*w;
+    color_black;
+    move to BD.w
+    box ht h wid w; {"31" at last box.c}
+    box ht h wid w; {"30" at last box.c}
+    box ht h wid w; {"29" at last box.c}
+    box ht h wid w invis; {"..." at last box.c} 
+    box ht h wid w; {"2" at last box.c}
+    box ht h wid w; {"1" at last box.c}
+    box ht h wid w; {"0" at last box.c}
+]')
+
+#-----------------------------------------------------------------------
+# register 32 bit vertical
+#-----------------------------------------------------------------------
+define(`reg32_v',`[
+    down;
+    boxrad=0.1;
+    w=0.5
+    h=0.5
+    color_grey;
+    BD: box ht 7*h wid w;
+    color_black;
+    move to BD.n
+    box ht h wid w; {"31" at last box.c}
+    box ht h wid w; {"30" at last box.c}
+    box ht h wid w; {"29" at last box.c}
+    box ht h wid w invis; {"..." at last box.c} 
+    box ht h wid w; {"2" at last box.c}
+    box ht h wid w; {"1" at last box.c}
+    box ht h wid w; {"0" at last box.c}
+]')
+
+
+#-----------------------------------------------------------------------
+# buffer horizontalny
+#-----------------------------------------------------------------------
+define(`buffer_h',`[
+    right;
+    boxrad=0.1;
+    w=0.35
+    h=0.8
+    color_light_grey;
+    BD: box ht h wid 7*w;
+    color_black;
+    move to BD.w
+    box ht h wid w; 
+    box ht h wid w; 
+    box ht h wid w; 
+    box ht h wid w;
+    box ht h wid w invis; {"..." at last box.c} 
+    box ht h wid w; 
+    box ht h wid w; 
+    box ht h wid w; 
+    box ht h wid w;
+]')
+
+#-----------------------------------------------------------------------
+# dual_switch(d, ON | OFF)
+# vodorovne vyvody
+#-----------------------------------------------------------------------
+define(`dual_switch',`[
+    
+    rr = 0.15;
+    p = 1.5; 
+    B: box ht 1 wid $1 invis;
+
+    C1: circle diameter rr at  B.c + (rr/2 - p/4, 0)
+    C2: circle diameter rr at  B.c + (-rr/2 + p/4, p/4) fill 0;
+    C3: circle diameter rr at  B.c + (-rr/2 + p/4, -p/4) fill 0;
+
+    line from C1.w to B.w 
+    line from C2.e to (B.e.x, C2.c.y)
+    line from C3.e to (B.e.x, C3.c.y)
+
+    ifinstr($2,OFF,
+        {
+            line from C1.c to C2.c #+ (0, p/4)
+        },
+        {
+            line from C1.c to C3.c 
+        }
+   );
+   A: (B.e.x, C2.c.y);
+   B: (B.e.x, C3.c.y);
+   C: B.w;
+]')
+
+
+#-----------------------------------------------------------------------
+# single_switch(d, ON|OFF, H|V, L|R) - spinac
+#-----------------------------------------------------------------------
+define(`single_switch',`[
+    
+    rr = 0.15;
+    p = 1.5; 
+
+    # horizontalny spinac
+    ifinstr($3,H,
+        `[
+            B: box ht 1 wid $1 invis;                           # neviditelny  box
+            
+            ifinstr($4, R,
+                {
+                    C1: circle diameter rr at  B.c + (-rr/2 + p/4, 0)
+                    C2: circle diameter rr at  B.c + ( rr/2 - p/4, 0) fill 0;
+                    line from C2.w to B.w
+                    line from C1.e to B.e
+                },
+                {
+                    C1: circle diameter rr at  B.c + (rr/2 - p/4, 0)
+                    C2: circle diameter rr at  B.c + (-rr/2 + p/4, 0) fill 0;
+                    line from C1.w to B.w
+                    line from C2.e to B.e
+                }
+            );
+
+            
+            ifinstr($2,OFF,
+                {
+                    line from C2.c to C1.c + (0, p/4)
+                },
+                {
+                    line from C2.c to C1.c 
+                }
+            );
+        ]',
+
+
+        # vertikalny spinac        
+        `[
+            B: box ht $1 wid 1 invis;                               # neviditelny  box
+
+            ifinstr($4, R,
+                {
+                    C1: circle diameter rr at  B.c + (0, rr/2 - p/4)
+                    C2: circle diameter rr at  B.c + (0, -rr/2 + p/4) fill 0;
+                    line from C2.n to B.n
+                    line from C1.s to B.s
+                },
+                {
+                    C1: circle diameter rr at  B.c + (0, -rr/2 + p/4)
+                    C2: circle diameter rr at  B.c + (0, rr/2 - p/4) fill 0;
+                    line from C1.n to B.n
+                    line from C2.s to B.s
+                } 
+            );
+
+
+
+            ifinstr($2,OFF,
+                {
+                    line from C2.c to C1.c + (p/4, 0)
+                },
+                {
+                    line from C2.c to C1.c 
+                }
+            )
+        ]' );
+]')
+
+
+#-----------------------------------------------------------------------
+# dual_switch_wide(d, ON | OFF, L | R)
+# vertikalne vyvody
+#-----------------------------------------------------------------------
+define(`dual_switch_wide',`[
+    
+    rr = 0.15;
+    p = 1.5; 
+    B: box ht 2 wid $1 invis;
+
+    ifinstr($3, R,
+        {
+            C1: circle diameter rr at  B.c + (rr/2 - p/4, 0)
+            C2: circle diameter rr at  B.c + (-rr/2 + p/4, p/4) fill 0;
+            C3: circle diameter rr at  B.c + (-rr/2 + p/4, -p/4) fill 0;
+
+            line from C1.w to B.w;
+            line from C2.n to (C2.c.x, B.n.y);
+            line from C3.s to (C3.c.x, B.s.y);
+
+            A: (C2.c.x, B.n.y);
+            B: (C3.c.x, B.s.y);
+        },
+        {
+
+            C1: circle diameter rr at  B.c - (rr/2 - p/4, 0)
+            C2: circle diameter rr at  B.c - (-rr/2 + p/4, p/4) fill 0;
+            C3: circle diameter rr at  B.c - (-rr/2 + p/4, -p/4) fill 0;
+
+            line from C1.e to B.e;
+            line from C2.c to (C2.c.x, B.s.y);
+            line from C3.c to (C3.c.x, B.n.y);
+
+            A: (C2.c.x, B.s.y);
+            B: (C3.c.x, B.n.y);
+        }
+    );
+
+
+    ifinstr($2,OFF,
+        {
+            line from C1.c to C2.c #+ (0, p/4)
+        },
+        {
+            line from C1.c to C3.c 
+        }
+   );
+   C: B.w;
+]')
+
+
+#-----------------------------------------------------------------------
+# single_switch_h(d, ON | OFF) - horizontalny spinac
+#-----------------------------------------------------------------------
+define(`single_switch_h',`[
+
+    B: box ht 1 wid $1 invis;            # neviditelny  box
+    rr = 0.15;
+    p = 1.5; 
+
+    C1: circle diameter rr at  B.c + (rr/2 - p/4, 0)
+    C2: circle diameter rr at  B.c + (-rr/2 + p/4, 0) fill 0;
+    line from C1.w to B.w
+    line from C2.e to B.e
+    ifinstr($2,OFF,
+        {
+            line from C2.c to C1.c + (0, p/4)
+        },
+        {
+            line from C2.c to C1.c 
+        }
+    );
+]')
+
+#-----------------------------------------------------------------------
+# single_switch_v(d, ON | OFF) - vertikalny spinac
+#-----------------------------------------------------------------------
+define(`single_switch_v',`[
+
+    B: box ht $1 wid 1 invis;            # neviditelny  box
+    rr = 0.15; 
+    p = 1.5;
+    
+    C1: circle diameter rr at  B.c + (0, -rr/2 + p/4)
+    C2: circle diameter rr at  B.c + (0, rr/2 - p/4) fill 0;
+    line from C1.n to B.n
+    line from C2.s to B.s
+    ifinstr($2,OFF,
+        {
+            line from C2.c to C1.c + (p/4, 0)
+        },
+        {
+            line from C2.c to C1.c 
+        }
+    )
+]')
+
+#-----------------------------------------------------------------------
+# N - fet
+# fet_N(length, L|R)  - dlzka vyvodov, orientacia 
+#-----------------------------------------------------------------------
+define(`fet_N',`[
+    d=$1
+    s=1
+    Q: box ht d wid s invis
+    
+    ifinstr($2,L, 
+       { 
+         G: Q.w;  # gate
+         D: Q.n   # kolektor
+         S: Q.s   # emitor
+         L1: line from Q.w to Q.w + (s/4, 0)
+         dx=s/10
+       },
+       {
+         G: Q.e;  # gate
+         D: Q.n   # kolektor
+         S: Q.s   # emitor
+         L1: line from Q.e to Q.e - (s/4, 0);
+         dx=-s/10
+       }
+    )
+    line from L1.end + (0,-s/4) to L1.end + (0,s/4)
+    L2: line from L1.end + (dx,-s/4) to L1.end + (dx,s/4)
+   
+    line from L2.start to (Q.c, L2.start) to S
+    line from L2.end to (Q.c, L2.end) to D
+]')
+
+#-----------------------------------------------------------------------
+# P - fet
+# fet_P(length, L|R)  - dlzka vyvodov, orientacia 
+#-----------------------------------------------------------------------
+define(`fet_P',`[
+
+    d = $1;
+    s = 1
+    rr = 0.15
+    Q: box ht d wid s invis
+    
+    ifinstr($2,L, 
+       { 
+         G: Q.w;   # gate
+         D: Q.n   # kolektor
+         S: Q.s   # emitor
+         right_
+         L1: line from Q.w to Q.w + (s/4 - rr, 0)
+         C: circle diameter rr
+         Z: C.e
+         dx= s/10
+       },
+       {
+         G: Q.e;   # gate
+         D: Q.n   # kolektor
+         S: Q.s   # emitor
+         left_;
+         L1: line from Q.e to Q.e - (s/4 -rr, 0);
+         C: circle diameter rr
+         Z: C.w
+         dx=-s/10
+       }
+    )
+    line from Z + (0,-s/4) to Z + (0,s/4)
+    L2: line from Z + (dx,-s/4) to Z + (dx,s/4)
+    
+    line from L2.start to (Q.c, L2.start) to S
+    line from L2.end to (Q.c, L2.end) to D
+]')
+
+#-----------------------------------------------------------------------
+# NPN - bipolárny tranzistor
+# bjt_NPN(length_ce, length_b, L|R|U|D, C|N)
+# length_ce   - dlzka vyvodov medzi C a E
+# length_b    - dlzka vyvodu b
+# L|R|U|D     - orientacia, todo U|D
+# C|N         - C vykreslenie puzdra, N bez puzdra
+#-----------------------------------------------------------------------
+define(`bjt_NPN',`[
+
+    ifelse(defn(`d'),  $1, d=1,  d=$1)     # dlzka CE
+    ifelse(defn(`bx'), $2, bx=1, bx=$2)    # dlzka bazy
+    dr = index(`RLUD', $3)                 # orientacia
+    
+    Q:box ht d wid 1.5 dotted invis;
+    dx = 0.5
+    dv = 0.3;
+
+    if dr <= 0 then {
+
+        CC: Q.w  + (0.5,0);
+            x = linethick;
+            linethick = 2;    # baza
+            line from CC + (0.025, 0) up_ .20;
+            line from CC + (0.025, 0) down_ .20;
+            linethick = x;
+
+            line from CC to CC + (0.5, dv)  then to CC + (0.5,  d/2);
+            line from CC to CC + (0.5,-dv)  then to CC + (0.5, -d/2);
+            line from CC to CC + (0.5-bx, 0);    # vyvod bazy
+
+            dr = sqrt((0.5*0.5) + (dv*dv))
+            pd = asin(dv/dr);
+            dp = 20
+            ph = pi - pd + pi/dp
+
+            sy = 0.25*sin(ph) -dv
+            sx = 0.25*cos(ph) +0.5
+            line from CC + (0.5, -dv) to CC + (sx, sy); round;
+
+            ph = pi - pd - pi/dp
+            sy = 0.25*sin(ph) -dv
+            sx = 0.25*cos(ph) + 0.5
+            line from CC + (0.5, -dv) to CC + (sx, sy); round;
+
+            ifinstr($4,N,{},
+            {
+                linethick = 1.5;
+                circle rad 0.42 at CC + (0.2, 0);
+                linethick = x;
+            })
+        B:  CC + ( 0.5-bx,  0.0);
+        E:  CC + ( 0.5, -d/2);
+        C:  CC + ( 0.5,  d/2);
+     }
+
+   if dr == 1 then {
+
+        CC: Q.e  - (0.5,0);
+            x = linethick;
+            linethick = 2;
+            line from CC - (0.025, 0) up_ .20;
+            line from CC - (0.025, 0) down_ .20;
+            linethick = x;
+
+            line from CC to CC + (-0.5, dv)  then to CC + (-0.5,  d/2);
+            line from CC to CC + (-0.5,-dv)  then to CC + (-0.5, -d/2);
+            line from CC to CC  + (bx-0.5, 0);
+
+               dr = sqrt((0.5*0.5) + (dv*dv))
+            pd = asin(dv/dr);
+            dp = 20
+            ph =  pd + pi/dp
+
+            sy = 0.25*sin(ph) -dv
+            sx = 0.25*cos(ph) - 0.5
+            line from CC + (-0.5, -dv) to CC + (sx, sy); round;
+
+            ph = pd - pi/dp
+            sy = 0.25*sin(ph) -dv
+            sx = 0.25*cos(ph) - 0.5
+            line from CC + (-0.5, -dv) to CC + (sx, sy); round;
+
+            ifinstr($4,N,{},
+            {
+                linethick = 1.5;
+                circle rad 0.42 at CC - (0.2, 0);
+                linethick = x;
+            })
+
+         B: CC + ( bx-0.5,  0.0);
+         E: CC + (-0.5, -d/2);
+        C: CC + (-0.5,  d/2);
+   }
+]')
+
+
+#-----------------------------------------------------------------------
+# PNP - bipolarny tranzistor
+# bjt_PNP(length_ce, length_b, L|R|U|D, C|N)
+# length_ce   - dlzka vyvodov medzi C a E
+# length_b    - dlzka vyvodu b
+# L|R|U|D     - orientacia, todo U|D
+# C|N         - C vykreslenie puzdra, N bez puzdra
+#-----------------------------------------------------------------------
+define(`bjt_PNP',`[
+    ifelse(defn(`d'),  $1, d=1,  d=$1)     # dlzka CE
+    ifelse(defn(`bx'), $2, bx=1, bx=$2)    # dlzka bazy
+    dr = index(`RLUD', $3)                 # orientacia
+    
+    Q:box ht d wid 1.5 dotted invis;
+    dx = 0.5
+    dv = 0.3;
+
+    if dr <= 0 then {
+         CC: Q.w  + (0.5,0);
+             x = linethick;
+            linethick = 2;
+            line from CC + (0.025, 0) up_ .20;
+            line from CC + (0.025, 0) down_ .20;
+            linethick = x;
+
+            line from CC to CC + (0.5, dv)  then to CC + (0.5,  d/2);
+            line from CC to CC + (0.5,-dv)  then to CC + (0.5, -d/2);
+            line from CC to CC + (0.5-bx, 0);
+
+            dr = sqrt((0.5*0.5) + (dv*dv))
+            pd = asin(dv/dr);
+            dp = 20
+            ph = pi - pd + pi/dp
+
+            sy = 0.25*sin(ph)
+            sx = 0.25*cos(ph)
+            line from CC to CC + (-sx, sy); round;
+
+            ph = pi - pd - pi/dp
+            sy = 0.25*sin(ph)
+            sx = 0.25*cos(ph)
+            line from CC to CC + (-sx, sy); round;
+
+            ifinstr($4,N,{},
+               {
+                    linethick = 1.5;
+                    circle rad 0.42 at CC + (0.2, 0);
+                    linethick = x;
+               })
+         B: CC + ( 0.5-bx,  0.0);
+         C: CC + ( 0.5, -d/2);
+         E: CC + ( 0.5,  d/2);
+       }
+
+    if dr == 1 then {     # smer L
+        CC: Q.e  - (0.5,0);
+        x = linethick;
+        linethick = 2;
+        line from CC - (0.025, 0) up_   .20;
+        line from CC - (0.025, 0) down_ .20;
+        linethick = x;
+
+        line from CC to CC + (-0.5, dv)  then to CC + (-0.5,  d/2);
+        line from CC to CC + (-0.5,-dv)  then to CC + (-0.5, -d/2);
+        line from CC to CC  + (bx-0.5, 0);
+
+        dr = sqrt((0.5*0.5) + (dv*dv))
+        pd = asin(dv/dr);
+        dp = 20
+        ph =  pd + pi/dp;
+
+        sy = 0.25*sin(ph);
+        sx = 0.25*cos(ph);
+        line from CC to CC + (-sx, sy); round;
+
+        ph = pd - pi/dp;
+        sy = 0.25*sin(ph);
+        sx = 0.25*cos(ph);
+        line from CC to CC+ (-sx, sy); round;
+
+            ifinstr($4,N,{},
+               {
+                    linethick = 1.5;
+                    circle rad 0.42 at CC - (0.2, 0);
+                    linethick = x;
+               })
+        B: CC + ( bx-0.5,  0.0);
+        C: CC + (-0.5, -d/2);
+        E: CC + (-0.5,  d/2);
+       } 
+]')
+
+
+#-----------------------------------------------------------------------
+# D-sub 9 pin male connector
+# DE9_M(L|R|U|D)
+# L|R|U|D     - orientacia
+#-----------------------------------------------------------------------
+define(`DE9_M',`[
+
+   dir  = index(`RLUD', $1)                 # orientacia
+
+  dr=0.4;
+  dz=0.275
+  ph=sin(3/6);
+  dx=dz*cos(ph);
+  dy=dz*sin(ph);
+  rr=0.075;
+
+    if dir <= 0 then {
+        P1: circle at (0,   0) rad rr; {"\footnotesize 1" at P1 ljust;}
+        P2: circle at (0,  dr) rad rr;
+        P3: circle at (0,2*dr) rad rr;
+        P4: circle at (0,3*dr) rad rr;
+        P5: circle at (0,4*dr) rad rr;
+
+        P6: circle at (dr,  0+dr/2) rad rr;
+        P7: circle at (dr,  dr+dr/2) rad rr;
+        P8: circle at (dr,2*dr+dr/2) rad rr;
+        P9: circle at (dr,3*dr+dr/2) rad rr;
+
+        PA: P1+(-dz,0);
+        PB: P1+( dy, -dx);;
+        arc ccw from PA to PB with .c at P1;
+
+        PC: P6+(dz, 0)
+        PD: P6+(dy,-dx)
+        arc ccw from PD to PC with .c at P6;
+
+
+        PE: P5+(-dz, 0);
+        PF: P5+(dy, dx);
+        arc cw from PE to PF with .c at P5;
+
+        PG: P9+(dz,0)
+        PH: P9+(dy,dx)
+        arc ccw from PG to PH with .c at P9;
+
+        line from PB to PD
+        line from PC to PG;
+        line from PH to PF;
+        line from PE to PA;
+    }
+
+    if dir == 1 then {     # smer L
+        P1: circle at (0,   0) rad rr; {"\footnotesize 1" at P1 rjust;}
+        P2: circle at (0,  dr) rad rr;
+        P3: circle at (0,2*dr) rad rr;
+        P4: circle at (0,3*dr) rad rr;
+        P5: circle at (0,4*dr) rad rr;
+
+        P6: circle at (-dr,  0+dr/2) rad rr;
+        P7: circle at (-dr,  dr+dr/2) rad rr;
+        P8: circle at (-dr,2*dr+dr/2) rad rr;
+        P9: circle at (-dr,3*dr+dr/2) rad rr; {"\footnotesize 9" at P9 ljust;}
+
+        PA: P1+(dz,0);
+        PB: P1+( -dy, -dx);;
+        arc cw from PA to PB with .c at P1;
+
+        PC: P6+(-dz, 0)
+        PD: P6+(-dy,-dx)
+        arc cw from PD to PC with .c at P6;
+
+
+        PE: P5+(dz, 0);
+        PF: P5+(-dy, dx);
+        arc ccw from PE to PF with .c at P5;
+
+        PG: P9+(-dz,0)
+        PH: P9+(-dy,dx)
+        arc cw from PG to PH with .c at P9;
+
+        line from PB to PD
+        line from PC to PG;
+        line from PH to PF;
+        line from PE to PA;
+    }
+
+    if dir == 2 then {     # smer U
+        P1: circle at (  0,0) rad rr; {"\footnotesize 1" at P1 rjust;}
+        P2: circle at ( dr,0) rad rr;
+        P3: circle at (2*dr,0) rad rr;
+        P4: circle at (3*dr,0) rad rr;
+        P5: circle at (4*dr,0) rad rr;
+
+        P6: circle at ( 0+dr/2,-dr) rad rr;
+        P7: circle at ( dr+dr/2,-dr) rad rr;
+        P7: circle at (2*dr+dr/2,-dr) rad rr;
+        P9: circle at (3*dr+dr/2,-dr) rad rr; {"\footnotesize 9" at P9 ljust;}
+
+        PA: P1+(0, dz);
+        PB: P1+(-dx, -dy);;
+        arc ccw from PA to PB with .c at P1;
+
+        PC: P6+(0,-dz)
+        PD: P6+(-dx,-dy)
+        arc ccw from PD to PC with .c at P6;
+
+
+        PE: P5+(0, dz);
+        PF: P5+(dx, -dy);
+        arc cw from PE to PF with .c at P5;
+
+        PG: P9+(0,-dz)
+        PH: P9+(dx,-dy)
+        arc ccw from PG to PH with .c at P9;
+
+        line from PB to PD
+        line from PC to PG;
+        line from PH to PF;
+        line from PE to PA;
+    }
+]')
+
+#=======================================================================
+# premenný odpor, vertikálny
+# vres_v(d, V|P|T, H|V, b)
+# d     - velkost, default 1.5
+# V|P|T - Variable, Potenciometer, Trimer,
+# L|R   - Left | Right
+# b     - velkost bezca, default 1.25
+#
+# Attrib  .S - slider
+#-----------------------------------------------------------------------
+# upraveny resistor
+define(`res', `ebox($1, 0.8);')
+
+define(`vres_v', `[
+    ifelse(defn(`d'),  $1, d=1.5, d=$1)
+    typ = index(`VPTS',$2)
+    dir = index(`LR',$3)
+    ifelse(defn(`b'),  $4, b=1.25,  b=$4)
+
+    	 down_; R: res(d);
+         if (typ <= 0) || (typ==1) then {  # Variable
+              if dir <= 0 then {
+              	L: line -> at R.c right_ b/sqrt(2) up_ b/sqrt(2);
+              } else
+              {
+                 L: line -> at R.c left_ b/sqrt(2) up_ b/sqrt(2);
+              }
+              S: dot(at last line .s);
+           }
+
+         if typ == 1 then {                # Potenciometer
+            line from L.s to (L.s , R.s) to R.s; dot;
+         }
+
+         if (typ == 2) || (typ==3) then { # Trimer
+            if dir <= 0 then {
+              L: line  at R.c right_ b/sqrt(2) up_ b/sqrt(2);
+              line at L.end right_ 0.2 down_ 0.2;
+            } else
+            {
+               L: line  at R.c left_ b/sqrt(2) up_ b/sqrt(2);
+               line at L.end left_ 0.2 down_ 0.2;
+            }
+            S: dot(at L.s);
+         }
+
+         if typ == 3 then { # Trimer a potenciometer
+            line from L.s to (L.s , R.s) to R.s; dot;
+         }
+         B: box at R.center wid b/sqrt(2) +0.25 ht d invis;
+]')
+
+#=======================================================================
+# premenný kondenzator, vertikálny
+# vcap_v(d, L|R, b)
+# d     - velkost, default 1.5
+# L|R   - Left | Right
+# b     - velkost bezca, default 1.25
+#
+# Attrib  .S - slider
+#-----------------------------------------------------------------------
+define(`vcap_v',`[
+    ifelse(defn(`d'),  $1, d=1.5, d=$1)
+    dir = index(`LR',$2)
+    ifelse(defn(`b'), $3, b=1.25,  b=$3)
+
+    down_; C: capacitor(d);
+    if dir <= 0 then {
+       L: line -> at C.c right_ b/sqrt(2) up_ b/sqrt(2);
+    } else {
+        L: line -> at C.c left_ b/sqrt(2) up_ b/sqrt(2);
+    }
+    S: L.s;
+    B: box at C.center wid b/sqrt(2) +0.25 ht d invis;
+]')
+
+#=======================================================================
+# Oznacenie prudu vetvou obvodu
+# l_current(label, [pos], [frac])
+#
+#    label  - označenie veličiny (prúd ...)
+#
+#    pos
+#       above_ - vertikálna poloha označenia
+#       below_
+#       rjust_ - horizontálna poloha označenia
+#       ljust_
+#
+#    frac  - poloha šípky medzi koncovými bodmi 0..1, 0.5 - stred
+#-----------------------------------------------------------------------
+define( `l_current', `{
+    ifelse(defn(`k'), $3, k=0.5,  k=$3)
+    S: last line .start;
+    E: last line .end;
+    C: k between S and E;
+    line -> from S to C; line from C to E;
+    "$ $1 $" at last line.start $2;
+}')
+
+#=======================================================================
+# Koniec dokumentu
+#=======================================================================
+
+

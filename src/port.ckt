@@ -1,0 +1,74 @@
+.PS
+scale=2.54
+cct_init
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+
+command"\sf"
+#Grid(14,4.5)
+
+up_
+move to (3.5,5)
+
+    gnd();
+Q1: fet_N(1.5,L);
+    dot; {line right_ 1; tbox("Port Pin",1.5); }
+Q2: fet_P(1.5,L);
+    power(0.5, $\sf V_{cc}$)
+
+    line from Q2.G left_ 0.5;
+    line to (Here, Q1.G);
+    dot; {line left_ 0.5; tbox("Digital Out",2,,<); }
+    line to Q1.G
+    circle at Q2.c - (2.5,0) rad 0.25 "A"
+
+
+move to (11.5,5)
+    up_;
+    gnd();
+Q3: fet_N(1.5,L);
+    dot; {line right_ 1; tbox("Port Pin",1.5); }
+Q4: fet_P(1.5,L);
+    power(0.5, $\sf V_{cc}$)
+R1: resistor(left_ 1 from Q3.G,E)
+R2: resistor(left_ 1 from Q4.G,E)
+    line 0.5 from R2.end;
+    line to (Here, R1.end);
+    dot; {line left_ 0.5; tbox("Digital Out",2,,<); }
+    line to R1.end;
+    circle at Q4.c - (3,0) rad 0.25 "B"
+
+
+move to (3.5, 0)
+
+    up_;
+    gnd;
+    resistor(1.5, E); rlabel(,\sf R_{PD},)
+    dot; 
+    {
+        {line left_ 1.5; tbox("Digital In",2,, >);}
+        line right_ 1;
+        tbox("Port Pin",1.5); 
+    }
+Q5: fet_P(1.5,L);
+    power(0.5, $\sf V_{cc}$);
+    {line from Q5.G left_ 1; tbox("Digital Out",2,,<); }
+    circle at Q5.c - (2.5,-1) rad 0.25 "C";
+
+
+move to (11.5, 0)
+    up_;
+    gnd;
+Q6: fet_N(1.5,L);
+    dot; 
+    {
+        {line left_ 1.5; tbox("Digital In",2,, >);}
+        line right_ 1;
+        tbox("Port Pin",1.5); 
+    }
+    resistor(up_ 1.5, E); rlabel(,\sf R_{PU},)
+    power(0.5, $\sf V_{cc}$);
+    {line from Q6.G left_ 1; tbox("Digital Out",2,,<); }
+    circle at Q6.c - (2.5,-2) rad 0.25 "D";
+.PE
