@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Rezistor" href="0076_resistor.html" />
-    <link rel="prev" title="Základné veličiny elektroniky" href="0074_veliciny.html" />
+    <link rel="prev" title="Vlastnosti signálov" href="0072_signaly.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,11 +167,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0074_veliciny.html">Základné veličiny elektroniky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0070_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0071_zakony.html"><font color="#547792"> Zákony elektroniky  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0072_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov   </font></a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Analogová elektronika</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0077_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0078_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0079_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0080_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
@@ -383,11 +389,23 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analogova-elektronika">
 <h1>Analogová elektronika<a class="headerlink" href="#analogova-elektronika" title="Link to this heading">#</a></h1>
-<p>V tejto kapitole sú popísané základné analógové komponenty elektronických obvodov a ich zapojenia, ktoré sú použité v nasledujúcich kapitolách tejto knihy.</p>
+<p>Komponenty elektronických obvodov môžeme rozdeliť na pasívne a aktívne komponenty. Pasívne komponenty sú tie, ktoré na svoju prevádzku nepotrebujú zdroj napájania
+a ktorých činnosť rozptyľuje energiu. Žiadny čisto pasívny komponent nemôže mať výstup, ktorý dodáva viac energie, ako je k dispozícii na vstupe. Typickými pasívnymi komponentmi sú rezistory, kondenzátory, cievky a transformátory.</p>
+<p>Aktívne komponenty naopak využívajú zdroj napájania, zvyčajne jednosmerný prúd, takže výstupný výkon signálu aktívneho komponentu môže byť vyšší ako výkon signálu
+na vstupe. Typickými aktívnymi komponentmi sú tranzistory a zapojenia realizované ako integrované obvody.</p>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pasívne komponenty</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="0076_resistor.html"><font color='#4B9DA9'>  Rezistor  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0077_capacitor.html"><font color='#4B9DA9'> Kondenzátor  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0078_inductor.html"><font color='#4B9DA9'> Cievka  </font></a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aktívne komponenty</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="0079_transistor.html"><font color='#4B9DA9'> Tranzistor </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0080_opamp.html"><font color='#4B9DA9'> Operačný zosilovač </font></a></li>
 </ul>
 </div>
 </section>
@@ -404,12 +422,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0074_veliciny.html"
+       href="0072_signaly.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Základné veličiny elektroniky</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Vlastnosti signálov   </font></p>
       </div>
     </a>
     <a class="right-next"

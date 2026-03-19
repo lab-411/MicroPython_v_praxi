@@ -165,11 +165,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0074_veliciny.html">Základné veličiny elektroniky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0070_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0071_zakony.html"><font color="#547792"> Zákony elektroniky  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0072_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov   </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0077_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0078_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0079_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0080_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
@@ -402,7 +408,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/multi_shield_10.png"><img alt="_images/multi_shield_10.png" src="_images/multi_shield_10.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 39 </span><span class="caption-text">Modul Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 40 </span><span class="caption-text">Modul Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="popis-a-zapojenie">
@@ -412,7 +418,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/fun01_zapojenie.gif"><img alt="_images/fun01_zapojenie.gif" src="_images/fun01_zapojenie.gif" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 40 </span><span class="caption-text">Zapojenie modulu Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 41 </span><span class="caption-text">Zapojenie modulu Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="led-diody">
@@ -422,7 +428,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/img_0505w.png"><img alt="_images/img_0505w.png" src="_images/img_0505w.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 41 </span><span class="caption-text">Zapojenie LED diód na module Funduino.</span><a class="headerlink" href="#img-0505w" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 42 </span><span class="caption-text">Zapojenie LED diód na module Funduino.</span><a class="headerlink" href="#img-0505w" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -492,7 +498,7 @@ d4.on()
 <a class="reference internal image-reference" href="_images/img_0505z.png"><img alt="_images/img_0505z.png" src="_images/img_0505z.png" style="width: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 42 </span><span class="caption-text">Zapojenie tlačítok na module Funduino.</span><a class="headerlink" href="#img-0505z" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 43 </span><span class="caption-text">Zapojenie tlačítok na module Funduino.</span><a class="headerlink" href="#img-0505z" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -503,7 +509,7 @@ d4.on()
 <a class="reference internal image-reference" href="_images/img_0505v.png"><img alt="_images/img_0505v.png" src="_images/img_0505v.png" style="width: 250px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 43 </span><span class="caption-text">Zapojenie bzuciaka na module Funduino.</span><a class="headerlink" href="#img-0505v" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 44 </span><span class="caption-text">Zapojenie bzuciaka na module Funduino.</span><a class="headerlink" href="#img-0505v" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -546,7 +552,7 @@ t1.deinit()
 <a class="reference internal image-reference" href="_images/ic_74hc595.png"><img alt="_images/ic_74hc595.png" src="_images/ic_74hc595.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 44 </span><span class="caption-text">Vnútorná štruktúra obvodu <a class="reference download internal" download="" href="_downloads/c20a0abfe6d40e9e8beec2d9e0129760/sn74hc595.pdf"><span class="xref download myst">74HC595</span></a>.</span><a class="headerlink" href="#mp-0505c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 45 </span><span class="caption-text">Vnútorná štruktúra obvodu <a class="reference download internal" download="" href="_downloads/c20a0abfe6d40e9e8beec2d9e0129760/sn74hc595.pdf"><span class="xref download myst">74HC595</span></a>.</span><a class="headerlink" href="#mp-0505c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Výstupy prvého posuvného registra sú pripojené k anódam znakov, výstupy druhého ku katódam segmentov. Pre rozsvietenie jedného znaku potrebujeme do posuvných registrov vyslať postupnosť 2x 8bitov, ktoré sa zapíšu do posuvných registrov.</p>
@@ -566,7 +572,7 @@ pin.value(True)          # ukoncenie zapisu a preun hodnoy do pamete registra
 <a class="reference internal image-reference" href="_images/fund_spi2.png"><img alt="_images/fund_spi2.png" src="_images/fund_spi2.png" style="width: 250px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 45 </span><span class="caption-text">Prepojenie pinov (26-21, 30-23, 24-29) pre rozhranie SPI.</span><a class="headerlink" href="#mp-0505e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 46 </span><span class="caption-text">Prepojenie pinov (26-21, 30-23, 24-29) pre rozhranie SPI.</span><a class="headerlink" href="#mp-0505e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>

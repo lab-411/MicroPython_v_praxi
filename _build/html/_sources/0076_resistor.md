@@ -53,7 +53,7 @@ Hodnoty rezistorov sa môžu pohybovať v širokom rozsahu niekoľkých rádov. 
 X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
 \end{equation*}
 
-kde $m$ je počet hodnôt v ráde a $n=0 \dots m-1$. Napríklad hodnoty všetkých rezitorov pre radu E6 spočítame nasledujúcim programom
+kde $m$ je počet hodnôt v ráde a $n=0 \dots m-1$. Napríklad hodnoty všetkých rezitorov pre radu *E6* spočítame nasledujúcim programom
 
 ```{code-cell} ipython3  
 from numpy import *
@@ -61,7 +61,7 @@ m = 6
 for n in range(m):      # 0 .. m-1
     r = power(10, n)    
     x = power(r, 1/m)   
-    print(round(x,1))   
+    print(round(x,1), end=', ')   
 ```
 
 Reálne dodávané hodnoty sa v niektorých hodnotách mierne líšia, napr. v rade E6 je miesto hodnoty 3.2 použitá hodnota 3.3, miesto 4.6 hodnota 4.7. Vyrábané hodnoty sú dekadickými podielmi a násobkami týchto hodnôt, napríklad 0.1, 0.15 ... 1,1.5 ... 10, 15, ... 2200, 3300, ... 680000, ...

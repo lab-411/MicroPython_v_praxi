@@ -32,8 +32,10 @@
 
 ```{toctree}
 :titlesonly: True
-:caption: Základy elektroniky
-0074_veliciny.md
+:caption: Elektronika
+0070_veliciny.md
+0071_zakony.md
+0072_signaly.md
 0075_analog.md
 0090_digital.md
 0095_prototyp.md

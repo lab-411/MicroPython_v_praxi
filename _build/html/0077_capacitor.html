@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Základné veličiny elektroniky &#8212; Micro_Python  documentation</title>
+    <title>Kondenzátor &#8212; Micro_Python  documentation</title>
   
   
   
@@ -46,11 +46,11 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '0074_veliciny';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0077_capacitor';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Analogová elektronika" href="0075_analog.html" />
-    <link rel="prev" title="Ako na to" href="0012_mcp_zaciname.html" />
+    <link rel="next" title="Cievka" href="0078_inductor.html" />
+    <link rel="prev" title="Rezistor" href="0076_resistor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,11 +165,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Základné veličiny elektroniky</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1"><a class="reference internal" href="0070_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0071_zakony.html"><font color="#547792"> Zákony elektroniky  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0072_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov   </font></a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0078_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0079_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0080_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
@@ -283,7 +289,7 @@
       
       
       
-      <li><a href="_sources/0074_veliciny.md" target="_blank"
+      <li><a href="_sources/0077_capacitor.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -365,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Základné veličiny elektroniky</h1>
+    <h1><font color='#4B9DA9'> Kondenzátor  </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,8 +385,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="zakladne-veliciny-elektroniky">
-<h1>Základné veličiny elektroniky<a class="headerlink" href="#zakladne-veliciny-elektroniky" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="kondenzator">
+<h1><font color='#4B9DA9'> Kondenzátor  </font><a class="headerlink" href="#kondenzator" title="Link to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </section>
 
 
@@ -395,20 +404,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0012_mcp_zaciname.html"
+       href="0076_resistor.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ako na to</p>
+        <p class="prev-next-title"><font color='#4B9DA9'>  Rezistor  </font></p>
       </div>
     </a>
     <a class="right-next"
-       href="0075_analog.html"
+       href="0078_inductor.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Analogová elektronika</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Cievka  </font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

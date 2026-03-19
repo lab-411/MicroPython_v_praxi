@@ -167,11 +167,17 @@
 <li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0074_veliciny.html">Základné veličiny elektroniky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0070_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0071_zakony.html"><font color="#547792"> Zákony elektroniky  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0072_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov   </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0077_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0078_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0079_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0080_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
@@ -406,7 +412,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/led_ws812.jpg"><img alt="_images/led_ws812.jpg" src="_images/led_ws812.jpg" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 33 </span><span class="caption-text">LED matica</span><a class="headerlink" href="#mp-0500a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 34 </span><span class="caption-text">LED matica</span><a class="headerlink" href="#mp-0500a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="komunikacny-protokol">
@@ -416,7 +422,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ws2512_kod.png"><img alt="_images/ws2512_kod.png" src="_images/ws2512_kod.png" style="width: 250px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 34 </span><span class="caption-text">Časovanie logických stavov L,H a RESET.</span><a class="headerlink" href="#mp-0500b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 35 </span><span class="caption-text">Časovanie logických stavov L,H a RESET.</span><a class="headerlink" href="#mp-0500b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Každá farba LED je určená 8-bitovou hoddnotou, pre 3 farby (RGB) potrebujeme preto vyslať pre každú LED 24 bitov.</p>
@@ -424,7 +430,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ws2512_rgb.png"><img alt="_images/ws2512_rgb.png" src="_images/ws2512_rgb.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 35 </span><span class="caption-text">Kódovanie farebnej informácie.</span><a class="headerlink" href="#mp-0500c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 36 </span><span class="caption-text">Kódovanie farebnej informácie.</span><a class="headerlink" href="#mp-0500c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>LED sú zpojené v sérii, každý riadiaci obvod si z dátového reťazca ponechá prvú informáciu o stave LED a zbytok dátového paketu pošle ďalej. Medzi jednotlivými paketmi je časový interval, ktorý je interpretovaný ako reset.</p>
@@ -432,14 +438,14 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ws2512_zapojenie.png"><img alt="_images/ws2512_zapojenie.png" src="_images/ws2512_zapojenie.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 36 </span><span class="caption-text">Sériové zapojenie LED</span><a class="headerlink" href="#mp-0500d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 37 </span><span class="caption-text">Sériové zapojenie LED</span><a class="headerlink" href="#mp-0500d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="mp-0500e">
 <a class="reference internal image-reference" href="_images/ws2512_sekvencia.png"><img alt="_images/ws2512_sekvencia.png" src="_images/ws2512_sekvencia.png" style="width: 550px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 37 </span><span class="caption-text">Princíp komunikácie na sériovej zbernici.</span><a class="headerlink" href="#mp-0500e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 38 </span><span class="caption-text">Princíp komunikácie na sériovej zbernici.</span><a class="headerlink" href="#mp-0500e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -453,7 +459,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ws2812_nucleo.png"><img alt="_images/ws2812_nucleo.png" src="_images/ws2812_nucleo.png" style="width: 550px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 38 </span><span class="caption-text">Pripojenie matice</span><a class="headerlink" href="#mp-0500f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 39 </span><span class="caption-text">Pripojenie matice</span><a class="headerlink" href="#mp-0500f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
