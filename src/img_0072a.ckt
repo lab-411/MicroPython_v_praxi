@@ -1,0 +1,54 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+scale=1.2 #2.54
+arrowht=0.15
+arrowwid=.1
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+right_;
+move to (0,0);                              # "0" below;
+#Grid(10,4);
+
+color_black;
+line -> from (-0.25,0) to (2*pi+0.5,0); "t" above ;
+move to (0,0); 
+color_blue;
+sinusoid(1.0, 1, -pi/2, 0, 2*pi);
+move to (0,0);
+color_red;
+sinusoid(1.0, 1, -1.5*pi/2, 0, 2*pi, dashed);
+
+color_orange;
+line from (0, 1) to (2*pi,1) dotted;
+line from (0, -1) to (2*pi,-1) dotted;
+line from (0, .707) to (2*pi, 0.707) dotted; color_black; #"$A_{RMS}$" at last line.start rjust;
+
+color_black;
+line -> from (0, -1.25) to (0,1.25); 
+"y(t)" at last line.end+(0, 0.1);# rjust;
+"A" at last line.center+(0,1) rjust;
+"-A" at last line.center+(0,-1) rjust;
+
+line -> from (1.35*pi, 0) to (1.35*pi, 0.707); 
+"$A_{RMS}$" at last line.center ljust ;
+
+line from (pi/2/1.95, 0.1) to (pi/2/1.95, -0.25) dashed; "$\phi$" at last line.end below;
+line from (pi, 0.1) to (pi, -0.1); "$T/2$" at last line.end below;
+line from (2*pi, 0.1) to (2*pi, -0.1); "$T$" at last line.start above;;
+
+.PE

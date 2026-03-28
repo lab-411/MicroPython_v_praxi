@@ -1,0 +1,27 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+up_; 
+Q1: capacitor(1.8,); llabel(,C,)
+line right_ 1; 
+C1:circle rad 0.08; "$+$" ljust; 
+line <- from last line.end+(0.6,0) right_ 0.8; "$i(t)$" ljust;
+line from Q1.start right_ 1; 
+C2:circle rad 0.08; "$-$" ljust; 
+line -> from C1.s+(0,-.1) to C2.n+(0,0.1); "$v(t)$" at last line.center ljust;
+
+.PE

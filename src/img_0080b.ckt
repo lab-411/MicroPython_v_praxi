@@ -1,0 +1,31 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+A1: opamp(); 
+LN: line from A1.In1 left_ 0.5; 
+LP: line from A1.In2 left_ 0.5;
+
+line from LN.end up_ 0.8 
+line right_ to (A1.Out, Here) then to A1.Out; dot; 
+line right_ 1; 
+C1: circle rad 0.075; "\textit{Out}" at C1.n above;
+
+line from LP.end left_ 0.75;
+C2: circle rad 0.075; "\textit{In}" at C2.n above;
+
+.PE

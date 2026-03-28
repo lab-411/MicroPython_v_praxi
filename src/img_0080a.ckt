@@ -1,0 +1,39 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+A1: opamp(); 
+    line from A1.In1 left_ 0.5; 
+    line from A1.In2 left_ 0.5;
+    "a)" at A1.s below;
+
+    move to A1 +(3.5,0);
+    right_;
+A2: opamp(,,,,P); 
+    line from A2.In1 left_ 0.5;  
+    color_blue; line <- left_ 0.8 up_ 0.8; "Invertujúci vstup" above; color_black; 
+
+    line from A2.In2 left_ 0.5;
+    color_blue; line <- left_ 0.8 down_ 0.8; "Neinvertujúci vstup" below; color_black; 
+    color_blue; 
+    line <- from A2.Out right_ 0.8 up_ 0.8; "Výstup" above; color_black; 
+    line from A2.V1 up_ 0.25; color_red; line <- right_ 0.8 up_ 0.8; "Napájanie +" above; color_black; 
+    line from A2.V2 down_ 0.25; color_red; line <- right_ 0.8 down_ 0.8; "Napájanie -" below;
+    color_black; 
+    "b)" at A2.se below;
+
+.PE

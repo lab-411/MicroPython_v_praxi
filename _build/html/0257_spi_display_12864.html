@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -49,7 +49,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '0257_spi_display_12864';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="I2C" href="0200_i2c.html" />
+    <link rel="next" title="Teplomer LM92" href="0156_i2c_lm92.html" />
     <link rel="prev" title="LED Display 7219" href="0255_spi_display_7219.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -162,24 +162,30 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0010_mcp_uvod.html">MicroPython</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_mcp_zaciname.html">Ako na to</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0010_uvod.html">MicroPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html">Ako na to</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0070_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0071_zakony.html"><font color="#547792"> Zákony elektroniky  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0072_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov   </font></a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="0075_analog.html">Analogová elektronika</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0076_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0077_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0078_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0079_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0080_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0032_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0034_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0036_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="0090_digital.html">Digitálna elektronika</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0095_prototyp.html">Prototypy obvodov</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0050_digital.html">Digitálna elektronika</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mikrokontrolér</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0400_architektura.html"><font color="#4B9DA9"> Architektura  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0410_programovanie.html"><font color="#4B9DA9"> Programovanie  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0420_filesystem.html">Súborový systém</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0440_library.html">Knižnice</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
 <ul class="nav bd-sidenav">
@@ -191,50 +197,51 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="0225_usart.html">USART</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0226_usart_basic.html">Vlastnosti</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="0200_usart.html">USART</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0202_usart_basic.html">Vlastnosti</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="0250_spi.html">SPI</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0251_spi_basic.html">Vlastnosti</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0252_spi_pyb.html">Knižnica pyb.SPI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0250_spi.html"><font color="#4B9DA9"> SPI </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0251_spi_basic.html"><font color="#4B9DA9"> Vlastnosti </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0252_spi_pyb.html"><font color="#4B9DA9"> API </font></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="0200_i2c.html">I2C</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0201_i2c_basic.html">Vlastnosti</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0202_i2c_pyb.html"><font color="#1e90ff"> Knižnica pyb.I2C </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0205_i2c_lm92.html">Teplomer LM92</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0207_i2c_display.html">Display PCF8547T</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0209_i2c_mems.html">MEMS Senzory</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0150_i2c.html"><font color="#4B9DA9"> I2C </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0152_i2c_basic.html"><font color="#4B9DA9"> Vlastnosti </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0154_i2c_pyb.html"><font color="#4B9DA9"> API </font></a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Časovače</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0275_timer.html">TIMER</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0300_timer.html">TIMER</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projekty</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0500_mod_led_matrix.html">Modul LED WS2812-64</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0505_mod_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0510_mod_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html">Modul LED WS2812-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html">Display PCF8547T</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0590_prototyp.html">Prototypy obvodov</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0062_nucleo32.html">STM32 Nucleo-32</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0060_nucleo64.html">STM32 Nucleo-64</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0064_nucleo144.html">STM32 Nucleo-144</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0862_nucleo32.html">STM32 Nucleo-32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0860_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0864_nucleo144.html">STM32 Nucleo-144</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0015_mcp_install.html">Inštalácia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0016_mcp_firmware.html">Inštalácia Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0018_mcp_editor.html">Externý editor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0050_mcp_library.html">Knižnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0055_mcp_filesystem.html">Súborový systém</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0710_install.html">Inštalácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0714_firmware.html">Inštalácia Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0716_editor.html">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0720_jednotky_si.html"><font color="#547792">Jednotky SI </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0730_znacky.html"><font color="#547792"> Elektrotechnické značky</font></a></li>
 </ul>
 
     </div>
@@ -406,7 +413,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/lcd_st7520_1.png"><img alt="_images/lcd_st7520_1.png" src="_images/lcd_st7520_1.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 30 </span><span class="caption-text">Displej QC12864.</span><a class="headerlink" href="#mp-0257c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 48 </span><span class="caption-text">Displej QC12864.</span><a class="headerlink" href="#mp-0257c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="popis">
@@ -727,11 +734,11 @@ lcd.show()
       </div>
     </a>
     <a class="right-next"
-       href="0200_i2c.html"
+       href="0156_i2c_lm92.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">I2C</p>
+        <p class="prev-next-title">Teplomer LM92</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

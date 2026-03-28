@@ -12,8 +12,15 @@ kernelspec:
   name: python3
 ---
 
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
 
-#  Vlastnosti 
+
+
+# <font color='#4B9DA9'> Vlastnosti </font>
+
 
 **SPI** (Serial Peripheral Interface) je synchrónne sériové rozhranie používané na komunikáciu na krátke vzdialenosti medzi procesorom a periférnymi obvodmi (prevodníky, pamäte, displeje). Vyvinuté bolo na prelome 70. a 80. rokov 20. storočia spoločnosťou Motorola a umožňuje obojsmernú *full-duplex* komunikáciu na spoločnej zbernici. Podrobný popis rozhrania *SPI* je uvedený v [dokumentácii](./doc/an_1248.pdf)
 
@@ -185,9 +192,9 @@ _ = cm_compile('img_0250c', data,  dpi=600)
 Reťazenie zariadení na zbernici *SPI* (Daisy-Chain).
 ```
 
-Komunikácia a spracovanie dát pomocou posuvných registrov pre riadenie LED displeja je popísaná v kapitole [Modul Funduino](0505_mod_funduino_01).
+Komunikácia a spracovanie dát pomocou posuvných registrov pre riadenie LED displeja je popísaná v kapitole [Modul Funduino](0505_funduino_01).
   
-## Časovanie zbernice
+## <font color='#547792'>  Časovanie zbernice </font>
 
 Konfigurácii parametrov zbernice je určená parametrami
 

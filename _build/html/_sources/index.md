@@ -26,22 +26,27 @@
 ```{toctree}
 :titlesonly: True
 :caption: Úvod
-0010_mcp_uvod.md
-0012_mcp_zaciname.md
+0010_uvod.md
+0012_zaciname.md
 ```
 
 ```{toctree}
 :titlesonly: True
 :caption: Elektronika
-0070_veliciny.md
-0071_zakony.md
-0072_signaly.md
-0075_analog.md
-0090_digital.md
-0095_prototyp.md
+0022_veliciny.md
+0024_signaly.md
+0030_analog.md
+0050_digital.md
 ```
 
-
+```{toctree}
+:titlesonly: True
+:caption: Mikrokontrolér
+0400_architektura.md
+0410_programovanie.md
+0420_filesystem.md
+0440_library.md
+```
 
 
 ```{toctree}
@@ -53,43 +58,49 @@
 ```{toctree}
 :titlesonly: True
 :caption: Sériové zbernice
-0225_usart.md
+0200_usart.md
 0250_spi.md
-0200_i2c.md
+0150_i2c.md
 ```
 
 ```{toctree}
 :titlesonly: True
 :caption: Časovače
-0275_timer.md
+0300_timer.md
 ```
 
 
 ```{toctree}
 :titlesonly: True
-:caption: Projekty
-0500_mod_led_matrix.md
-0505_mod_funduino_01.md
-0510_mod_funduino_02.md
+:caption: Príklady
+0500_led_matrix.md
+0255_spi_display_7219.md
+0257_spi_display_12864.md
+0156_i2c_lm92.md
+0158_i2c_display.md
+0160_i2c_mems.md
+0505_funduino_01.md
+0510_funduino_02.md
+0590_prototyp.md
 ```
 
 ```{toctree}
 :titlesonly: True
 :caption: Platformy
-0062_nucleo32.md
-0060_nucleo64.md
-0064_nucleo144.md
+0862_nucleo32.md
+0860_nucleo64.md
+0864_nucleo144.md
 ```
 
 
 ```{toctree}
 :titlesonly: True
 :caption: Prílohy
-0015_mcp_install.md
-0016_mcp_firmware.md
-0018_mcp_editor.md
-0050_mcp_library.md
-0055_mcp_filesystem.md
+0710_install.md
+0714_firmware.md
+0716_editor.md
+0720_jednotky_si.md
+0730_znacky.md
 ```
 
 

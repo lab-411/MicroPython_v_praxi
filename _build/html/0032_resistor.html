@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rezistor &#8212; Micro_Python  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0032_resistor';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Kondenzátor" href="0034_capacitor.html" />
+    <link rel="prev" title="Analogová elektronika" href="0030_analog.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_411.png" class="logo__image only-light" alt="Micro_Python  documentation - Home"/>
+    <script>document.write(`<img src="_static/logo_411.png" class="logo__image only-dark" alt="Micro_Python  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0010_uvod.html">MicroPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html">Ako na to</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  Rezistor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0034_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0036_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="0050_digital.html">Digitálna elektronika</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mikrokontrolér</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0400_architektura.html"><font color="#4B9DA9"> Architektura  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0410_programovanie.html"><font color="#4B9DA9"> Programovanie  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0420_filesystem.html">Súborový systém</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0440_library.html">Knižnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="0100_gpio.html">GPIO</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0101_gpio_basic.html">Vlastnosti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0102_gpio_pyb.html">Knižnica pyb.Pin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0105_gpio_onboard.html">LED / Tlačítko</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="0200_usart.html">USART</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0202_usart_basic.html">Vlastnosti</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0250_spi.html"><font color="#4B9DA9"> SPI </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0251_spi_basic.html"><font color="#4B9DA9"> Vlastnosti </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0252_spi_pyb.html"><font color="#4B9DA9"> API </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="0150_i2c.html"><font color="#4B9DA9"> I2C </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="0152_i2c_basic.html"><font color="#4B9DA9"> Vlastnosti </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0154_i2c_pyb.html"><font color="#4B9DA9"> API </font></a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Časovače</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0300_timer.html">TIMER</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html">Modul LED WS2812-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html">Display PCF8547T</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0590_prototyp.html">Prototypy obvodov</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Platformy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0862_nucleo32.html">STM32 Nucleo-32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0860_nucleo64.html">STM32 Nucleo-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0864_nucleo144.html">STM32 Nucleo-144</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0710_install.html">Inštalácia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0714_firmware.html">Inštalácia Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0716_editor.html">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0720_jednotky_si.html"><font color="#547792">Jednotky SI </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0730_znacky.html"><font color="#547792"> Elektrotechnické značky</font></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/0032_resistor.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color='#4B9DA9'>  Rezistor  </font></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prevedenie"><font color="#547792"> Prevedenie </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-standardnych-rezistorov"><font color="#547792"> Hodnoty štandardných rezistorov  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladne-zapojenia-rezistorov"><font color="#547792"> Základné zapojenia rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="rezistor">
+<h1><font color='#4B9DA9'>  Rezistor  </font><a class="headerlink" href="#rezistor" title="Link to this heading">#</a></h1>
+<p>V elektronických obvodoch je odpor reprezentovaný vlastným odporom prepojovacích vodičov medzi komponentami a špeciálnym elektronickým komponentom - rezistorom (ľudové pomenovanie odpor nie je správne).</p>
+<figure class="align-default" id="img-0032a">
+<a class="reference internal image-reference" href="_images/img_0032a.png"><img alt="_images/img_0032a.png" src="_images/img_0032a.png" style="width: 220px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Prúd a napätie rezistorom.</span><a class="headerlink" href="#img-0032a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Pre vzťah prúdu pretekajúcim rezistorom a úbytkom napätia na rezistore platí <em>Ohmov zákon</em></p>
+<div class="math notranslate nohighlight">
+\[
+v = R \cdot i 
+\]</div>
+<section id="prevedenie">
+<h2><font color='#547792'> Prevedenie </font><a class="headerlink" href="#prevedenie" title="Link to this heading">#</a></h2>
+<p>TODO - odpor vodiča</p>
+<p>Technologicky sú rezistory vyrábané rôznymi postupmi v závislosti od účelu ich použitia, zvyčajne s využitím materiálov s rôznym merným odporom ako vodičov s rôznym prierezom alebo vo forme tenkých vrstiev nanesených na vhodný nevodivý materiál, zvyčajne keramika.</p>
+<figure class="align-default" id="mp-0076a">
+<a class="reference internal image-reference" href="_images/resistor_1.jpg"><img alt="_images/resistor_1.jpg" src="_images/resistor_1.jpg" style="width: 350px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 13 </span><span class="caption-text">Typy rezistorov THT (<em>Through Hole Technology</em>).</span><a class="headerlink" href="#mp-0076a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="mp-0076e">
+<a class="reference internal image-reference" href="_images/resistor_4.jpg"><img alt="_images/resistor_4.jpg" src="_images/resistor_4.jpg" style="width: 350px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Typy rezistorov SMD (<em>Surface Mount Device</em>).</span><a class="headerlink" href="#mp-0076e" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>V niektorých prípadoch je vhodné použiť rezistor, ktorého hodnotu možeme mechanicky meniť, označujú sa ako potenciometre, trimre, premenné rezistory</p>
+<figure class="align-default" id="mp-0076b">
+<a class="reference internal image-reference" href="_images/resistor_3.jpg"><img alt="_images/resistor_3.jpg" src="_images/resistor_3.jpg" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 15 </span><span class="caption-text">Premenné rezistory.</span><a class="headerlink" href="#mp-0076b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>V schémach zapojenia sa používajú pre rezistory nasledujúce značky (<span class="math notranslate nohighlight">\(R_1\)</span> rezistor podľa európskeho značenia, <span class="math notranslate nohighlight">\(R_2\)</span> rezistor podľa anglosaského značenia, <span class="math notranslate nohighlight">\(R_3\)</span> potenciometer, <span class="math notranslate nohighlight">\(R_4\)</span> trimer)</p>
+<figure class="align-default" id="img-0076t">
+<a class="reference internal image-reference" href="_images/img_0076t.png"><img alt="_images/img_0076t.png" src="_images/img_0076t.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Značky rezistorov.</span><a class="headerlink" href="#img-0076t" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hodnoty-standardnych-rezistorov">
+<h2><font color='#547792'> Hodnoty štandardných rezistorov  </font><a class="headerlink" href="#hodnoty-standardnych-rezistorov" title="Link to this heading">#</a></h2>
+<p>Hodnoty rezistorov sa môžu pohybovať v širokom rozsahu niekoľkých rádov. Aby bolo možné vyrábať rezistory v definovanom počte hodnôt, boli určené <a class="reference external" href="https://en.wikipedia.org/wiki/E_series_of_preferred_numbers">rady</a> hodnôt. Hodnoty sú určené tak, aby v logaritmickej mierke boli približne rovnako rozložené v rámci jedného rádu, podľa vzťahu</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
+\end{equation*}\]</div>
+<p>kde <span class="math notranslate nohighlight">\(m\)</span> je počet hodnôt v ráde a <span class="math notranslate nohighlight">\(n=0 \dots m-1\)</span>. Napríklad hodnoty všetkých rezistorov pre radu <em>E6</em> spočítame nasledujúcim programom</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>      <span class="c1"># 0 .. m-1</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>   
+    <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0, 1.5, 2.2, 3.2, 4.6, 6.8, 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reálne vyrábané hodnoty sa v niektorých hodnotách mierne líšia, napr. v rade <em>E6</em> je miesto hodnoty 3.2 použitá hodnota 3.3, miesto 4.6 hodnota 4.7. Vyrábané hodnoty sú dekadickými podielmi a násobkami týchto hodnôt, napríklad 0.1, 0.15 … 1,1.5 … 10, 15, … 2200, 3300, … 680000, …</p>
+<p>Pre radu <em>E24</em> sú vyrábané hodnoty:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 
+2.0, 2.2, 2.4, 2.7, 
+3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 
+5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1
+</pre></div>
+</div>
+<p>Okrem počtu hodnôt v rade sa jednotlivé rady líšia aj toleranciou hodnôt, čím vyššia rada, tým je tolerancia hodnôt menšia.</p>
+<p>Na rezistoroch bývala niekedy hodnota vyznačená textom, čo ale pri malých rozmeroch nebolo príliš praktické, preto sa pri označovaní rezistorov začal používať aj farebný kód v podobe prúžkov na rezistore. Výhodou tohoto značenie je, že na rozdiel od textu je viditeľné zo všetkých strán.</p>
+<figure class="align-default" id="mp-0076d">
+<a class="reference internal image-reference" href="_images/resistor_5.jpg"><img alt="_images/resistor_5.jpg" src="_images/resistor_5.jpg" style="width: 450px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Farebné značenie hodnôt rezistorov.</span><a class="headerlink" href="#mp-0076d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="zakladne-zapojenia-rezistorov">
+<h2><font color='#547792'> Základné zapojenia rezistorov  </font><a class="headerlink" href="#zakladne-zapojenia-rezistorov" title="Link to this heading">#</a></h2>
+<section id="seriove-zapojenie-rezistorov">
+<h3><font color='#E37434'> Sériové zapojenie rezistorov </font><a class="headerlink" href="#seriove-zapojenie-rezistorov" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0076r">
+<a class="reference internal image-reference" href="_images/img_0076r.png"><img alt="_images/img_0076r.png" src="_images/img_0076r.png" style="width: 210px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Sériové zapojenie rezistorov.</span><a class="headerlink" href="#img-0076r" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Ekvivalentný odpor sériovho zapojenia dvoch rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+u =&amp; u_{1} + u_{2} \\
+u =&amp; R_1 \, i + R_2 \, i \\
+R = \frac{u}{i} =&amp;  R_1  + R_2 
+\end{align*}\]</div>
+<p>Celkový odpor sériovo zapojených rezistorov je vždy väčší ako odpor najväčšieho z nich. Pre <span class="math notranslate nohighlight">\(N\)</span> sériovo zapojených rezistorov platí</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+R = \sum_{i=1}^N R_i 
+\end{equation*}\]</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Napäťový delič </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Senzor, ktorého výstupné napätie <span class="math notranslate nohighlight">\(u\)</span> sa pohybuje v rozsahu od 0 do 10V, máme pripojiť k analogovo-digitálnemu prevodníku so vstupným rozsahom napätí <span class="math notranslate nohighlight">\(u_2\)</span> od 0 do 3.3V. Senzor môžeme zaťažiť celkovým odporom 10k. Určíme hodnoty sériového zapojenia rezistorov <span class="math notranslate nohighlight">\(R_1\)</span> a <span class="math notranslate nohighlight">\(R_2\)</span>, ktoré tvoria napäťový delič.</p>
+<p class="sd-card-text">Pre napäťový delič platí</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{u_{2}}{R_2} =&amp; \frac{u}{R_1 + R_2}  \\
+\\
+u =&amp; 10 \text{V} \\
+u_2 =&amp; 3.3 \text{V} \\
+R_1 + R_2 =&amp; 10 \text{k}  \\
+\end{align*}\]</div>
+<p class="sd-card-text">Po dosadení dostaneme hodnoty  <span class="math notranslate nohighlight">\(R_2 = 3k3\)</span> a <span class="math notranslate nohighlight">\(R_1 = 6k7\)</span>.</p>
+</div>
+</details></section>
+<section id="paralelne-zapojenie-rezistorov">
+<h3><font color='#E37434'> Paralelné zapojenie rezistorov </font><a class="headerlink" href="#paralelne-zapojenie-rezistorov" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0076k">
+<a class="reference internal image-reference" href="_images/img_0076k.png"><img alt="_images/img_0076k.png" src="_images/img_0076k.png" style="width: 260px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Paralelné zapojenie rezistorov.</span><a class="headerlink" href="#img-0076k" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Ekvivalentý odpor paralelného zapojenia dvoch rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+i =&amp; i_1 + i_2 \\
+\frac{1}{R} =&amp; \frac{1}{R_1} + \frac{1}{R_2} \\
+R =&amp; \frac{R_1 R_2}{R_1 + R_2}
+\end{align*}\]</div>
+<p>Celkový odpor paralelne zapojených rezistorov je vždy menší ako odpor najmenšieho z nich. Pre N paralelne zapojených rezistorov platí</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{R} = \sum_{i=1}^N \frac{1}{R_i} 
+\]</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="0030_analog.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Analogová elektronika </font></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="0034_capacitor.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Kondenzátor  </font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prevedenie"><font color="#547792"> Prevedenie </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-standardnych-rezistorov"><font color="#547792"> Hodnoty štandardných rezistorov  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladne-zapojenia-rezistorov"><font color="#547792"> Základné zapojenia rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Peter Fabo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, pf.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

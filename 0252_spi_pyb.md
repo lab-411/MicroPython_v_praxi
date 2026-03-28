@@ -12,24 +12,15 @@ kernelspec:
   name: python3
 ---
 
+% # <font color='#4B9DA9'>
+% ## <font color='#FE9A37'> Inicializácia  </font> 
 
-# Knižnica pyb.SPI 
+
+# <font color='#4B9DA9'> API </font> 
 
 Knižnica *pyb* obsahuje pre obsluhu sériového rozhrania triedu [SPI](https://docs.micropython.org/en/latest/library/pyb.SPI.html). Signál NSS pre výber **nie** je v knižnici *pyb* štandardne aktivovaný, je potrebné ho ovládať samostatne prostredníctvom triedy *pyb.Pin*.
 
-```{admonition} Poznámka
-
-Rozhranie SPI1 na doske NUCLE-64 nie je štabdardne pripojené ku pinom konektora Arduino-UNO.   
-Pomocou funkcie alternatívnych pinov možeme pripojenie rozhrania rekonfigurovať.
-
-    >>> p=Pin('PA7')
-    >>> p.af_list()
-    [Pin.AF1_TIM1, Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF5_SPI1, Pin.AF14_TIM17]
-    pp = Pin('PA7', mode=Pin.ALT, alt=Pin.AF5_SPI1)
-```
-
-
-## Inicializácia
+## <font color='#FE9A37'> Inicializácia  </font> 
 
     SPI.init(mode, baudrate=328125, *, prescaler=-1, 
                    polarity=1, phase=0, bits=8, firstbit=SPI.MSB, 
@@ -44,26 +35,38 @@ Pomocou funkcie alternatívnych pinov možeme pripojenie rozhrania rekonfigurova
         SPI.LSB
         SPI.MSB
 
-## Funkcie
+
+## <font color='#FE9A37'> Funkcie  </font> 
 
     SPI.recv(recv, *, timeout=5000)
     SPI.send(send, *, timeout=5000)
     SPI.send_recv(send, recv=None, *, timeout=5000)
 
+    
+```{dropdown} <font color='#84B179'> Príklad inicializácie a vyslania 1 Byte </font>
 
-## Príklad použitia
+    from pyb import SPI
 
-```Python
-from pyb import SPI
+    # inicializacia
+    pin = Pin('PB1', Pin.OUT)
+    spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=0, phase=0, crc=None)
 
-# inicializacia
-pin = Pin('PB1', Pin.OUT)
-spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=0, phase=0, crc=None)
-
-# vyslanie jedneho byte
-pin.value(False)
-spi.send(0x12)
-pin.value(True)
-            
+    # vyslanie jedneho byte
+    pin.value(False)
+    spi.send(0x12)
+    pin.value(True)
 ```
+
+
+```{admonition} Poznámka
+
+Rozhranie SPI1 na doske NUCLE-64 nie je štandardne pripojené ku pinom konektora Arduino-UNO.   
+Pomocou funkcie alternatívnych pinov možeme pripojenie rozhrania rekonfigurovať.
+
+    >>> p=Pin('PA7')
+    >>> p.af_list()
+    [Pin.AF1_TIM1, Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF5_SPI1, Pin.AF14_TIM17]
+    pp = Pin('PA7', mode=Pin.ALT, alt=Pin.AF5_SPI1)
+```
+
 TODO - prepojenie MCU v móde MASTER-SLAVE
