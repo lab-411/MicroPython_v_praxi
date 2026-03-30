@@ -726,6 +726,7 @@ define(`vcap_v',`[
 #=======================================================================
 # Oznacenie prudu vetvou obvodu
 # l_current(label, [pos], [frac])
+# r_current(label, [pos], [frac])
 #
 #    label  - označenie veličiny (prúd ...)
 #
@@ -740,10 +741,20 @@ define(`vcap_v',`[
 define( `l_current', `{
     S: last line .start;
     E: last line .end;
-    C: $3 between S and E;
-    line -> from S to C; line from C to E;
-    "$ $1 $" at last line.start $2;
-}
+    ifelse(defn(`p'),  $3, p=0.5,  p=$3)
+    C: p between S and E;
+       line -> from C+(-arrowht/2,0)  left_  0.01;
+       "$ $1 $" at C $2;
+}')
+
+define( `r_current', `{
+    S: last line .start;
+    E: last line .end;
+       ifelse(defn(`p'),  $3, p=0.5,  p=$3)
+    C: p between S and E;
+       line -> from C+(arrowht/2,0) right_  0.01;
+       "$ $1 $" at C $2;
+}')
 #=======================================================================
 # Koniec dokumentu
 #=======================================================================

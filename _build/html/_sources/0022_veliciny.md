@@ -19,7 +19,7 @@ kernelspec:
 % {dropdown} <font color='#84B179'> Text </font>
 
 
-# <font color='#4B9DA9'> Základné veličiny  </font>
+# <font color='#4B9DA9'> Základné pojmy  </font>
 
 ##  <font color='#547792'> Prúd  </font>
 
@@ -35,6 +35,7 @@ Elektrický prúd $I$ v uvedenom vzťahu reprezentuje priemernú hodnotu prúdu 
 $$
 i(t) =\frac{d Q}{d t} 
 $$
+
 
 Na základe konvencie v elektronických obvodoch znázorňujeme smer prúdu ako pohyb kladných nábojov, aj keď samotný prúd je spôsobený tokom elektrónov so zápornym nábojom.  
 
@@ -153,7 +154,7 @@ _ = cm_compile('img_0251b', data,  dpi=600)
 Napätie zdroja medzi svorkami *a*,*b*. 
 ```
 
-Podobne ako v hydraulickom systéme prietok kvapaliny zúženým miestom spôsobí úbytok tlaku, podobne aj v elektrickom obvode spôsobí prechod prúdu prvkom reprezentujúcim odpor, napríklad rezistorom,  úbytok napätia na takomto prvku.
+Podobne ako v hydraulickom systéme prietok kvapaliny zúženým miestom spôsobí úbytok tlaku, podobne aj v elektrickom obvode spôsobí prechod prúdu prvkom reprezentujúcim odpor, napríklad rezistorom, úbytok napätia na takomto prvku.
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
@@ -205,11 +206,6 @@ $$
 $$
 
 
-##  <font color='#547792'> Výkon  </font>
+##  <font color='#547792'> Zdroje napätia a prúdu  </font>
 
-Súčin jednosmerného napätia a jednosmerného prúdu je výkon, jednotkou výkomu je *Watt*
-
-$$
-P = U \cdot I \,\,\, [W]
-$$
 

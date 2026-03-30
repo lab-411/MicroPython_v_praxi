@@ -15,7 +15,7 @@ include(lib_base.ckt)
 include(lib_stm32.ckt)
 include(lib_user.ckt)
 
-Grid(6,1.5)
+#Grid(6,1.5)
     up_;
 
     move to (1,0);  

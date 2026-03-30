@@ -801,13 +801,26 @@ define(`vcap_v',`[
 #
 #    frac  - poloha šípky medzi koncovými bodmi 0..1, 0.5 - stred
 #-----------------------------------------------------------------------
-define( `l_current', `{
-    ifelse(defn(`k'), $3, k=0.5,  k=$3)
+define(`l_current', `{
     S: last line .start;
     E: last line .end;
-    C: k between S and E;
-    line -> from S to C; line from C to E;
-    "$ $1 $" at last line.start $2;
+    ifelse(defn(`p'),  $3, p=0.5,  p=$3)
+    C: (p-arrowht/2) between S and E;
+    D: (p+arrowht/2) between S and E;
+       line -> from C to D;
+       "$ $1 $" at last line.center $2;
+}')
+
+#-----------------------------------------------------------------------
+
+define( `r_current', `{
+    S: last line .start;
+    E: last line .end;
+       ifelse(defn(`p'),  $3, p=0.5,  p=$3)
+    C: (p-arrowht/2) between S and E;
+    D: (p+arrowht/2) between S and E;
+       line -> from C to D;
+       "$ $1 $" at last line.center $2;
 }')
 
 #=======================================================================

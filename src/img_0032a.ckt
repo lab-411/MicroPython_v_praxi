@@ -16,12 +16,11 @@ include(lib_stm32.ckt)
 include(lib_user.ckt)
 
 up_; 
-R1: resistor(1.8,E); llabel(,R,)
-line right_ 1; 
-C1:circle rad 0.08; "$+$" ljust; 
-line <- from last line.end+(0.6,0) right_ 0.8; "$i(t)$" ljust;
-line from R1.start right_ 1; 
-C2:circle rad 0.08; "$-$" ljust; 
-line -> from C1.s+(0,-.1) to C2.n+(0,0.1); "$v(t)$" at last line.center ljust;
+R1: resistor(1.8,E); rlabel(,R,);
+    line left_ 1; r_current(I, above, 0.5)
+C1: circle rad 0.08; "$+$" rjust;
+    line from R1.start left_ 1; 
+C2: circle rad 0.08; "$-$" rjust; 
+    line -> from C1.s+(0,-.1) to C2.n+(0,0.1); "$U$" at last line.center rjust;
 
 .PE

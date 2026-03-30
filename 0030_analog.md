@@ -30,9 +30,8 @@ na vstupe. Typickými aktívnymi komponentmi sú tranzistory a zapojenia realizo
 ```{toctree}
 :titlesonly: True
 :caption: Pasívne komponenty
-0032_resistor.md
-0034_capacitor.md
-0036_inductor.md
+0032_pasivne_prvky.md
+0034_pasivne_zapojenia.md
 ```
 
 ```{toctree}

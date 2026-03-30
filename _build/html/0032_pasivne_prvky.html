@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Kondenzátor &#8212; Micro_Python  documentation</title>
+    <title>Pasívne prvky &#8212; Micro_Python  documentation</title>
   
   
   
@@ -48,11 +48,11 @@
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '0034_capacitor';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0032_pasivne_prvky';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Cievka" href="0036_inductor.html" />
-    <link rel="prev" title="Rezistor" href="0032_resistor.html" />
+    <link rel="next" title="Základné zapojenia rezistorov" href="0034_pasivne_zapojenia.html" />
+    <link rel="prev" title="Analogová elektronika" href="0030_analog.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,12 +169,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0032_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0036_inductor.html"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0034_pasivne_zapojenia.html"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
@@ -298,7 +298,7 @@
       
       
       
-      <li><a href="_sources/0034_capacitor.md" target="_blank"
+      <li><a href="_sources/0032_pasivne_prvky.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +369,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -380,11 +382,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><font color='#4B9DA9'> Kondenzátor  </font></h1>
+    <h1><font color='#4B9DA9'> Pasívne prvky  </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rezistor"><font color="#547792"> Rezistor </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prevedenie"><font color="#547792"> Prevedenie </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-rezistorov"><font color="#547792"> Hodnoty rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#farebny-kod"><font color="#E37434"> Farebný kód </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenia-rezistorov"><font color="#E37434">  Zapojenia rezistorov  </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kondenzator"><font color="#547792">  Kondenzátor  </font></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -394,13 +411,126 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="kondenzator">
-<h1><font color='#4B9DA9'> Kondenzátor  </font><a class="headerlink" href="#kondenzator" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pasivne-prvky">
+<h1><font color='#4B9DA9'> Pasívne prvky  </font><a class="headerlink" href="#pasivne-prvky" title="Link to this heading">#</a></h1>
+<section id="rezistor">
+<h2><font color='#547792'> Rezistor </font><a class="headerlink" href="#rezistor" title="Link to this heading">#</a></h2>
+<p>V elektronických obvodoch je elektrický odpor reprezentovaný pasívnym prvkom - rezistorom (ľudové pomenovanie odpor nie je správne). Hodnota odporu rezistora je udávaná v jednotkách <em>Ohm</em>, značka <span class="math notranslate nohighlight">\(\Omega\)</span>. V zapojeniach označujeme rezistor písmenom <em>R</em>.</p>
+<figure class="align-default" id="img-0032a">
+<a class="reference internal image-reference" href="_images/img_0032a.png"><img alt="_images/img_0032a.png" src="_images/img_0032a.png" style="width: 180px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Prúd a napätie rezistorom.</span><a class="headerlink" href="#img-0032a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Pre vzťah prúdu pretekajúcim ideálnym rezistorom, jeho odporom a úbytkom napätia na rezistore platí <em>Ohmov zákon</em></p>
+<div class="math notranslate nohighlight">
+\[
+U = R \cdot I 
+\]</div>
+<p>Prechodom prúdu rezistorom sa energia elektrického prúdu mení na teplo, stratový výkon ktorý vzniká na rezistore je potom</p>
+<div class="math notranslate nohighlight">
+\[
+P= U \cdot I = R \cdot U^2 = \frac{U^2}{R}
+\]</div>
+</section>
+<section id="prevedenie">
+<h2><font color='#547792'> Prevedenie </font><a class="headerlink" href="#prevedenie" title="Link to this heading">#</a></h2>
+<p>TODO - odpor vodiča</p>
+<p>Technologicky sú rezistory vyrábané rôznymi postupmi v závislosti od účelu ich použitia, zvyčajne s využitím materiálov s rôznym merným odporom ako vodičov s rôznym prierezom alebo vo forme tenkých uhlíkových alebo kovových vrstiev nanesených na vhodný nevodivý materiál, zvyčajne keramiku.</p>
+<figure class="align-default" id="mp-0076a">
+<a class="reference internal image-reference" href="_images/resistor_1.jpg"><img alt="_images/resistor_1.jpg" src="_images/resistor_1.jpg" style="width: 350px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 13 </span><span class="caption-text">Typy rezistorov THT (<em>Through Hole Technology</em>).</span><a class="headerlink" href="#mp-0076a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="mp-0076e">
+<a class="reference internal image-reference" href="_images/resistor_4.jpg"><img alt="_images/resistor_4.jpg" src="_images/resistor_4.jpg" style="width: 350px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Typy rezistorov SMD (<em>Surface Mount Device</em>).</span><a class="headerlink" href="#mp-0076e" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>V niektorých prípadoch je vhodné v elektrickom obvode použiť rezistor, ktorého hodnotu možeme mechanicky meniť, takéto rezistory potom označujeme sa ako potenciometre, trimre alebo premenné rezistory.</p>
+<figure class="align-default" id="mp-0076b">
+<a class="reference internal image-reference" href="_images/resistor_3.jpg"><img alt="_images/resistor_3.jpg" src="_images/resistor_3.jpg" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 15 </span><span class="caption-text">Premenné rezistory.</span><a class="headerlink" href="#mp-0076b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>V schémach zapojenia obvodov sa používajú pre rezistory nasledujúce značky (<span class="math notranslate nohighlight">\(R_1\)</span> rezistor podľa európskeho značenia, <span class="math notranslate nohighlight">\(R_2\)</span> rezistor podľa anglosaského značenia, <span class="math notranslate nohighlight">\(R_3\)</span> potenciometer, <span class="math notranslate nohighlight">\(R_4\)</span> trimer)</p>
+<figure class="align-default" id="img-0076t">
+<a class="reference internal image-reference" href="_images/img_0076t.png"><img alt="_images/img_0076t.png" src="_images/img_0076t.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Značky rezistorov.</span><a class="headerlink" href="#img-0076t" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hodnoty-rezistorov">
+<h2><font color='#547792'> Hodnoty rezistorov  </font><a class="headerlink" href="#hodnoty-rezistorov" title="Link to this heading">#</a></h2>
+<p>Hodnoty rezistorov sa môžu pohybovať v širokom rozsahu niekoľkých rádov. Aby bolo možné vyrábať rezistory v definovanom počte hodnôt, boli určené <a class="reference external" href="https://en.wikipedia.org/wiki/E_series_of_preferred_numbers">rady</a> hodnôt. Hodnoty sú určené tak, aby v logaritmickej mierke boli približne rovnako rozložené v rámci jedného rádu, podľa vzťahu</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
+\end{equation*}\]</div>
+<p>kde <span class="math notranslate nohighlight">\(m\)</span> je počet hodnôt v ráde a <span class="math notranslate nohighlight">\(n=0 \dots m-1\)</span>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Výpočet hodnôt v rade E6</font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Hodnoty pre radu <em>E6</em> spočítame nasledujúcim programom</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>      <span class="c1"># 0 .. m-1</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>   
+    <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p class="sd-card-text">Reálne vyrábané hodnoty sa v niektorých hodnotách od teoretických mierne líšia, napr. v rade <em>E6</em> je miesto hodnoty 3.2 použitá hodnota 3.3, miesto 4.6 hodnota 4.7.</p>
+</div>
+</details><p><strong>Rada E3</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.0, 2.2, 4.7
+</pre></div>
+</div>
+<p><strong>Rada E6</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.0, 1.5, 2.2, 3.3, 4.7, 6.8
+</pre></div>
+</div>
+<p><strong>Rada E12</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.0, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2  
+</pre></div>
+</div>
+<p><strong>Rada E24</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 
+3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1
+</pre></div>
+</div>
+<p>Vyrábané hodnoty sú dekadickými podielmi a násobkami týchto hodnôt, napríklad 0.1, 0.15 … 1, 1.5 … 10, 15, … 2200, 3300, … 680000, … Pre jednotlivé rady je stanovená tolerancia hodnôt tak, aby sa susedné hodnoty v rozsahu tolerancie neprekrývali, napríklad pre radu <strong>E3</strong> je maximálna tolerancia 40%, pre <strong>E24</strong> je tolerancia 5%.</p>
+<section id="farebny-kod">
+<h3><font color='#E37434'> Farebný kód </font><a class="headerlink" href="#farebny-kod" title="Link to this heading">#</a></h3>
+<p>Na rezistoroch bývala hodnota vyznačená textom, čo ale pri malých rozmeroch nie je príliš praktické, preto sa pri označovaní rezistorov začal používať aj kód hodnoty v podobe farebn7ch prúžkov na rezistore. Výhodou tohoto značenie je, že na rozdiel od textu je viditeľné zo všetkých strán.</p>
+<figure class="align-default" id="mp-0076d">
+<a class="reference internal image-reference" href="_images/resistor_5.jpg"><img alt="_images/resistor_5.jpg" src="_images/resistor_5.jpg" style="width: 450px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Farebné značenie hodnôt rezistorov.</span><a class="headerlink" href="#mp-0076d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="zapojenia-rezistorov">
+<h3><font color='#E37434'>  Zapojenia rezistorov  </font><a class="headerlink" href="#zapojenia-rezistorov" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="kondenzator">
+<h2><font color='#547792'>  Kondenzátor  </font><a class="headerlink" href="#kondenzator" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="img-0034a">
 <a class="reference internal image-reference" href="_images/img_0034a.png"><img alt="_images/img_0034a.png" src="_images/img_0034a.png" style="width: 220px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Prúd a napätie kondenzátorom.</span><a class="headerlink" href="#img-0034a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Prúd a napätie kondenzátorom.</span><a class="headerlink" href="#img-0034a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Pre vzťah prúdu pretekajúcim kondenzátorom  a napätím na konzenzátore</p>
@@ -409,6 +539,7 @@ document.write(`
 q =&amp; C \cdot v \\
 i =&amp; \frac{dq}{dt} = C \frac{dv}{dt}
 \end{align*}\]</div>
+</section>
 </section>
 
 
@@ -423,20 +554,20 @@ i =&amp; \frac{dq}{dt} = C \frac{dv}{dt}
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0032_resistor.html"
+       href="0030_analog.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><font color='#4B9DA9'>  Rezistor  </font></p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Analogová elektronika </font></p>
       </div>
     </a>
     <a class="right-next"
-       href="0036_inductor.html"
+       href="0034_pasivne_zapojenia.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><font color='#4B9DA9'> Cievka  </font></p>
+        <p class="prev-next-title"><font color='#547792'> Základné zapojenia rezistorov  </font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -446,6 +577,28 @@ i =&amp; \frac{dq}{dt} = C \frac{dv}{dt}
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rezistor"><font color="#547792"> Rezistor </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prevedenie"><font color="#547792"> Prevedenie </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-rezistorov"><font color="#547792"> Hodnoty rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#farebny-kod"><font color="#E37434"> Farebný kód </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenia-rezistorov"><font color="#E37434">  Zapojenia rezistorov  </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kondenzator"><font color="#547792">  Kondenzátor  </font></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Cievka &#8212; Micro_Python  documentation</title>
+    <title>Základné zapojenia rezistorov &#8212; Micro_Python  documentation</title>
   
   
   
@@ -46,11 +46,13 @@
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '0036_inductor';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0034_pasivne_zapojenia';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Dióda" href="0038_dioda.html" />
-    <link rel="prev" title="Kondenzátor" href="0034_capacitor.html" />
+    <link rel="prev" title="Pasívne prvky" href="0032_pasivne_prvky.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,12 +169,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné veličiny  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0032_resistor.html"><font color="#4B9DA9">  Rezistor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0034_capacitor.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Cievka  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0032_pasivne_prvky.html"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
@@ -208,8 +210,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0150_i2c.html"><font color="#4B9DA9"> I2C </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0152_i2c_basic.html">Vlastnosti</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="0152_i2c_basic.html"><font color="#4B9DA9"> Vlastnosti </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0154_i2c_pyb.html"><font color="#4B9DA9"> API </font></a></li>
 </ul>
 </details></li>
@@ -297,7 +298,7 @@
       
       
       
-      <li><a href="_sources/0036_inductor.md" target="_blank"
+      <li><a href="_sources/0034_pasivne_zapojenia.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +369,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -379,11 +382,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><font color='#4B9DA9'> Cievka  </font></h1>
+    <h1><font color='#547792'> Základné zapojenia rezistorov  </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -393,11 +409,67 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="cievka">
-<h1><font color='#4B9DA9'> Cievka  </font><a class="headerlink" href="#cievka" title="Link to this heading">#</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
+  <section id="zakladne-zapojenia-rezistorov">
+<h1><font color='#547792'> Základné zapojenia rezistorov  </font><a class="headerlink" href="#zakladne-zapojenia-rezistorov" title="Link to this heading">#</a></h1>
+</section>
+<section id="seriove-zapojenie-rezistorov">
+<h1><font color='#E37434'> Sériové zapojenie rezistorov </font><a class="headerlink" href="#seriove-zapojenie-rezistorov" title="Link to this heading">#</a></h1>
+<figure class="align-default" id="img-0076r">
+<a class="reference internal image-reference" href="_images/img_0076r.png"><img alt="_images/img_0076r.png" src="_images/img_0076r.png" style="width: 210px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Sériové zapojenie rezistorov.</span><a class="headerlink" href="#img-0076r" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Ekvivalentný odpor sériovho zapojenia dvoch rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+u =&amp; u_{1} + u_{2} \\
+u =&amp; R_1 \, i + R_2 \, i \\
+R = \frac{u}{i} =&amp;  R_1  + R_2 
+\end{align*}\]</div>
+<p>Celkový odpor sériovo zapojených rezistorov je vždy väčší ako odpor najväčšieho z nich. Pre <span class="math notranslate nohighlight">\(N\)</span> sériovo zapojených rezistorov platí</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+R = \sum_{i=1}^N R_i 
+\end{equation*}\]</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Napäťový delič </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Senzor, ktorého výstupné napätie <span class="math notranslate nohighlight">\(u\)</span> sa pohybuje v rozsahu od 0 do 10V, máme pripojiť k analogovo-digitálnemu prevodníku so vstupným rozsahom napätí <span class="math notranslate nohighlight">\(u_2\)</span> od 0 do 3.3V. Senzor môžeme zaťažiť celkovým odporom 10k. Určíme hodnoty sériového zapojenia rezistorov <span class="math notranslate nohighlight">\(R_1\)</span> a <span class="math notranslate nohighlight">\(R_2\)</span>, ktoré tvoria napäťový delič.</p>
+<p class="sd-card-text">Pre napäťový delič platí</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{u_{2}}{R_2} =&amp; \frac{u}{R_1 + R_2}  \\
+\\
+u =&amp; 10 \text{V} \\
+u_2 =&amp; 3.3 \text{V} \\
+R_1 + R_2 =&amp; 10 \text{k}  \\
+\end{align*}\]</div>
+<p class="sd-card-text">Po dosadení dostaneme hodnoty  <span class="math notranslate nohighlight">\(R_2 = 3k3\)</span> a <span class="math notranslate nohighlight">\(R_1 = 6k7\)</span>.</p>
 </div>
+</details><section id="paralelne-zapojenie-rezistorov">
+<h2><font color='#E37434'> Paralelné zapojenie rezistorov </font><a class="headerlink" href="#paralelne-zapojenie-rezistorov" title="Link to this heading">#</a></h2>
+<figure class="align-default" id="img-0076k">
+<a class="reference internal image-reference" href="_images/img_0076k.png"><img alt="_images/img_0076k.png" src="_images/img_0076k.png" style="width: 260px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Paralelné zapojenie rezistorov.</span><a class="headerlink" href="#img-0076k" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Ekvivalentý odpor paralelného zapojenia dvoch rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+i =&amp; i_1 + i_2 \\
+\frac{1}{R} =&amp; \frac{1}{R_1} + \frac{1}{R_2} \\
+R =&amp; \frac{R_1 R_2}{R_1 + R_2}
+\end{align*}\]</div>
+<p>Celkový odpor paralelne zapojených rezistorov je vždy menší ako odpor najmenšieho z nich. Pre N paralelne zapojených rezistorov platí</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{R} = \sum_{i=1}^N \frac{1}{R_i} 
+\]</div>
+</section>
 </section>
 
 
@@ -412,12 +484,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0034_capacitor.html"
+       href="0032_pasivne_prvky.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><font color='#4B9DA9'> Kondenzátor  </font></p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Pasívne prvky  </font></p>
       </div>
     </a>
     <a class="right-next"
@@ -435,6 +507,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
