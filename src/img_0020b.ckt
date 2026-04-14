@@ -1,0 +1,35 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+command"\sf"
+
+d=-1;
+x=0.5; y=1
+move to (x,y);
+diode(1.5); "Dióda" ljust;
+move to (x,y+1*d);
+bjt_NPN(1,1,L); "NPN Tranzistor" ljust;
+move to (x,y+2.25*d);
+bjt_PNP(1,1,L); "PNP Tranzistor" ljust;
+
+move to (x,y+3.5*d);
+e_fet(up_ ,,P,);  "MOSFET Tranzistor" at Here+(0.2,0) ljust;
+
+move to (x,y+4.7*d);
+right_; 
+A2: opamp(1.3,,,0.9,R); "Operačný zosilovač" at Here+(0.1,0) ljust;
+
+.PE

@@ -1,0 +1,51 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_time.ckt)
+include(lib_color.ckt)
+
+#Grid(10,3)
+move to (0,0.5);
+level(0.5,L,D)
+pulse(1 ,0,LH);  {color_red; "$T_{0H}$" at last[].n+(0, 0.25) above; color_black; }
+pulse(2,0,HL);   {color_red;"$T_{0L}$" at last[].n+(0, 0.25) above; color_black;}
+
+level(1,L,D);
+pulse(2,0,LH); {color_red;"$T_{1H}$" at last[].n+(0, 0.25) above; color_black;}
+pulse(1,0,HL); {color_red;"$T_{1L}$" at last[].n+(0, 0.25) above; color_black;}
+level(0.5,L,D);
+
+color_red;
+line from (0.5, 0) to (0.5,1.5) dotted; line <-> from (0.5, 1) to (1.5, 1);
+line from (1.5, 0) to (1.5,1.5) dotted; line <-> from (1.5, 1) to (3.5, 1);
+line from (3.5, 0) to (3.5,1.5) dotted;
+
+line from (4.5, 0) to (4.5,1.5) dotted; line <-> from (4.5, 1) to (6.5, 1);
+line from (6.5, 0) to (6.5,1.5) dotted; line <-> from (6.5, 1) to (7.5, 1);
+line from (7.5, 0) to (7.5,1.5) dotted;
+
+color_black;
+move to (0,2.5);
+level(0.5,H,D);
+pulse(5 ,0.025, HL);
+pulse(1 ,0.9, LH);
+level(1.5,H,D);
+
+color_red;
+line from (0.5+0.022*6, 2) to (0.5+0.022*6, 3.5) dotted;
+line from (5.5+0.9, 2) to (5.5+0.9, 3.5) dotted;
+line <-> from (0.5+0.022*6, 3) to (5.5+0.9, 3); "$T_{reset}$" at last line.center above;
+
+.PE

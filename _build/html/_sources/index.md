@@ -33,7 +33,8 @@
 ```{toctree}
 :titlesonly: True
 :caption: Elektronika
-0022_veliciny.md
+0020_terminologia.md
+0022_zaklady.md
 0024_signaly.md
 0030_analog.md
 0050_digital.md

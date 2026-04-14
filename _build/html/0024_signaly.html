@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Analogová elektronika" href="0030_analog.html" />
-    <link rel="prev" title="Základné pojmy" href="0022_veliciny.html" />
+    <link rel="prev" title="Základné pojmy" href="0022_zaklady.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,7 +169,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0020_terminologia.html"><font color="#4B9DA9"> Terminológia</font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0022_zaklady.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0032_pasivne_prvky.html"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
@@ -221,7 +222,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html">Modul LED WS2812-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
@@ -396,7 +397,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#harmonicke-signaly"><font color="#547792"> Harmonické signály  </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulovane-signaly"><font color="#547792"> Modulované signály  </font></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitudova-modulacia"><font color="#E37434"> Amplitúdová modulácia </font></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frekvencna-modulacia"><font color="#E37434"> Frekvenčná modulácia </font></a></li>
 </ul>
 </li>
 </ul>
@@ -415,12 +415,12 @@ document.write(`
 <p>V elektronickom obvode pokladáme za signál časovo premenlivé napätie alebo prúd, ktorý prenáša informáciu.</p>
 <section id="binarne-signaly">
 <h2><font color='#547792'> Binárne signály  </font><a class="headerlink" href="#binarne-signaly" title="Link to this heading">#</a></h2>
-<p>V ideálnych binárnych signáloch má napätie v každom okamžiku len jednu z dvoch hodnôt, označovaných ako H (High) alebo L (Low). Informácia je v signáli reprezentovaná postupnosťou impulzov o dĺžke <span class="math notranslate nohighlight">\(t\)</span>, pri ich opakovani s periódou <span class="math notranslate nohighlight">\(T\)</span>. Skupina niekoľkých impulzov môže vytvárať <em>burst</em>.</p>
+<p>V ideálnych binárnych signáloch má napätie v každom okamžiku len jednu z dvoch hodnôt, označovaných ako H (High) alebo L (Low). Signál je tvorený postupnosťou impulzov o dĺžke <span class="math notranslate nohighlight">\(t\)</span> s periódou <span class="math notranslate nohighlight">\(T\)</span>. Informácia v binárnom signáli môže byť prenášaná variabilným počtom impulzov, zmenou ich šírky alebo periódy. Skupina niekoľkých impulzov môže vytvárať <em>burst</em>.</p>
 <figure class="align-default" id="img-0072c">
-<a class="reference internal image-reference" href="_images/img_0072c.png"><img alt="_images/img_0072c.png" src="_images/img_0072c.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="_images/img_0072c.png"><img alt="_images/img_0072c.png" src="_images/img_0072c.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Parametre binárneho signálu.</span><a class="headerlink" href="#img-0072c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Binárny signál.</span><a class="headerlink" href="#img-0072c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -431,12 +431,12 @@ document.write(`
 \[
 y(t) = A \cdot sin(\omega \, t + \phi)
 \]</div>
-<p>Informáciu je možné prenášať v harmonickom signáli zmenou niektorého z jeho parametrov - amplitúdy, frekvencie alebo fázy,</p>
+<p>Informáciu je možné prenášať v harmonickom signáli zmenou niektorého z jeho parametrov - amplitúdy, frekvencie alebo fázy.</p>
 <figure class="align-default" id="img-0072a">
-<a class="reference internal image-reference" href="_images/img_0072a.png"><img alt="_images/img_0072a.png" src="_images/img_0072a.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="_images/img_0072a.png"><img alt="_images/img_0072a.png" src="_images/img_0072a.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 10 </span><span class="caption-text">Parametre harmonického signálu.</span><a class="headerlink" href="#img-0072a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 10 </span><span class="caption-text">Harmonický signál.</span><a class="headerlink" href="#img-0072a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Stredná hodnota</p>
@@ -462,9 +462,6 @@ A_{RMS} = \sqrt{ \frac{1}{T} \int_0^T y(t)^2 dt }
 </figcaption>
 </figure>
 </section>
-<section id="frekvencna-modulacia">
-<h3><font color='#E37434'> Frekvenčná modulácia </font><a class="headerlink" href="#frekvencna-modulacia" title="Link to this heading">#</a></h3>
-</section>
 </section>
 </section>
 
@@ -480,7 +477,7 @@ A_{RMS} = \sqrt{ \frac{1}{T} \int_0^T y(t)^2 dt }
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0022_veliciny.html"
+       href="0022_zaklady.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -517,7 +514,6 @@ A_{RMS} = \sqrt{ \frac{1}{T} \int_0^T y(t)^2 dt }
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#harmonicke-signaly"><font color="#547792"> Harmonické signály  </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulovane-signaly"><font color="#547792"> Modulované signály  </font></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitudova-modulacia"><font color="#E37434"> Amplitúdová modulácia </font></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frekvencna-modulacia"><font color="#E37434"> Frekvenčná modulácia </font></a></li>
 </ul>
 </li>
 </ul>

@@ -15,21 +15,9 @@ include(lib_base.ckt)
 include(lib_stm32.ckt)
 include(lib_user.ckt)
 
-up_; 
-BB: battery(2.5,1);  rlabel(,,+); 
-    line right_ 1.5; l_current(I_0,above,0.5); 
-    dot; "$Q$" below rjust;       
-    { 
-        line right_ 0.75 up_ 0.75; l_current(I_1,above rjust, 0.75)
-        line right_ 2;
-        down_; lamp(2);
-        LA: line to (Here, BB.start)
-    };      
-    line right_ 0.75 down_ 0.75; l_current(I_2,above ljust, 0.75); 
-    line right_ 1;
-    down_; lamp(1.5);
-    LB: line to (Here, BB.start);
-    line from LA.end to LB.end; dot;
-    line to BB.start;
+line right_ 1.4 ; r_current(I_1, above, 0.5)
+dot;
+{ line right_ 1 up_ 1 ; r_current(I_2, above rjust, 0.5); }
+{ line right_ 1 down_ 1 ; r_current(I_3, below rjust, 0.5); }
 
 .PE

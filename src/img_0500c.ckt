@@ -1,0 +1,53 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_time.ckt)
+include(lib_color.ckt)
+
+command"\sf"
+color_dark_green;
+d=0.7;
+level(0.5,X)
+data(d,G7);
+data(d,G6);
+data(d,G5);
+data(d,G4);
+data(d,G3);
+data(d,G2);
+data(d,G1);
+data(d,G0);
+
+color_red;
+data(d,R7);
+data(d,R6);
+data(d,R5);
+data(d,R4);
+data(d,R3);
+data(d,R2);
+data(d,R1);
+data(d,R0);
+
+color_blue;
+data(d,B7);
+data(d,B6);
+data(d,B5);
+data(d,B4);
+data(d,B3);
+data(d,B2);
+data(d,B1);
+data(d,B0);
+level(0.5,X)
+
+.PE

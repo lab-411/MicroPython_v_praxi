@@ -169,7 +169,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0020_terminologia.html"><font color="#4B9DA9"> Terminológia</font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0022_zaklady.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
@@ -221,7 +222,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html">Modul LED WS2812-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
@@ -396,10 +397,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prevedenie"><font color="#547792"> Prevedenie </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-rezistorov"><font color="#547792"> Hodnoty rezistorov  </font></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#farebny-kod"><font color="#E37434"> Farebný kód </font></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenia-rezistorov"><font color="#E37434">  Zapojenia rezistorov  </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenia-rezistorov"><font color="#E37434">  Zapojenia rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="brown">  Sériové zapojenie rezistorov  </font></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="brown"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kondenzator"><font color="#547792">  Kondenzátor  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cievka"><font color="#547792"> Cievka  </font></a></li>
 </ul>
             </nav>
         </div>
@@ -522,6 +528,26 @@ X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
 </section>
 <section id="zapojenia-rezistorov">
 <h3><font color='#E37434'>  Zapojenia rezistorov  </font><a class="headerlink" href="#zapojenia-rezistorov" title="Link to this heading">#</a></h3>
+<section id="seriove-zapojenie-rezistorov">
+<h4><font color='brown'>  Sériové zapojenie rezistorov  </font><a class="headerlink" href="#seriove-zapojenie-rezistorov" title="Link to this heading">#</a></h4>
+<figure class="align-default" id="img-0032s">
+<a class="reference internal image-reference" href="_images/img_0032s.png"><img alt="_images/img_0032s.png" src="_images/img_0032s.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Sériové zapojenie rezistorov.</span><a class="headerlink" href="#img-0032s" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="paralelne-zapojenie-rezistorov">
+<h4><font color='brown'> Paralelné zapojenie rezistorov </font><a class="headerlink" href="#paralelne-zapojenie-rezistorov" title="Link to this heading">#</a></h4>
+<figure class="align-default" id="img-0032q">
+<a class="reference internal image-reference" href="_images/img_0032q.png"><img alt="_images/img_0032q.png" src="_images/img_0032q.png" style="width: 280px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Paralelené zapojenie rezistorov.</span><a class="headerlink" href="#img-0032q" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 </section>
 <section id="kondenzator">
@@ -530,7 +556,7 @@ X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
 <a class="reference internal image-reference" href="_images/img_0034a.png"><img alt="_images/img_0034a.png" src="_images/img_0034a.png" style="width: 220px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Prúd a napätie kondenzátorom.</span><a class="headerlink" href="#img-0034a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Prúd a napätie kondenzátorom.</span><a class="headerlink" href="#img-0034a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Pre vzťah prúdu pretekajúcim kondenzátorom  a napätím na konzenzátore</p>
@@ -539,6 +565,9 @@ X_n = round(\sqrt[\leftroot{5}\uproot{3} m]{10^n} )
 q =&amp; C \cdot v \\
 i =&amp; \frac{dq}{dt} = C \frac{dv}{dt}
 \end{align*}\]</div>
+</section>
+<section id="cievka">
+<h2><font color='#547792'> Cievka  </font><a class="headerlink" href="#cievka" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -591,10 +620,15 @@ i =&amp; \frac{dq}{dt} = C \frac{dv}{dt}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prevedenie"><font color="#547792"> Prevedenie </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hodnoty-rezistorov"><font color="#547792"> Hodnoty rezistorov  </font></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#farebny-kod"><font color="#E37434"> Farebný kód </font></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenia-rezistorov"><font color="#E37434">  Zapojenia rezistorov  </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenia-rezistorov"><font color="#E37434">  Zapojenia rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="brown">  Sériové zapojenie rezistorov  </font></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="brown"> Paralelné zapojenie rezistorov </font></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kondenzator"><font color="#547792">  Kondenzátor  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cievka"><font color="#547792"> Cievka  </font></a></li>
 </ul>
   </nav></div>
 

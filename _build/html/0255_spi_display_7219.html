@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="LCD Display 12864" href="0257_spi_display_12864.html" />
-    <link rel="prev" title="Modul LED WS2812-64" href="0500_led_matrix.html" />
+    <link rel="prev" title="LED WS2812-64" href="0500_led_matrix.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,7 +167,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0022_veliciny.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0020_terminologia.html"><font color="#4B9DA9"> Terminológia</font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0022_zaklady.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0032_pasivne_prvky.html"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
@@ -219,7 +220,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html">Modul LED WS2812-64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
@@ -416,7 +417,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/display_led_max7219.png"><img alt="_images/display_led_max7219.png" src="_images/display_led_max7219.png" style="width: 500px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 41 </span><span class="caption-text">Modul displeja.</span><a class="headerlink" href="#mp-0255c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 43 </span><span class="caption-text">Modul displeja.</span><a class="headerlink" href="#mp-0255c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="popis">
@@ -426,7 +427,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_1.png"><img alt="_images/ic_max7219_1.png" src="_images/ic_max7219_1.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 42 </span><span class="caption-text">Vnútorné zapojenie obvodu <a class="reference download internal" download="" href="_downloads/7e7566ede8c77ea0b795f9ff879a578b/max7219.pdf"><span class="xref download myst">MAX7219</span></a>.</span><a class="headerlink" href="#mp-0255d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 44 </span><span class="caption-text">Vnútorné zapojenie obvodu <a class="reference download internal" download="" href="_downloads/7e7566ede8c77ea0b795f9ff879a578b/max7219.pdf"><span class="xref download myst">MAX7219</span></a>.</span><a class="headerlink" href="#mp-0255d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Obvod obsahuje 16-bitový posuvný register, ktorého obsah je po naplnení z rozhrania SPI dekódovaný podľa nasledujúceho formátu</p>
@@ -434,7 +435,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_3.png"><img alt="_images/ic_max7219_3.png" src="_images/ic_max7219_3.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 43 </span><span class="caption-text">Sériový formát dát v posuvnom registri.</span><a class="headerlink" href="#mp-0255f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 45 </span><span class="caption-text">Sériový formát dát v posuvnom registri.</span><a class="headerlink" href="#mp-0255f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Popis polí vo formáte dát</p>
@@ -448,7 +449,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_4.png"><img alt="_images/ic_max7219_4.png" src="_images/ic_max7219_4.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 44 </span><span class="caption-text">Dekódovanie adresných bitov.</span><a class="headerlink" href="#mp-0255x" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 46 </span><span class="caption-text">Dekódovanie adresných bitov.</span><a class="headerlink" href="#mp-0255x" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Popis registrov</p>
@@ -465,7 +466,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_6.png"><img alt="_images/ic_max7219_6.png" src="_images/ic_max7219_6.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 45 </span><span class="caption-text">Nastavenie typu dekódovania dát pre znaky displeja.</span><a class="headerlink" href="#mp-0255h" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 47 </span><span class="caption-text">Nastavenie typu dekódovania dát pre znaky displeja.</span><a class="headerlink" href="#mp-0255h" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -476,7 +477,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/ic_max7219_2.png"><img alt="_images/ic_max7219_2.png" src="_images/ic_max7219_2.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 46 </span><span class="caption-text">Zapojenie displeja.</span><a class="headerlink" href="#mp-0255e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 48 </span><span class="caption-text">Zapojenie displeja.</span><a class="headerlink" href="#mp-0255e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Príklad pripojenie modulu displeja ku kitu NUCLEO-64.</p>
@@ -491,7 +492,7 @@ GND
 <a class="reference internal image-reference" href="_images/spi2_led_max7219.png"><img alt="_images/spi2_led_max7219.png" src="_images/spi2_led_max7219.png" style="width: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 47 </span><span class="caption-text">Pripojenie modulu displeja.</span><a class="headerlink" href="#mp-0255g" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 49 </span><span class="caption-text">Pripojenie modulu displeja.</span><a class="headerlink" href="#mp-0255g" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -908,7 +909,7 @@ message(text, delay)
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Modul LED WS2812-64</p>
+        <p class="prev-next-title"><font color='#4B9DA9'>  LED WS2812-64 </font></p>
       </div>
     </a>
     <a class="right-next"

@@ -192,6 +192,92 @@ Farebné značenie hodnôt rezistorov.
 
 ### <font color='#E37434'>  Zapojenia rezistorov  </font>
 
+#### <font color='brown'>  Sériové zapojenie rezistorov  </font>
+
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+right_;
+circle rad 0.09; {"a" at last circle.n above;}
+resistor(1.5, E); llabel(,R_1,);
+resistor(1.5, E); llabel(,R_2,);
+resistor(1.5, E); llabel(,R_3,);
+resistor(1.5, E); llabel(,R_4,);
+circle rad 0.09; "b" at last circle.n above;
+'''
+
+_ = cm_compile('img_0032s', data,  dpi=600)   
+```
+
+```{figure} ./src/img_0032s.png
+:width: 400px
+:name: img_0032s
+
+Sériové zapojenie rezistorov.
+```
+
+#### <font color='brown'> Paralelné zapojenie rezistorov </font>
+
+
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+{ 
+    line up 0.95;
+    dot; {
+            line up_ 0.95;
+            dot;{
+                  line up_ 0.95;
+                  R4: resistor(right_ 1.75, E); 
+                  llabel(,R_4,);
+                }
+            R3: resistor(right_ 1.75, E); 
+            llabel(,R_3,);
+         }
+    R2: resistor(right_ 1.75, E); 
+    llabel(,R_2,);
+}
+R1: resistor(right_ 1.75, E);
+llabel(,R_1,);
+
+
+line from R4.end to R3.end; dot;
+line from R3.end to R2.end; dot;
+line from R2.end to R1.end; 
+
+Q1: 0.5 between R3.start and R2.start;
+dot(at Q1);
+line from Q1 left_ 1; circle rad 0.09; "a" at last circle.n above;
+
+Q2: 0.5 between R3.end and R2.end;
+dot(at Q2);
+line from Q2 right_ 1;  circle rad 0.09; "b" at last circle.n above;
+'''
+
+_ = cm_compile('img_0032q', data,  dpi=600)   
+```
+
+```{figure} ./src/img_0032q.png
+:width: 280px
+:name: img_0032q
+
+Paralelené zapojenie rezistorov.
+```
+
+
+
 
 
 
@@ -234,3 +320,6 @@ q =& C \cdot v \\
 i =& \frac{dq}{dt} = C \frac{dv}{dt}
 \end{align*}
 
+
+
+##  <font color='#547792'> Cievka  </font>

@@ -13,37 +13,139 @@ kernelspec:
 ---
 
 
-#  Modul LED WS2812-64 
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
 
-Modul obsahuje 64 farebných LED v sériovom zapojení usporiadaných do matice. Každá LED je riadené obvodom [WS2812](./doc/WS2812B.pdf). 
+
+#  <font color='#4B9DA9'>  LED WS2812-64 </font>
+
+Modul obsahuje 64 farebných LED v sériovom zapojení usporiadaných do matice. Každá LED obsahuje obvod [WS2812](./doc/WS2812B.pdf), pomocou komunikačného protokolu je možné riadiť farbu a intenzitu každej LED na module. 
 
 
 ```{figure} ./img/led_ws812.jpg
-:width: 350px
+:width: 320px
 :name: mp_0500a
 
-LED matica
+LED modul WS2812.
 ```
 
-##  Komunikačný protokol 
+##  <font color='#547792'>  Komunikácia </font>
 
-Pre komunikáciu využíva modul zjednodušenú konfiguráciu zbernice **SPI**. Nie je využitý hodinový synchronizačný signál zbernice SCLK, jednosmerná komunikácia na signále MOSI je časovaná nastavenými hodnotami intervalov.
+Komunikácia s obvodmi riadiacimi LED je sériová, po jednom dátovom vodiči, s pevným časovaním logických stavov. 
 
-```{figure} ./img/ws2512_kod.png
-:width: 250px
-:name: mp_0500b
+
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_time.ckt)
+include(lib_color.ckt)
+
+#Grid(10,3)
+move to (0,0.5);
+level(0.5,L,D)
+pulse(1 ,0,LH);  {color_red; "$T_{0H}$" at last[].n+(0, 0.25) above; color_black; }
+pulse(2,0,HL);   {color_red;"$T_{0L}$" at last[].n+(0, 0.25) above; color_black;}
+
+level(1,L,D);
+pulse(2,0,LH); {color_red;"$T_{1H}$" at last[].n+(0, 0.25) above; color_black;}
+pulse(1,0,HL); {color_red;"$T_{1L}$" at last[].n+(0, 0.25) above; color_black;}
+level(0.5,L,D);
+
+color_red;
+line from (0.5, 0) to (0.5,1.5) dotted; line <-> from (0.5, 1) to (1.5, 1);
+line from (1.5, 0) to (1.5,1.5) dotted; line <-> from (1.5, 1) to (3.5, 1);
+line from (3.5, 0) to (3.5,1.5) dotted;
+
+line from (4.5, 0) to (4.5,1.5) dotted; line <-> from (4.5, 1) to (6.5, 1);
+line from (6.5, 0) to (6.5,1.5) dotted; line <-> from (6.5, 1) to (7.5, 1);
+line from (7.5, 0) to (7.5,1.5) dotted;
+
+color_black;
+move to (0,2.5);
+level(0.5,H,D);
+pulse(5 ,0.025, HL);
+pulse(1 ,0.9, LH);
+level(1.5,H,D);
+
+color_red;
+line from (0.5+0.022*6, 2) to (0.5+0.022*6, 3.5) dotted;
+line from (5.5+0.9, 2) to (5.5+0.9, 3.5) dotted;
+line <-> from (0.5+0.022*6, 3) to (5.5+0.9, 3); "$T_{reset}$" at last line.center above;
+'''
+
+_ = cm_compile('img_0500k', data,  dpi=600)   
+```
+
+
+```{figure} ./src/img_0500k.png
+:width: 400px
+:name: img_0500k
 
 Časovanie logických stavov L,H a RESET.
 ```
 
 
 
-    
-Každá farba LED je určená 8-bitovou hoddnotou, pre 3 farby (RGB) potrebujeme preto vyslať pre každú LED 24 bitov.
+Každá farba LED je určená 8-bitovou hodnotou, pre 3 farby (RGB) potrebujeme preto vyslať pre každú LED postupnosť 24 bitov.
 
-```{figure} ./img/ws2512_rgb.png
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_time.ckt)
+include(lib_color.ckt)
+
+command"\sf"
+color_dark_green;
+d=0.7;
+level(0.5,X)
+data(d,G7);
+data(d,G6);
+data(d,G5);
+data(d,G4);
+data(d,G3);
+data(d,G2);
+data(d,G1);
+data(d,G0);
+
+color_red;
+data(d,R7);
+data(d,R6);
+data(d,R5);
+data(d,R4);
+data(d,R3);
+data(d,R2);
+data(d,R1);
+data(d,R0);
+
+color_blue;
+data(d,B7);
+data(d,B6);
+data(d,B5);
+data(d,B4);
+data(d,B3);
+data(d,B2);
+data(d,B1);
+data(d,B0);
+level(0.5,X)
+'''
+
+_ = cm_compile('img_0500c', data,  dpi=600)   
+```
+
+
+```{figure} ./src/img_0500c.png
 :width: 750px
-:name: mp_0500c
+:name: img_0500c
 
 Kódovanie farebnej informácie.
 ```
@@ -66,21 +168,29 @@ Sériové zapojenie LED
 Princíp komunikácie na sériovej zbernici.
 ```
 
-## Pripojenie  
+
+##  <font color='#547792'> Zapojenie </font> 
+
+Pripojenie modulu je pomocou troch vodičov, napájanie +5V, zem a komunikácia. Pre komunikáciu s modulom je použitá jednodušená verzia zbernice **SPI**. Nie je použitý hodinový synchronizačný signál zbernice SCLK a jednosmerná komunikácia s modulom je prostredníctvom signálou MOSI. 
+
+
+
+```{figure} ./img/ws2812_nucleo.png
+:width: 450px
+:name: mp_0500f
+
+Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.
+```
+
 
 SPI1, MOSI, bez CLK
 
     MICROPY_HW_SPI1_MOSI        (pin_PB5)
     
-```{figure} ./img/ws2812_nucleo.png
-:width: 550px
-:name: mp_0500f
-
-Pripojenie matice
-```
 
 
-## Knižnica
+
+##  <font color='#547792'> API </font> 
 
 Pre riadenie matice LED je určená knižnica [lib_ws2812.py](./lib/lib_ws2812.py). Hodnoty farieb su kódované do bitovej postupnosti, ktorá je pomocou SPI rozhrania vyslaná do matice.
 
@@ -108,21 +218,18 @@ Metódy knižnice
     WS2812(spi_bus=1, led_count=1, intensity=1)
     WS2812.show(data)
     
-## Použitie
+##  <font color='#547792'> Príklady </font> 
+
+%--------------------------------------------------------------------
     
-Inicializácia rozhrania
+:::{dropdown} <font color='#84B179'> Príklad 1. Riadenie farieb LED matice </font>
+    
+Inicializácia rozhrania a dáta pre rozsvietenie LED matice
 
 ```Python3
 from lib_ws2812 import *
 matrix = WS2812(spi_bus=1, led_count=64)
-```
-    
-### Príklad 1. Riadenie LED matice
-    
-Dáta pre rozsvietenie matice
 
-
-```Python3
 data = [
     (24, 0, 24), ( 0, 24, 0),  ( 0,  0, 24), (12, 12, 0), 
     (0, 12, 12), (12,  0, 12), (24,  0,  0), (21,  3, 0),
@@ -130,20 +237,25 @@ data = [
     (6, 18,  0), ( 3, 21, 0),  ( 0, 24,  0), ( 8, 8,  8)
 ]
 
-# rozsvieti 16 LED
-matrix.show(data)     
+matrix.show(data)   # rozsvieti 16 LED  
 
-# rozsvieti 64 LED
 data=data*4
-matrix.show(data)
+matrix.show(data) # rozsvieti 64 LED
 ```    
 
 Opakovaná inicializácia knižnice zhasne LED.
+:::
 
-### Príklad 2. Náhodné farby 
+%--------------------------------------------------------------------
+
+:::{dropdown} <font color='#84B179'> Príklad 2. Náhodné farby  </font>
+
 
 ```Python3
 import math
+
+from lib_ws2812 import *
+matrix = WS2812(spi_bus=1, led_count=64)
 
 def data_generator(led_count):
     data = [(0, 0, 0) for i in range(led_count)]
@@ -156,13 +268,15 @@ def data_generator(led_count):
         yield data
         step += 1
 
-
 for data in data_generator(matrix.led_count):
     matrix.show(data)
     pyb.delay(10)
 ```
+:::
 
-### Príklad 3.Demonštračný program  
+%--------------------------------------------------------------------
+
+:::{dropdown} <font color='#84B179'> Príklad 3. Demonštračný program    </font>
 
 Demonštrácia vlastností LED matice je v súbore [demo_ws2812.py](./lib/demo_ws2812.py).
 
@@ -171,11 +285,7 @@ import math
 from lib_ws2812 import *
 from demo_ws2812 import *
 matrix = WS2812(spi_bus=1, led_count=64, intensity=0.05)
-```
 
-Spustenie príkladu
-
-```Python3
 while(True):
   anim_1 = animation_1(matrix.led_count)
   for i in range(240):
@@ -190,9 +300,11 @@ while(True):
     matrix.show(next(anim_3))
 ```
 
-Nahrati knižnice a demo programu do MicroPython
+:::
 
-    python ./py/pyboard.py -d /dev/ttyACM0 -f cp lib_ws2812.py :./lib_ws2812.py
-    python ./py/pyboard.py -d /dev/ttyACM0 -f cp demo_ws2812.py :./demo_ws2812.py
+%Nahrati knižnice a demo programu do MicroPython
+%
+%    python ./py/pyboard.py -d /dev/ttyACM0 -f cp lib_ws2812.py :./lib_ws2812.py
+%    python ./py/pyboard.py -d /dev/ttyACM0 -f cp demo_ws2812.py :./demo_ws2812.py
         
         

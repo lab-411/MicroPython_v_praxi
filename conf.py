@@ -13,7 +13,7 @@ author = 'Peter Fabo'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["myst_nb", "sphinx_copybutton", "sphinx_design"]
+extensions = ["myst_nb", "sphinx_copybutton", "sphinx_design", "sphinx_subfigure"]
 
 myst_enable_extensions = [
     "amsmath",
