@@ -12,7 +12,12 @@ kernelspec:
   name: python3
 ---
 
-#  Display PCF8547T 
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
+
+# <font color='#4B9DA9'> LCD Display PCF8547T </font>
 
 Štandardný LCD display s doplneným 8-bitovým paralelným prevodníkom pre I2C rozhranie s obvodom PCF8547T. Display je riadený v paralelnom 4-bitovom móde. 
 
@@ -23,7 +28,9 @@ kernelspec:
 LCD Display s adaptérom PCF8547T 
 ```
 
-## Zapojenie displeja   
+##  <font color='#547792'> Komunikácia  </font> 
+
+##  <font color='#547792'> Zapojenie  </font> 
 
 ```{figure} ./img/stm32_i2c.png
 :width: 600px
@@ -33,9 +40,17 @@ Zapojenie displeja
 ```
 
 
-##  Knižnica 
+##  <font color='#547792'> API </font> 
 
-Implementácia základných funkcií pre obsluhu displeja.
+Základné funkcií pre obsluhu displeja.
+
+    lcd_init(i2c)
+    lcd_clear()
+    lcd_set_cursor(i2c, row, column)
+    lcd_write_string(i2c, text)
+    
+
+::: {dropdown} <font color='#84B179'> Implementácia knižnice </font>
 
 ```Python
 I2C_ADDR = 0x27     # I2C address of the PCF8574
@@ -111,8 +126,14 @@ def lcd_set_cursor(i2c, row, column):
 def lcd_clear():
     lcd_send_cmd(i2c, 0x01)
 ```
+:::
 
-### <font color=#808000> Príklad použitia</font>
+
+
+##  <font color='#547792'> Príklady </font> 
+
+
+::: {dropdown} <font color='#84B179'> Príklad 1. Výpis textu </font>
 
 ```Python
 from pyb import I2C
@@ -136,4 +157,4 @@ lcd_write_string(i2c, 'Hello')
 lcd_set_cursor(i2c, 1,0)
 lcd_write_string(i2c, 'Clobrde')
 ```
-
+:::

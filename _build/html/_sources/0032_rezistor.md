@@ -19,9 +19,7 @@ kernelspec:
 
 
 
-# <font color='#4B9DA9'> Pasívne prvky  </font>
-
-##  <font color='#547792'> Rezistor </font>
+# <font color='#4B9DA9'> Rezistor  </font>
 
 V elektronických obvodoch je elektrický odpor reprezentovaný pasívnym prvkom - rezistorom (ľudové pomenovanie odpor nie je správne). Hodnota odporu rezistora je udávaná v jednotkách *Ohm*, značka $\Omega$. V zapojeniach označujeme rezistor písmenom *R*. 
 
@@ -47,7 +45,7 @@ _ = cm_compile('img_0032a', data,  dpi=600)
 ```
 
 ```{figure} ./src/img_0032a.png
-:width: 180px
+:width: 150px
 :name: img_0032a
 
 Prúd a napätie rezistorom.
@@ -67,9 +65,32 @@ $$
 
 ##  <font color='#547792'> Prevedenie </font>
 
-TODO - odpor vodiča
+Elektrický odpor vodiča je určený materiálovými vlastnosťami vodiča, je priamo úmerný dĺžke vodiča $l$ a nepriamo úmerný jeho prierezu $S$
 
-Technologicky sú rezistory vyrábané rôznymi postupmi v závislosti od účelu ich použitia, zvyčajne s využitím materiálov s rôznym merným odporom ako vodičov s rôznym prierezom alebo vo forme tenkých uhlíkových alebo kovových vrstiev nanesených na vhodný nevodivý materiál, zvyčajne keramiku.   
+$$
+R = \rho \frac{l}{S}
+$$
+
+kde $\rho$ je merný elektrický odpor materiálu vodiča. Merný odpor materiálu ako aj odpor vodiča závisia od teploty, pri kovových materiáloch s rastúcou teplotou stúpa podľa vzťahu
+
+
+$$
+\rho = \rho_0 \, (1 + \alpha \Delta t) \\
+\\
+R= R_0 \, (1 + \alpha \Delta t) \\
+$$
+
+Typické hodnoty merného odporu a teplotnáho súčinitelu pre vybrané materiály sú uvedené v tabulke
+
+
+| Materiál | Zloženie | $\rho$ | $\alpha$ | 
+| :---     | :----    | :----  |   :----  | 
+| Striebro |  Ag      |     17 |     3.80 |
+| Meď      |  Cu      |     18 |     3.92 |
+
+
+
+Rezistory vyrábané rôznymi postupmi v závislosti od účelu ich použitia, zvyčajne s využitím materiálov s rôznym merným odporom ako vodičov s rôznym prierezom navinutým na keramickom teliesku alebo vo forme tenkých uhlíkových alebo kovových vrstiev nanesených na vhodný elektricky nevodivý materiál.
 
 ```{figure} ./img/resistor_1.jpg
 :width: 350px
@@ -190,9 +211,8 @@ Na rezistoroch bývala hodnota vyznačená textom, čo ale pri malých rozmeroch
 Farebné značenie hodnôt rezistorov.
 ```
 
-### <font color='#E37434'>  Zapojenia rezistorov  </font>
+### <font color='#E37434'>   Sériové zapojenie rezistorov   </font>
 
-#### <font color='brown'>  Sériové zapojenie rezistorov  </font>
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
@@ -209,6 +229,8 @@ resistor(1.5, E); llabel(,R_1,);
 resistor(1.5, E); llabel(,R_2,);
 resistor(1.5, E); llabel(,R_3,);
 resistor(1.5, E); llabel(,R_4,);
+line 0.5 dotted;
+resistor(1.5, E); llabel(,R_N,);
 circle rad 0.09; "b" at last circle.n above;
 '''
 
@@ -221,8 +243,15 @@ _ = cm_compile('img_0032s', data,  dpi=600)
 
 Sériové zapojenie rezistorov.
 ```
+Odpor sériového zapojenia rezistoroch
 
-#### <font color='brown'> Paralelné zapojenie rezistorov </font>
+$$
+R_{ab} = R_1 + R_2 + \dots + R_N = \sum_{i=1}^N R_i
+$$
+
+Výsledný odpor sériového zapojenia rezistorov je vždy väčší ako odpor naväčšieho z nich.
+
+### <font color='#E37434'>  Paralelné zapojenie rezistorov </font>
 
 
 ```{code-cell} ipython3  
@@ -281,45 +310,3 @@ Paralelené zapojenie rezistorov.
 
 
 
-
-##  <font color='#547792'>  Kondenzátor  </font>
-
-```{code-cell} ipython3  
-:tags: ["remove-cell"]
-from src.utils import *
-
-data = r'''
-include(lib_base.ckt)
-include(lib_stm32.ckt)
-include(lib_user.ckt)
-
-up_; 
-Q1: capacitor(1.8,); llabel(,C,)
-line right_ 1; 
-C1:circle rad 0.08; "$+$" ljust; 
-line <- from last line.end+(0.6,0) right_ 0.8; "$i(t)$" ljust;
-line from Q1.start right_ 1; 
-C2:circle rad 0.08; "$-$" ljust; 
-line -> from C1.s+(0,-.1) to C2.n+(0,0.1); "$v(t)$" at last line.center ljust;
-'''
-
-_ = cm_compile('img_0034a', data,  dpi=600)   
-```
-
-```{figure} ./src/img_0034a.png
-:width: 220px
-:name: img_0034a
-
-Prúd a napätie kondenzátorom.
-```
-
-Pre vzťah prúdu pretekajúcim kondenzátorom  a napätím na konzenzátore 
-
-\begin{align*}
-q =& C \cdot v \\
-i =& \frac{dq}{dt} = C \frac{dv}{dt}
-\end{align*}
-
-
-
-##  <font color='#547792'> Cievka  </font>

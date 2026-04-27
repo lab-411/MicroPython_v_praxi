@@ -18,7 +18,7 @@ kernelspec:
 % {dropdown} <font color='#84B179'> Text </font>
 
 
-## <font color='#547792'> Základné zapojenia rezistorov  </font>
+# <font color='#547792'> Základné zapojenia rezistorov  </font>
 
 ## <font color='#E37434'> Sériové zapojenie rezistorov </font>
 

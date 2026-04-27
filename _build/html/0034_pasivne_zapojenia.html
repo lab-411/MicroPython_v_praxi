@@ -51,8 +51,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '0034_pasivne_zapojenia';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Dióda" href="0038_dioda.html" />
-    <link rel="prev" title="Pasívne prvky" href="0032_pasivne_prvky.html" />
+    <link rel="next" title="Kondenzátor" href="0035_kondenzator.html" />
+    <link rel="prev" title="Rezistor" href="0032_rezistor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,9 +173,9 @@
 <li class="toctree-l1"><a class="reference internal" href="0022_zaklady.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0032_pasivne_prvky.html"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
@@ -225,8 +225,8 @@
 <li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html">Display PCF8547T</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
@@ -393,13 +393,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -410,16 +408,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="zakladne-zapojenia-rezistorov">
+  <section class="tex2jax_ignore mathjax_ignore" id="zakladne-zapojenia-rezistorov">
 <h1><font color='#547792'> Základné zapojenia rezistorov  </font><a class="headerlink" href="#zakladne-zapojenia-rezistorov" title="Link to this heading">#</a></h1>
-</section>
 <section id="seriove-zapojenie-rezistorov">
-<h1><font color='#E37434'> Sériové zapojenie rezistorov </font><a class="headerlink" href="#seriove-zapojenie-rezistorov" title="Link to this heading">#</a></h1>
+<h2><font color='#E37434'> Sériové zapojenie rezistorov </font><a class="headerlink" href="#seriove-zapojenie-rezistorov" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="img-0076r">
 <a class="reference internal image-reference" href="_images/img_0076r.png"><img alt="_images/img_0076r.png" src="_images/img_0076r.png" style="width: 210px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Sériové zapojenie rezistorov.</span><a class="headerlink" href="#img-0076r" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 22 </span><span class="caption-text">Sériové zapojenie rezistorov.</span><a class="headerlink" href="#img-0076r" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Ekvivalentný odpor sériovho zapojenia dvoch rezistorov</p>
@@ -450,12 +447,12 @@ R_1 + R_2 =&amp; 10 \text{k}  \\
 <p class="sd-card-text">Po dosadení dostaneme hodnoty  <span class="math notranslate nohighlight">\(R_2 = 3k3\)</span> a <span class="math notranslate nohighlight">\(R_1 = 6k7\)</span>.</p>
 </div>
 </details><section id="paralelne-zapojenie-rezistorov">
-<h2><font color='#E37434'> Paralelné zapojenie rezistorov </font><a class="headerlink" href="#paralelne-zapojenie-rezistorov" title="Link to this heading">#</a></h2>
+<h3><font color='#E37434'> Paralelné zapojenie rezistorov </font><a class="headerlink" href="#paralelne-zapojenie-rezistorov" title="Link to this heading">#</a></h3>
 <figure class="align-default" id="img-0076k">
 <a class="reference internal image-reference" href="_images/img_0076k.png"><img alt="_images/img_0076k.png" src="_images/img_0076k.png" style="width: 260px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 22 </span><span class="caption-text">Paralelné zapojenie rezistorov.</span><a class="headerlink" href="#img-0076k" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 23 </span><span class="caption-text">Paralelné zapojenie rezistorov.</span><a class="headerlink" href="#img-0076k" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Ekvivalentý odpor paralelného zapojenia dvoch rezistorov</p>
@@ -472,6 +469,7 @@ R =&amp; \frac{R_1 R_2}{R_1 + R_2}
 \]</div>
 </section>
 </section>
+</section>
 
 
                 </article>
@@ -485,20 +483,20 @@ R =&amp; \frac{R_1 R_2}{R_1 + R_2}
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0032_pasivne_prvky.html"
+       href="0032_rezistor.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><font color='#4B9DA9'> Pasívne prvky  </font></p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Rezistor  </font></p>
       </div>
     </a>
     <a class="right-next"
-       href="0038_dioda.html"
+       href="0035_kondenzator.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><font color='#4B9DA9'> Dióda </font></p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Kondenzátor  </font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -518,13 +516,11 @@ R =&amp; \frac{R_1 R_2}{R_1 + R_2}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seriove-zapojenie-rezistorov"><font color="#E37434"> Sériové zapojenie rezistorov </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie-rezistorov"><font color="#E37434"> Paralelné zapojenie rezistorov </font></a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>

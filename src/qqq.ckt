@@ -6,7 +6,7 @@ scale = 2.54            # cm - jednotka pre obrazok
 maxpswid = 30           # rozmery obrazku
 maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
 cct_init                # inicializacia lokalnych premennych
-
+log_init  
 
 include(lib_base.ckt)
 include(lib_user.ckt)
@@ -15,48 +15,34 @@ include(lib_time.ckt)
 
 #command"\sf"
 
-#data(1,aa,X);
-#clock(1,LH)
-#level(1,X,D)
-#pulse(3, 0.3, LH)
 
-#level(1,X)
-#pulse(0.1,1,LH);
-#level(1,H)
-#level(1,L, LH)
 
-#data(1,a,X)
-#clock(1, HL)
+up_;
+move to (0,0);
+Q: source(,G);     {  "$I_1$" at Q.c+(-0.35,0) rjust; }
+   line right_ 1; { l_current(i, above_, 0.55 ) }; 
+C1:circle rad .075; "\it a" ljust;
 
-Grid(10,3)
-move to (0,0.5);
-level(0.5,L,D)
-pulse(1 ,0,LH);  {color_red; "$T_{0H}$" at last[].n+(0, 0.25) above; color_black; }
-pulse(2,0,HL);   {color_red;"$T_{0L}$" at last[].n+(0, 0.25) above; color_black;}
+line from Q.e right_ 1; {"a)" at last line.c+(0,-0.25) below;}
+C2:circle rad .075; "\it b" ljust;
+L1: line -> from C1.s + (0, -0.1) to C2.n + (0, 0.1); "$U_{ab}$" at last line.center ljust; 
 
-level(1,L,D);
-pulse(2,0,LH); {color_red;"$T_{1H}$" at last[].n+(0, 0.25) above; color_black;}
-pulse(1,0,HL); {color_red;"$T_{1L}$" at last[].n+(0, 0.25) above; color_black;}
-level(0.5,L,D);
+up_;
+move to (3.5,0);
+SR: source(,G); { "$I_2$" at SR.c+(-0.35,0) rjust; }
+   line right_ 0.75;
+DT1: dot;
+   line right_ 1; { l_current(i, above_, 0.55 ) }; 
+#   resistor(right_ 2, E); llabel(,r_i,);  b_current(i, above_, Out, End, 0.25 );
+C1:circle rad .075; "\it a" ljust;
 
-color_red;
-line from (0.5, 0) to (0.5,1.5) dotted; line <-> from (0.5, 1) to (1.5, 1);
-line from (1.5, 0) to (1.5,1.5) dotted; line <-> from (1.5, 1) to (3.5, 1);
-line from (3.5, 0) to (3.5,1.5) dotted;
+  line from SR.s right_ 0.75; #{"b)" at last line.c+(0,-0.25) below;}
+DT2: dot;
+line right_ 1;
+{"b)" at last line.c+(-0.5,-0.25) below;}
+C2:circle rad .075; "\it b" ljust; 
+L1: line -> from C1.s + (0, -0.1) to C2.n + (0, 0.1); "$U_{ab}$" at last line.center ljust; 
 
-line from (4.5, 0) to (4.5,1.5) dotted; line <-> from (4.5, 1) to (6.5, 1);
-line from (6.5, 0) to (6.5,1.5) dotted; line <-> from (6.5, 1) to (7.5, 1);
-line from (7.5, 0) to (7.5,1.5) dotted;
+down_; resistor(from DT1 to DT2, E); llabel(,r_i,)
 
-color_black;
-move to (0,2.5);
-level(0.5,H,D);
-pulse(5 ,0.025, HL);
-pulse(1 ,0.9, LH);
-level(1.5,H,D);
-
-color_red;
-line from (0.5+0.022*6, 2) to (0.5+0.022*6, 3.5) dotted;
-line from (5.5+0.9, 2) to (5.5+0.9, 3.5) dotted;
-line <-> from (0.5+0.022*6, 3) to (5.5+0.9, 3); "$T_{reset}$" at last line.center above;
 .PE

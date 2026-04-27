@@ -1,0 +1,39 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+up_;
+move to (0,0);
+Q: source; { DCsymbol(at last [],,,R); "$V_1$" at Q.c+(-0.35,0) rjust; }
+   line right_ 1; { l_current(i, above_, 0.55 ) }; 
+C1:circle rad .075; "\it a" ljust;
+
+line from Q.e right_ 1; {"a)" at last line.c+(0,-0.25) below;}
+C2:circle rad .075; "\it b" ljust;
+L1: line -> from C1.s + (0, -0.1) to C2.n + (0, 0.1); "$U_{ab}$" at last line.center ljust; 
+
+up_;
+move to (3.5,0);
+S: source; { DCsymbol(at last [],,,R); "$V_2$" at S.c+(-0.35,0) rjust; }
+   #line right_ 1;
+   resistor(right_ 2, E); llabel(,r_i,);  b_current(i, above_, Out, End, 0.25 );
+C1:circle rad .075; "\it a" ljust;
+   line from S.s right_ 2; {"b)" at last line.c+(0,-0.25) below;}
+C2:circle rad .075; "\it b" ljust; 
+L1: line -> from C1.s + (0, -0.1) to C2.n + (0, 0.1); "$U_{ab}$" at last line.center ljust;  
+
+.PE

@@ -1,0 +1,68 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_time.ckt)
+include(lib_color.ckt)
+
+command"\sf"
+move to (1,3.5); "LED1" rjust;
+level(1,X,D)
+data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+
+level(1,X,D); 
+
+{   color_red;
+    L1: last [].w; line from L1+(0,1) down_ 4.5;
+    L2: last [].e; line from L2+(0,1) down_ 4.5;
+    line <- from L1+(0, 0.75) left_ 1;
+    line <- from L2+(0, 0.75) right_ 1;
+    line from L1+(0, 0.75) to L2+(0, 0.75) dashed;
+   "Reset" at last [].c+(0,1.25); 
+   color_black;
+}
+
+data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+level(1,X,D)
+
+move to (1,2.5); "LED2" rjust;
+level(3,X,D)
+#data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+level(3,X,D)
+#data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+level(1,X,D)
+
+move to (1,1.5); "LED3" rjust;
+level(5,X,D)
+#data(2, 24 bit)
+#data(2, 24 bit)
+data(2, 24 bit)
+level(5,X,D)
+#data(2, 24 bit)
+#data(2, 24 bit)
+data(2, 24 bit)
+level(1,X,D)
+
+move to (1,0.5);  "LED4" rjust;
+level(15,X,D)
+
+.PE

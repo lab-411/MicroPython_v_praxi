@@ -21,6 +21,8 @@ resistor(1.5, E); llabel(,R_1,);
 resistor(1.5, E); llabel(,R_2,);
 resistor(1.5, E); llabel(,R_3,);
 resistor(1.5, E); llabel(,R_4,);
+line 0.5 dotted;
+resistor(1.5, E); llabel(,R_N,);
 circle rad 0.09; "b" at last circle.n above;
 
 .PE

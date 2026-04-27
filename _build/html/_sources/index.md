@@ -77,8 +77,8 @@
 0500_led_matrix.md
 0255_spi_display_7219.md
 0257_spi_display_12864.md
-0156_i2c_lm92.md
 0158_i2c_display.md
+0156_i2c_lm92.md
 0160_i2c_mems.md
 0505_funduino_01.md
 0510_funduino_02.md

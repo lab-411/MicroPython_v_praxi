@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Display PCF8547T &#8212; Micro_Python  documentation</title>
+    <title>LCD Display PCF8547T &#8212; Micro_Python  documentation</title>
   
   
   
@@ -49,8 +49,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '0158_i2c_display';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MEMS Senzory" href="0160_i2c_mems.html" />
-    <link rel="prev" title="Teplomer LM92" href="0156_i2c_lm92.html" />
+    <link rel="next" title="Teplomer LM92" href="0156_i2c_lm92.html" />
+    <link rel="prev" title="LCD Display 12864" href="0257_spi_display_12864.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,9 +171,9 @@
 <li class="toctree-l1"><a class="reference internal" href="0022_zaklady.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0032_pasivne_prvky.html"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0034_pasivne_zapojenia.html"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
@@ -223,8 +223,8 @@
 <li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Display PCF8547T</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
@@ -381,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Display PCF8547T</h1>
+    <h1><font color='#4B9DA9'> LCD Display PCF8547T </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,11 +391,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie-displeja">Zapojenie displeja</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kniznica">Knižnica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priklad-pouzitia"><font color="#808000"> Príklad použitia</font></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komunikacia"><font color="#547792"> Komunikácia  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><font color="#547792"> API </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#priklady"><font color="#547792"> Príklady </font></a></li>
 </ul>
             </nav>
         </div>
@@ -407,29 +406,41 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="display-pcf8547t">
-<h1>Display PCF8547T<a class="headerlink" href="#display-pcf8547t" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lcd-display-pcf8547t">
+<h1><font color='#4B9DA9'> LCD Display PCF8547T </font><a class="headerlink" href="#lcd-display-pcf8547t" title="Link to this heading">#</a></h1>
 <p>Štandardný LCD display s doplneným 8-bitovým paralelným prevodníkom pre I2C rozhranie s obvodom PCF8547T. Display je riadený v paralelnom 4-bitovom móde.</p>
 <figure class="align-default" id="mp-0207a">
 <a class="reference internal image-reference" href="_images/lcd_i2c_modul.jpg"><img alt="_images/lcd_i2c_modul.jpg" src="_images/lcd_i2c_modul.jpg" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 52 </span><span class="caption-text">LCD Display s adaptérom PCF8547T</span><a class="headerlink" href="#mp-0207a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 53 </span><span class="caption-text">LCD Display s adaptérom PCF8547T</span><a class="headerlink" href="#mp-0207a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<section id="zapojenie-displeja">
-<h2>Zapojenie displeja<a class="headerlink" href="#zapojenie-displeja" title="Link to this heading">#</a></h2>
+<section id="komunikacia">
+<h2><font color='#547792'> Komunikácia  </font><a class="headerlink" href="#komunikacia" title="Link to this heading">#</a></h2>
+</section>
+<section id="zapojenie">
+<h2><font color='#547792'> Zapojenie  </font><a class="headerlink" href="#zapojenie" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="mp-0207b">
 <a class="reference internal image-reference" href="_images/stm32_i2c.png"><img alt="_images/stm32_i2c.png" src="_images/stm32_i2c.png" style="width: 600px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 53 </span><span class="caption-text">Zapojenie displeja</span><a class="headerlink" href="#mp-0207b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 54 </span><span class="caption-text">Zapojenie displeja</span><a class="headerlink" href="#mp-0207b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
-<section id="kniznica">
-<h2>Knižnica<a class="headerlink" href="#kniznica" title="Link to this heading">#</a></h2>
-<p>Implementácia základných funkcií pre obsluhu displeja.</p>
+<section id="api">
+<h2><font color='#547792'> API </font><a class="headerlink" href="#api" title="Link to this heading">#</a></h2>
+<p>Základné funkcií pre obsluhu displeja.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>lcd_init(i2c)
+lcd_clear()
+lcd_set_cursor(i2c, row, column)
+lcd_write_string(i2c, text)
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Implementácia knižnice </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">I2C_ADDR</span> <span class="o">=</span> <span class="mh">0x27</span>     <span class="c1"># I2C address of the PCF8574</span>
 <span class="n">RS_BIT</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># Register select bit</span>
 <span class="n">EN_BIT</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># Enable bit</span>
@@ -504,8 +515,13 @@ document.write(`
     <span class="n">lcd_send_cmd</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="priklad-pouzitia">
-<h3><font color=#808000> Príklad použitia</font><a class="headerlink" href="#priklad-pouzitia" title="Link to this heading">#</a></h3>
+</div>
+</details></section>
+<section id="priklady">
+<h2><font color='#547792'> Príklady </font><a class="headerlink" href="#priklady" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Príklad 1. Výpis textu </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">I2C</span>
 <span class="kn">import</span> <span class="nn">time</span> 
 <span class="kn">from</span> <span class="nn">lib.lib_lcd_pcf8547</span> <span class="kn">import</span> <span class="o">*</span>
@@ -516,7 +532,7 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">i2c</span><span class="o">.</span><span class="n">scan</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Zobrazenie textu</p>
+<p class="sd-card-text">Zobrazenie textu</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">lcd_init</span><span class="p">(</span><span class="n">i2c</span><span class="p">)</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
@@ -526,8 +542,8 @@ document.write(`
 <span class="n">lcd_write_string</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="s1">&#39;Clobrde&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
+</div>
+</details></section>
 </section>
 
 
@@ -542,20 +558,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="0156_i2c_lm92.html"
+       href="0257_spi_display_12864.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Teplomer LM92</p>
+        <p class="prev-next-title"><font color='#4B9DA9'>  LCD Display 12864  </font></p>
       </div>
     </a>
     <a class="right-next"
-       href="0160_i2c_mems.html"
+       href="0156_i2c_lm92.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">MEMS Senzory</p>
+        <p class="prev-next-title">Teplomer LM92</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -575,11 +591,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie-displeja">Zapojenie displeja</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kniznica">Knižnica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priklad-pouzitia"><font color="#808000"> Príklad použitia</font></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komunikacia"><font color="#547792"> Komunikácia  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><font color="#547792"> API </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#priklady"><font color="#547792"> Príklady </font></a></li>
 </ul>
   </nav></div>
 

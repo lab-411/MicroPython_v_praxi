@@ -30,7 +30,31 @@ Modul 7-segmentového displeja je riadený obvodom [MAX7219/MAX7221](./doc/max72
 Modul displeja.
 ```
 
-## <font color='#547792'> Popis </font>
+Štandardné zapojenie modulu podľa doporučenia výrobcu je na obrázku.
+
+```{figure} ./img/ic_max7219_2.png
+:width: 450px
+:name: mp_0255e
+
+Zapojenie displeja.
+```
+Príklad pripojenie modulu displeja ku kitu NUCLEO-64. 
+
+    DIN  -> PB15   
+    CLK  -> PB13
+    CS   -> PB1
+    +5V
+    GND 
+
+```{figure} ./img/spi2_led_max7219.png
+:width: 300px
+:name: mp_0255g
+
+Pripojenie modulu displeja.
+```
+
+
+## <font color='#547792'> Komunikácia </font>
 
 Radič displeja MAX7219 umožňuje pripojenie 8-znakového 7-segmentového displeja so spoločnou katódou, sĺpcového LED displeja alebo 64 samostatných LED. Obvod obsahuje BCD dekóder pre 7-segmentové znaky, obvody pre multiplexovanie znakov displeja, riadenie jasu a statickú pamäť RAM 8x8 pre každý znak displeja. Riadnie displeja umožňuje adresovať každý znak displeja individuálne, bez potreby prepísania obsahu celého displeja. Obvod je k mikroprocesoru pripojený pomocou rozhrania SPI s maximálnou frekvenciou hodím 10MHz. 
 
@@ -40,7 +64,6 @@ Radič displeja MAX7219 umožňuje pripojenie 8-znakového 7-segmentového displ
 
 Vnútorné zapojenie obvodu [MAX7219](./doc/max7219.pdf).
 ```
-
 
 Obvod obsahuje 16-bitový posuvný register, ktorého obsah je po naplnení z rozhrania SPI dekódovaný podľa nasledujúceho formátu
 
@@ -83,31 +106,7 @@ Dáta pre register **Decode Mode** určujú formát dekódovania znakov. Hodnota
 Nastavenie typu dekódovania dát pre znaky displeja.
 ```
 
-## <font color='#547792'> Zapojenie displeja </font>
 
-
-Štandardné zapojenie modulu podľa doporučenia výrobcu ja na obrázku.
-
-```{figure} ./img/ic_max7219_2.png
-:width: 450px
-:name: mp_0255e
-
-Zapojenie displeja.
-```
-Príklad pripojenie modulu displeja ku kitu NUCLEO-64. 
-
-    DIN  -> PB15   
-    CLK  -> PB13
-    CS   -> PB1
-    +5V
-    GND 
-
-```{figure} ./img/spi2_led_max7219.png
-:width: 300px
-:name: mp_0255g
-
-Pripojenie modulu displeja.
-```
 
 
 ## <font color='#547792'> Programovanie </font>

@@ -173,9 +173,9 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0032_pasivne_prvky.html"><font color="#4B9DA9"> Pasívne prvky  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0034_pasivne_zapojenia.html"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
@@ -225,8 +225,8 @@
 <li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html">Display PCF8547T</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
@@ -395,7 +395,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prud"><font color="#547792"> Prúd  </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#napatie"><font color="#547792"> Napätie  </font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroje-napatia-a-prudu"><font color="#547792"> Zdroje napätia a prúdu  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroje-napatia-a-prudu"><font color="#547792"> Zdroje napätia a prúdu </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroj-napatia"><font color="#E37434"> Zdroj napätia </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroj-prudu"><font color="#E37434"> Zdroj prúdu </font></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -488,7 +492,39 @@ U_0 = U_1 + U_2
 \]</div>
 </section>
 <section id="zdroje-napatia-a-prudu">
-<h2><font color='#547792'> Zdroje napätia a prúdu  </font><a class="headerlink" href="#zdroje-napatia-a-prudu" title="Link to this heading">#</a></h2>
+<h2><font color='#547792'> Zdroje napätia a prúdu </font><a class="headerlink" href="#zdroje-napatia-a-prudu" title="Link to this heading">#</a></h2>
+<section id="zdroj-napatia">
+<h3><font color='#E37434'> Zdroj napätia </font><a class="headerlink" href="#zdroj-napatia" title="Link to this heading">#</a></h3>
+<p>V hydraulickom systéme je ekvivalentom ideálneho zdroja napätia čerpadlo, ktoré dodáva kvapalinu pod konštantným tlakom bez ohľadu na jej prietok. V elektronických systémoch ideálny zdroj napätia udržiava na výstupných svorkách konštantné napätie nez ohľadu na veľkosť odoberaného prúdu, teoreticky aj nekonečného. Je zrejmé, že takýto zdroj je fikcia, pri reálnych zdrojoch hodnota napätie klesá s odoberaným prúdom, túto skutočnosť zohľadňuje rezistor zapojený v sérii so zdrojom,  hovoríme že zdroj má výstupný odpor.</p>
+<p>Ideálnemu zdroju napätia sa v praxi blíži napríklad akumulátor alebo elektronické stabilizované zdroje napätia.</p>
+<figure class="align-default" id="img-0251e">
+<a class="reference internal image-reference" href="_images/img_0251e.png"><img alt="_images/img_0251e.png" src="_images/img_0251e.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Ideálny a) a reálny b) zdroj napätia.</span><a class="headerlink" href="#img-0251e" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Vnútorný odpor zdroja napätia </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Veľkosť vnútorného odporu napäťového zdroja je dôležitou veličinou v elektronických obvodoch. Určuje, ako poklesne napätie zdroja pri jeho zaťažení. Typické hodnoty vnútorného odporu pri napájacích zdrojoch elektronických zariadení sú zvyčajne malé, typicky zlomky <span class="math notranslate nohighlight">\(\Omega\)</span>, čo znamená že napájací zdroj môže dodať do záťaže veľký prúd bez významnejšieho poklesu napätia. Príkladom zdroja s malým výstupným odporom je napríklad akumulátor v aute, kde pri štarte motora potrebujeme veľký prúd pri malom poklese napätia počas sťartu.</p>
+<p class="sd-card-text">Pri zdrojoch signálov sa naopak môžeme stretnúť s prípadmi, kedy má zdroj veľmi vysoký vnútorný odpor v rádoch jednotiek až stoviek <span class="math notranslate nohighlight">\(k \Omega\)</span> a už aj malý odoberaný prúd spôsobí výrazný pokles napätia. Príkladom môže byť senzor založený na <a class="reference external" href="https://en.wikipedia.org/wiki/Piezoelectric_sensor">piezoelektrickom jave</a> alebo senzory na meranie <a class="reference external" href="https://en.wikipedia.org/wiki/Electrocardiography">bioelektrických</a> potenciálov.</p>
+<h4 class="rubric" id="meranie-vnutorneho-odporu"><font color='#E37434'> Meranie vnútorného odporu  </font></h4>
+<p class="sd-card-text">Postup</p>
+</div>
+</details></section>
+<section id="zdroj-prudu">
+<h3><font color='#E37434'> Zdroj prúdu </font><a class="headerlink" href="#zdroj-prudu" title="Link to this heading">#</a></h3>
+<p>Obdobne ako pri zdroji napätia v hydraulickom systéme je ekvivalentom ideálneho zdroja prúdu čerpadlo, ktoré dodáva konštantné množstvo kvapaliny za jednotku času bez ohľadu na to, do akej výšky má kvapalinu vytlačiť. V elektronických systémoch ideálny zdroj prúdu dodáva konštantný prúd bez ohľadu na to, aké je napätia na jeho výstupných svorkách. Rovnako ako pri zdroje napätie je idálny zdroj prúdu fikcia, pri reálnom zdroji výstuopný prúd závisí od napätia na jeho svorkách, túto vlastnosť môžeme popísať rovnako ako pri zdroji napätia výstupným odporom.</p>
+<figure class="align-default" id="img-0251f">
+<a class="reference internal image-reference" href="_images/img_0251f.png"><img alt="_images/img_0251f.png" src="_images/img_0251f.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 10 </span><span class="caption-text">Ideálny a) a reálny b) zdroj prúdu.</span><a class="headerlink" href="#img-0251f" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>So zdrojmi prúdu sa v elektronických obvodoch stretneme najmä pri nastavovaní pracovného režimu elektronických komponentov alebo pri niektorých typoch senzorov. Reálny prúdový zdroj sa blíži k ideálnemu tým viac, čím je väčší jeho vnútorný odpor, elektronické zdroje prúdu majú vnútorný odpor v ráde stoviek <span class="math notranslate nohighlight">\(k \Omega\)</span>.</p>
+</section>
 </section>
 </section>
 
@@ -539,7 +575,11 @@ U_0 = U_1 + U_2
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prud"><font color="#547792"> Prúd  </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#napatie"><font color="#547792"> Napätie  </font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroje-napatia-a-prudu"><font color="#547792"> Zdroje napätia a prúdu  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroje-napatia-a-prudu"><font color="#547792"> Zdroje napätia a prúdu </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroj-napatia"><font color="#E37434"> Zdroj napätia </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zdroj-prudu"><font color="#E37434"> Zdroj prúdu </font></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

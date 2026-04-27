@@ -21,19 +21,118 @@ kernelspec:
 
 #  <font color='#4B9DA9'>  LED WS2812-64 </font>
 
-Modul obsahuje 64 farebných LED v sériovom zapojení usporiadaných do matice. Každá LED obsahuje obvod [WS2812](./doc/WS2812B.pdf), pomocou komunikačného protokolu je možné riadiť farbu a intenzitu každej LED na module. 
+Modul obsahuje 64 farebných LED usporiadaných do matice v sériovom zapojení. Každá LED obsahuje obvod [WS2812](./doc/WS2812B.pdf), pomocou komunikačného protokolu je možné riadiť farbu a intenzitu každej LED na module. Modul obsahuje dva konektory, jeden pre pripojenie napájania a vstupného dátového vodiča, druhý pre propojenie nasledujúceho modulu. 
 
 
 ```{figure} ./img/led_ws812.jpg
 :width: 320px
 :name: mp_0500a
 
-LED modul WS2812.
+LED modul WS2812-64.
+```
+
+
+
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+from src.utils import *
+
+data = r'''
+log_init  
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+include(lib_time.ckt)
+
+command"\sf"
+
+define(`WS2812', `[
+  rgbfill(fill_light_yellow, {BX: box wid 2 ht 5*lg_pinsep; })
+      lg_pin(BX.nw - (0, 1*lg_pinsep), Din,  Pin4, w, 4, );
+      lg_pin(BX.nw - (0, 4*lg_pinsep), Vss,  Pin3, w, 3, );
+      lg_pin(BX.ne - (0, 1*lg_pinsep), Vcc,  Pin1, e, 1, );
+      lg_pin(BX.ne - (0, 4*lg_pinsep), Dout, Pin2, e, 2, );
+]')
+
+LED1: WS2812; 
+
+
+line from LED1.Pin2.end right_ 1;
+line up_ to (Here, LED1.Pin4) then right_ 1;
+right_ ; 
+LED2: WS2812 with .Pin4.end at Here;
+
+line from LED2.Pin2.end right_ 0.5 ;
+line right_ 1.0 dashed;
+line up_ to (Here, LED2.Pin4) then right_ 1 dashed;
+right_ ; 
+LED3: WS2812 with .Pin4.end at Here;
+
+"LED1" at LED1.s below;
+"LED2" at LED2.s below;
+"LEDn" at LED3.s below;
+
+# zemny spoj
+line from LED1.Pin3.end down_ 1;
+DD1: dot;
+line to (LED2.Pin3.end, Here);
+DD2: dot; {line to LED2.Pin3.end; }
+line to (LED2.Pin2.end, Here)+(0.5,0);
+line to (LED3.Pin3.end, Here) dashed;
+DD3: dot;  {line to LED3.Pin3.end; }
+line to ( LED3.Pin2.end, Here);
+tconn(right_ 2,M); "GND" ljust;
+tconn(from LED3.Pin2.end right_ 2,M); "Out" ljust;
+tconn(from DD1 left_ 1.5,M);  "GND" rjust;
+
+# napajanie
+line from LED1.Pin1.end right_ 0.25; 
+DD5: dot; { capacitor(down_ to (Here, DD1)+(0, 0.85)); llabel(,\sf C1,);  line to ((Here, DD1)); dot; }
+line up_ 0.75;
+DD6: dot;
+line right_ to (LED2.Pin1.end, Here)+(0.25, 0);
+DD7: dot;
+line to (Here, LED2.Pin1.end); 
+dot; { capacitor(down_ to (Here, DD1)+(0, 0.85)); llabel(,\sf C2,);line to ((Here, DD1)); dot; }
+line to LED2.Pin1.end;
+line from DD7 right_ 0.35
+line to (LED3.Pin4.end, Here) dashed;
+line to (LED3.Pin1.end, Here) + (0.25,0);
+DD8: dot;
+line to (Here, LED3.Pin1.end);
+dot; { capacitor(down_ to (Here, DD1)+(0, 0.85));  llabel(,\sf Cn,); line to ((Here, DD1)); dot; }
+line to LED3.Pin1.end;
+tconn(from DD8 right_ 1.75,M); "+5V" ljust;
+tconn(from DD6 left_ 4.75,M); "+5V" rjust;
+tconn(from LED1.Pin4.end left_ 1.5,M); "In" rjust;
+'''
+
+_ = cm_compile('img_0500f', data,  dpi=600)   
+```
+
+```{figure} ./src/img_0500f.png
+:width: 800px
+:name: mp_0500d
+
+Sériové zapojenie v LED module.
+```
+
+
+Pripojenie modulu k vývojovému modulu Nucleo-64 je pomocou troch vodičov, napájanie +5V, zem a dátový vodič. Pre komunikáciu s modulom je použitá zjednodušená verzia zbernice **SPI**. Nie je použitý hodinový synchronizačný signál zbernice SCLK a jednosmerná komunikácia s modulom je prostredníctvom signálu MOSI. 
+
+
+
+```{figure} ./img/ws2812_nucleo.png
+:width: 450px
+:name: mp_0500f
+
+Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.
 ```
 
 ##  <font color='#547792'>  Komunikácia </font>
 
-Komunikácia s obvodmi riadiacimi LED je sériová, po jednom dátovom vodiči, s pevným časovaním logických stavov. 
+Komunikácia s obvodmi WS2812, ktoré riadia stav každej LED je sériová, po jednom dátovom vodiči, s pevným časovaním určujúcim logické stavy L a H. 
 
 
 ```{code-cell} ipython3  
@@ -89,6 +188,14 @@ _ = cm_compile('img_0500k', data,  dpi=600)
 
 Časovanie logických stavov L,H a RESET.
 ```
+
+| Interval    | Min            | Max     | 
+| :---        | :----          |  :---- | 
+| $T_{reset}$ | $300 \mu s$    | $\infty$       | 
+| $T_{0H}$    | $220 ns$       | $380 n s$     |
+| $T_{0L}$    | $750 ns$       | $1.6 \mu s$   |
+| $T_{1H}$    | $750 ns$       | $1.6 \mu s$     |
+| $T_{1L}$    | $22 ns$        | $420 n s$   |
 
 
 
@@ -150,47 +257,80 @@ _ = cm_compile('img_0500c', data,  dpi=600)
 Kódovanie farebnej informácie.
 ```
 
-LED sú zpojené v sérii, každý riadiaci obvod si z dátového reťazca ponechá prvú informáciu o stave LED a zbytok dátového paketu pošle ďalej. Medzi jednotlivými paketmi je časový interval, ktorý je interpretovaný ako reset.
+LED sú zpojené v sérii, každý riadiaci obvod si z dátového reťazca ponechá 24 bite o stave LED a zbytok reťazca prepošle k nasledujúcej LED. Informácie o stave LED sú za sebou bez medzier, po ukončení vysielania je medzi jednotlivými reťazcami časový interval dlhší ako $300 \mu s$, ktorý je interpretovaný ako reset komunikácie.
 
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+from src.utils import *
 
-```{figure} ./img/ws2512_zapojenie.png
-:width: 750px
-:name: mp_0500d
+data = r'''
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_time.ckt)
+include(lib_color.ckt)
 
-Sériové zapojenie LED
+command"\sf"
+move to (1,3.5); "LED1" rjust;
+level(1,X,D)
+data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+
+level(1,X,D); 
+ 
+{   color_red;
+    L1: last [].w; line from L1+(0,1) down_ 4.5;
+    L2: last [].e; line from L2+(0,1) down_ 4.5;
+    line <- from L1+(0, 0.75) left_ 1;
+    line <- from L2+(0, 0.75) right_ 1;
+    line from L1+(0, 0.75) to L2+(0, 0.75) dashed;
+   "Reset" at last [].c+(0,1.25); 
+   color_black;
+}
+
+data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+level(1,X,D)
+
+move to (1,2.5); "LED2" rjust;
+level(3,X,D)
+#data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+level(3,X,D)
+#data(2, 24 bit)
+data(2, 24 bit)
+data(2, 24 bit)
+level(1,X,D)
+
+move to (1,1.5); "LED3" rjust;
+level(5,X,D)
+#data(2, 24 bit)
+#data(2, 24 bit)
+data(2, 24 bit)
+level(5,X,D)
+#data(2, 24 bit)
+#data(2, 24 bit)
+data(2, 24 bit)
+level(1,X,D)
+
+move to (1,0.5);  "LED4" rjust;
+level(15,X,D)
+'''
+
+_ = cm_compile('img_0500e', data,  dpi=600)   
 ```
 
-
-```{figure} ./img/ws2512_sekvencia.png
-:width: 550px
+```{figure}  ./src/img_0500e.png
+:width: 650px
 :name: mp_0500e
 
 Princíp komunikácie na sériovej zbernici.
 ```
 
 
-##  <font color='#547792'> Zapojenie </font> 
-
-Pripojenie modulu je pomocou troch vodičov, napájanie +5V, zem a komunikácia. Pre komunikáciu s modulom je použitá jednodušená verzia zbernice **SPI**. Nie je použitý hodinový synchronizačný signál zbernice SCLK a jednosmerná komunikácia s modulom je prostredníctvom signálou MOSI. 
-
-
-
-```{figure} ./img/ws2812_nucleo.png
-:width: 450px
-:name: mp_0500f
-
-Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.
-```
-
-
-SPI1, MOSI, bez CLK
-
-    MICROPY_HW_SPI1_MOSI        (pin_PB5)
-    
-
-
-
-##  <font color='#547792'> API </font> 
+##  <font color='#547792'> Programovanie </font> 
 
 Pre riadenie matice LED je určená knižnica [lib_ws2812.py](./lib/lib_ws2812.py). Hodnoty farieb su kódované do bitovej postupnosti, ktorá je pomocou SPI rozhrania vyslaná do matice.
 
