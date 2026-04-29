@@ -248,13 +248,17 @@ Ideálny a) a reálny b) zdroj napätia.
 
 :::{dropdown} <font color='#84B179'> Vnútorný odpor zdroja napätia </font>
 
+Hydraulickým ekvivalentom vnútorného odporu napäťového zdroja je zúženie hadice na výstupe čerpadla, pri zvýšení prietoku na zúženom mieste vzniká tlaková strata. 
+
 Veľkosť vnútorného odporu napäťového zdroja je dôležitou veličinou v elektronických obvodoch. Určuje, ako poklesne napätie zdroja pri jeho zaťažení. Typické hodnoty vnútorného odporu pri napájacích zdrojoch elektronických zariadení sú zvyčajne malé, typicky zlomky $\Omega$, čo znamená že napájací zdroj môže dodať do záťaže veľký prúd bez významnejšieho poklesu napätia. Príkladom zdroja s malým výstupným odporom je napríklad akumulátor v aute, kde pri štarte motora potrebujeme veľký prúd pri malom poklese napätia počas sťartu. 
 
 Pri zdrojoch signálov sa naopak môžeme stretnúť s prípadmi, kedy má zdroj veľmi vysoký vnútorný odpor v rádoch jednotiek až stoviek $k \Omega$ a už aj malý odoberaný prúd spôsobí výrazný pokles napätia. Príkladom môže byť senzor založený na [piezoelektrickom jave](https://en.wikipedia.org/wiki/Piezoelectric_sensor) alebo senzory na meranie [bioelektrických](https://en.wikipedia.org/wiki/Electrocardiography) potenciálov. 
 
 #### <font color='#E37434'> Meranie vnútorného odporu  </font>
 
-Postup
+1. Zmeriame napätie na vystupných svorkách zdroja bez záťaže.
+2. Na výstupné svorky zdroja pripojíme vhodnú záťaž, ktorú dimenzujeme s ohľadom na parametre zdroja - výstupné napätie, dovolený prúd 
+3. Zmeriame výstupné napätie \droja so záťažou
 
 :::
 
@@ -313,5 +317,10 @@ _ = cm_compile('img_0251f', data,  dpi=600)
 Ideálny a) a reálny b) zdroj prúdu. 
 ```
 
+:::{dropdown} <font color='#84B179'> Vnútorný odpor zdroja prúdu </font>
+
+V hydraulickej alternatíve si môžeme vnútorný odpor zdroja predstaviť ako tenké potrubie, ktoré je pripojené paralelne k čerpadlu, čím čerpadlo tlačí vodu hadicou do väčšej výšky, tým viacej kvapaliny preteká prepojovacím potrubím na úkor kvapaliny na konci hadice. 
+
 So zdrojmi prúdu sa v elektronických obvodoch stretneme najmä pri nastavovaní pracovného režimu elektronických komponentov alebo pri niektorých typoch senzorov. Reálny prúdový zdroj sa blíži k ideálnemu tým viac, čím je väčší jeho vnútorný odpor, elektronické zdroje prúdu majú vnútorný odpor v ráde stoviek $k \Omega$. 
 
+:::

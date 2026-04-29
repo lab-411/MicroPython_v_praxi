@@ -119,8 +119,11 @@ Sériové zapojenie v LED module.
 ```
 
 
-Pripojenie modulu k vývojovému modulu Nucleo-64 je pomocou troch vodičov, napájanie +5V, zem a dátový vodič. Pre komunikáciu s modulom je použitá zjednodušená verzia zbernice **SPI**. Nie je použitý hodinový synchronizačný signál zbernice SCLK a jednosmerná komunikácia s modulom je prostredníctvom signálu MOSI. 
+Pripojenie modulu k mikrokontroléru je pomocou troch vodičov, napájanie +5V, zem a dátový vodič. Pre komunikáciu s modulom je použité rozhranie  [SPI](0250_spi.html). Pre prenos dát do modulu je použitý len signál MOSI, nie je použitý hodinový synchronizačný signál zbernice SCLK. Komunikácia preto vyžaduje pevné nastavenie časovania pri prenose dát.
 
+
+
+:::{dropdown} <font color='#84B179'> Pripojenie modulu k Nucleo-64  </font>
 
 
 ```{figure} ./img/ws2812_nucleo.png
@@ -129,6 +132,7 @@ Pripojenie modulu k vývojovému modulu Nucleo-64 je pomocou troch vodičov, nap
 
 Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.
 ```
+:::
 
 ##  <font color='#547792'>  Komunikácia </font>
 

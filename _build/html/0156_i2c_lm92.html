@@ -224,7 +224,7 @@
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Teplomer LM92</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
@@ -381,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Teplomer LM92</h1>
+    <h1><font color='#4B9DA9'> Teplomer LM92 </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,11 +391,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pripojenie">Pripojenie</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kniznica">Knižnica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nacitanie-dat-zo-senzora">Načítanie dát zo senzora</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a></li>
 </ul>
             </nav>
         </div>
@@ -408,10 +404,33 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="teplomer-lm92">
-<h1>Teplomer LM92<a class="headerlink" href="#teplomer-lm92" title="Link to this heading">#</a></h1>
-<p><a class="reference download internal" download="" href="_downloads/4c98bee0a8f5e0dbd978a830fa683968/lm92.pdf"><span class="xref download myst">LM92</span></a> je 12-bitový teplotný senzor pre teplotný rozsah -25 … +150°C s rozlíšením 0.0625°C. Teplomer má možnosť nastavenie kritických teplôt a výstup pre vyvolanie prerušenia pri prekročení stanovených teplôt.</p>
-<section id="pripojenie">
-<h2>Pripojenie<a class="headerlink" href="#pripojenie" title="Link to this heading">#</a></h2>
+<h1><font color='#4B9DA9'> Teplomer LM92 </font><a class="headerlink" href="#teplomer-lm92" title="Link to this heading">#</a></h1>
+<p><a class="reference download internal" download="" href="_downloads/4c98bee0a8f5e0dbd978a830fa683968/lm92.pdf"><span class="xref download myst">LM92</span></a> je 12-bitový teplotný senzor pre teplotný rozsah -25 … +150°C s rozlíšením 0.0625°C. Komunikácia s teplomerom je po zbernici I2C. Teplomer má možnosť nastavenie kritických teplôt a výstup pre vyvolanie prerušenia pri prekročení stanovených teplôt.</p>
+<figure class="align-default" id="mp-156a">
+<a class="reference internal image-reference" href="_images/lm92_block.png"><img alt="_images/lm92_block.png" src="_images/lm92_block.png" style="width: 550px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 55 </span><span class="caption-text">Blokové zapojenie digitálneho teplomera LM92.</span><a class="headerlink" href="#mp-156a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Vývody A1 a A0 sú určené pre nastavenie adresy teplomera na zbernici. Kódovanie adresy je 7-bitové podľa obrázku</p>
+<figure class="align-default" id="mp-156b">
+<a class="reference internal image-reference" href="_images/lm92_addr.png"><img alt="_images/lm92_addr.png" src="_images/lm92_addr.png" style="width: 750px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 56 </span><span class="caption-text">Adresácia teplomera LM92 na zbernici.</span><a class="headerlink" href="#mp-156b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Rozsah adries</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>01001000
+01001001
+01001010
+01001011
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Pripojenie teplomera LM92 k Nucleo-64  </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MICROPY_HW_I2C1_SCL         -&gt; pin_PB8  (STM)
 MICROPY_HW_I2C1_SDA         -&gt; pin_PB9  (STM)
 +5V
@@ -422,14 +441,15 @@ GND
 <a class="reference internal image-reference" href="_images/stm32_i2c1.png"><img alt="_images/stm32_i2c1.png" src="_images/stm32_i2c1.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 55 </span><span class="caption-text">Pripojenie teplomera LM92</span><a class="headerlink" href="#mp-0205f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 57 </span><span class="caption-text">Pripojenie teplomera LM92</span><a class="headerlink" href="#mp-0205f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
-<section id="kniznica">
-<h2>Knižnica<a class="headerlink" href="#kniznica" title="Link to this heading">#</a></h2>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_LM92_TR</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
-    <span class="n">raw</span> <span class="o">=</span> <span class="n">ic</span><span class="o">.</span><span class="n">mem_read</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>      <span class="c1"># nacitanie 2 byte z registra 0 </span>
+</div>
+</details><section id="programovanie">
+<h2><font color='#547792'> Programovanie </font><a class="headerlink" href="#programovanie" title="Link to this heading">#</a></h2>
+<p>Funkcia pre načítanie dát z teplomera:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_LM92</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">i2c</span><span class="o">.</span><span class="n">mem_read</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>      <span class="c1"># nacitanie 2 byte z registra 0 </span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>      <span class="c1"># konverzia 16 bit format</span>
     <span class="n">td</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span>                     <span class="c1"># 2&#39;compl b15-b3 temperature</span>
     <span class="n">TEMP</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">td</span> <span class="o">&amp;</span> <span class="mh">0x1000</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">td</span> <span class="o">&amp;</span> <span class="mh">0xFFF</span><span class="p">))</span><span class="o">*</span> <span class="mf">0.0625</span>       
@@ -439,26 +459,27 @@ GND
     <span class="k">return</span> <span class="n">TEMP</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">L</span>
 </pre></div>
 </div>
-<section id="nacitanie-dat-zo-senzora">
-<h3>Načítanie dát zo senzora<a class="headerlink" href="#nacitanie-dat-zo-senzora" title="Link to this heading">#</a></h3>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Príklad 1. Načítanie a zobrazenie teploty </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inicializacia rozhrania</span>
 <span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">I2C</span>
 <span class="kn">import</span> <span class="nn">time</span> 
 
 <span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">I2C</span><span class="o">.</span><span class="n">CONTROLLER</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Spustenie merania</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">temp</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+<span class="c1"># Spustenie merania</span>
+
+<span class="k">def</span> <span class="nf">temp</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">read_LM92_TR</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="mi">75</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">read_LM92</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="mi">75</span><span class="p">))</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
 <span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
+</div>
+</details></section>
 </section>
 
 
@@ -506,11 +527,7 @@ GND
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pripojenie">Pripojenie</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kniznica">Knižnica</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nacitanie-dat-zo-senzora">Načítanie dát zo senzora</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a></li>
 </ul>
   </nav></div>
 
