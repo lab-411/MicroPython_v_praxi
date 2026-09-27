@@ -16,36 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '0042_opamp';</script>
@@ -55,6 +65,7 @@
     <link rel="prev" title="Tranzistor" href="0040_transistor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -70,19 +81,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -90,7 +90,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -98,8 +97,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -115,7 +114,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -145,27 +145,23 @@
     
     
     <img src="_static/logo_411.png" class="logo__image only-light" alt="Micro_Python  documentation - Home"/>
-    <script>document.write(`<img src="_static/logo_411.png" class="logo__image only-dark" alt="Micro_Python  documentation - Home"/>`);</script>
+    <img src="_static/logo_411.png" class="logo__image only-dark pst-js-only" alt="Micro_Python  documentation - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0010_uvod.html">MicroPython</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html">Ako na to</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0010_uvod.html"><font color="#4B9DA9"> MicroPython  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Ako na to  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="current nav bd-sidenav">
@@ -174,14 +170,13 @@
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0034_pasivne_zapojenia.html"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="0050_digital.html">Digitálna elektronika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0050_digital.html"><font color="#4B9DA9"> Digitálna elektronika  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mikrokontrolér</span></p>
 <ul class="nav bd-sidenav">
@@ -226,7 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
@@ -253,9 +248,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -338,7 +338,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -352,25 +352,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -397,8 +389,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sledovac"><font color="#E37434"> Sledovač </font></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertujuci-zosilovac"><font color="#E37434"> Invertujúci zosilovač </font></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neinvertujuci-zosilovac"><font color="#E37434"> Neinvertujúci zosilovač </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komparator"><font color="#E37434"> Komparátor </font></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typy-operacnych-zosilovacov"><font color="#547792"> Typy operačných zosilovačov </font></a></li>
 </ul>
             </nav>
         </div>
@@ -412,65 +406,92 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="operacny-zosilovac">
 <h1><font color='#4B9DA9'> Operačný zosilovač </font><a class="headerlink" href="#operacny-zosilovac" title="Link to this heading">#</a></h1>
-<p>Operačný zosilovač je univerzálne elektronické zariadenie, v súčasnej dobe v podobe integrovaného obvodu, ktoré je určené na elektronickú realizáciu matematických operácií (preto názov <em>operačný</em>) ako je sčítanie, odčítanie, integráciu, deriváciu, logaritmovanie, zosilnenie. V minulosti bola jeho hlavná oblasť použitia riešenie diferenciálnych rovníc, v súčasnosti sa používa aj na spracovanie a úpravu signálov zo senzorov alebo ako súčasť regulačných obvodov. Je to najuniverzálnejší obvod elektroniky, ktorý sa vyrába v množstve typov a modifikácií pre rôzne oblasti použitia.</p>
+<p>Operačný zosilovač je univerzálne elektronické zariadenie, v súčasnej dobe v podobe integrovaného obvodu, ktoré je určené na elektronickú realizáciu matematických operácií (preto názov <em>operačný</em>) ako je sčítanie, odčítanie, integráciu, deriváciu, logaritmovanie, zosilnenie. V minulosti bola jeho hlavná oblasť použitia pri riešení diferenciálnych rovníc v <a class="reference external" href="https://en.wikipedia.org/wiki/Analog_computer">analogových počítačoch</a>, v súčasnosti sa používa aj na spracovanie a úpravu signálov zo senzorov alebo ako súčasť regulačných obvodov. Je to najuniverzálnejší obvod elektroniky, ktorý sa vyrába v množstve typov a modifikácií pre rôzne oblasti použitia.</p>
 <figure class="align-default" id="img-0076s">
 <a class="reference internal image-reference" href="_images/img_0080a.png"><img alt="_images/img_0080a.png" src="_images/img_0080a.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 25 </span><span class="caption-text">Značka operačného zosilovača, a) ideálny, b) s označenými vývodmi.</span><a class="headerlink" href="#img-0076s" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 26 </span><span class="caption-text">Značka operačného zosilovača, a) ideálny, b) s označenými vývodmi.</span><a class="headerlink" href="#img-0076s" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="vlastnosti">
 <h2><font color='#547792'> Vlastnosti </font><a class="headerlink" href="#vlastnosti" title="Link to this heading">#</a></h2>
-<p>Ideálny operačný zosilovač má dva vstupy, invertujúci (-) a neinvertujúci (+) a jeden výstup. K operačnému zosilovaču sú pripojené ďašie elektronické komponenty, ktoré určujú vlastnosti obvodu. Vlastnosti samotného ideálneho operačného zosilovača môžeme popísať v niekoľkých bodoch:</p>
+<p>Ideálny operačný zosilovač má dva vstupy, invertujúci (-) a neinvertujúci (+) a jeden výstup. K operačnému zosilovaču sú pripojené ďaľšie elektronické komponenty označované ako operačná sieť, ktoré určujú vlastnosti obvodu. Vlastnosti samotného ideálneho operačného zosilovača môžeme popísať v niekoľkých bodoch:</p>
 <ol class="arabic simple">
-<li><p>Zosilovač na výstupe zosilňuje rozdiel medzi napätiami na vstupoch <span class="math notranslate nohighlight">\(U_+ - U_-\)</span>, ak je rozdiel kladný, výstup bude mať kladnú hodnotu a naopak.</p></li>
+<li><p>Zosilovač na výstupe zosilňuje rozdiel medzi napätiami na vstupoch <span class="math notranslate nohighlight">\((U_+ - U_-)\)</span>, ak je rozdiel kladný, výstup bude mať kladnú hodnotu a naopak.</p></li>
 <li><p>Zosilnenie <span class="math notranslate nohighlight">\(A\)</span> operačného zosilovača je veľmi veľké, teoreticky nekonečné.</p></li>
-<li><p>Do vstupov operačného zosilovača netečie žiaden prúd, vstupný odpor je nekonečný.</p></li>
-<li><p>Výstup operačného zosilovača môžeme zaťažiť ľubovolne malou záťažou, jeho výstupný odpor je nulový.</p></li>
+<li><p>Do vstupov operačného zosilovača <span id="span-rf03">netečie žiaden prúd</span>, vstupný odpor je nekonečný.</p></li>
+<li><p>Výstup operačného zosilovača môžeme <span id="span-rf04">zaťažiť ľubovolne</span> malou záťažou, jeho výstupný odpor je nulový.</p></li>
 </ol>
 <p>Pre operačný zosilovač zapojený do obvodu zároveň platí:</p>
 <ol class="arabic simple" start="5">
-<li><p>Operačný zosilovač v lineárnom režime nastavuje napätie na výstupe tak, aby rozdiel napätí medzi vstupmi bol <strong>nulový</strong>.</p></li>
+<li><p><span id="span-rf05">Operačný zosilovač</span> v lineárnom režime nastavuje napätie na výstupe tak, aby rozdiel napätí medzi vstupmi bol <strong>nulový</strong>.</p></li>
 </ol>
+<p><strong>TODO</strong> napätia a prúdy OPAMP, ideálny a reálny OPAMP, tabulka porovnaia vlastností</p>
 <section id="sledovac">
 <h3><font color='#E37434'> Sledovač </font><a class="headerlink" href="#sledovac" title="Link to this heading">#</a></h3>
 <figure class="align-default" id="img-0080b">
 <a class="reference internal image-reference" href="_images/img_0080b.png"><img alt="_images/img_0080b.png" src="_images/img_0080b.png" style="width: 250px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 26 </span><span class="caption-text">Sledovač</span><a class="headerlink" href="#img-0080b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 27 </span><span class="caption-text">Sledovač s operačným zosilovačom</span><a class="headerlink" href="#img-0080b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
+<p><strong>TODO</strong> šipky, označenie napätí</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Analýza obvodu</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Z vlastnosti <a class="reference internal" href="#span-rf05">5</a> a zo zapojenia obvodu vyplýva, že na výstupe operačného zosilovača a zároveň aj na invertujúcom vstupe (-) je rovnaké napätie ako na neinvertujúcom vstupe (+), teda platí</p>
+<div class="math notranslate nohighlight">
+\[
+U_{out} = U_{in}
+\]</div>
+<p class="sd-card-text">Obvod má napäťové zosilnenie <span class="math notranslate nohighlight">\(K=1\)</span>, z vlastnosti <a class="reference internal" href="#span-rf03">3</a> vyplýva, že vstupný odpor je teoreticky nekonečne veľký a podľa vlastnosti <a class="reference internal" href="#span-rf04">4</a> je výstupný odpor nekonečne malý. Sledovač sa preto uplatní všade tam, kde by sme ovplyvnili vlastnosti zariadenia pripojením iných obvodov, meraním, vodičov a podobne.</p>
+</div>
+</details></section>
 <section id="invertujuci-zosilovac">
 <h3><font color='#E37434'> Invertujúci zosilovač </font><a class="headerlink" href="#invertujuci-zosilovac" title="Link to this heading">#</a></h3>
 <figure class="align-default" id="img-0080c">
 <a class="reference internal image-reference" href="_images/img_0080c.png"><img alt="_images/img_0080c.png" src="_images/img_0080c.png" style="width: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 27 </span><span class="caption-text">Invertujúci zosilovač</span><a class="headerlink" href="#img-0080c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 28 </span><span class="caption-text">Invertujúci zosilovač</span><a class="headerlink" href="#img-0080c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Analýza obvodu</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="math notranslate nohighlight">
 \[
 K = -\dfrac{R_2}{R_1}
 \]</div>
-</section>
+</div>
+</details></section>
 <section id="neinvertujuci-zosilovac">
 <h3><font color='#E37434'> Neinvertujúci zosilovač </font><a class="headerlink" href="#neinvertujuci-zosilovac" title="Link to this heading">#</a></h3>
 <figure class="align-default" id="img-0080d">
 <a class="reference internal image-reference" href="_images/img_0080d.png"><img alt="_images/img_0080d.png" src="_images/img_0080d.png" style="width: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 28 </span><span class="caption-text">Neinvertujúci zosilovač</span><a class="headerlink" href="#img-0080d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 29 </span><span class="caption-text">Neinvertujúci zosilovač</span><a class="headerlink" href="#img-0080d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Analýza obvodu</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="math notranslate nohighlight">
 \[
 K =1 + \dfrac{R_2}{R_1}
 \]</div>
+</div>
+</details></section>
+<section id="komparator">
+<h3><font color='#E37434'> Komparátor </font><a class="headerlink" href="#komparator" title="Link to this heading">#</a></h3>
 </section>
+</section>
+<section id="typy-operacnych-zosilovacov">
+<h2><font color='#547792'> Typy operačných zosilovačov </font><a class="headerlink" href="#typy-operacnych-zosilovacov" title="Link to this heading">#</a></h2>
+<p>prevedenie, púzdra, zapojenie vývodov, napájanie, R-R</p>
 </section>
 </section>
 
@@ -499,7 +520,7 @@ K =1 + \dfrac{R_2}{R_1}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Digitálna elektronika</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Digitálna elektronika  </font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -510,21 +531,25 @@ K =1 + \dfrac{R_2}{R_1}
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlastnosti"><font color="#547792"> Vlastnosti </font></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sledovac"><font color="#E37434"> Sledovač </font></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertujuci-zosilovac"><font color="#E37434"> Invertujúci zosilovač </font></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neinvertujuci-zosilovac"><font color="#E37434"> Neinvertujúci zosilovač </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komparator"><font color="#E37434"> Komparátor </font></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typy-operacnych-zosilovacov"><font color="#547792"> Typy operačných zosilovačov </font></a></li>
 </ul>
   </nav></div>
 
@@ -573,8 +598,8 @@ By Peter Fabo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

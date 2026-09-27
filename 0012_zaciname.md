@@ -12,9 +12,14 @@ kernelspec:
   name: python3
 ---
 
-# Ako na to 
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
 
-MicroPython je vo svojej podstate zjednodušený interpreter programovacieho jazyka Python upravený pre použitie v mikrokontroléri. Interpreter je doplnený knižnicami, ktoré umožňujú prácu s perifériami implementovanými v mikrokontroléri. Pre zadávanie príkazov interpreteru využijeme štandardná počítač, pomocou ktorého odošleme príkaz mikrokontroléru, tento príkaz spracuje a odozvu pošle nazad, tento postup je vo všeobecnosti označovaný ako cyklus **REPL** (Read–eval–print loop). 
+# <font color='#4B9DA9'> Ako na to  </font>
+
+MicroPython je vo svojej podstate zjednodušený interpreter programovacieho jazyka Python upravený pre použitie v mikrokontroléri. Interpreter je doplnený knižnicami, ktoré umožňujú prácu s perifériami implementovanými v mikrokontroléri. Pre zadávanie príkazov interpreteru využijeme štandardná počítač, pomocou ktorého odošleme príkaz mikrokontroléru, tento príkaz spracuje a odozvu pošle nazad, tento postup je vo všeobecnosti označovaný ako cyklus **REPL** (Read–Eval–Print-Loop). 
 
 Pre prácu s MicroPython interpreterom preto potrebujeme  
 
@@ -22,6 +27,16 @@ Pre prácu s MicroPython interpreterom preto potrebujeme
 * vhodný komunikačný program, [Ako na to ?]
 
 
+##  <font color='#547792'> Inštalácia </font>
+
+**TODO** popis inštalácie
+
+* Kit, kód, programovanie
+* komunikačný program
+
+##  <font color='#547792'> Test inštalácie </font>
+
+**TODO** popis príkazov terminálu
 
 ```{figure} ./img/konzola.png
 :width: 600px

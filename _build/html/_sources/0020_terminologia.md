@@ -123,6 +123,6 @@ _ = cm_compile('img_0020a', data,  dpi=600)
 | h    | hekto  |   $10^2$  |   sto    |
 | da    | deka  |   $10^1$  |   desať  |
 
-
+**TODO** doplniť jednotky
 
 

@@ -149,12 +149,12 @@ $$
 
 ### <font color='#E37434'> Amplitúdová modulácia </font>
 
-```{code-cell} ipython3  
+```{code-cell} python  
 :tags: ["remove-cell"]
 
 from numpy import *
 import pylab as plt
-plt.rcParams['figure.dpi'] = 150
+#plt.rcParams['figure.dpi'] = 150
 
 T = linspace(0, 5*pi*2, 1000)     # 2*pi*t
 
@@ -171,13 +171,12 @@ plt.grid()
 plt.xlabel('t')
 plt.ylabel('AM')
 
-plt.savefig('am_signal.png', dpi=300)
+plt.savefig('signal.png', dpi=300)
 plt.close()
-
 ```
 
 
-```{figure} am_signal.png
+```{figure} ./src/signal.png
 :width: 500px
 :name: sig_01
 

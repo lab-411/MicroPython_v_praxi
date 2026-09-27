@@ -25,13 +25,12 @@ Komponenty elektronických obvodov môžeme rozdeliť na pasívne a aktívne kom
 a ktorých činnosť rozptyľuje energiu. Žiadny čisto pasívny komponent nemôže mať výstup, ktorý dodáva viac energie, ako je k dispozícii na vstupe. Typickými pasívnymi komponentmi sú rezistory, kondenzátory, cievky a transformátory.
 
 Aktívne komponenty naopak využívajú zdroj napájania, zvyčajne jednosmerný prúd, takže výstupný výkon signálu aktívneho komponentu môže byť vyšší ako výkon signálu
-na vstupe. Typickými aktívnymi komponentmi sú tranzistory a zapojenia realizované ako integrované obvody. 
+na vstupe. Typickými aktívnymi komponentmi sú tranzistory, operačné zosilovače a zapojenia realizované pomocou integrovaných obvodov. 
 
 ```{toctree}
 :titlesonly: True
 :caption: Pasívne komponenty
 0032_rezistor.md
-0034_pasivne_zapojenia.md
 0035_kondenzator.md
 ```
 

@@ -25,7 +25,7 @@ A1: opamp();
     right_;
 A2: opamp(,,,,P); 
     line from A2.In1 left_ 0.5;  
-    color_blue; line <- left_ 0.8 up_ 0.8; "Invertujúci vstup" above; color_black; 
+    color_blue; line <- left_ 0.8 up_ 0.8; "Invertujúci vstup " above; color_black; 
 
     line from A2.In2 left_ 0.5;
     color_blue; line <- left_ 0.8 down_ 0.8; "Neinvertujúci vstup" below; color_black; 

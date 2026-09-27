@@ -16,36 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '0010_uvod';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,6 +63,7 @@
     <link rel="prev" title="MicroPython v praxi" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -68,19 +79,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -88,7 +88,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -96,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -113,7 +112,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -143,27 +143,23 @@
     
     
     <img src="_static/logo_411.png" class="logo__image only-light" alt="Micro_Python  documentation - Home"/>
-    <script>document.write(`<img src="_static/logo_411.png" class="logo__image only-dark" alt="Micro_Python  documentation - Home"/>`);</script>
+    <img src="_static/logo_411.png" class="logo__image only-dark pst-js-only" alt="Micro_Python  documentation - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">MicroPython</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html">Ako na to</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> MicroPython  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Ako na to  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
@@ -172,14 +168,13 @@
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0034_pasivne_zapojenia.html"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="0050_digital.html">Digitálna elektronika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0050_digital.html"><font color="#4B9DA9"> Digitálna elektronika  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mikrokontrolér</span></p>
 <ul class="nav bd-sidenav">
@@ -224,7 +219,7 @@
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html">Teplomer LM92</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
@@ -251,9 +246,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -336,7 +336,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -350,25 +350,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -381,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>MicroPython</h1>
+    <h1><font color='#4B9DA9'> MicroPython  </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,9 +383,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vyvoj-aplikacii">Vývoj aplikácií</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblast-pouzitia">Oblasť použitia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platforma-stm32">Platforma STM32</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblast-pouzitia"><font color="#547792"> Oblasť použitia </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vyvoj-aplikacii"><font color="#547792"> Vývoj aplikácií </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#platforma-stm32"><font color="#E37434"> Platforma STM32 </font></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -406,21 +400,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="micropython">
-<h1>MicroPython<a class="headerlink" href="#micropython" title="Link to this heading">#</a></h1>
+<h1><font color='#4B9DA9'> MicroPython  </font><a class="headerlink" href="#micropython" title="Link to this heading">#</a></h1>
 <p>S narastajúcim výkonom mikrokontrolérov sa v súčasnom období posúvajú možnosti ich využitia aj do oblastí, ktoré boli pred pár rokmi vyhradené výkonným počítačom alebo výpočtovým strediskám. Z relatívne jednoduchých čipov, často pozostávajúcich len z MCU a nevyhnutných periférií, primárne určených pre obsluhu a jednoduché spracovanie dát zo senzorov sa vyvinuli komplexné zariadenia obsahujúce priamo na čipe univerzálne komponenty potrebné pre tvorbu kompaktného a cenovo veľmi prijateľného systému riadenia, zberu, spracovania a transportu dát zo senzorov. S vývojom technických prostriedkov narastá aj komplexnosť programového vybavenie, na ktoré sú kladené vysoké požiadavky na jeho kvalitu a stabilitu, zariadenia často musia pracovať v ťažkých a komplikovaných podmienkach, bez možnosti údržby počas celej doby ich životnosti.</p>
-<section id="vyvoj-aplikacii">
-<h2>Vývoj aplikácií<a class="headerlink" href="#vyvoj-aplikacii" title="Link to this heading">#</a></h2>
-<p>Vývoj typickej aplikácie pozostáva z dvoch častí</p>
-<ul class="simple">
-<li><p>Vývoj spojený s obsluhou technických prostriedkov - vstupných zariadení a senzorov, zobrazovacích a signalizačných prvkov a výstupných zariadení. Tento môže mať niekoľko úrovní - od jednoduchého pripojenia štandardného prvku ku normalizovanému rozhraniu (I2C, SPI, … ) a tvorbe príslušného API pre jeho obsluhu až po vývoj vlastného špecializovaného senzora alebo výstupného zariadenia s firmware, komunikačným rozhraním, implementáciou a spracovaním dát a unikátnym API.</p></li>
-<li><p>Vývoj spojený s vlastnou aplikáciou - od jednoduchej komunikačnej aplikácie až po rozsiahly systém komunikujúci cez Internet. Pretože individuálny vývoj od základu je náročný a zdĺhavý, pre implementácie IoT aplikácií bolo v poslednom období vytvorených množstvo operačných systémov, typickým predstaviteľom je projekt Zephyr, ktorý je portovaný na viacej ako 800 platforiem, pričom pre každú platformu má implementovanú obsluhu základných periférií. Súčasťou je mikrokernel alebo nanokoernel v závislosti od výkonu zariadení, podporuje multithreading a non-preemptive a preemptive plánovač (scheduling), programovacím jazykom je C a C++.</p></li>
-</ul>
-<p>Vývoj programového vybavenia je zvyčajne realizovaný v programovacích jazykoch umožňujúcich jednoduchý prístup k perifériím mikrokontroléra, ako je C, C++, Assembler. Použitie týchto jazukov garantuje vysokú efektivitu programového vybavenia, na druhej strane vyžaduje špeciálne prostriedky podporované samotným mikrokontrolérom pre ladenie kódu a hladanie chýb.</p>
-<p>Je zrejmé, že vývoj aplikácie vyžaduje tvorbu a používanie vývojových nástrojov, ktorých príprava a odladenie môže v závislosti od rozsahu trvať nezanedbateľnú dobu. Jednou z možností, ako túto etapu zjednodušiť, je použitie flexibilného univerzálneho nástroja, umožnujúceho interaktívnu prácu a testovanie jednotlivých častí zariadenia.</p>
-</section>
+<p><strong>TODO</strong> Popis, zameranie účel publikácie</p>
 <section id="oblast-pouzitia">
-<h2>Oblasť použitia<a class="headerlink" href="#oblast-pouzitia" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Python</span></code> je všeobecne pokladaný za univerzálny programovací jazyk vysokej úrovne ďaleko vzdialený od hardware. <code class="docutils literal notranslate"><span class="pre">MicropPython</span></code> je prepisom referenčnej implementácie CPython jazyka <code class="docutils literal notranslate"><span class="pre">Python</span></code> pôvodne pre platformu <a class="reference external" href="https://github.com/micropython/micropython">pyboard</a> s podporou integrovaných periférií.</p>
+<h2><font color='#547792'> Oblasť použitia </font><a class="headerlink" href="#oblast-pouzitia" title="Link to this heading">#</a></h2>
+<p><em>Python</em> je všeobecne pokladaný za univerzálny programovací jazyk vysokej úrovne ďaleko vzdialený od hardware. <em>MicropPython</em> je prepisom referenčnej implementácie CPython jazyka <code class="docutils literal notranslate"><span class="pre">Python</span></code> pôvodne pre platformu <a class="reference external" href="https://github.com/micropython/micropython">pyboard</a> s podporou integrovaných periférií.</p>
 <figure class="align-default" id="mp-0010a">
 <a class="reference internal image-reference" href="_images/pyboard.jpg"><img alt="_images/pyboard.jpg" src="_images/pyboard.jpg" style="width: 600px;" />
 </a>
@@ -428,17 +413,26 @@ document.write(`
 <p><span class="caption-number">Obr. 1 </span><span class="caption-text">Logo projektu MicropPython a platforma pyboard.</span><a class="headerlink" href="#mp-0010a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Implementácia je portovaná pre rôzne cielové platformy, je škálovateľná a open-source. O jeho popularite svedčí aj to, že na githube v súčasnej dobe existuje asi 2000 rôznych vetiev (fork) s rôznymi modifikáciami a úpravami pre rôzne vývojové a experimentálne dosky. Z aplikačného hľadiska je použitie MicroPython jednoduché, ako firmware sa nahrá štandardným programovacím software pre konkrétny typ mikrokontroléra do jeho flash pamäte a zvyčajne prostredníctvom emulácie sériového rozhrania komunikuje s terminálovou aplikáciu v počítači.</p>
+<p>Implementácia je portovaná pre rôzne mikrokontroléry, je škálovateľná a open-source. O jeho popularite svedčí aj to, že na githube v súčasnej dobe existuje asi 2000 rôznych vetiev (fork) s rôznymi modifikáciami a úpravami pre rôzne vývojové a experimentálne dosky. Z aplikačného hľadiska je použitie MicroPython jednoduché, ako firmware sa nahrá štandardným programovacím software pre konkrétny typ mikrokontroléra do jeho flash pamäte a zvyčajne prostredníctvom emulácie sériového rozhrania komunikuje s terminálovou aplikáciu v počítači.</p>
 <p>Oblasť použitia môžeme rozdeliť do niekokých kategórií</p>
 <ul class="simple">
-<li><p>Výuka a vzdelávanie, <code class="docutils literal notranslate"><span class="pre">MicroPython</span></code> poskytuje možnosť interaktívnej komunikácie s mikrokontrolérom v slučke REPL (Read–Eval–Print Loop). S priamym prístupom k perifériám mikrokotroléra cez akýkoľvek terminálový emulátor bez potreby písania a vysvetlovania množstva kódu potrebného na inicializáciu a elementárnu komunikáciu je možné na veľkom množstve podporovaných dosák vysvetliť študentom základné princípy zberu a spracovania dát, naviac v jednoduchom programovacom jazyku.</p></li>
-<li><p>Vývoj a testovanie periférií a senzorov. <code class="docutils literal notranslate"><span class="pre">MicroPython</span></code> poskytuje odladené a vyskúšané referenčné implementácie rozhraní mikrokontrolérov, čím vývojára zbavuje potreby implementácie celej vertikálnej štruktúry spojenej s komunikáciou a riadením periférneho zariadenia. Moderné integrované periférie komunikujúce cez sériové rozhrania (<strong>I2C</strong>, <strong>SPI</strong>, <strong>CAN</strong> …) sú riadené zápisom a čítaním hodnôt často z desiatok rôznych registrov, s individuálnym významom jednotlivých bitov a vzájomným previazaním hodnôt. Priamym interaktívnym prístupom v jednoduchom a populárnom jazyku k registrom zariadenia je možné jednoducho overiť funkciu periférií, vyvinúť a odladiť príslušný hardware a algoritmy pre riadenie a zber dát zo zariadenia. Vďaka abstrakcii hardware a univerzálnosti implementácie je možné pre vývoj využiť aj iné platformy, ako bude cieľová a to bez potreby detailnej znalosti jej programovania.</p></li>
-<li><p>Monitorovací a konfiguračný nástroj pre komplexné aplikácie. Rozsiahle aplikácie na výkonných mikrokontroléroch a <strong>FPGA</strong> obsahujú často implementáciu nezávislých pomocných prostriedkov pre monitorovanie a nastavovanie parametrov systému, pri <strong>FPGA</strong> to býva často SW implementácia niektorého z malých mikroprocesorov (8051, Z80 …), pomocou programu pre tieto mikroprocesory je možné sledovať a nastavovať parametre a konfiguráciu systému. Prvé pokusy s implementáciou MicroPython-u na FPGA ukazujú perspektívu daľšieho vývoja. V oblasti operačných systémov existuje experimentálny port MicroPython pre monitorovanie a nastavovanie parametrov kernelu Linuxu.</p></li>
+<li><p><strong>Výuka a vzdelávanie</strong> <em>MicroPython</em> poskytuje možnosť interaktívnej komunikácie s mikrokontrolérom v slučke REPL (Read–Eval–Print Loop). S priamym prístupom k perifériám mikrokotroléra cez akýkoľvek terminálový emulátor bez potreby písania a vysvetlovania množstva kódu potrebného na inicializáciu a elementárnu komunikáciu je možné na veľkom množstve podporovaných dosák vysvetliť študentom základné princípy zberu a spracovania dát, naviac v jednoduchom programovacom jazyku.</p></li>
+<li><p><strong>Vývoj a testovanie periférií a senzorov</strong> <em>MicroPython</em> poskytuje odladené a vyskúšané referenčné implementácie rozhraní mikrokontrolérov, čím vývojára zbavuje potreby implementácie celej vertikálnej štruktúry spojenej s komunikáciou a riadením periférneho zariadenia. Moderné integrované periférie komunikujúce cez sériové rozhrania (<strong>I2C</strong>, <strong>SPI</strong>, <strong>CAN</strong> …) sú riadené zápisom a čítaním hodnôt často z desiatok rôznych registrov, s individuálnym významom jednotlivých bitov a vzájomným previazaním hodnôt. Priamym interaktívnym prístupom v jednoduchom a populárnom jazyku k registrom zariadenia je možné jednoducho overiť funkciu periférií, vyvinúť a odladiť príslušný hardware a algoritmy pre riadenie a zber dát zo zariadenia. Vďaka abstrakcii hardware a univerzálnosti implementácie je možné pre vývoj využiť aj iné platformy, ako bude cieľová a to bez potreby detailnej znalosti jej programovania.</p></li>
+<li><p><strong>Monitorovací a konfiguračný nástroj pre komplexné aplikácie</strong> Rozsiahle aplikácie na výkonných mikrokontroléroch a <strong>FPGA</strong> obsahujú často implementáciu nezávislých pomocných prostriedkov pre monitorovanie a nastavovanie parametrov systému, pri <strong>FPGA</strong> to býva často SW implementácia niektorého z malých mikroprocesorov (8051, Z80 …), pomocou programu pre tieto mikroprocesory je možné sledovať a nastavovať parametre a konfiguráciu systému. Prvé pokusy s implementáciou MicroPython-u na FPGA ukazujú perspektívu daľšieho vývoja. V oblasti operačných systémov existuje experimentálny port MicroPython pre monitorovanie a nastavovanie parametrov kernelu Linuxu.</p></li>
 </ul>
 </section>
+<section id="vyvoj-aplikacii">
+<h2><font color='#547792'> Vývoj aplikácií </font><a class="headerlink" href="#vyvoj-aplikacii" title="Link to this heading">#</a></h2>
+<p>Vývoj typickej aplikácie pozostáva z dvoch častí</p>
+<ul class="simple">
+<li><p>Vývoj spojený s obsluhou technických prostriedkov - vstupných zariadení a senzorov, zobrazovacích a signalizačných prvkov a výstupných zariadení. Tento môže mať niekoľko úrovní - od jednoduchého pripojenia štandardného prvku ku normalizovanému rozhraniu (I2C, SPI, … ) a tvorbe príslušného API pre jeho obsluhu až po vývoj vlastného špecializovaného senzora alebo výstupného zariadenia s firmware, komunikačným rozhraním, implementáciou a spracovaním dát a unikátnym API.</p></li>
+<li><p>Vývoj spojený s vlastnou aplikáciou - od jednoduchej komunikačnej aplikácie až po rozsiahly systém komunikujúci cez Internet. Pretože individuálny vývoj od základu je náročný a zdĺhavý, pre implementácie IoT aplikácií bolo v poslednom období vytvorených množstvo operačných systémov, typickým predstaviteľom je projekt Zephyr, ktorý je portovaný na viacej ako 800 platforiem, pričom pre každú platformu má implementovanú obsluhu základných periférií. Súčasťou je mikrokernel alebo nanokoernel v závislosti od výkonu zariadení, podporuje multithreading a non-preemptive a preemptive plánovač (scheduling), programovacím jazykom je C a C++.</p></li>
+</ul>
+<p>Vývoj programového vybavenia je zvyčajne realizovaný v programovacích jazykoch umožňujúcich jednoduchý prístup k perifériím mikrokontroléra, ako je C, C++, Assembler. Použitie týchto jazukov garantuje vysokú efektivitu programového vybavenia, na druhej strane vyžaduje špeciálne prostriedky podporované samotným mikrokontrolérom pre ladenie kódu a hladanie chýb.</p>
+<p>Je zrejmé, že vývoj aplikácie vyžaduje tvorbu a používanie vývojových nástrojov, ktorých príprava a odladenie môže v závislosti od rozsahu trvať nezanedbateľnú dobu. Jednou z možností, ako túto etapu zjednodušiť, je použitie flexibilného univerzálneho nástroja ako je <em>MicroPython</em>, umožnujúceho interaktívnu prácu a testovanie jednotlivých častí zariadenia.</p>
 <section id="platforma-stm32">
-<h2>Platforma STM32<a class="headerlink" href="#platforma-stm32" title="Link to this heading">#</a></h2>
-<p>Rodina mikrokontrolérov triedy <strong>STM32</strong> zahŕňa triedu populárnych mikrokontrolérov obsahujúcich široké spektrum typov líšiacich sa výkonom, pamäťou a integrovanými perifériami. Vývoj aplikácií je podporovaný firmou STM pomocou dostupných vývojových kitov Nucleo, ktoré obsahujú okrem samotného mikrokontroléra aj pomocné obvody a programátor. V distribúcii MicroPython nájdeme podporu pre niektoré typy kitov Nucleo, od jednoduchých až po výkonné typy.</p>
+<h3><font color='#E37434'> Platforma STM32 </font><a class="headerlink" href="#platforma-stm32" title="Link to this heading">#</a></h3>
+<p>Rodina mikrokontrolérov triedy <strong>STM32</strong> zahŕňa triedu populárnych mikrokontrolérov obsahujúcich široké spektrum typov líšiacich sa výkonom, pamäťou a integrovanými perifériami. Vývoj aplikácií je podporovaný firmou STM pomocou dostupných vývojových kitov Nucleo, ktoré obsahujú okrem samotného mikrokontroléra aj pomocné obvody a programátor. V distribúcii <em>MicroPython</em> nájdeme podporu pre množstvo kitov Nucleo, od jednoduchých až po výkonné typy.</p>
 <figure class="align-default" id="mp-0010b">
 <a class="reference internal image-reference" href="_images/nucleo64.jpg"><img alt="_images/nucleo64.jpg" src="_images/nucleo64.jpg" style="width: 400px;" />
 </a>
@@ -452,7 +446,7 @@ document.write(`
 <li><p>platforma STM32 je široko využívaná v priemysle</p></li>
 <li><p>konektory na kite NUCLEO-64 umožňujú použitie vývojových modulov z platformy Arduino</p></li>
 <li><p>verzia NUCLEO-32 je pinovo kompatibilná s platformou Arduino Nano.</p></li>
-<li><p>MicroPython na platforme STM32 môže byť prvým krokom k profesionálnemu použitiu</p></li>
+<li><p><em>MicroPython</em> na platforme STM32 môže byť prvým krokom k zoznámeniu sa s technológiou mikrokontrolérov a neskoršiemu profesionálnemu použitiu</p></li>
 </ul>
 <figure class="align-default" id="mp-0010c">
 <a class="reference internal image-reference" href="_images/arduino_uno.jpg"><img alt="_images/arduino_uno.jpg" src="_images/arduino_uno.jpg" style="width: 400px;" />
@@ -461,6 +455,7 @@ document.write(`
 <p><span class="caption-number">Obr. 3 </span><span class="caption-text">Arduino Uno</span><a class="headerlink" href="#mp-0010c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
 </section>
 </section>
 
@@ -489,7 +484,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ako na to</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Ako na to  </font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -500,18 +495,22 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vyvoj-aplikacii">Vývoj aplikácií</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblast-pouzitia">Oblasť použitia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platforma-stm32">Platforma STM32</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblast-pouzitia"><font color="#547792"> Oblasť použitia </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vyvoj-aplikacii"><font color="#547792"> Vývoj aplikácií </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#platforma-stm32"><font color="#E37434"> Platforma STM32 </font></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -560,8 +559,8 @@ By Peter Fabo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

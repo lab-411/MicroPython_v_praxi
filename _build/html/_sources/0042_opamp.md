@@ -21,7 +21,7 @@ kernelspec:
 
 # <font color='#4B9DA9'> Operačný zosilovač </font>
 
-Operačný zosilovač je univerzálne elektronické zariadenie, v súčasnej dobe v podobe integrovaného obvodu, ktoré je určené na elektronickú realizáciu matematických operácií (preto názov *operačný*) ako je sčítanie, odčítanie, integráciu, deriváciu, logaritmovanie, zosilnenie. V minulosti bola jeho hlavná oblasť použitia riešenie diferenciálnych rovníc, v súčasnosti sa používa aj na spracovanie a úpravu signálov zo senzorov alebo ako súčasť regulačných obvodov. Je to najuniverzálnejší obvod elektroniky, ktorý sa vyrába v množstve typov a modifikácií pre rôzne oblasti použitia.
+Operačný zosilovač je univerzálne elektronické zariadenie, v súčasnej dobe v podobe integrovaného obvodu, ktoré je určené na elektronickú realizáciu matematických operácií (preto názov *operačný*) ako je sčítanie, odčítanie, integráciu, deriváciu, logaritmovanie, zosilnenie. V minulosti bola jeho hlavná oblasť použitia pri riešení diferenciálnych rovníc v [analogových počítačoch](https://en.wikipedia.org/wiki/Analog_computer), v súčasnosti sa používa aj na spracovanie a úpravu signálov zo senzorov alebo ako súčasť regulačných obvodov. Je to najuniverzálnejší obvod elektroniky, ktorý sa vyrába v množstve typov a modifikácií pre rôzne oblasti použitia.
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
@@ -42,7 +42,7 @@ A1: opamp();
     right_;
 A2: opamp(,,,,P); 
     line from A2.In1 left_ 0.5;  
-    color_blue; line <- left_ 0.8 up_ 0.8; "Invertujúci vstup" above; color_black; 
+    color_blue; line <- left_ 0.8 up_ 0.8; "Invertujúci vstup " above; color_black; 
 
     line from A2.In2 left_ 0.5;
     color_blue; line <- left_ 0.8 down_ 0.8; "Neinvertujúci vstup" below; color_black; 
@@ -67,17 +67,19 @@ Značka operačného zosilovača, a) ideálny, b) s označenými vývodmi.
 ##  <font color='#547792'> Vlastnosti </font>
 
 
-Ideálny operačný zosilovač má dva vstupy, invertujúci (-) a neinvertujúci (+) a jeden výstup. K operačnému zosilovaču sú pripojené ďašie elektronické komponenty, ktoré určujú vlastnosti obvodu. Vlastnosti samotného ideálneho operačného zosilovača môžeme popísať v niekoľkých bodoch:
+Ideálny operačný zosilovač má dva vstupy, invertujúci (-) a neinvertujúci (+) a jeden výstup. K operačnému zosilovaču sú pripojené ďaľšie elektronické komponenty označované ako operačná sieť, ktoré určujú vlastnosti obvodu. Vlastnosti samotného ideálneho operačného zosilovača môžeme popísať v niekoľkých bodoch:
 
-1. Zosilovač na výstupe zosilňuje rozdiel medzi napätiami na vstupoch $U_+ - U_-$, ak je rozdiel kladný, výstup bude mať kladnú hodnotu a naopak.
+1. Zosilovač na výstupe zosilňuje rozdiel medzi napätiami na vstupoch $(U_+ - U_-)$, ak je rozdiel kladný, výstup bude mať kladnú hodnotu a naopak.
 2. Zosilnenie $A$ operačného zosilovača je veľmi veľké, teoreticky nekonečné.
-3. Do vstupov operačného zosilovača netečie žiaden prúd, vstupný odpor je nekonečný.
-4. Výstup operačného zosilovača môžeme zaťažiť ľubovolne malou záťažou, jeho výstupný odpor je nulový.
+3. Do vstupov operačného zosilovača [netečie žiaden prúd]{#span-rf03}, vstupný odpor je nekonečný.
+4. Výstup operačného zosilovača môžeme [zaťažiť ľubovolne]{#span-rf04} malou záťažou, jeho výstupný odpor je nulový.
 
 Pre operačný zosilovač zapojený do obvodu zároveň platí:
 
-5. Operačný zosilovač v lineárnom režime nastavuje napätie na výstupe tak, aby rozdiel napätí medzi vstupmi bol **nulový**.
+5.  [Operačný zosilovač]{#span-rf05} v lineárnom režime nastavuje napätie na výstupe tak, aby rozdiel napätí medzi vstupmi bol **nulový**.
 
+
+**TODO** napätia a prúdy OPAMP, ideálny a reálny OPAMP, tabulka porovnaia vlastností
 
 ### <font color='#E37434'> Sledovač </font>
 
@@ -99,10 +101,10 @@ LP: line from A1.In2 left_ 0.5;
 line from LN.end up_ 0.8 
 line right_ to (A1.Out, Here) then to A1.Out; dot; 
 line right_ 1; 
-C1: circle rad 0.075; "\textit{Out}" at C1.n above;
+C1: circle rad 0.075; "\textit{out}" at C1.n above;
 
 line from LP.end left_ 0.75;
-C2: circle rad 0.075; "\textit{In}" at C2.n above;
+C2: circle rad 0.075; "\textit{in}" at C2.n above;
 '''
 
 _ = cm_compile('img_0080b', data,  dpi=600)   
@@ -112,7 +114,23 @@ _ = cm_compile('img_0080b', data,  dpi=600)
 :width: 250px
 :name: img_0080b
 
-Sledovač
+Sledovač s operačným zosilovačom
+```
+
+**TODO** šipky, označenie napätí
+
+
+```{dropdown} Analýza obvodu
+
+Z vlastnosti [5](#span-rf05) a zo zapojenia obvodu vyplýva, že na výstupe operačného zosilovača a zároveň aj na invertujúcom vstupe (-) je rovnaké napätie ako na neinvertujúcom vstupe (+), teda platí
+
+$$
+U_{out} = U_{in}
+$$
+    
+Obvod má napäťové zosilnenie $K=1$, z vlastnosti [3](#span-rf03) vyplýva, že vstupný odpor je teoreticky nekonečne veľký a podľa vlastnosti [4](#span-rf04) je výstupný odpor nekonečne malý. Sledovač sa preto uplatní všade tam, kde by sme ovplyvnili vlastnosti zariadenia pripojením iných obvodov, meraním, vodičov a podobne. 
+    
+
 ```
 
 ### <font color='#E37434'> Invertujúci zosilovač </font>
@@ -155,9 +173,13 @@ _ = cm_compile('img_0080c', data,  dpi=600)
 Invertujúci zosilovač
 ```
 
+```{dropdown} Analýza obvodu
+
 $$
 K = -\dfrac{R_2}{R_1}
 $$
+```
+
 
 ### <font color='#E37434'> Neinvertujúci zosilovač </font>
 
@@ -197,7 +219,16 @@ _ = cm_compile('img_0080d', data,  dpi=600)
 Neinvertujúci zosilovač
 ```
 
+```{dropdown} Analýza obvodu
+
 $$
 K =1 + \dfrac{R_2}{R_1}
 $$
+```
+
+### <font color='#E37434'> Komparátor </font>
+
+##  <font color='#547792'> Typy operačných zosilovačov </font>
+
+prevedenie, púzdra, zapojenie vývodov, napájanie, R-R
 

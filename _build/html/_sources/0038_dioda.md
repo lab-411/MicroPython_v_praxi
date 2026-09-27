@@ -18,7 +18,11 @@ kernelspec:
 % {dropdown} <font color='#84B179'> Text </font>
 
 
-
 # <font color='#4B9DA9'> Dióda </font>
 
-```
+* vlastnosti
+* charakteristiky
+* LED, úbytok, predradný odpor
+* základné zapojenia, jednocestný usmerňovač, mostík, diódová logika
+* typy, puzdra
+

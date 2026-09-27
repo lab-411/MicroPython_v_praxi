@@ -119,7 +119,7 @@ Sériové zapojenie v LED module.
 ```
 
 
-Pripojenie modulu k mikrokontroléru je pomocou troch vodičov, napájanie +5V, zem a dátový vodič. Pre komunikáciu s modulom je použité rozhranie  [SPI](0250_spi.html). Pre prenos dát do modulu je použitý len signál MOSI, nie je použitý hodinový synchronizačný signál zbernice SCLK. Komunikácia preto vyžaduje pevné nastavenie časovania pri prenose dát.
+Pripojenie modulu k mikrokontroléru je pomocou troch vodičov, napájanie +5V, zem a dátový vodič. Pre komunikáciu s modulom je použité rozhranie  [SPI](0250_spi.md). Pre prenos dát do modulu je použitý len signál MOSI, nie je použitý hodinový synchronizačný signál zbernice SCLK. Komunikácia preto vyžaduje pevné nastavenie časovania pri prenose dát.
 
 
 

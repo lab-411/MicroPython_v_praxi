@@ -16,36 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '0505_funduino_01';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,6 +63,7 @@
     <link rel="prev" title="MEMS Senzory" href="0160_i2c_mems.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -68,19 +79,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -88,7 +88,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -96,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -113,7 +112,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -143,27 +143,23 @@
     
     
     <img src="_static/logo_411.png" class="logo__image only-light" alt="Micro_Python  documentation - Home"/>
-    <script>document.write(`<img src="_static/logo_411.png" class="logo__image only-dark" alt="Micro_Python  documentation - Home"/>`);</script>
+    <img src="_static/logo_411.png" class="logo__image only-dark pst-js-only" alt="Micro_Python  documentation - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0010_uvod.html">MicroPython</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html">Ako na to</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0010_uvod.html"><font color="#4B9DA9"> MicroPython  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Ako na to  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
@@ -172,14 +168,13 @@
 <li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
-<li class="toctree-l2"><a class="reference internal" href="0034_pasivne_zapojenia.html"><font color="#547792"> Základné zapojenia rezistorov  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0038_dioda.html"><font color="#4B9DA9"> Dióda </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0040_transistor.html"><font color="#4B9DA9"> Tranzistor </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="0050_digital.html">Digitálna elektronika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0050_digital.html"><font color="#4B9DA9"> Digitálna elektronika  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mikrokontrolér</span></p>
 <ul class="nav bd-sidenav">
@@ -251,9 +246,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -336,7 +336,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -350,25 +350,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -416,7 +408,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/multi_shield_10.png"><img alt="_images/multi_shield_10.png" src="_images/multi_shield_10.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 58 </span><span class="caption-text">Modul Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 59 </span><span class="caption-text">Modul Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="popis-a-zapojenie">
@@ -426,7 +418,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/fun01_zapojenie.gif"><img alt="_images/fun01_zapojenie.gif" src="_images/fun01_zapojenie.gif" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 59 </span><span class="caption-text">Zapojenie modulu Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 60 </span><span class="caption-text">Zapojenie modulu Funduino, verzia 1.0.</span><a class="headerlink" href="#mp-0505b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="led-diody">
@@ -436,7 +428,7 @@ document.write(`
 <a class="reference internal image-reference" href="_images/img_0505w.png"><img alt="_images/img_0505w.png" src="_images/img_0505w.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 60 </span><span class="caption-text">Zapojenie LED diód na module Funduino.</span><a class="headerlink" href="#img-0505w" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 61 </span><span class="caption-text">Zapojenie LED diód na module Funduino.</span><a class="headerlink" href="#img-0505w" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -506,7 +498,7 @@ d4.on()
 <a class="reference internal image-reference" href="_images/img_0505z.png"><img alt="_images/img_0505z.png" src="_images/img_0505z.png" style="width: 300px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 61 </span><span class="caption-text">Zapojenie tlačítok na module Funduino.</span><a class="headerlink" href="#img-0505z" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 62 </span><span class="caption-text">Zapojenie tlačítok na module Funduino.</span><a class="headerlink" href="#img-0505z" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -517,7 +509,7 @@ d4.on()
 <a class="reference internal image-reference" href="_images/img_0505v.png"><img alt="_images/img_0505v.png" src="_images/img_0505v.png" style="width: 250px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 62 </span><span class="caption-text">Zapojenie bzuciaka na module Funduino.</span><a class="headerlink" href="#img-0505v" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 63 </span><span class="caption-text">Zapojenie bzuciaka na module Funduino.</span><a class="headerlink" href="#img-0505v" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -560,7 +552,7 @@ t1.deinit()
 <a class="reference internal image-reference" href="_images/ic_74hc595.png"><img alt="_images/ic_74hc595.png" src="_images/ic_74hc595.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 63 </span><span class="caption-text">Vnútorná štruktúra obvodu <a class="reference download internal" download="" href="_downloads/c20a0abfe6d40e9e8beec2d9e0129760/sn74hc595.pdf"><span class="xref download myst">74HC595</span></a>.</span><a class="headerlink" href="#mp-0505c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 64 </span><span class="caption-text">Vnútorná štruktúra obvodu <a class="reference download internal" download="" href="_downloads/c20a0abfe6d40e9e8beec2d9e0129760/sn74hc595.pdf"><span class="xref download myst">74HC595</span></a>.</span><a class="headerlink" href="#mp-0505c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Výstupy prvého posuvného registra sú pripojené k anódam znakov, výstupy druhého ku katódam segmentov. Pre rozsvietenie jedného znaku potrebujeme do posuvných registrov vyslať postupnosť 2x 8bitov, ktoré sa zapíšu do posuvných registrov.</p>
@@ -580,15 +572,15 @@ pin.value(True)          # ukoncenie zapisu a preun hodnoy do pamete registra
 <a class="reference internal image-reference" href="_images/fund_spi2.png"><img alt="_images/fund_spi2.png" src="_images/fund_spi2.png" style="width: 250px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 64 </span><span class="caption-text">Prepojenie pinov (26-21, 30-23, 24-29) pre rozhranie SPI.</span><a class="headerlink" href="#mp-0505e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 65 </span><span class="caption-text">Prepojenie pinov (26-21, 30-23, 24-29) pre rozhranie SPI.</span><a class="headerlink" href="#mp-0505e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text"><font color='#84B179'> Príklad rozsvietenie jedneho znaku displeja </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyb</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="c1"># kodova tabulka segmentov pre zobrazenie cislic</span>
 <span class="c1">#              0    1    2    3    4    5    6    7    8    9</span>
@@ -612,8 +604,8 @@ pin.value(True)          # ukoncenie zapisu a preun hodnoy do pamete registra
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text"><font color='#84B179'> Príklad zobrazenia dát na displeja v programovej slučke</font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Pomocou cyklu <em>for …</em> rozsvietime postupne všetky segmenty displeja, programová slučka je ale blokujúca pre iné aktivity.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyb</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="c1"># kodova tabulka segmentov</span>
 <span class="n">num_code</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xC0</span><span class="p">,</span><span class="mh">0xF9</span><span class="p">,</span><span class="mh">0xA4</span><span class="p">,</span><span class="mh">0xB0</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0xF8</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0x90</span><span class="p">]</span>
@@ -641,10 +633,10 @@ pin.value(True)          # ukoncenie zapisu a preun hodnoy do pamete registra
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text"><font color='#84B179'> Príklad zobrazenia dát na displeja pomocou prerušenia časovača </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Cyklus obnovenia stavu displeja je riadený prerušením od časovača. Pri vyvolaní prerušenia je volaná funkcia <em>update_display()</em>, ktorá zobrazí znaky z poľa <em>num_disp[]</em>, hodnoty v tomto poli je možné počas behu programu meniť.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyb</span><span class="w"> </span><span class="kn">import</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="k">def</span> <span class="nf">update_display</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_display</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
             <span class="n">c</span> <span class="o">=</span> <span class="n">num_disp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -660,7 +652,7 @@ pin.value(True)          # ukoncenie zapisu a preun hodnoy do pamete registra
         <span class="n">pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">display_int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">display_int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="c1"># zobrazenie cisla 0...9999</span>
     <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
         <span class="k">global</span> <span class="n">num_disp</span>
@@ -728,14 +720,16 @@ pin.value(True)          # ukoncenie zapisu a preun hodnoy do pamete registra
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis-a-zapojenie"><font color="#547792"> Popis a zapojenie </font></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#led-diody"><font color="#E37434"> LED diódy </font></a></li>
@@ -792,8 +786,8 @@ By Peter Fabo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

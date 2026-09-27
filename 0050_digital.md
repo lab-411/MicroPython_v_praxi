@@ -12,8 +12,21 @@ kernelspec:
   name: python3
 ---
 
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
 
-# Digitálna elektronika
+#   <font color='#4B9DA9'> Digitálna elektronika  </font>
+
+* logické signály
+* boolova algebra
+* elementárne kombinačné logické obvody
+* logické funkcie
+* realizácia kombinačných obvodov
+* sekvenčné obvody
+* základné zapojenia RS, D, ...
+* typy, prevedenie púzdra
 
 
 

@@ -21,4 +21,63 @@ kernelspec:
 
 # <font color='#4B9DA9'> Tranzistor </font>
 
+
+* vlastnosti
+* charakteristiky
+* SE, SC-zdroj prúdu, zosilovač, výpočet
+* základné zapojenia, prúdové zrkadlo, diferenciálny zosilovač
+* typy, puzdra
+
+
+%https://smhk.net/note/2023/11/plantuml-in-sphinx-using-myst-and-gitlab/
+%https://docs.gitlab.com/administration/integration/plantuml/
+%https://pypi.org/project/sphinxcontrib-plantuml/
+%https://github.com/sphinx-contrib/plantuml/
+
+You can specify height, width, scale and align: {numref}`acd`,
+
+
+
+```{uml}
+:caption: Caption with **bold** and *italic*
+:name: acd
+:align: center
+:scale: 100%
+
+clock   "Clock_0"   as C0 with period 50
+clock   "Clock_1"   as C1 with period 50 pulse 25 offset 25
+binary  "Binary"  as B
+concise "Concise" as C
+rectangle "Rectangle" as Re
+robust  "Robust"  as R
+analog  "Analog"  as A
+
+
+@0
+  C is Idle
+  R is Idle
+  Re is Idle
+  A is 0
+
+@100
+B is high
+C is Waiting
+Re is Waiting
+R is Processing
+A is 3
+
+@300
+R is Waiting
+A is 1
 ```
+
+%```{eval-rst}
+%.. uml::
+%
+%  @startuml
+%  Bob -> Alice : hello
+%  @enduml
+%```
+
+
+
