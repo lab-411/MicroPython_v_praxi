@@ -12,17 +12,14 @@ arrowht = 0.254         # dlzka
 
 
 include(lib_base.ckt)
-include(lib_stm32.ckt)
-include(lib_user.ckt)
-
 { 
     line up 0.95;
     dot; {
             line up_ 0.95;
             dot;{
-                  line up_ 0.95;
+                  line up_ 1.25 dashed;
                   R4: resistor(right_ 1.75, E); 
-                  llabel(,R_4,);
+                  llabel(,R_n,);
                 }
             R3: resistor(right_ 1.75, E); 
             llabel(,R_3,);
@@ -34,15 +31,15 @@ R1: resistor(right_ 1.75, E);
 llabel(,R_1,);
 
 
-line from R4.end to R3.end; dot;
+line from R4.end to R3.end dashed; dot;
 line from R3.end to R2.end; dot;
 line from R2.end to R1.end; 
 
-Q1: 0.5 between R3.start and R2.start;
+Q1: 1 between R3.start and R2.start;
 dot(at Q1);
 line from Q1 left_ 1; circle rad 0.09; "a" at last circle.n above;
 
-Q2: 0.5 between R3.end and R2.end;
+Q2: 1 between R3.end and R2.end;
 dot(at Q2);
 line from Q2 right_ 1;  circle rad 0.09; "b" at last circle.n above;
 

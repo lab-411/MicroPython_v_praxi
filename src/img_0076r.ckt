@@ -12,8 +12,6 @@ arrowht = 0.254         # dlzka
 
 
 include(lib_base.ckt)
-include(lib_stm32.ckt)
-include(lib_user.ckt)
 
 define(`source_DC',`[
     S: source($1,); rarrow($2, ->, 0.2);
@@ -35,17 +33,22 @@ d = 1.5;
 move to (2.5, 3);
 down_;
 
-R1: resistor(d,,E); rlabel(,R_1,); larrow(u_{1}, ->, 0.2)
-dot;
-R2: resistor(d,,E); rlabel(,R_2,); larrow(u_{2}, ->, 0.2)
+R1: resistor(d,,E); rlabel(,R_1,); #larrow(u_{1}, ->, 0.25)
+Q1: dot;
+R2: resistor(d,,E); rlabel(,R_2,); #larrow(u_{2}, ->, 0.25);
+Q2: dot();
 
 move to (R1.end -(d, -d/2 )  )
 
 
-S: source_DC(down_ d, u ); 
+S: source_DC(down_ d, U_1 ); 
 line from S.N to (S.N.x, R1.start.y); 
 line -> right d/2; {"\textit{i}" at last line.e above}
 line to R1.start;
 line from S.S to (S.S.x, R2.end.y) to R2.end;
+
+line from Q1 right_ 1; C1: circle rad 0.09; "\it a" at last circle.e ljust;
+line from Q2 right_ 1; C2: circle rad 0.09; "\it b" at last circle.e ljust;
+line -> from C1.c+(0,-0.25) to C2.c+(0, 0.25); "$U_2$" at last line .c ljust;
 
 .PE

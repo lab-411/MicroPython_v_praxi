@@ -226,36 +226,41 @@ from src.utils import *
 
 data = r'''
 include(lib_base.ckt)
-include(lib_stm32.ckt)
 include(lib_user.ckt)
 
+Origin: Here 
+
 right_;
-circle rad 0.09; {"a" at last circle.n above;}
-resistor(1.5, E); llabel(,R_1,);
-resistor(1.5, E); llabel(,R_2,);
-resistor(1.5, E); llabel(,R_3,);
-resistor(1.5, E); llabel(,R_4,);
+circle rad 0.09; {"\it a" at last circle.n above;}
+line 0.5;  l_current(I, above_, 0.95 );
+#b_current(i_{12} ); 
+resistor(1.75, E); rlabel(,R_1,); larrow(U_{1}, ->, 0.25)
+resistor(1.75, E); rlabel(,R_2,); larrow(U_{2}, ->, 0.25)
+resistor(1.75, E); rlabel(,R_3,); larrow(U_{3}, ->, 0.25)
 line 0.5 dotted;
-resistor(1.5, E); llabel(,R_N,);
-circle rad 0.09; "b" at last circle.n above;
+resistor(1.75, E); rlabel(,R_N,); larrow(U_{N}, ->, 0.25)
+line 0.5;
+circle rad 0.09; "\it b" at last circle.n above;
 '''
 
 _ = cm_compile('img_0032s', data,  dpi=600)   
 ```
 
 ```{figure} ./src/img_0032s.png
-:width: 400px
+:width: 460px
 :name: img_0032s
 
 Sériové zapojenie rezistorov.
 ```
-Odpor sériového zapojenia rezistoroch
+V sériovom zapojení rezistorov preteká všetkými rezistormi rovnaký prúd, napätie na sériovo zapojených rezistoroch je súčtom napätí na jednotlivých rezistoroch. Pre odpor sériového zapojenia rezistorov medzi svorkami *ab* potom platí  
 
-$$
-R_{ab} = R_1 + R_2 + \dots + R_N = \sum_{i=1}^N R_i
-$$
+\begin{align*}
+U_{ab} =& U_{1} + U_{2} + \dots + U_N \\
+U_{ab} =& R_1 \, I + R_2 \, I + \dots + R_N \, I\\
+R_{ab} = \frac{U_{ab}}{I} =&  R_1  + R_2 + \dots + R_n = \sum_{i=1}^N R_i 
+\end{align*}
 
-Výsledný odpor sériového zapojenia rezistorov je vždy väčší ako odpor naväčšieho z nich.
+Celkový odpor sériovo zapojených rezistorov je vždy väčší ako odpor najväčšieho z nich. Pre $N$ sériovo zapojených rezistorov platí
 
 ### <font color='#E37434'>  Paralelné zapojenie rezistorov </font>
 
@@ -266,17 +271,14 @@ from src.utils import *
 
 data = r'''
 include(lib_base.ckt)
-include(lib_stm32.ckt)
-include(lib_user.ckt)
-
 { 
     line up 0.95;
     dot; {
             line up_ 0.95;
             dot;{
-                  line up_ 0.95;
+                  line up_ 1.25 dashed;
                   R4: resistor(right_ 1.75, E); 
-                  llabel(,R_4,);
+                  llabel(,R_n,);
                 }
             R3: resistor(right_ 1.75, E); 
             llabel(,R_3,);
@@ -288,15 +290,15 @@ R1: resistor(right_ 1.75, E);
 llabel(,R_1,);
 
 
-line from R4.end to R3.end; dot;
+line from R4.end to R3.end dashed; dot;
 line from R3.end to R2.end; dot;
 line from R2.end to R1.end; 
 
-Q1: 0.5 between R3.start and R2.start;
+Q1: 1 between R3.start and R2.start;
 dot(at Q1);
 line from Q1 left_ 1; circle rad 0.09; "a" at last circle.n above;
 
-Q2: 0.5 between R3.end and R2.end;
+Q2: 1 between R3.end and R2.end;
 dot(at Q2);
 line from Q2 right_ 1;  circle rad 0.09; "b" at last circle.n above;
 '''
@@ -305,10 +307,10 @@ _ = cm_compile('img_0032q', data,  dpi=600)
 ```
 
 ```{figure} ./src/img_0032q.png
-:width: 280px
+:width: 220px
 :name: img_0032q
 
-Paralelené zapojenie rezistorov.
+Paralelné zapojenie rezistorov.
 ```
 
 
@@ -317,14 +319,14 @@ Paralelené zapojenie rezistorov.
 
 ### <font color='#E37434'> Napäťový delič </font>
 
+Napäťový delič je pasívny lineárny elektronický obvod, ktorý vytvára výstupné napätie odvodené od vstupného napätia. 
+
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
 from src.utils import *
 
 data = r'''
 include(lib_base.ckt)
-include(lib_stm32.ckt)
-include(lib_user.ckt)
 
 define(`source_DC',`[
     S: source($1,); rarrow($2, ->, 0.2);
@@ -346,18 +348,23 @@ d = 1.5;
 move to (2.5, 3);
 down_;
 
-R1: resistor(d,,E); rlabel(,R_1,); larrow(u_{1}, ->, 0.2)
-dot;
-R2: resistor(d,,E); rlabel(,R_2,); larrow(u_{2}, ->, 0.2)
+R1: resistor(d,,E); rlabel(,R_1,); #larrow(u_{1}, ->, 0.25)
+Q1: dot;
+R2: resistor(d,,E); rlabel(,R_2,); #larrow(u_{2}, ->, 0.25);
+Q2: dot();
  
 move to (R1.end -(d, -d/2 )  )
 
 
-S: source_DC(down_ d, u ); 
+S: source_DC(down_ d, U_1 ); 
 line from S.N to (S.N.x, R1.start.y); 
 line -> right d/2; {"\textit{i}" at last line.e above}
 line to R1.start;
 line from S.S to (S.S.x, R2.end.y) to R2.end;
+
+line from Q1 right_ 1; C1: circle rad 0.09; "\it a" at last circle.e ljust;
+line from Q2 right_ 1; C2: circle rad 0.09; "\it b" at last circle.e ljust;
+line -> from C1.c+(0,-0.25) to C2.c+(0, 0.25); "$U_2$" at last line .c ljust;
 '''
 
 _ = cm_compile('img_0076r', data,  dpi=600)   
@@ -367,24 +374,8 @@ _ = cm_compile('img_0076r', data,  dpi=600)
 :width: 210px
 :name: img_0076r
 
-Sériové zapojenie rezistorov.
+Napäťový delič.
 ```
-
-
-Ekvivalentný odpor sériovho zapojenia dvoch rezistorov
-
-\begin{align*}
-u =& u_{1} + u_{2} \\
-u =& R_1 \, i + R_2 \, i \\
-R = \frac{u}{i} =&  R_1  + R_2 
-\end{align*}
-
-Celkový odpor sériovo zapojených rezistorov je vždy väčší ako odpor najväčšieho z nich. Pre $N$ sériovo zapojených rezistorov platí
-
-\begin{equation*}
-R = \sum_{i=1}^N R_i 
-\end{equation*}
-
 
 ```{dropdown}  <font color='#84B179'> Napäťový delič </font>
 

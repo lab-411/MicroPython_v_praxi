@@ -1,48 +1,22 @@
-
 .PS
-pi=3.14159265359
-                        # parametre z PIC (resp. GNU PIC)
-scale = 2.54            # cm - jednotka pre obrazok
-maxpswid = 30           # rozmery obrazku
-maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
-cct_init                # inicializacia lokalnych premennych
-log_init  
+scale=2.54
+cct_init
 
 include(lib_base.ckt)
 include(lib_user.ckt)
-include(lib_color.ckt)
-include(lib_time.ckt)
 
-#command"\sf"
+Origin: Here 
 
-
-
-up_;
-move to (0,0);
-Q: source(,G);     {  "$I_1$" at Q.c+(-0.35,0) rjust; }
-   line right_ 1; { l_current(i, above_, 0.55 ) }; 
-C1:circle rad .075; "\it a" ljust;
-
-line from Q.e right_ 1; {"a)" at last line.c+(0,-0.25) below;}
-C2:circle rad .075; "\it b" ljust;
-L1: line -> from C1.s + (0, -0.1) to C2.n + (0, 0.1); "$U_{ab}$" at last line.center ljust; 
-
-up_;
-move to (3.5,0);
-SR: source(,G); { "$I_2$" at SR.c+(-0.35,0) rjust; }
-   line right_ 0.75;
-DT1: dot;
-   line right_ 1; { l_current(i, above_, 0.55 ) }; 
-#   resistor(right_ 2, E); llabel(,r_i,);  b_current(i, above_, Out, End, 0.25 );
-C1:circle rad .075; "\it a" ljust;
-
-  line from SR.s right_ 0.75; #{"b)" at last line.c+(0,-0.25) below;}
-DT2: dot;
-line right_ 1;
-{"b)" at last line.c+(-0.5,-0.25) below;}
-C2:circle rad .075; "\it b" ljust; 
-L1: line -> from C1.s + (0, -0.1) to C2.n + (0, 0.1); "$U_{ab}$" at last line.center ljust; 
-
-down_; resistor(from DT1 to DT2, E); llabel(,r_i,)
+right_;
+circle rad 0.09; {"\it a" at last circle.n above;}
+line 0.5;  l_current(I, above_, 0.95 );
+#b_current(i_{12} ); 
+resistor(1.75, E); rlabel(,R_1,); larrow(U_{1}, ->, 0.25)
+resistor(1.75, E); rlabel(,R_2,); larrow(U_{2}, ->, 0.25)
+resistor(1.75, E); rlabel(,R_3,); larrow(U_{3}, ->, 0.25)
+line 0.5 dotted;
+resistor(1.75, E); rlabel(,R_N,); larrow(U_{N}, ->, 0.25)
+line 0.5;
+circle rad 0.09; "\it b" at last circle.n above;
 
 .PE
