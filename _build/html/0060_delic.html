@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Externý editor &#8212; Micro_Python  documentation</title>
+    <title>Napäťový delič &#8212; Micro_Python  documentation</title>
   
   
   
@@ -56,11 +56,11 @@
     <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '0716_editor';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0060_delic';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Jednotky SI" href="0720_jednotky_si.html" />
-    <link rel="prev" title="Inštalácia Firmware" href="0714_firmware.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -111,6 +111,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -232,10 +234,10 @@
 <li class="toctree-l1"><a class="reference internal" href="0864_nucleo144.html">STM32 Nucleo-144</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0710_install.html">Inštalácia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0714_firmware.html">Inštalácia Firmware</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Externý editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0716_editor.html">Externý editor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="0720_jednotky_si.html"><font color="#547792">Jednotky SI </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0730_znacky.html"><font color="#547792"> Elektrotechnické značky</font></a></li>
 </ul>
@@ -297,7 +299,7 @@
       
       
       
-      <li><a href="_sources/0716_editor.md" target="_blank"
+      <li><a href="_sources/0060_delic.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -360,7 +362,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -371,11 +375,23 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Externý editor</h1>
+    <h1><font color='#4B9DA9'> Napäťový delič  </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pouzitie-rezistorov"><font color="#547792"> Použitie rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><font color="#E37434"> Napäťový delič </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prudovy-delic"><font color="#E37434"> Prúdový delič </font></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -385,28 +401,59 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="externy-editor">
-<h1>Externý editor<a class="headerlink" href="#externy-editor" title="Link to this heading">#</a></h1>
-<p><em>MicroPython</em> môžeme pre jednoduché skripty používať s konzolovou aplikáciou v cykle <em>REPL</em>, pri komplikovanejších a väčších programoch nám tento spôsob nemusí vždy vyhovovať. S využitím pomocného programu <em>mpremote</em> môžeme v interpreteri spustiť skript vytvorený v lokálnom textovom editore príkazom z konzoly</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    mpremote run &lt;file.py&gt;
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="napatovy-delic">
+<h1><font color='#4B9DA9'> Napäťový delič  </font><a class="headerlink" href="#napatovy-delic" title="Link to this heading">#</a></h1>
+<section id="pouzitie-rezistorov">
+<h2><font color='#547792'> Použitie rezistorov  </font><a class="headerlink" href="#pouzitie-rezistorov" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3><font color='#E37434'> Napäťový delič </font><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Napäťový delič je pasívny lineárny elektronický obvod, ktorý vytvára výstupné napätie odvodené od vstupného napätia.</p>
+<figure class="align-default" id="img-0076r">
+<a class="reference internal image-reference" href="_images/img_0076r.png"><img alt="_images/img_0076r.png" src="_images/img_0076r.png" style="width: 210px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Napäťový delič.</span><a class="headerlink" href="#img-0076r" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Napäťový delič </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Senzor, ktorého výstupné napätie <span class="math notranslate nohighlight">\(u\)</span> sa pohybuje v rozsahu od 0 do 10V, máme pripojiť k analogovo-digitálnemu prevodníku so vstupným rozsahom napätí <span class="math notranslate nohighlight">\(u_2\)</span> od 0 do 3.3V. Senzor môžeme zaťažiť celkovým odporom 10k. Určíme hodnoty sériového zapojenia rezistorov <span class="math notranslate nohighlight">\(R_1\)</span> a <span class="math notranslate nohighlight">\(R_2\)</span>, ktoré tvoria napäťový delič.</p>
+<p class="sd-card-text">Pre napäťový delič platí</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{u_{2}}{R_2} =&amp; \frac{u}{R_1 + R_2}  \\
+\\
+u =&amp; 10 \text{V} \\
+u_2 =&amp; 3.3 \text{V} \\
+R_1 + R_2 =&amp; 10 \text{k}  \\
+\end{align*}\]</div>
+<p class="sd-card-text">Po dosadení dostaneme hodnoty  <span class="math notranslate nohighlight">\(R_2 = 3k3\)</span> a <span class="math notranslate nohighlight">\(R_1 = 6k7\)</span>.</p>
 </div>
-<p>Niektoré editory pre tvorbu kódu majú možnosť konfigurácie príkazov. Príkladom môže byť univerzálny multiplatformový editor <a class="reference external" href="https://www.geany.org/">Geany</a>, v ktorom vytvorený skript na obrázku stlačením klávesy <code class="docutils literal notranslate"><span class="pre">F9</span></code> presunieme a spustíme v interpreteri. Výstup programu sa zobrazí na konzole v spodnom okne editora.</p>
-<figure class="align-default" id="mp-0018a">
-<a class="reference internal image-reference" href="_images/geany_1.png"><img alt="_images/geany_1.png" src="_images/geany_1.png" style="width: 600px;" />
+</details></section>
+<section id="prudovy-delic">
+<h3><font color='#E37434'> Prúdový delič </font><a class="headerlink" href="#prudovy-delic" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0076k">
+<a class="reference internal image-reference" href="_images/img_0076k.png"><img alt="_images/img_0076k.png" src="_images/img_0076k.png" style="width: 260px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 71 </span><span class="caption-text">Skript v editore <em>Geany</em></span><a class="headerlink" href="#mp-0018a" title="Link to this image">#</a></p>
+<p><span class="caption-text">Paralelné zapojenie rezistorov.</span><a class="headerlink" href="#img-0076k" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>V konfigurácii editora doplníme príkaz pre spustenie editovaného skriptu podľa obrázku</p>
-<figure class="align-default" id="mp-0018b">
-<a class="reference internal image-reference" href="_images/geany_2.png"><img alt="_images/geany_2.png" src="_images/geany_2.png" style="width: 600px;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Obr. 72 </span><span class="caption-text">Konfigurácia editora <em>Geany</em></span><a class="headerlink" href="#mp-0018b" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+<p>Ekvivalentý odpor paralelného zapojenia dvoch rezistorov</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+i =&amp; i_1 + i_2 \\
+\frac{1}{R} =&amp; \frac{1}{R_1} + \frac{1}{R_2} \\
+R =&amp; \frac{R_1 R_2}{R_1 + R_2}
+\end{align*}\]</div>
+<p>Celkový odpor paralelne zapojených rezistorov je vždy menší ako odpor najmenšieho z nich. Pre N paralelne zapojených rezistorov platí</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{R} = \sum_{i=1}^N \frac{1}{R_i} 
+\]</div>
+</section>
+</section>
 </section>
 
 
@@ -420,30 +467,33 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="0714_firmware.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Inštalácia Firmware</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="0720_jednotky_si.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><font color='#547792'>Jednotky SI </font></p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pouzitie-rezistorov"><font color="#547792"> Použitie rezistorov  </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><font color="#E37434"> Napäťový delič </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prudovy-delic"><font color="#E37434"> Prúdový delič </font></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

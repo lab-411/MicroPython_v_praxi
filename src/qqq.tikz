@@ -1,0 +1,118 @@
+\begin{tikzpicture}[scale=2.54]
+% dpic version 2018.08.15 option -g for TikZ and PGF 1.01
+\ifx\dpiclw\undefined\newdimen\dpiclw\fi
+\global\def\dpicdraw{\draw[line width=\dpiclw]}
+\global\def\dpicstop{;}
+\dpiclw=0.8bp
+\dpiclw=0.8bp
+\dpicdraw (0,0)
+ --(0,0.374016)\dpicstop
+\dpicdraw[fill=black](0,0.374016) circle (0.007874in)\dpicstop
+\dpicdraw (0,0.374016)
+ --(0,0.748031)\dpicstop
+\dpicdraw[fill=black](0,0.748031) circle (0.007874in)\dpicstop
+\dpicdraw[dashed](0,0.748031)
+ --(0,1.240157)\dpicstop
+\coordinate (R4) at (0,1.240157);
+\dpicdraw (0,1.240157)
+ --(0.367126,1.240157)\dpicstop
+\dpicdraw (0.617126,1.240157)
+ --(0.617126,1.290157)
+ --(0.367126,1.290157)
+ --(0.367126,1.190157)
+ --(0.617126,1.190157)
+ --(0.617126,1.240157)\dpicstop
+\dpicdraw (0.617126,1.240157)
+ --(0.984252,1.240157)\dpicstop
+\draw (0.492126,1.290157) node[above=-0.787402bp]{$ R_n$};
+\filldraw[line width=0bp](0.178084,1.215157)
+ --(0.278084,1.240157)
+ --(0.178084,1.265157) --cycle\dpicstop
+\dpicdraw (0.255178,1.240157)
+ --(0.178084,1.240157)\dpicstop
+\draw (0.216631,1.240157) node[above=-0.787402bp]{$ I_{N} $};
+\coordinate (R3) at (0,0.748031);
+\dpicdraw (0,0.748031)
+ --(0.367126,0.748031)\dpicstop
+\dpicdraw (0.617126,0.748031)
+ --(0.617126,0.798031)
+ --(0.367126,0.798031)
+ --(0.367126,0.698031)
+ --(0.617126,0.698031)
+ --(0.617126,0.748031)\dpicstop
+\dpicdraw (0.617126,0.748031)
+ --(0.984252,0.748031)\dpicstop
+\draw (0.492126,0.798031) node[above=-0.787402bp]{$ R_3$};
+\filldraw[line width=0bp](0.178084,0.723031)
+ --(0.278084,0.748031)
+ --(0.178084,0.773031) --cycle\dpicstop
+\dpicdraw (0.255178,0.748031)
+ --(0.178084,0.748031)\dpicstop
+\draw (0.216631,0.748031) node[above=-0.787402bp]{$ I_{3} $};
+\coordinate (R2) at (0,0.374016);
+\dpicdraw (0,0.374016)
+ --(0.367126,0.374016)\dpicstop
+\dpicdraw (0.617126,0.374016)
+ --(0.617126,0.424016)
+ --(0.367126,0.424016)
+ --(0.367126,0.324016)
+ --(0.617126,0.324016)
+ --(0.617126,0.374016)\dpicstop
+\dpicdraw (0.617126,0.374016)
+ --(0.984252,0.374016)\dpicstop
+\draw (0.492126,0.424016) node[above=-0.787402bp]{$ R_2$};
+\filldraw[line width=0bp](0.178084,0.349016)
+ --(0.278084,0.374016)
+ --(0.178084,0.399016) --cycle\dpicstop
+\dpicdraw (0.255178,0.374016)
+ --(0.178084,0.374016)\dpicstop
+\draw (0.216631,0.374016) node[above=-0.787402bp]{$ I_{2} $};
+\coordinate (R1) at (0,0);
+\dpicdraw (0,0)
+ --(0.367126,0)\dpicstop
+\dpicdraw (0.617126,0)
+ --(0.617126,0.05)
+ --(0.367126,0.05)
+ --(0.367126,-0.05)
+ --(0.617126,-0.05)
+ --(0.617126,0)\dpicstop
+\dpicdraw (0.617126,0)
+ --(0.984252,0)\dpicstop
+\draw (0.492126,0.05) node[above=-0.787402bp]{$ R_1$};
+\filldraw[line width=0bp](0.178084,-0.025)
+ --(0.278084,0)
+ --(0.178084,0.025) --cycle\dpicstop
+\dpicdraw (0.255178,0)
+ --(0.178084,0)\dpicstop
+\draw (0.216631,0) node[above=-0.787402bp]{$ I_{1} $};
+\dpicdraw[dashed](0.984252,1.240157)
+ --(0.984252,0.748031)\dpicstop
+\dpicdraw[fill=black](0.984252,0.748031) circle (0.007874in)\dpicstop
+\dpicdraw (0.984252,0.748031)
+ --(0.984252,0.374016)\dpicstop
+\dpicdraw[fill=black](0.984252,0.374016) circle (0.007874in)\dpicstop
+\dpicdraw (0.984252,0.374016)
+ --(0.984252,0)\dpicstop
+\coordinate (Q1) at (0,0.561024);
+\dpicdraw[fill=black](0,0.561024) circle (0.007874in)\dpicstop
+\dpicdraw (0,0.561024)
+ --(-0.787402,0.561024)\dpicstop
+\coordinate (S) at (0,0.561024);
+\coordinate (E) at (-0.787402,0.561024);
+\coordinate (C) at (-0.490551,0.561024);
+\coordinate (D) at (-0.690551,0.561024);
+\filldraw[line width=0bp](-0.590551,0.586024)
+ --(-0.690551,0.561024)
+ --(-0.590551,0.536024) --cycle\dpicstop
+\dpicdraw (-0.490551,0.561024)
+ --(-0.667645,0.561024)\dpicstop
+\draw (-0.590551,0.561024) node[above=-0.787402bp]{$ is $};
+\dpicdraw (-0.822835,0.561024) circle (0.01395in)\dpicstop
+\draw (-0.822835,0.596457) node[above=-0.787402bp]{a};
+\coordinate (Q2) at (0.984252,0.561024);
+\dpicdraw[fill=black](0.984252,0.561024) circle (0.007874in)\dpicstop
+\dpicdraw (0.984252,0.561024)
+ --(1.377953,0.561024)\dpicstop
+\dpicdraw (1.413386,0.561024) circle (0.01395in)\dpicstop
+\draw (1.413386,0.596457) node[above=-0.787402bp]{b};
+\end{tikzpicture}

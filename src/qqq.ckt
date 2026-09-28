@@ -2,6 +2,9 @@
 scale=2.54
 cct_init
 
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
 include(lib_base.ckt)
 include(lib_user.ckt)
 
@@ -9,14 +12,14 @@ Origin: Here
 
 right_;
 circle rad 0.09; {"\it a" at last circle.n above;}
-line 0.5;  l_current(I, above_, 0.95 );
-#b_current(i_{12} ); 
+line 0.65; r_current(I, above, 0.85 );
+right_; 
 resistor(1.75, E); rlabel(,R_1,); larrow(U_{1}, ->, 0.25)
 resistor(1.75, E); rlabel(,R_2,); larrow(U_{2}, ->, 0.25)
 resistor(1.75, E); rlabel(,R_3,); larrow(U_{3}, ->, 0.25)
 line 0.5 dotted;
 resistor(1.75, E); rlabel(,R_N,); larrow(U_{N}, ->, 0.25)
-line 0.5;
+line 0.65;
 circle rad 0.09; "\it b" at last circle.n above;
 
 .PE
