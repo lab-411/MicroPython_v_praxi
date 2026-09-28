@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
@@ -59,7 +59,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '0420_filesystem';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Knižnice" href="0440_library.html" />
+    <link rel="next" title="Moduly" href="0440_library.html" />
     <link rel="prev" title="Programovanie" href="0410_programovanie.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -165,7 +165,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0020_terminologia.html"><font color="#4B9DA9"> Terminológia</font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0022_zaklady.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Vlastnosti signálov  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0024_signaly.html"><font color="#4B9DA9"> Signály  </font></a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="0035_kondenzator.html"><font color="#4B9DA9"> Kondenzátor  </font></a></li>
@@ -180,8 +180,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0400_architektura.html"><font color="#4B9DA9"> Architektura  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0410_programovanie.html"><font color="#4B9DA9"> Programovanie  </font></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Súborový systém</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0440_library.html">Knižnice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9">  Súborový systém </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0440_library.html"><font color="#4B9DA9">  Moduly </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
 <ul class="nav bd-sidenav">
@@ -373,7 +373,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Súborový systém</h1>
+    <h1><font color='#4B9DA9'>  Súborový systém </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,9 +383,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokalna-sprava-filesystemu">Lokálna správa filesystému</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialkova-sprava-filesystemu">Diaľková správa filesystému</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyteru-notebook">Jupyteru Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokalna-sprava-filesystemu"><font color="#547792"> Lokálna správa filesystému  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialkova-sprava-filesystemu"><font color="#547792"> Diaľková správa filesystému </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pouzitie"><font color="#E37434"> Použitie </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook"><font color="#547792"> Jupyter Notebook </font></a></li>
 </ul>
             </nav>
         </div>
@@ -398,12 +401,12 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="suborovy-system">
-<h1>Súborový systém<a class="headerlink" href="#suborovy-system" title="Link to this heading">#</a></h1>
-<p>Pri MCU s väčšou pamäťou sa ako súborový systém využíva pamäť FLASH. Súbory uložené sa po resete procesora nemažú.</p>
+<h1><font color='#4B9DA9'>  Súborový systém </font><a class="headerlink" href="#suborovy-system" title="Link to this heading">#</a></h1>
+<p>Väčšina implementácií MikroPython-u na mikrokontroléroch s veľkosťou pamäte 1Mbyte a väčšou má implementovaný súborový systém FAT. Pre prácu so súborovým systémom je možné využívať modul <strong>os</strong>. Súbory v súborovom systéme uložené v pamäti FLASH sa po resete mikrokontroléra nemažú.</p>
 <section id="lokalna-sprava-filesystemu">
-<h2>Lokálna správa filesystému<a class="headerlink" href="#lokalna-sprava-filesystemu" title="Link to this heading">#</a></h2>
-<p>Použitie knižnice <strong>os</strong> v interaktívnom móde MicroPython-u.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<h2><font color='#547792'> Lokálna správa filesystému  </font><a class="headerlink" href="#lokalna-sprava-filesystemu" title="Link to this heading">#</a></h2>
+<p>Základné funkcie pre správu súborového systému v móde REPL alebo pomocou lokálnych skriptov sú obsiahnuté v module <strong>os</strong>.</p>
+<div class="highlight-iPython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="p">)</span>                   <span class="c1"># vypis funkcii kniznice os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>               <span class="c1"># vypis aktualneho adesaru</span>
@@ -414,17 +417,21 @@
 <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>          <span class="c1"># zmazanie prazdneho adresaru</span>
 </pre></div>
 </div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Príklad použitia modulu os</p>
 <p>Zmazanie všetkých súborov v adresári</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span> 
 <span class="n">w</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">w</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="dialkova-sprava-filesystemu">
-<h2>Diaľková správa filesystému<a class="headerlink" href="#dialkova-sprava-filesystemu" title="Link to this heading">#</a></h2>
+<h2><font color='#547792'> Diaľková správa filesystému </font><a class="headerlink" href="#dialkova-sprava-filesystemu" title="Link to this heading">#</a></h2>
 <p>Z konzoly počítača môžeme cez CLI pristupovať k súborovému systému MicroPython-u pomocou programu <a class="reference download internal" download="" href="_downloads/7a0faf4e8ae41469be9165591b8ed24f/pyboard.py"><span class="xref download myst">pyboard.py</span></a>.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python pyboard.py -h
+
 usage: pyboard.py [-h] [-d DEVICE] [-b BAUDRATE] [-u USER] [-p PASSWORD] [-c COMMAND] [-w WAIT]
                   [--soft-reset | --no-soft-reset] [--follow | --no-follow] [--exclusive |
                   --no-exclusive] [-f]
@@ -446,16 +453,21 @@ options:
   -c, --command COMMAND
                         program passed in as string
   -w, --wait WAIT       seconds to wait for USB connected board to become available
-  --soft-reset          Whether to perform a soft reset when connecting to the board [default]
+  --soft-reset          Whether to perform a soft reset when connecting 
+                        to the board [default]
   --no-soft-reset
-  --follow              follow the output after running the scripts [default if no scripts given]
+  --follow              follow the output after running the scripts 
+                        [default if no scripts given]
   --no-follow
   --exclusive           Open the serial device for exclusive access [default]
   --no-exclusive
-  -f, --filesystem      perform a filesystem action: cp local :device | cp :device local | cat path | ls
+  -f, --filesystem      perform a filesystem action: cp local :device | 
+                        cp :device local | cat path | ls
                         [path] | rm path | mkdir path | rmdir path
 </pre></div>
 </div>
+<section id="pouzitie">
+<h3><font color='#E37434'> Použitie </font><a class="headerlink" href="#pouzitie" title="Link to this heading">#</a></h3>
 <p>Vytvorenie adresáru</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python ./py/pyboard.py -d PORT -f mkdir PATH
 </pre></div>
@@ -465,8 +477,9 @@ options:
 </pre></div>
 </div>
 </section>
-<section id="jupyteru-notebook">
-<h2>Jupyteru Notebook<a class="headerlink" href="#jupyteru-notebook" title="Link to this heading">#</a></h2>
+</section>
+<section id="jupyter-notebook">
+<h2><font color='#547792'> Jupyter Notebook </font><a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h2>
 <p>Nahratie súboru do pamäte FLASH z prostredia Jupyteru. Pri použití kernelu MicroPython-u je potrebné vytvoriť bunku, ktorú interpretuje lokálny kernel <em>ipython</em>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepinac pre bunku v lokalnom mode - interpretuje lokalny ipython </span>
 <span class="o">%</span><span class="n">local</span>
@@ -510,7 +523,7 @@ options:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Knižnice</p>
+        <p class="prev-next-title"><font color='#4B9DA9'>  Moduly </font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -532,9 +545,12 @@ options:
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokalna-sprava-filesystemu">Lokálna správa filesystému</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialkova-sprava-filesystemu">Diaľková správa filesystému</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyteru-notebook">Jupyteru Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokalna-sprava-filesystemu"><font color="#547792"> Lokálna správa filesystému  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialkova-sprava-filesystemu"><font color="#547792"> Diaľková správa filesystému </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pouzitie"><font color="#E37434"> Použitie </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook"><font color="#547792"> Jupyter Notebook </font></a></li>
 </ul>
   </nav></div>
 

@@ -18,7 +18,7 @@ kernelspec:
 % {dropdown} <font color='#84B179'> Text </font>
 
 
-# <font color='#4B9DA9'> Vlastnosti signálov  </font>
+# <font color='#4B9DA9'> Signály  </font>
 
 V elektronickom obvode pokladáme za signál časovo premenlivé napätie alebo prúd, ktorý prenáša informáciu. 
 

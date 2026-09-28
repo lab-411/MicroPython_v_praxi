@@ -13,15 +13,15 @@ kernelspec:
 ---
 
 
-#  Súborový systém
+#  <font color='#4B9DA9'>  Súborový systém </font>
 
-Pri MCU s väčšou pamäťou sa ako súborový systém využíva pamäť FLASH. Súbory uložené sa po resete procesora nemažú.
+Väčšina implementácií MikroPython-u na mikrokontroléroch s veľkosťou pamäte 1Mbyte a väčšou má implementovaný súborový systém FAT. Pre prácu so súborovým systémom je možné využívať modul **os**. Súbory v súborovom systéme uložené v pamäti FLASH sa po resete mikrokontroléra nemažú.
 
-##  Lokálna správa filesystému 
+## <font color='#547792'> Lokálna správa filesystému  </font>
 
-Použitie knižnice **os** v interaktívnom móde MicroPython-u.
+Základné funkcie pre správu súborového systému v móde REPL alebo pomocou lokálnych skriptov sú obsiahnuté v module **os**.  
 
-```Python
+```{code-block} iPython3
 import os
 
 dir(os)                   # vypis funkcii kniznice os
@@ -33,6 +33,9 @@ os.unlink('filename')     # zmazanie suboru alebo symbolickeho linku
 os.rmdir('path')          # zmazanie prazdneho adresaru
 ```
 
+````{admonition} Príklad použitia modulu os
+:class: dropdown, tip
+
 Zmazanie všetkých súborov v adresári
 
 ```Python
@@ -40,12 +43,14 @@ os.chdir('path')
 w=os.listdir()
 for i in w: os.unlink(i)
 ```
+````
 
-##   Diaľková správa filesystému 
+## <font color='#547792'> Diaľková správa filesystému </font>
 
 Z konzoly počítača môžeme cez CLI pristupovať k súborovému systému MicroPython-u pomocou programu [pyboard.py](./lib/pyboard.py). 
 
     python pyboard.py -h
+    
     usage: pyboard.py [-h] [-d DEVICE] [-b BAUDRATE] [-u USER] [-p PASSWORD] [-c COMMAND] [-w WAIT]
                       [--soft-reset | --no-soft-reset] [--follow | --no-follow] [--exclusive |
                       --no-exclusive] [-f]
@@ -67,14 +72,20 @@ Z konzoly počítača môžeme cez CLI pristupovať k súborovému systému Micr
       -c, --command COMMAND
                             program passed in as string
       -w, --wait WAIT       seconds to wait for USB connected board to become available
-      --soft-reset          Whether to perform a soft reset when connecting to the board [default]
+      --soft-reset          Whether to perform a soft reset when connecting 
+                            to the board [default]
       --no-soft-reset
-      --follow              follow the output after running the scripts [default if no scripts given]
+      --follow              follow the output after running the scripts 
+                            [default if no scripts given]
       --no-follow
       --exclusive           Open the serial device for exclusive access [default]
       --no-exclusive
-      -f, --filesystem      perform a filesystem action: cp local :device | cp :device local | cat path | ls
+      -f, --filesystem      perform a filesystem action: cp local :device | 
+                            cp :device local | cat path | ls
                             [path] | rm path | mkdir path | rmdir path
+
+
+### <font color='#E37434'> Použitie </font>
 
 Vytvorenie adresáru
 
@@ -87,7 +98,7 @@ Nahratie súboru
 
 
 
-##  Jupyteru Notebook
+##  <font color='#547792'> Jupyter Notebook </font>
 
 Nahratie súboru do pamäte FLASH z prostredia Jupyteru. Pri použití kernelu MicroPython-u je potrebné vytvoriť bunku, ktorú interpretuje lokálny kernel *ipython*. 
 

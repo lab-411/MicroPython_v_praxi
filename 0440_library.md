@@ -13,64 +13,63 @@ kernelspec:
 ---
 
 
-# Knižnice
+# <font color='#4B9DA9'>  Moduly </font>
 
-## Štandardné knižnice
+## <font color='#547792'> Štandardné moduly </font>
 
-    array – arrays of numeric data
-    asyncio — asynchronous I/O scheduler
-    binascii – binary/ASCII conversions
-    builtins – builtin functions and exceptions
-    cmath – mathematical functions for complex numbers
+    array       – arrays of numeric data
+    asyncio     — asynchronous I/O scheduler
+    binascii    – binary/ASCII conversions
+    builtins    – builtin functions and exceptions
+    cmath       – mathematical functions for complex numbers
     collections – collection and container types
-    errno – system error codes
-    gc – control the garbage collector
-    gzip – gzip compression & decompression
-    hashlib – hashing algorithms
-    heapq – heap queue algorithm
-    io – input/output streams
-    json – JSON encoding and decoding
-    marshal – Python object serialization
-    math – mathematical functions
-    os – basic “operating system” services
-    platform – access to underlying platform’s identifying data
-    random – generate random numbers
-    re – simple regular expressions
-    select – wait for events on a set of streams
-    socket – socket module
-    ssl – SSL/TLS module
-    string.templatelib – Template String Support
-    struct – pack and unpack primitive data types
-    sys – system specific functions
-    time – time related functions
-    zlib – zlib compression & decompression
-    _thread – multithreading support
+    errno       – system error codes
+    gc          – control the garbage collector
+    gzip        – gzip compression & decompression
+    hashlib     – hashing algorithms
+    heapq       – heap queue algorithm
+    io          – input/output streams
+    json        – JSON encoding and decoding
+    marshal     – Python object serialization
+    math        – mathematical functions
+    os          – basic “operating system” services
+    platform    – access to underlying platform’s identifying data
+    random      – generate random numbers
+    re          – simple regular expressions
+    select      – wait for events on a set of streams
+    socket      – socket module
+    ssl         – SSL/TLS module
+    struct      – pack and unpack primitive data types
+    sys         – system specific functions
+    time        – time related functions
+    zlib        – zlib compression & decompression
+    _thread     – multithreading support
 
-##  pyb  
+##  <font color='#547792'> pyb  </font>  
 
     class Accel – accelerometer control
-    class ADC – analog to digital conversion
-    class CAN – controller area network communication bus
-    class DAC – digital to analog conversion
-    class ExtInt – configure I/O pins to interrupt on external events
+    class ADC   – analog to digital conversion
+    class CAN   – controller area network communication bus
+    class DAC   – digital to analog conversion
+    class ExtInt– configure I/O pins to interrupt on external events
     class Flash – access to built-in flash storage
-    class I2C – a two-wire serial protocol
-    class LCD – LCD control for the LCD touch-sensor pyskin
-    class LED – LED object
-    class Pin – control I/O pins
+    class I2C   – a two-wire serial protocol
+    class LCD   – LCD control for the LCD touch-sensor pyskin
+    class LED   – LED object
+    class Pin   – control I/O pins
     class PinAF – Pin Alternate Functions
-    class RTC – real time clock
+    class RTC   – real time clock
     class Servo – 3-wire hobby servo driver
-    class SPI – a controller-driven serial protocol
+    class SPI   – a controller-driven serial protocol
     class Switch – switch object
     class Timer – control internal timers
     class TimerChannel — setup a channel for a timer
-    class UART – duplex serial communication bus
+    class UART   – duplex serial communication bus
     class USB_HID – USB Human Interface Device (HID)
     class USB_VCP – USB virtual comm port
 
 
-##  machine 
+##   </font> machine </font> 
 
     class Pin – control I/O pins
     class Signal – control and sense external I/O devices
