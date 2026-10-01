@@ -12,10 +12,15 @@ kernelspec:
   name: python3
 ---
 
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
 
-# MEMS Senzory 
 
-Doplnkový STM modul s MEMS senzormi. 
+# <font color='#4B9DA9'> MEMS Senzory </font>
+
+Rozširujúci modul pre STM32 Nucleo64 s MEMS senzormi X-NUCLEO-IKS01A2. 
 
 **Dokumentácia**
 
@@ -54,7 +59,7 @@ Knižnice pre obsluhu senzorov modulu.
 
 <img src="./img/stm_mems_board.png" width="400">
 
-## Programovanie
+## <font color='#547792'> Programovanie </font>
 
 Nahratie knižníc
 
@@ -63,7 +68,7 @@ Nahratie knižníc
     python pyboard.py -f cp lib_lps22.py :lib_lps22.py
     python pyboard.py -f cp lib_lsm303agr_mag.py :lib_lsm303agr_mag.py
 
-### LSM6DSL - Akcelerometer a gyroskop
+### <font color='#E37434'> LSM6DSL - Akcelerometer a gyroskop </font>
 
     import math
     import time 
@@ -82,7 +87,7 @@ Nahratie knižníc
         
 
 
-### HTS221 - Teplomer a vlhkomer
+### <font color='#E37434'> HTS221 - Teplomer a vlhkomer </font>
 
     import math
     import time 
@@ -96,7 +101,7 @@ Nahratie knižníc
     for i in range(10):
         hts.get()
 
-### LPS22HB - Tlakomer
+### <font color='#E37434'> LPS22HB - Tlakomer </font>
 
     import math
     import time 
@@ -112,7 +117,7 @@ Nahratie knižníc
       lps.get()
       
 
-### LSM303AGH - Magnetometer
+### <font color='#E37434'> LSM303AGH - Magnetometer </font>
 
     import math
     import time 

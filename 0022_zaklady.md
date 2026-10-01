@@ -21,6 +21,8 @@ kernelspec:
 
 # <font color='#4B9DA9'> Základné pojmy  </font>
 
+Kapitola *Elektronika* je venovaná základom elektroniky potrebným pre prácu s elektronickými zariadeniami pripájanými a riadenými mikrokontrolérom. Kapitola nenahrádza učebnicu elektroniky, pre podrobnejšie štúdium odporúčame literatúru uvedenú v prílohe.
+
 ##  <font color='#547792'> Prúd  </font>
 
 Elektrický prúd je usmernený tok elementárnych elektrických častíc, elektrónov. Elektrón reprezentuje elementárny elektrický náboj, ktorého hodnota je $e = -1.602 \times 10^{-19} \,\,\, \text{Coulomb}$. V analógii s prúdením kvapaliny, kde môžeme prúd kvapaliny pokladať za množstvo kvapaliny, ktoré pretečie otvorom za  stanovený čas v jednotkách litrov za sekundu, môžeme rovnako aj elektrický prúd $I$ pokladať za množstvo náboja $Q$, ktoré pretečie vodičom za čas $t$. Jednotkou prúdu je *Ampér* [A].
