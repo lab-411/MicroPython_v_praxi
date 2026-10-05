@@ -1,0 +1,121 @@
+Traceback (most recent call last):
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+log_init
+
+command "\sf"
+
+define(`SPI_Master', `[
+  BX: box wid 2.5 ht 5*lg_pinsep;
+
+      lg_pin(BX.ne - (0, 1*lg_pinsep),  SCLK, PinCLK, e,,0 );
+      lg_pin(BX.ne - (0, 2*lg_pinsep),  MOSI, PinMOSI, e,,0 );
+      lg_pin(BX.ne - (0, 3*lg_pinsep),  MISO, PinMISO, e,,0 );
+      lg_pin(BX.ne - (0, 4*lg_pinsep),  lg_bartxt(SS), PinSS, e,,0 );
+]')
+
+define(`SPI_Slave', `[
+  BX: box wid 2 ht 5*lg_pinsep;
+
+      lg_pin(BX.nw - (0, 1*lg_pinsep),  SCLK, PinCLK, w,,0);
+      lg_pin(BX.nw - (0, 2*lg_pinsep),  MOSI, PinMOSI, w,, 0);
+      lg_pin(BX.nw - (0, 3*lg_pinsep),  MISO, PinMISO, w,, 0);
+      lg_pin(BX.nw - (0, 4*lg_pinsep),  lg_bartxt(SS), PinSS, w,,0 );
+]')
+
+M:  SPI_Master(); "SPI" at M.c +(-0.3,0) above; "Master" at M.c +(-0.3,0) below;
+    line from M.PinCLK right 0.8;  DT1: dot; 
+
+    line from DT1-> right 1.5;
+S1:SPI_Slave() with .PinCLK at last line .end; 
+    "SPI" at S1.c +(0.3,0) above; "Slave" at S1.c +(0.3,0) below;
+    
+    
+    
+    line from DT1 down_ 2.5; DT5: dot; line -> to (S1.PinCLK, Here)
+    right_
+S2: SPI_Slave() with .PinCLK at last line .end
+    "SPI" at S2.c +(0.3,0) above; "Slave" at S2.c +(0.3,0) below;
+
+    line from DT5 down_ 2.5; ;line -> to (S1.PinCLK, Here)
+    right_
+S3: SPI_Slave() with .PinCLK at last line .end
+    "SPI" at S3.c +(0.3,0) above; "Slave" at S3.c +(0.3,0) below;
+
+    # select
+    color_blue;
+    line from M.PinSS right_ 0.45; DS: dot; line -> to S1.PinSS
+    line from DS down_ to (DS, S2.PinSS); dot; {line -> to S2.PinSS; }
+    line -> down_ to (DS, S3.PinSS) then to S3.PinSS
+    
+    # chain
+    color_red;
+    line -> from M.PinMOSI to S1.PinMOSI
+    line from S1.PinMISO left_ 0.75; line -> to (Here, S2.PinMOSI) then to S2.PinMOSI;
+    line from S2.PinMISO left_ 0.75; line -> to (Here, S3.PinMOSI) then to S3.PinMOSI;
+    line from S3.PinMISO left_ 1; line -> to (Here, M.PinMISO) then to M.PinMISO;
+'''
+
+_ = cm_compile('img_0250c', data,  dpi=600)   
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 64[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01msrc[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m      3[39m data = [33mr[39m[33m'''[39m
+[32m      4[39m [33minclude(lib_base.ckt)[39m
+[32m      5[39m [33minclude(lib_stm32.ckt)[39m
+[32m   (...)[39m[32m     61[39m [33m    line from S3.PinMISO left_ 1; line -> to (Here, M.PinMISO) then to M.PinMISO;[39m
+[32m     62[39m [33m'''[39m
+[32m---> [39m[32m64[39m _ = [43mcm_compile[49m[43m([49m[33;43m'[39;49m[33;43mimg_0250c[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m  [49m[43mdpi[49m[43m=[49m[32;43m600[39;49m[43m)[49m   
+
+[36mFile [39m[32m~/asustorCloud/Share-Projekty/0010_MicroPython/micropython_book/src/utils.py:47[39m, in [36mcm_compile[39m[34m(file_name, cm_data, dpi, path)[39m
+[32m     40[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcm_compile[39m(file_name, cm_data=[33m'[39m[33m'[39m, dpi=[32m300[39m, path=[33m'[39m[33m./src[39m[33m'[39m):
+[32m     41[39m [38;5;250m    [39m[33;03m'''[39;00m
+[32m     42[39m [33;03m    Konverzia textoveho retazcu s CircuitMacros na obrazok PNG.[39;00m
+[32m     43[39m 
+[32m     44[39m [33;03m    path - cesta od zdrojoveho kodu obrazkov ku knizniciam ./cm[39;00m
+[32m     45[39m [33;03m    '''[39;00m
+[32m---> [39m[32m47[39m     [43mos[49m[43m.[49m[43mchdir[49m[43m([49m[43mpath[49m[43m)[49m
+[32m     49[39m     fp = [38;5;28mopen[39m( file_name + [33m'[39m[33m.ckt[39m[33m'[39m, [33m'[39m[33mw[39m[33m'[39m); 
+[32m     50[39m     fp.write(cm_start + cm_data + cm_end);
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: './src'
+

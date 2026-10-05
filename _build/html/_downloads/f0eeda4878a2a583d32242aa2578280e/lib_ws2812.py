@@ -47,14 +47,18 @@ class WS2812:
         # turn LEDs off
         self.show([])
 
-    def show(self, data):
+    def show(self, data, intensity=1):
         """
         Show RGB data on LEDs. Expected data = [(R, G, B), ...] where R, G and B
         are intensities of colors in range from 0 to 255. One RGB tuple for each
         LED. Count of tuples may be less than count of connected LEDs.
         """
+        self.intensity = intensity
         self.fill_buf(data)
         self.send_buf()
+        
+    def set_intensity(self, intensity):
+        self.intensity = intensity
 
     def send_buf(self):
         """

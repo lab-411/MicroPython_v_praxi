@@ -37,19 +37,15 @@ cm_end = r'''
 #======================================================================
 import os
 
-def cm_compile(file_name, cm_data='', dpi=300):
+def cm_compile(file_name, cm_data='', dpi=300, path='./src'):
     '''
     Konverzia textoveho retazcu s CircuitMacros na obrazok PNG.
+
+    path - cesta od zdrojoveho kodu obrazkov ku knizniciam ./cm
     '''
     
-    # kontrola home directory
-    # vsetky bunky v jednom *.md subore pouzivaju jednu instanciu pythonu
-    # osetrenie na zmenu adresaru pri opakovanom volani funkcie
-    wd =  os.getcwd()
-    q = wd.split('/')
-    if(q[-1] != 'src'):
-        os.chdir('./src/')
-        
+    os.chdir(path)
+
     fp = open( file_name + '.ckt', 'w'); 
     fp.write(cm_start + cm_data + cm_end);
     fp.close()

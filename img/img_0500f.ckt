@@ -1,0 +1,83 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+log_init  
+
+include(lib_base.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+include(lib_time.ckt)
+
+command"\sf"
+
+define(`WS2812', `[
+  rgbfill(fill_light_yellow, {BX: box wid 2 ht 5*lg_pinsep; })
+      lg_pin(BX.nw - (0, 1*lg_pinsep), Din,  Pin4, w, 4, );
+      lg_pin(BX.nw - (0, 4*lg_pinsep), Vss,  Pin3, w, 3, );
+      lg_pin(BX.ne - (0, 1*lg_pinsep), Vcc,  Pin1, e, 1, );
+      lg_pin(BX.ne - (0, 4*lg_pinsep), Dout, Pin2, e, 2, );
+]')
+
+LED1: WS2812; 
+
+
+line from LED1.Pin2.end right_ 1;
+line up_ to (Here, LED1.Pin4) then right_ 1;
+right_ ; 
+LED2: WS2812 with .Pin4.end at Here;
+
+line from LED2.Pin2.end right_ 0.5 ;
+line right_ 1.0 dashed;
+line up_ to (Here, LED2.Pin4) then right_ 1 dashed;
+right_ ; 
+LED3: WS2812 with .Pin4.end at Here;
+
+"LED1" at LED1.s below;
+"LED2" at LED2.s below;
+"LEDn" at LED3.s below;
+
+# zemny spoj
+line from LED1.Pin3.end down_ 1;
+DD1: dot;
+line to (LED2.Pin3.end, Here);
+DD2: dot; {line to LED2.Pin3.end; }
+line to (LED2.Pin2.end, Here)+(0.5,0);
+line to (LED3.Pin3.end, Here) dashed;
+DD3: dot;  {line to LED3.Pin3.end; }
+line to ( LED3.Pin2.end, Here);
+tconn(right_ 2,M); "GND" ljust;
+tconn(from LED3.Pin2.end right_ 2,M); "Out" ljust;
+tconn(from DD1 left_ 1.5,M);  "GND" rjust;
+
+# napajanie
+line from LED1.Pin1.end right_ 0.25; 
+DD5: dot; { capacitor(down_ to (Here, DD1)+(0, 0.85)); llabel(,\sf C1,);  line to ((Here, DD1)); dot; }
+line up_ 0.75;
+DD6: dot;
+line right_ to (LED2.Pin1.end, Here)+(0.25, 0);
+DD7: dot;
+line to (Here, LED2.Pin1.end); 
+dot; { capacitor(down_ to (Here, DD1)+(0, 0.85)); llabel(,\sf C2,);line to ((Here, DD1)); dot; }
+line to LED2.Pin1.end;
+line from DD7 right_ 0.35
+line to (LED3.Pin4.end, Here) dashed;
+line to (LED3.Pin1.end, Here) + (0.25,0);
+DD8: dot;
+line to (Here, LED3.Pin1.end);
+dot; { capacitor(down_ to (Here, DD1)+(0, 0.85));  llabel(,\sf Cn,); line to ((Here, DD1)); dot; }
+line to LED3.Pin1.end;
+tconn(from DD8 right_ 1.75,M); "+5V" ljust;
+tconn(from DD6 left_ 4.75,M); "+5V" rjust;
+tconn(from LED1.Pin4.end left_ 1.5,M); "In" rjust;
+
+.PE

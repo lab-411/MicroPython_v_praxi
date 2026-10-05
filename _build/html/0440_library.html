@@ -159,7 +159,8 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0010_uvod.html"><font color="#4B9DA9"> MicroPython  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Ako na to  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Inštalácia  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0014_pouzitie.html"><font color="#4B9DA9"> Použitie  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
@@ -213,14 +214,20 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0300_timer.html">TIMER</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_displej/0500_led_matrix.html"><font color="#4B9DA9"> LED modul WS2812 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Senzory</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html">MEMS Senzory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html"><font color="#4B9DA9"> MEMS Senzory </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0590_prototyp.html">Prototypy obvodov</a></li>
@@ -384,8 +391,8 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardne-moduly"><font color="#547792"> Štandardné moduly </font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyb"><font color="#547792"> pyb  </font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine"> machine </a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modul-machine"><font color="#547792"> Modul machine </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modul-pyb"><font color="#547792"> Modul pyb  </font></a></li>
 </ul>
             </nav>
         </div>
@@ -401,82 +408,85 @@
 <h1><font color='#4B9DA9'>  Moduly </font><a class="headerlink" href="#moduly" title="Link to this heading">#</a></h1>
 <section id="standardne-moduly">
 <h2><font color='#547792'> Štandardné moduly </font><a class="headerlink" href="#standardne-moduly" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array       – arrays of numeric data
-asyncio     — asynchronous I/O scheduler
-binascii    – binary/ASCII conversions
-builtins    – builtin functions and exceptions
-cmath       – mathematical functions for complex numbers
-collections – collection and container types
-errno       – system error codes
-gc          – control the garbage collector
-gzip        – gzip compression &amp; decompression
-hashlib     – hashing algorithms
-heapq       – heap queue algorithm
-io          – input/output streams
-json        – JSON encoding and decoding
-marshal     – Python object serialization
-math        – mathematical functions
-os          – basic “operating system” services
-platform    – access to underlying platform’s identifying data
-random      – generate random numbers
-re          – simple regular expressions
-select      – wait for events on a set of streams
-socket      – socket module
-ssl         – SSL/TLS module
-struct      – pack and unpack primitive data types
-sys         – system specific functions
-time        – time related functions
-zlib        – zlib compression &amp; decompression
-_thread     – multithreading support
+<p><em>MicroPython</em> obsahuje štandardné moduly <em>Python-u</em>, tieto ale nemusia obsahovať kompletnú funkcionalitu modulu.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>array               - arrays of numeric data
+asyncio            - asynchronous I/O scheduler
+binascii           – binary/ASCII conversions
+builtins           – builtin functions and exceptions
+cmath              – mathematical functions for complex numbers
+collections        – collection and container types
+errno              – system error codes
+gc                 – control the garbage collector
+gzip               – gzip compression &amp; decompression
+hashlib            – hashing algorithms
+heapq              – heap queue algorithm
+io                 – input/output streams
+json               – JSON encoding and decoding
+marshal            – Python object serialization
+math               – mathematical functions
+os                 – basic “operating system” services
+platform           – access to underlying platform’s identifying data
+random             – generate random numbers
+re                 – simple regular expressions
+select             – wait for events on a set of streams
+socket             – socket module
+ssl                – SSL/TLS module
+struct             – pack and unpack primitive data types
+sys                – system specific functions
+time               – time related functions
+zlib               – zlib compression &amp; decompression
+_thread            – multithreading support
 </pre></div>
 </div>
 </section>
-<section id="pyb">
-<h2><font color='#547792'> pyb  </font><a class="headerlink" href="#pyb" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class Accel – accelerometer control
-class ADC   – analog to digital conversion
-class CAN   – controller area network communication bus
-class DAC   – digital to analog conversion
-class ExtInt– configure I/O pins to interrupt on external events
-class Flash – access to built-in flash storage
-class I2C   – a two-wire serial protocol
-class LCD   – LCD control for the LCD touch-sensor pyskin
-class LED   – LED object
-class Pin   – control I/O pins
-class PinAF – Pin Alternate Functions
-class RTC   – real time clock
-class Servo – 3-wire hobby servo driver
-class SPI   – a controller-driven serial protocol
-class Switch – switch object
-class Timer – control internal timers
-class TimerChannel — setup a channel for a timer
-class UART   – duplex serial communication bus
-class USB_HID – USB Human Interface Device (HID)
-class USB_VCP – USB virtual comm port
+<section id="modul-machine">
+<h2><font color='#547792'> Modul machine </font><a class="headerlink" href="#modul-machine" title="Link to this heading">#</a></h2>
+<p>Modul <em>machine</em> je určený pre všeobecnú obsluhu periférií mikrokontrolérov. Programy využívajúce tento modul sú väčšinou prenositeľné medzi zariadeniami s ekvivalentnými perifériami, z dôvodu univerzálnosti ale nevyužíva všetky vlastnosti periférií.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class Pin          – control I/O pins
+class Signal       – control and sense external I/O devices
+class ADC          – analog to digital conversion
+class ADCBlock     – control ADC peripherals
+class DAC          – digital to analog conversion
+class PWM          – pulse width modulation
+class UART         – duplex serial communication bus
+class SPI          – a Serial Peripheral Interface bus protocol (controller side)
+class I2C          – a two-wire serial protocol
+class I2CTarget    – an I2C target device
+class I2S          – Inter-IC Sound bus protocol
+class RTC          – real time clock
+class Timer        – control hardware timers
+class Counter      – pulse counter
+class Encoder      – quadrature decoding
+class WDT          – watchdog timer
+class SD           – secure digital memory card (cc3200 port only)
+class SDCard       – secure digital memory card
+class USBDevice    – USB Device driver
 </pre></div>
 </div>
 </section>
-<section id="machine">
-<h2></font> machine </font><a class="headerlink" href="#machine" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class Pin – control I/O pins
-class Signal – control and sense external I/O devices
-class ADC – analog to digital conversion
-class ADCBlock – control ADC peripherals
-class DAC – digital to analog conversion
-class PWM – pulse width modulation
-class UART – duplex serial communication bus
-class SPI – a Serial Peripheral Interface bus protocol (controller side)
-class I2C – a two-wire serial protocol
-class I2CTarget – an I2C target device
-class I2S – Inter-IC Sound bus protocol
-class RTC – real time clock
-class Timer – control hardware timers
-class Counter – pulse counter
-class Encoder – quadrature decoding
-class WDT – watchdog timer
-class SD – secure digital memory card (cc3200 port only)
-class SDCard – secure digital memory card
-class USBDevice – USB Device driver
+<section id="modul-pyb">
+<h2><font color='#547792'> Modul pyb  </font><a class="headerlink" href="#modul-pyb" title="Link to this heading">#</a></h2>
+<p>Modul <em>pyb</em> je určený pre zariadenia s mikrokontrolérom STM32 (pyboard, NUCLEO …). Obsahuje rozšírenú obsluhu niektorých periférnych zariadení špecifických pre platformu STM32.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class Accel        – accelerometer control
+class ADC          – analog to digital conversion
+class CAN          – controller area network communication bus
+class DAC          – digital to analog conversion
+class ExtInt       – configure I/O pins to interrupt on external events
+class Flash        – access to built-in flash storage
+class I2C          – a two-wire serial protocol
+class LCD          – LCD control for the LCD touch-sensor pyskin
+class LED          – LED object
+class Pin          – control I/O pins
+class PinAF        – Pin Alternate Functions
+class RTC          – real time clock
+class Servo        – 3-wire hobby servo driver
+class SPI          – a controller-driven serial protocol
+class Switch       – switch object
+class Timer        – control internal timers
+class TimerChannel -setup a channel for a timer
+class UART         – duplex serial communication bus
+class USB_HID      – USB Human Interface Device (HID)
+class USB_VCP      – USB virtual comm port
 </pre></div>
 </div>
 </section>
@@ -530,8 +540,8 @@ class USBDevice – USB Device driver
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardne-moduly"><font color="#547792"> Štandardné moduly </font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyb"><font color="#547792"> pyb  </font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine"> machine </a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modul-machine"><font color="#547792"> Modul machine </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modul-pyb"><font color="#547792"> Modul pyb  </font></a></li>
 </ul>
   </nav></div>
 

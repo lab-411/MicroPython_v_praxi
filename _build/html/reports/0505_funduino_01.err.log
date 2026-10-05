@@ -1,0 +1,132 @@
+Traceback (most recent call last):
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from src.utils import *
+
+data = r'''
+cct_init
+log_init
+
+l=elen_
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+#-----------------------------------------------------------------------
+# single_button_h(d, ON | OFF) - horizontalne tlacitko
+#-----------------------------------------------------------------------
+define(`single_button_h',`[
+
+    B: box ht 1 wid $1 invis;            # neviditelny  box
+    rr = 0.15;
+    p = 1.5; 
+
+    C1: circle diameter rr at  B.c + (rr/2 - p/4, 0); #  fill 0;
+    C2: circle diameter rr at  B.c + (-rr/2 + p/4, 0); # fill 0;
+    line from C1.w to B.w
+    line from C2.e to B.e
+    ifinstr($2,OFF,
+        {
+            line from C1.c + (-0.05, p/8) to C2.c + (0.05, p/8);
+            Q: 0.5 between C1.c+(0, p/8) and C2.c+(0, p/8);
+            box wid 0.2 ht 0.08 at  Q+(0, 0.08/2) fill 0;
+        },
+        {
+            line from C1.c + (-0.05, rr/2) to C2.c + (0.05, rr/2);
+            Q: 0.5 between C1.c+(0, rr/2) and C2.c+(0, rr/2);
+            box wid 0.2 ht 0.08 at  Q+(0, 0.08/2) fill 0; 
+        }
+    );
+]')
+
+command"\sf"
+    right_;
+S1: single_button_h(1.5, OFF); 
+    {"S1" at S1.s above;} 
+    line right_ 0.5; D1: dot; {line right_ 3; T1: tbox(\sf A1, 1.5); }
+R1: resistor(up_ 1.5, E); rlabel(,\sf 10k,);  
+
+S2: single_button_h(1.5, OFF) at S1+(0, -1.2);  "S2" at S2.s above; 
+    line from S2.e to  (R1.start, S2.e) + (1,0); dot; {line right_ to (T1.w, Here); T2: tbox(\sf A2, 1.5); }
+    line to (Here, R1.start);
+R2: resistor(up_ 1.5, E); rlabel(,\sf 10k,);
+DT: dot;
+
+S3: single_button_h(1.5, OFF) at S2+(0, -1.2); {"S3" at S3.s above; }
+    line from S3.e to  (R2.start, S3.e) + (1,0); dot; {line right_ to (T1.w, Here); T3: tbox(\sf A3, 1.5); }
+    line to (Here, R1.start); 
+    R3: resistor(up_ 1.5, E); rlabel(,\sf 10k,);
+    
+    line from DT to R1.end;
+    line from DT to R3.end;
+    H1: Header(2,1,,,) with .P1 at DT;{ "J2" at H1.e ljust;}
+    power(0.5, +5V)
+
+    right_;
+RR: single_button_h(1.5, OFF) at S3+(0, -1.2); {"RESET" at RR.s above; }
+    {line right_ to (T1.w, Here); T4: tbox(\sf RESET,1.5); }
+
+    line from S1.w left_ 0.25;
+    line to (Here, S2.w); dot; {line to S2.w; }
+    line to (Here, S3.w); dot; {line to S3.w; }
+    line to (Here, RR.w); dot; {line to RR.w; }
+    line down_ 0.5;
+    gnd();
+'''
+
+_ = cm_compile('img_0505z', data,  dpi=600)   
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 75[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01msrc[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m      3[39m data = [33mr[39m[33m'''[39m
+[32m      4[39m [33mcct_init[39m
+[32m      5[39m [33mlog_init[39m
+[32m   (...)[39m[32m     72[39m [33m    gnd();[39m
+[32m     73[39m [33m'''[39m
+[32m---> [39m[32m75[39m _ = [43mcm_compile[49m[43m([49m[33;43m'[39;49m[33;43mimg_0505z[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m  [49m[43mdpi[49m[43m=[49m[32;43m600[39;49m[43m)[49m   
+
+[36mFile [39m[32m~/asustorCloud/Share-Projekty/0010_MicroPython/micropython_book/src/utils.py:47[39m, in [36mcm_compile[39m[34m(file_name, cm_data, dpi, path)[39m
+[32m     40[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcm_compile[39m(file_name, cm_data=[33m'[39m[33m'[39m, dpi=[32m300[39m, path=[33m'[39m[33m./src[39m[33m'[39m):
+[32m     41[39m [38;5;250m    [39m[33;03m'''[39;00m
+[32m     42[39m [33;03m    Konverzia textoveho retazcu s CircuitMacros na obrazok PNG.[39;00m
+[32m     43[39m 
+[32m     44[39m [33;03m    path - cesta od zdrojoveho kodu obrazkov ku knizniciam ./cm[39;00m
+[32m     45[39m [33;03m    '''[39;00m
+[32m---> [39m[32m47[39m     [43mos[49m[43m.[49m[43mchdir[49m[43m([49m[43mpath[49m[43m)[49m
+[32m     49[39m     fp = [38;5;28mopen[39m( file_name + [33m'[39m[33m.ckt[39m[33m'[39m, [33m'[39m[33mw[39m[33m'[39m); 
+[32m     50[39m     fp.write(cm_start + cm_data + cm_end);
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: './src'
+

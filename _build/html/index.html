@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MicroPython v praxi &#8212; Micro_Python  documentation</title>
+    <title>MicroPython na STM32 &#8212; Micro_Python  documentation</title>
   
   
   
@@ -160,7 +160,8 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0010_uvod.html"><font color="#4B9DA9"> MicroPython  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Ako na to  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color="#4B9DA9"> Inštalácia  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0014_pouzitie.html"><font color="#4B9DA9"> Použitie  </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Elektronika</span></p>
 <ul class="nav bd-sidenav">
@@ -214,14 +215,20 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0300_timer.html">TIMER</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color="#4B9DA9">  LED WS2812-64 </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_displej/0500_led_matrix.html"><font color="#4B9DA9"> LED modul WS2812 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Senzory</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html"><font color="#4B9DA9"> MEMS Senzory </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color="#4B9DA9">  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color="#4B9DA9">  Modul Funduino 2.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0590_prototyp.html">Prototypy obvodov</a></li>
@@ -374,7 +381,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><center> <font color='navy'>  <b> MicroPython v praxi </b> </font> </center></h1>
+    <h1><center> <font color='navy'>  <b> MicroPython na STM32 </b> </font> </center></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,11 +391,23 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peter-fabo"><center> <font color="brown"> <b> Peter Fabo </b> </font> </center></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-411-production"><center> <font color="brown"> <b> LAB - 411 Production </b> </font> </center></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verzia-0-22-oktober-2026"><center> <font color="brown"> <b> Verzia 0.22, Október 2026 </b> </font> </center></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obsah">Obsah</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vydal-published-by"><font color="teal"> Vydal / Published by </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citovanie-how-to-cite"><font color="brown"> Citovanie / How to cite</font></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#licencie">Licencie</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#micropython-license-information">MicroPython license information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publikacia"><font color="brown"> Publikácia </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#micropython-license-information"><font color="brown"> MicroPython license information </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preklady-translations"><font color="brown"> Preklady / Translations </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pouzite-programove-vybavenie-software"><font color="brown"> Použité programové vybavenie / Software </font></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#titulny-obrazok"><font color="teal"> Titulný obrázok </font></a></li>
@@ -403,19 +422,21 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="micropython-v-praxi">
-<h1><center> <font color='navy'>  <b> MicroPython v praxi </b> </font> </center><a class="headerlink" href="#micropython-v-praxi" title="Link to this heading">#</a></h1>
-<center> 
-<h3> <font color='brown'>  <b> Peter Fabo </b> </font> </h3>
-</center> 
+  <section class="tex2jax_ignore mathjax_ignore" id="micropython-na-stm32">
+<h1><center> <font color='navy'>  <b> MicroPython na STM32 </b> </font> </center><a class="headerlink" href="#micropython-na-stm32" title="Link to this heading">#</a></h1>
+<section id="peter-fabo">
+<h2><center> <font color='brown'>  <b> Peter Fabo </b> </font>  </center><a class="headerlink" href="#peter-fabo" title="Link to this heading">#</a></h2>
 <figure class="align-default" id="mp-0001">
 <a class="reference internal image-reference" href="_images/logo.png"><img alt="_images/logo.png" src="_images/logo.png" style="width: 400px;" />
 </a>
 </figure>
-<center> 
-<h3> <font color='brown'>  <b> LAB - 411 Production </b> </font>      </h3>
-<h3> <font color='brown'>  <b> Verzia 0.21, Júl 2026 </b> </font>   </h3>
-</center> 
+<section id="lab-411-production">
+<h3><center> <font color='brown'>  <b> LAB - 411 Production </b> </font>  </center><a class="headerlink" href="#lab-411-production" title="Link to this heading">#</a></h3>
+</section>
+<section id="verzia-0-22-oktober-2026">
+<h3><center> <font color='brown'>  <b> Verzia 0.22, Október 2026 </b> </font>  </center><a class="headerlink" href="#verzia-0-22-oktober-2026" title="Link to this heading">#</a></h3>
+</section>
+</section>
 <hr class="docutils" />
 <section id="obsah">
 <h2>Obsah<a class="headerlink" href="#obsah" title="Link to this heading">#</a></h2>
@@ -423,7 +444,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="0010_uvod.html"><font color='#4B9DA9'> MicroPython  </font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color='#4B9DA9'> Ako na to  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0012_zaciname.html"><font color='#4B9DA9'> Inštalácia  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="0014_pouzitie.html"><font color='#4B9DA9'> Použitie  </font></a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -489,14 +511,24 @@
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Príklady</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="0500_led_matrix.html"><font color='#4B9DA9'>  LED WS2812-64 </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_displej/0500_led_matrix.html"><font color='#4B9DA9'> LED modul WS2812 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color='#4B9DA9'>  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color='#4B9DA9'>  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color='#4B9DA9'> LCD Display PCF8547T </font></a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Senzory</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="0156_i2c_lm92.html"><font color='#4B9DA9'> Teplomer LM92 </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0160_i2c_mems.html"><font color='#4B9DA9'> MEMS Senzory </font></a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="0505_funduino_01.html"><font color='#4B9DA9'>  Modul Funduino 1.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0510_funduino_02.html"><font color='#4B9DA9'>  Modul Funduino 2.0  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0590_prototyp.html">Prototypy obvodov</a></li>
@@ -521,10 +553,47 @@
 </ul>
 </div>
 </section>
+<section id="vydal-published-by">
+<h2><font color='teal'> Vydal / Published by </font><a class="headerlink" href="#vydal-published-by" title="Link to this heading">#</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Vydalo v roku 2026 
+
+LAB - 411 Production
+Trenčín
+Slovensko
+</pre></div>
+</div>
+<section id="citovanie-how-to-cite">
+<h3><font color='brown'> Citovanie / How to cite</font><a class="headerlink" href="#citovanie-how-to-cite" title="Link to this heading">#</a></h3>
+</section>
+</section>
 <section id="licencie">
 <h2>Licencie<a class="headerlink" href="#licencie" title="Link to this heading">#</a></h2>
+<section id="publikacia">
+<h3><font color='brown'> Publikácia </font><a class="headerlink" href="#publikacia" title="Link to this heading">#</a></h3>
+<p>Publikácia <strong>MicroPython na STM32</strong> je vydaná pod licenciou MIT</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Copyright © 2026 LAB-411 Team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the “Software”), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is furnished 
+to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR 
+A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></div>
+</div>
+</section>
 <section id="micropython-license-information">
-<h3>MicroPython license information<a class="headerlink" href="#micropython-license-information" title="Link to this heading">#</a></h3>
+<h3><font color='brown'> MicroPython license information </font><a class="headerlink" href="#micropython-license-information" title="Link to this heading">#</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The MIT License (MIT)
 
 Copyright (c) 2013-2017 Damien P. George, and others
@@ -545,6 +614,56 @@ PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE 
 OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></div>
+</div>
+</section>
+<section id="preklady-translations">
+<h3><font color='brown'> Preklady / Translations </font><a class="headerlink" href="#preklady-translations" title="Link to this heading">#</a></h3>
+<p>Preklady do iných jazykov sú možné v zmysle licencie MIT uvedenej nižšie. V zmysle nariadenia Európskeho parlamentu a Rady (EÚ) 2024/1689 z 13. júna 2024 autori tohoto diela <strong>nepovolujú</strong> využitie tohoto diela a ani jeho častí pre použitie v oblasti umelej inteligenice žiadnym aktuálnym ako aj budúcim spôsobom.</p>
+<p>Translations into other languages ​​are possible under the terms of the MIT license listed below. In accordance with Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024, the authors of this work <strong>do not</strong> authorize the use of this work or any part of it for use in the field of artificial intelligence in any current or future manner.</p>
+</section>
+<section id="pouzite-programove-vybavenie-software">
+<h3><font color='brown'> Použité programové vybavenie / Software </font><a class="headerlink" href="#pouzite-programove-vybavenie-software" title="Link to this heading">#</a></h3>
+<p>Publikované na platforme <em>Sphinx</em> s využitím jazyka <em>MyST Markdown</em>, prostredia <em>CircuitMacros</em> a programovacieho jazyka <em>Python</em> v znení licencií uvedených nižšie.</p>
+<p>Published on the <em>Sphinx</em> platform using the <em>MyST Markdown</em> language, the <em>CircuitMacros</em> environment, and the <em>Python</em> programming language under the terms of the licenses listed below.</p>
+<p>Licencia k distribúcii programu <strong>CircuitMacros</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Circuit_macros Version 10.9, copyright (c) 2025 J. D. Aplevich under     *
+* the LaTeX Project Public Licence in file Licence.txt. The files of       *
+* this distribution may be redistributed or modified provided that this    *
+* copyright notice is included and provided that modifications are clearly *
+* marked to distinguish them from this distribution.  There is no warranty *
+* whatsoever for these files.
+</pre></div>
+</div>
+<p>Licencia k distribúcii programu <strong>Sphinx</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Copyright (c) 2007-2025 by the Sphinx team (see AUTHORS file). All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice, this list 
+    of conditions and the following disclaimer.
+    Redistributions in binary form must reproduce the above copyright notice, this list 
+    of conditions and the following disclaimer in the documentation and/or other 
+    materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY 
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
+THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre></div>
+</div>
+<p>Citácia <strong>MyST Markdown</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Rowan Cockett, Franklin Koch, Steve Purves, Angus Hollands, Yuxi Wang, Chris Holdgraf, 
+Dylan Grandmont, Stefan van der Walt, Andrea, Jan-Hendrik Müller, Spencer Lyon, 
+Cristian Le, Jim Madge, Thierry Parmentelat, wwx, Sugan Reden, Yuanhao Geng, Ryan Lovett, 
+Mikkel Roald-Arbøl,Nicolas M. Thiéry. 
+(2025). jupyter-book/mystmd: mystmd@1.6.0. Zenodo. 10.5281/ZENODO.14805610
 </pre></div>
 </div>
 </section>
@@ -595,11 +714,23 @@ OR OTHER DEALINGS IN THE SOFTWARE.
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peter-fabo"><center> <font color="brown"> <b> Peter Fabo </b> </font> </center></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-411-production"><center> <font color="brown"> <b> LAB - 411 Production </b> </font> </center></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verzia-0-22-oktober-2026"><center> <font color="brown"> <b> Verzia 0.22, Október 2026 </b> </font> </center></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obsah">Obsah</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vydal-published-by"><font color="teal"> Vydal / Published by </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citovanie-how-to-cite"><font color="brown"> Citovanie / How to cite</font></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#licencie">Licencie</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#micropython-license-information">MicroPython license information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publikacia"><font color="brown"> Publikácia </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#micropython-license-information"><font color="brown"> MicroPython license information </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preklady-translations"><font color="brown"> Preklady / Translations </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pouzite-programove-vybavenie-software"><font color="brown"> Použité programové vybavenie / Software </font></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#titulny-obrazok"><font color="teal"> Titulný obrázok </font></a></li>

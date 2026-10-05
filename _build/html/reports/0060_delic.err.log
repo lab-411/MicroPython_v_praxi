@@ -1,0 +1,108 @@
+Traceback (most recent call last):
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+define(`source_DC',`[
+    S: source($1,); rarrow($2, ->, 0.2);
+    dx = 0.2;
+    dy = 0.05;
+    line from S.c-(dx, -dy) to S.c+(dx, dy);
+    line from S.c-(dx, dy) to S.c+(dx, -dy);
+    N: S.n;
+    S: S.s;
+    C: S.c;
+]')
+
+
+Origin: Here 
+
+d = 1.5;
+move to (3.5, 2.5);
+
+D1: dot
+line -> from D1 left d/2; {"\textit{$i_1$}" at last line.end above}
+line left d/4; 
+R1: resistor(down_ d,,E); llabel(,R_1,);
+
+line -> from D1 right d/2; {"\textit{$i_2$}" at last line.end above}
+line right d/4; 
+R2: resistor(down_ d,,E); rlabel(,R_2,);
+
+line from R1.end right (d/2+d/4); 
+D2: dot;
+line to R2.end;
+
+move to R1.centre - (d, -d/2);
+S: source(down_ d, I);
+line from S.start up_ d/2; 
+line -> right d; {"\textit{$i$}" at last line.end above}
+line to (D1.x, Here.y) to D1
+
+line from S.end down_ d/2; 
+line right d;
+line to (D2.x, Here.y) to D2
+
+line -> from D1 -(0, 0.2) to D2 + (0, 0.2); {"\textit{$u$}" at last line.c ljust}
+'''
+
+_ = cm_compile('img_0076k', data,  dpi=600)   
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 51[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01msrc[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m      3[39m data = [33mr[39m[33m'''[39m
+[32m      4[39m [33minclude(lib_base.ckt)[39m
+[32m      5[39m [33minclude(lib_stm32.ckt)[39m
+[32m   (...)[39m[32m     48[39m [33mline -> from D1 -(0, 0.2) to D2 + (0, 0.2); [39m[33m{[39m[33m"[39m[33m\[39m[33mtextit[39m[33m{[39m[33m$u$}[39m[33m"[39m[33m at last line.c ljust}[39m
+[32m     49[39m [33m'''[39m
+[32m---> [39m[32m51[39m _ = [43mcm_compile[49m[43m([49m[33;43m'[39;49m[33;43mimg_0076k[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m  [49m[43mdpi[49m[43m=[49m[32;43m600[39;49m[43m)[49m   
+
+[36mFile [39m[32m~/asustorCloud/Share-Projekty/0010_MicroPython/micropython_book/src/utils.py:47[39m, in [36mcm_compile[39m[34m(file_name, cm_data, dpi, path)[39m
+[32m     40[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcm_compile[39m(file_name, cm_data=[33m'[39m[33m'[39m, dpi=[32m300[39m, path=[33m'[39m[33m./src[39m[33m'[39m):
+[32m     41[39m [38;5;250m    [39m[33;03m'''[39;00m
+[32m     42[39m [33;03m    Konverzia textoveho retazcu s CircuitMacros na obrazok PNG.[39;00m
+[32m     43[39m 
+[32m     44[39m [33;03m    path - cesta od zdrojoveho kodu obrazkov ku knizniciam ./cm[39;00m
+[32m     45[39m [33;03m    '''[39;00m
+[32m---> [39m[32m47[39m     [43mos[49m[43m.[49m[43mchdir[49m[43m([49m[43mpath[49m[43m)[49m
+[32m     49[39m     fp = [38;5;28mopen[39m( file_name + [33m'[39m[33m.ckt[39m[33m'[39m, [33m'[39m[33mw[39m[33m'[39m); 
+[32m     50[39m     fp.write(cm_start + cm_data + cm_end);
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: './src'
+

@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/pf/.local/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from src.utils import *
+
+data = r'''
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+line right_ 1.4 ; r_current(I_1, above, 0.5)
+dot;
+{ line right_ 1 up_ 1 ; r_current(I_2, above rjust, 0.5); }
+{ line right_ 1 down_ 1 ; r_current(I_3, below rjust, 0.5); }
+'''
+
+_ = cm_compile('img_0251d', data,  dpi=600)   
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 14[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01msrc[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m      3[39m data = [33mr[39m[33m'''[39m
+[32m      4[39m [33minclude(lib_base.ckt)[39m
+[32m      5[39m [33minclude(lib_stm32.ckt)[39m
+[32m   (...)[39m[32m     11[39m [33m{[39m[33m line right_ 1 down_ 1 ; r_current(I_3, below rjust, 0.5); }[39m
+[32m     12[39m [33m'''[39m
+[32m---> [39m[32m14[39m _ = [43mcm_compile[49m[43m([49m[33;43m'[39;49m[33;43mimg_0251d[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m  [49m[43mdpi[49m[43m=[49m[32;43m600[39;49m[43m)[49m   
+
+[36mFile [39m[32m~/asustorCloud/Share-Projekty/0010_MicroPython/micropython_book/src/utils.py:47[39m, in [36mcm_compile[39m[34m(file_name, cm_data, dpi, path)[39m
+[32m     40[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcm_compile[39m(file_name, cm_data=[33m'[39m[33m'[39m, dpi=[32m300[39m, path=[33m'[39m[33m./src[39m[33m'[39m):
+[32m     41[39m [38;5;250m    [39m[33;03m'''[39;00m
+[32m     42[39m [33;03m    Konverzia textoveho retazcu s CircuitMacros na obrazok PNG.[39;00m
+[32m     43[39m 
+[32m     44[39m [33;03m    path - cesta od zdrojoveho kodu obrazkov ku knizniciam ./cm[39;00m
+[32m     45[39m [33;03m    '''[39;00m
+[32m---> [39m[32m47[39m     [43mos[49m[43m.[49m[43mchdir[49m[43m([49m[43mpath[49m[43m)[49m
+[32m     49[39m     fp = [38;5;28mopen[39m( file_name + [33m'[39m[33m.ckt[39m[33m'[39m, [33m'[39m[33mw[39m[33m'[39m); 
+[32m     50[39m     fp.write(cm_start + cm_data + cm_end);
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: './src'
+

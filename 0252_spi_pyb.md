@@ -60,7 +60,7 @@ Knižnica *pyb* obsahuje pre obsluhu sériového rozhrania triedu [SPI](https://
 
 ```{admonition} Poznámka
 
-Rozhranie SPI1 na doske NUCLE-64 nie je štandardne pripojené ku pinom konektora Arduino-UNO.   
+Rozhranie SPI1 na doske NUCLEO-64 nie je štandardne pripojené ku pinom konektora Arduino-UNO.   
 Pomocou funkcie alternatívnych pinov možeme pripojenie rozhrania rekonfigurovať.
 
     >>> p=Pin('PA7')
