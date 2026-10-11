@@ -19,11 +19,20 @@ kernelspec:
 % {dropdown} <font color='#84B179'> Text </font>
 
 
+%#   <font color='#4B9DA9'>  Nazov </font>
+%##  <font color='#547792'> Popis </font>
+%##  <font color='#547792'> Zapojenie </font>
+%##  <font color='#547792'> Programovanie </font>
+%### <font color='#E37434'> Knižnica </font>
+%### <font color='#E37434'> API </font>
+%### <font color='#E37434'> Príklady </font>
+
+
 #  <font color='#4B9DA9'> LED modul WS2812 </font>
 
 ##  <font color='#547792'> Popis </font>
 
-Modul obsahuje 64 farebných LED usporiadaných do matice v sériovom zapojení. Každá LED obsahuje obvod [WS2812](../doc/WS2812B.pdf),
+Modul obsahuje 64 farebných LED usporiadaných do matice v sériovom zapojení. Každá LED obsahuje obvod [WS2812](./doc/WS2812B.pdf),
 informácia o intenzite svetla farby každej LED na module sa riadi prostredníctvom dátového paketu, v ktorom sú usporiadané trojice 8-bitových dát (GRB). Pri príjme paketu dáta prechádzajú postupne LED diódami, pričom každá LED dióda prvú trojicu prijatých dát použíje na nastavenie farebných zložiek a zbytok paketu odošle nasledujúcej LED dióde. 
 Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jeden pre pripojenie napájania a vstupu dát, druhý pre propojenie nasledujúceho modulu. 
 
@@ -386,7 +395,7 @@ t_{64} &= 64 \cdot t_1 = 64 \cdot 24 = 1536 \mu s = 1.536 ms\\
 
 Knižnica pre riadenie LED matice je implementovaná v triede WS2812:
 
-    Konštruktor:
+**Konštruktor**
     
     WS2812(spi_bus, led_count, intensity)
     
@@ -394,12 +403,13 @@ Knižnica pre riadenie LED matice je implementovaná v triede WS2812:
         led_count       - počet LED modulu
         intensity       - jas modulu 0..1
     
-    Metódy:
+**Metódy**
     
-    show(data)
+    show(data, intensity)
     
         data            - pole hodnôt GRB pre LED v tvare 
                           [(g1,r1,b1), (g2,r2,b2), ... ]
+        intensity       - jas modulu 0..1
 
 
 %--------------------------------------------------------------------
@@ -407,85 +417,63 @@ Knižnica pre riadenie LED matice je implementovaná v triede WS2812:
 ### <font color='#E37434'> Príklady </font> 
 
     
-:::{dropdown} <font color='#84B179'> Príklad 1. Riadenie farieb LED matice </font>
-    
-Inicializácia rozhrania a dáta pre rozsvietenie LED matice
+````{dropdown} <font color='#84B179'> Demo 1. </font>
 
-```Python3
+```{figure}  ./img/ws2512_editor.png
+:width: 650px
+:name: mp_0500f
+
+Online [editor](https://yomotherboard.com/ws2812-pattern-editor/) dát pre LED maticu. 
+```
+Zobrazenie dat vytvorených editorom.
+
+```{code-block} Python3
 from lib_ws2812 import *
 matrix = WS2812(spi_bus=1, led_count=64)
 
 data = [
-    (24, 0, 24), ( 0, 24, 0),  ( 0,  0, 24), (12, 12, 0), 
-    (0, 12, 12), (12,  0, 12), (24,  0,  0), (21,  3, 0),
-    (18, 6,  0), (15,  9, 0),  (12, 12,  0), ( 9, 15, 0),
-    (6, 18,  0), ( 3, 21, 0),  ( 0, 24,  0), ( 8, 8,  8)
+    (  0, 0,   0), (  0, 0,   0), (255, 0, 255), (255, 0, 255), (255, 0, 255), (255, 0, 255), (  0, 0,   0), (  0, 0,   0),
+    (255, 0, 255), (255, 0, 255), (255, 0,   0), (255, 0, 255), (255, 0, 255), (255,   0, 0), (255, 0, 255), (255, 0, 255), 
+    (255, 0, 255), (255, 0, 255), (255, 120, 0), (255, 255, 0), (255, 255, 0), (255, 120, 0), (255, 0, 255), (255, 0, 255), 
+    (255, 0, 255), (255, 0, 255), (255,   0, 0), (255, 0, 255), (255, 0, 255), (255,   0, 0), (255, 0, 255), (255, 0, 255), 
+    (  0, 0,   0), (  0, 0,   0), (255, 0, 255), (255, 0, 255), (255, 0, 255), (255, 0, 255), (  0, 0,   0), (  0, 0,   0), 
+    (  0, 0,   0), (  0, 0,   0), (  0, 0,   0), (  0, 0,   0), (  0, 255, 0), (  0, 0,   0), (  0, 0,   0), (  0, 0,   0), 
+    (  0, 0,   0), (  0, 255, 0), (  0, 255, 0), (  0, 0,   0), (  0, 255, 0), (  0, 0,   0), (  0, 255, 0), (  0, 0,   0), 
+    (  0, 0,   0), (  0, 0,   0), (  0, 255, 0), (  0, 255, 0), (  0, 255, 0), (  0, 255, 0), (  0, 0,   0), (  0, 0,   0)
 ]
 
-matrix.show(data)   # rozsvieti 16 LED  
-
-data=data*4
-matrix.show(data) # rozsvieti 64 LED
+matrix.show(data, 0.25)   # zobrazenie matice
+matrix.show([])           # zhasnutie matice
 ```    
-
-Opakovaná inicializácia knižnice zhasne LED.
-:::
+````
 
 %--------------------------------------------------------------------
 
-:::{dropdown} <font color='#84B179'> Príklad 2. Náhodné farby  </font>
+````{dropdown} <font color='#84B179'> Demo 2. </font>
 
+Demonštrácia vlastností LED matice je v súbore [demo_ws2812.py](./lib/demo_ws2812.py). Dáta pre zobrazenie sú inicializované pomocou generátorov.
 
-```Python3
-import math
-
-from lib_ws2812 import *
-matrix = WS2812(spi_bus=1, led_count=64)
-
-def data_generator(led_count):
-    data = [(0, 0, 0) for i in range(led_count)]
-    step = 0
-    while True:
-        red = int((1 + math.sin(step * 0.1324)) * 127)
-        green = int((1 + math.sin(step * 0.1654)) * 127)
-        blue = int((1 + math.sin(step * 0.1)) * 127)
-        data[step % led_count] = (red, green, blue)
-        yield data
-        step += 1
-
-for data in data_generator(matrix.led_count):
-    matrix.show(data)
-    pyb.delay(10)
-```
-:::
-
-%--------------------------------------------------------------------
-
-:::{dropdown} <font color='#84B179'> Príklad 3. Demonštračný program    </font>
-
-Demonštrácia vlastností LED matice je v súbore [demo_ws2812.py](./lib/demo_ws2812.py).
-
-```Python3
+```{code-block} Python3
 import math
 from lib_ws2812 import *
 from demo_ws2812 import *
 matrix = WS2812(spi_bus=1, led_count=64, intensity=0.05)
 
-while(True):
-  anim_1 = animation_1(matrix.led_count)
-  for i in range(240):
-    matrix.show(next(anim_1))
-      
-  anim_2 = animation_2(matrix.led_count)
-  for i in range(240):
-    matrix.show(next(anim_2))
-      
-  anim_3 = animation_3(matrix.led_count)
-  for i in range(240):
-    matrix.show(next(anim_3))
-```
+anim_1 = animation_1(matrix.led_count)
+for i in range(240):
+    matrix.show(next(anim_1), 0.05)
 
-:::
+anim_2 = animation_2(matrix.led_count)
+for i in range(240):
+    matrix.show(next(anim_2), 0.05)
+
+anim_3 = animation_3(matrix.led_count)
+for i in range(240):
+    matrix.show(next(anim_3), 0.05)
+
+matrix.show([])
+```
+````
 
 %Nahrati knižnice a demo programu do MicroPython
 %

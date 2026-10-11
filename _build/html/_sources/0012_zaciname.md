@@ -21,15 +21,19 @@ kernelspec:
 
 MicroPython je zjednodušený interpreter programovacieho jazyka *Python* upravený pre použitie v mikrokontroléri. Interpreter je doplnený modulmi, ktoré umožňujú prácu s perifériami implementovanými v mikrokontroléri, obsah modulov sa líši v závislosti od možností konkrétneho typu mikrokontroléra. Interpreter môžeme využiť v interaktívnom móde alebo ako prostredie pre beh programov: 
 
-* **Interaktívny mód** - Pre zadávanie príkazov interpreteru využijeme štandardný počítač, pomocou ktorého odošleme cez sériové rozhranie príkaz mikrokontroléru, tento príkaz spracuje a odozvu pošle nazad, tento postup je vo všeobecnosti označovaný ako cyklus **REPL** (Read–Eval–Print-Loop). 
+* **Interaktívny mód** - Pre zadávanie príkazov interpreteru využijeme štandardný počítač, z ktorého prostredníctvom vhodného termináloveho programu (*picocom ...*) odošleme cez sériové rozhranie príkaz mikrokontroléru s nainštalovaným *MikroPython-om*. Tento príkaz spracuje a odozvu pošle nazad, tento postup je vo všeobecnosti označovaný ako cyklus **REPL** (Read–Eval–Print-Loop). 
 
-* **Behové prostredie** - do mikrokontroléra nahráme program v Pythone, ktorý sa po resete automaticky spustí.
+* **Behové prostredie** - do pamäte mikrokontroléra s nainštalovaným *MikroPython-om* nahráme pomocou podporných programov (*pyboard ...*) program v Pythone, ktorý sa po resete automaticky spustí. 
 
 ##  <font color='#547792'> Postup </font>
 
-* Z www stránok [miropython.org](https://micropython.org/) v sekcii *Download* stiahneme binárny súbor a inštaláciou MikroPythonu pre príslušný mikrokontrolér alebo vývojový kit, pre STM32 sú pripravené binárne súbory pre kity NUCLEO-32, NUCLEO-64 niektoré typy NUCLEO-144.
+### <font color='#E37434'> Štandardná inštalácia </font>
+
+* Z www stránok [miropython.org](https://micropython.org/) v sekcii *Download* stiahneme binárny súbor a inštaláciou MikroPythonu pre príslušný mikrokontrolér alebo vývojový kit, pre STM32 sú pripravené binárne súbory pre kity Nucleo-32, Nucleo-64 niektoré typy Nucleo-144.
 
 * Pomocou štandardných nástrojov, pre STM32 [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html), nahráme do mikrokontroléra stiahnutú inštaláciu Mikropythonu.
+
+* Po resete mikrokontroléra (na kite Nucleo-64 čierne tlačítko) je interpreter MikroPython pripravný a komunikuje cez sériový port s počítačom prostredníctvom vhodnej terminálovej aplikácie 
 
 ```{figure} ./img/cube_programmer.png
 :width: 600px
@@ -38,4 +42,6 @@ MicroPython je zjednodušený interpreter programovacieho jazyka *Python* uprave
 Programátor STM32CubeProgrammer.
 ```
 
-V prípade, že si chceme vytvoriť vlastnú verziu MikroPythonu s upravenými alebo vlastnými modulmi, môžeme si stiahnuť [zdrojové kódy](https://github.com/micropython/micropython) inštalácie MikroPythonu, tieto upraviť a skompilovať do vlastnej inštalácie. Postup kompilácie je uvedený na stránkach projektu.  
+### <font color='#E37434'> Inštalácia zo zdrojového kódu </font>
+
+V prípade, že si chceme vytvoriť vlastnú verziu *MikroPython-u* s upravenými alebo vlastnými modulmi, môžeme si stiahnuť [zdrojové kódy](https://github.com/micropython/micropython) inštalácie MikroPythonu, tieto upraviť a skompilovať do vlastnej inštalácie. Postup kompilácie je uvedený v prílohe a na stránkach projektu.  

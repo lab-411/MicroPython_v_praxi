@@ -22,7 +22,7 @@ DT1: dot; {up_; power(1, +5V);}
 down_; 
 D1: diode(1); rlabel(,\sf D_1,); {em_arrows(N,315,0.45) with .Tail at last [].se; }
 resistor(1,E); llabel(,\sf 1k,);
-line down_ 0.25 then right_ 1; T1: tbox(\sf D13,1,)
+line down_ 0.25 then right_ 1; T1: tbox(\sf D13,1,);
 
 line from DT1 left_ 1.5; DT2: dot;
 down_; 

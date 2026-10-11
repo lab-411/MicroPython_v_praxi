@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Zbernica SPI &#8212; Micro_Python  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_spi/0251_spi_basic';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LED modul WS2812" href="../app_displej/0500_led_matrix.html" />
+    <link rel="prev" title="LED / Tlačítko" href="../dev_gpio/0105_gpio_onboard.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_411.png" class="logo__image only-light" alt="Micro_Python  documentation - Home"/>
+    <img src="../_static/logo_411.png" class="logo__image only-dark pst-js-only" alt="Micro_Python  documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Úvod</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../0010_uvod.html"><font color="#4B9DA9"> MicroPython  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0012_zaciname.html"><font color="#4B9DA9"> Inštalácia  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0014_pouzitie.html"><font color="#4B9DA9"> Použitie  </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dev_gpio/0100_gpio.html">GPIO</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_gpio/0101_gpio_basic.html">Vlastnosti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_gpio/0102_gpio_pyb.html">Knižnica pyb.Pin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_gpio/0105_gpio_onboard.html">LED / Tlačítko</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Zbernica SPI </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../app_displej/0500_led_matrix.html"><font color="#4B9DA9"> LED modul WS2812 </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app_displej/0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app_displej/0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app_displej/0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../app_shield/0505_shield_01.html"><font color="#4B9DA9"> Multifunkčný shied 1.0  </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../app_shield/0506_shield_01_led.html"><font color="#4B9DA9"> LED, Tlačitka a Bzučiak  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_shield/0507_shield_01_display.html"><font color="#4B9DA9"> Display  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_shield/0508_shield_01_konektory.html"><font color="#4B9DA9"> Konektory </font></a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dev_utils/0860_nucleo64.html"><font color="#4B9DA9">  STM32 Nucleo-64 </font></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/dev_spi/0251_spi_basic.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color='#4B9DA9'> Zbernica SPI </font></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casovanie-zbernice"><font color="#E37434">  Časovanie zbernice </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladne-zapojenie"><font color="#E37434"> Základné zapojenie </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie"><font color="#E37434"> Paralelné zapojenie </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retazove-zapojenie"><font color="#E37434"> Reťazové zapojenie </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><font color="#E37434"> API </font></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="zbernica-spi">
+<h1><font color='#4B9DA9'> Zbernica SPI </font><a class="headerlink" href="#zbernica-spi" title="Link to this heading">#</a></h1>
+<section id="popis">
+<h2><font color='#547792'> Popis </font><a class="headerlink" href="#popis" title="Link to this heading">#</a></h2>
+<p><strong>SPI</strong> (Serial Peripheral Interface) je synchrónne sériové rozhranie používané na komunikáciu na krátke vzdialenosti medzi procesorom a periférnymi obvodmi (prevodníky, pamäte, displeje). Vyvinuté bolo na prelome 70. a 80. rokov 20. storočia spoločnosťou Motorola a umožňuje obojsmernú <em>full-duplex</em> komunikáciu na spoločnej zbernici. Podrobný popis rozhrania <em>SPI</em> je uvedený v <a class="reference download internal" download="" href="../_downloads/4f75fc66ae1de74cdf506c8e4d70cc9c/an_1248.pdf"><span class="xref download myst">dokumentácii</span></a>. Výhodou zbernice SPI je možnosť použitia jednoduchých <a class="reference download internal" download="" href="../_downloads/0e84ba40bf64f0daaeea65aac61e80fe/sn74hc595.pdf"><span class="xref download myst">posuvných registrov</span></a> ak periférnych zariadení.</p>
+<p>Zariadenia na zbernici:</p>
+<ul class="simple">
+<li><p><strong>Master</strong></p>
+<ul>
+<li><p>riadi časovanie prenášaných dát generovaním hodinového signálu SCLK (System Clock)</p></li>
+<li><p>určuje, s ktorým zariadením bude komunikácia prebiehať pomocou signálu SS (Slave Select)</p></li>
+<li><p>vysiela dáta pomocou signálu MOSI (Master Out Slave In)</p></li>
+<li><p>prijíma dáta pomocou signálu MISO (Master In Slave Out)</p></li>
+</ul>
+</li>
+<li><p><strong>Slave</strong></p>
+<ul>
+<li><p>ak je aktivovaný pomocou signálu SS, potom prijíma alebo vysiela dáta synchronizované na signál SCLK</p></li>
+</ul>
+</li>
+</ul>
+<section id="casovanie-zbernice">
+<h3><font color='#E37434'>  Časovanie zbernice </font><a class="headerlink" href="#casovanie-zbernice" title="Link to this heading">#</a></h3>
+<p>Konfigurácii parametrov zbernice je určená parametrami CPOL (polarita sgnálov) a CPHA (fáza signálov)</p>
+<ul class="simple">
+<li><p>CPOL - polarita hodinového signálu</p>
+<ul>
+<li><p>CPOL=0 aktívna úroveň signálu je H</p></li>
+<li><p>CPOL=1 aktívna úroveň signálu je L</p></li>
+</ul>
+</li>
+<li><p>CPHA - určuje okamžik zmeny hodnoty dát pri vysielaní</p>
+<ul>
+<li><p>CPHA=0 signál mení hodnotu pri zostupnej hrane a číta sa pri nábežnej hrane hodinového signálu</p></li>
+<li><p>CPHA=1 signál mení hodnotu pri nábežnej hrane a číta sa pri zostupnej hrane hodinového signálu</p></li>
+</ul>
+</li>
+</ul>
+<figure class="align-default" id="img-0250a">
+<a class="reference internal image-reference" href="../_images/spi_timing.png"><img alt="../_images/spi_timing.png" src="../_images/spi_timing.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 11 </span><span class="caption-text">Základné módy časovania zbernice SPI.</span><a class="headerlink" href="#img-0250a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="zapojenie">
+<h2><font color='#547792'> Zapojenie </font><a class="headerlink" href="#zapojenie" title="Link to this heading">#</a></h2>
+<section id="zakladne-zapojenie">
+<h3><font color='#E37434'> Základné zapojenie </font><a class="headerlink" href="#zakladne-zapojenie" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0255x">
+<a class="reference internal image-reference" href="../_images/img_0250e.png"><img alt="../_images/img_0250e.png" src="../_images/img_0250e.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Základné zapojenie zariadení na zbernici <em>SPI</em> (Master-Slave).</span><a class="headerlink" href="#img-0255x" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="paralelne-zapojenie">
+<h3><font color='#E37434'> Paralelné zapojenie </font><a class="headerlink" href="#paralelne-zapojenie" title="Link to this heading">#</a></h3>
+<figure class="align-default" id="img-0255b">
+<a class="reference internal image-reference" href="../_images/img_0250b.png"><img alt="../_images/img_0250b.png" src="../_images/img_0250b.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 13 </span><span class="caption-text">Základné zapojenie zariadení na zbernici <em>SPI</em> (Multi-subnode).</span><a class="headerlink" href="#img-0255b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="retazove-zapojenie">
+<h3><font color='#E37434'> Reťazové zapojenie </font><a class="headerlink" href="#retazove-zapojenie" title="Link to this heading">#</a></h3>
+<p>V niektorých prípadoch môžu byť zariadenia zapojené v konfigurácii reťazového zapojenia (<em>daisy chain</em>), kde je výstup predchádzajúceho <em>Slave</em> zariadenia pripojený na vstup nasledujúceho <em>Slave</em> zariadenia. Výstup posledného <em>Slave</em> zariadenia je pripojený nazad k <em>Master</em> zariadeniu. Posuvné registre jednotlivých zariadení takto tvoria jeden veľký posuvný register, v ktorom sa dáta posúvajú medzi jednotlivými zariadeniami. Táto konfigurácia vyžaduje len jeden signál SS.</p>
+<figure class="align-default" id="img-0255c">
+<a class="reference internal image-reference" href="../_images/img_0250c.png"><img alt="../_images/img_0250c.png" src="../_images/img_0250c.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Reťazenie zariadení na zbernici <em>SPI</em> (Daisy-Chain).</span><a class="headerlink" href="#img-0255c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="programovanie">
+<h2><font color='#547792'> Programovanie </font><a class="headerlink" href="#programovanie" title="Link to this heading">#</a></h2>
+<p>Knižnica <em>pyb</em> obsahuje pre obsluhu sériového rozhrania triedu <a class="reference external" href="https://docs.micropython.org/en/latest/library/pyb.SPI.html">SPI</a>. Signál NSS pre výber periférie <strong>nie</strong> je v knižnici <em>pyb.SPI</em> použitý, je potrebné ho ovládať samostatne prostredníctvom triedy <em>pyb.Pin</em>. Pripojenie rozhraní SPI k pinom mikrokontroléra je tabuľke:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Periféria</p></th>
+<th class="head text-left"><p>Nucleo-64</p></th>
+<th class="head text-left"><p>Arduino-UNO</p></th>
+<th class="head text-left"><p>Alternatíva</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>SPI1 NSS</p></td>
+<td class="text-left"><p>PA4 - NC</p></td>
+<td class="text-left"><p>A2</p></td>
+<td class="text-left"><p>PA15 - NC</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SPI1 SCK</p></td>
+<td class="text-left"><p>PB3</p></td>
+<td class="text-left"><p>D3</p></td>
+<td class="text-left"><p>PA5</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>SPI1 MISO</p></td>
+<td class="text-left"><p>PB4</p></td>
+<td class="text-left"><p>D5</p></td>
+<td class="text-left"><p>PA6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SPI1 MOSI</p></td>
+<td class="text-left"><p>PB5</p></td>
+<td class="text-left"><p>D4</p></td>
+<td class="text-left"><p>PA7</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>SPI2 NSS</p></td>
+<td class="text-left"><p>PB12 - NC</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>PB9 - NC</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SPI2 SCK</p></td>
+<td class="text-left"><p>PB13</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>PB10</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>SPI2 MISO</p></td>
+<td class="text-left"><p>PB14</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>PC2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SPI2 MOSI</p></td>
+<td class="text-left"><p>PB15</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>PC3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition-rekonfiguracia-pre-arduino admonition">
+<p class="admonition-title">Rekonfigurácia pre Arduino</p>
+<p>Rozhranie SPI1 na doske NUCLEO-64 nie je štandardne pripojené ku pinom konektora Arduino-UNO.<br />
+Pomocou funkcie alternatívnych pinov možeme pripojenie rozhrania rekonfigurovať.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>p=Pin(&#39;PA7&#39;)
+p.af_list()
+[Pin.AF1_TIM1, Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF5_SPI1, Pin.AF14_TIM17]
+
+# Konfiguracia pre kompatibilitu SPI1 s Arduinom
+p_mosi = Pin(&#39;PA7&#39;, mode=Pin.ALT, alt=Pin.AF5_SPI1)
+p_miso = Pin(&#39;PA6&#39;, mode=Pin.ALT, alt=Pin.AF5_SPI1)
+p_sck  = Pin(&#39;PA5&#39;, mode=Pin.ALT, alt=Pin.AF5_SPI1)
+</pre></div>
+</div>
+</div>
+<section id="api">
+<h3><font color='#E37434'> API </font><a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
+<p><strong>Konštruktor / deštruktor</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SPI.init(mode, baudrate=328125, *, prescaler=-1, 
+               polarity=1, phase=0, bits=8, firstbit=SPI.MSB, 
+               ti=False, crc=None)
+SPI.deinit() 
+
+mode      - typ zariadenia, SPI.CONTROLLER / SPI.PERIPHERAL
+baudrate  - prenosová rýchlosť, hodnoty podporované procesorom
+prescaler - delič hodnoty prenosovej rýchlosti, 1/2/4/8/16/32/64/128/256
+firstbit  - poradie bitov, SPI.LSB / SPI.MSB
+polarity  - hodnota CPOL, 0/1
+phase     - hodnota CPHA, 0/1
+ti        - konvencia TI / Motorola, True / False
+crc       - kontrolná suma
+</pre></div>
+</div>
+<p><strong>Metódy</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SPI.recv(recv, *, timeout=5000)
+SPI.send(send, *, timeout=5000)
+SPI.send_recv(send, recv=None, *, timeout=5000)
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><font color='#84B179'> Príklad inicializácie a vyslania 1 Byte </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from pyb import SPI
+
+# inicializacia
+pin = Pin(&#39;PB1&#39;, Pin.OUT)
+spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=0, phase=0, crc=None)
+
+# vyslanie jedneho byte
+pin.value(False)
+spi.send(0x12)
+pin.value(True)
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../dev_gpio/0105_gpio_onboard.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">LED / Tlačítko</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../app_displej/0500_led_matrix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> LED modul WS2812 </font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casovanie-zbernice"><font color="#E37434">  Časovanie zbernice </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladne-zapojenie"><font color="#E37434"> Základné zapojenie </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelne-zapojenie"><font color="#E37434"> Paralelné zapojenie </font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retazove-zapojenie"><font color="#E37434"> Reťazové zapojenie </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><font color="#E37434"> API </font></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Peter Fabo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, pf.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

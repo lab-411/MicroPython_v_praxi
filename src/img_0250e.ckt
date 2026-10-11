@@ -1,0 +1,50 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+log_init
+
+command "\sf"
+
+define(`SPI_Master', `[
+  BX: box wid 2.5 ht 5*lg_pinsep;
+
+      lg_pin(BX.ne - (0, 1*lg_pinsep),  SCLK, Pin8, e,,0 );
+      lg_pin(BX.ne - (0, 2*lg_pinsep),  MOSI, Pin7, e,,0 );
+      lg_pin(BX.ne - (0, 3*lg_pinsep),  MISO, Pin6, e,,0 );
+      lg_pin(BX.ne - (0, 4*lg_pinsep),  lg_bartxt(SS), Pin5, e,,0 );
+]')
+
+define(`SPI_Slave', `[
+  BX: box wid 2 ht 5*lg_pinsep;
+
+      lg_pin(BX.nw - (0, 1*lg_pinsep),  SCLK, Pin1, w,,0);
+      lg_pin(BX.nw - (0, 2*lg_pinsep),  MOSI, Pin2, w,, 0);
+      lg_pin(BX.nw - (0, 3*lg_pinsep),  MISO, Pin3, w,, 0);
+      lg_pin(BX.nw - (0, 4*lg_pinsep),  lg_bartxt(SS), Pin4, w,,0 );
+]')
+
+M: SPI_Master(); "SPI" at M.c +(-0.3,0) above; "Master" at M.c +(-0.3,0) below;
+   line from M.Pin8 right 2.5;  #DT1: dot invis; 
+
+S1: SPI_Slave() with .Pin1 at last line .end; 
+    "SPI" at S1.c +(0.3,0) above; "Slave" at S1.c +(0.3,0) below;
+
+    line -> from M.Pin7 to S1.Pin2;
+    line <-from M.Pin6 to S1.Pin3;
+    line -> from M.Pin5 to S1.Pin4
+
+.PE

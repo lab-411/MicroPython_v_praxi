@@ -1,0 +1,363 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+% #   <font color='#4B9DA9'> level 1 </font>
+% ##  <font color='#547792'> level 2 </font>
+% ### <font color='#E37434'> level 3 </font>
+% {dropdown} <font color='#84B179'> Text </font>
+
+%#   <font color='#4B9DA9'>  Nazov </font>
+%##  <font color='#547792'> Popis </font>
+%##  <font color='#547792'> Zapojenie </font>
+%##  <font color='#547792'> Programovanie </font>
+%### <font color='#E37434'> Knižnica </font>
+%### <font color='#E37434'> API </font>
+%### <font color='#E37434'> Príklady </font>
+
+# <font color='#4B9DA9'> Display  </font>
+
+##  <font color='#547792'> Popis </font>
+    
+Na module umiestnený 4-znakový LED display je riadený dvoma 8-bitovými posuvnými registrami [74HC595](../dev_spi/doc/sn74hc595.pdf). Obvod obsahuje 8-bitový posuvný register typu *serial-in / paralell-out* a 8-bitový pamätový register tvorený D-klopnými obvodmi.  
+
+
+````{dropdown} <font color='#84B179'> Vnútorná štruktúra obvodu 74HC595 </font>
+
+Dáta zo vstupu **SER** (DIN) postupne podľa hodinových impulzov **SRCLK** (CLK) posúvajú do posuvného registra tvoreného klopnými obvodmi **C1** a **C2**. Pomocou signálu **RCLK** (LATCH) sa obsah posuvného registra prepíše do pamäte tvorenej obvodmi **C3**. Po zaplnení registra postupujú dáta na výstup obvodu **QH'** (DOUT), obvody je možné radiť do série (daisy chain). Signál **OE** (OUTPUT ENABLE) určuje stav výstupných pinov obvodu, pri OE=1 sú výstupné piny v stave s vysokou impedanciou.  
+
+```{figure} ./img/ic_74hc595.png
+:width: 450px
+:name: mp_0505c
+
+Vnútorná štruktúra obvodu 74HC595.
+```
+````
+
+##  <font color='#547792'> Zapojenie </font>
+
+Posuvné registre displeja majú spoločný hodinový signál CLK a signál LATCH. Výstupy prvého posuvného registra sú pripojené k anódam znakov, výstupy druhého ku katódam segmentov. Pririadení displeja preto musíme vyslať dve 8-bitové slová, v ktorých je informácia o tom, v ktorom znaku budú rozsvietené príslušné segmenty, toto musíme zopakovať pre každý znak. Ak chceme, aby display svietil trvalo, musíme jeho stav periodicky obnovovať.
+
+```{code-cell} ipython3  
+:tags: ["remove-cell"]
+import sys
+sys.path.append('../')
+from src.utils import *
+
+data = r'''
+cct_init
+log_init
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+
+command "\sf"
+
+
+#divert(-1)
+#                           `sevensegment(keys)
+#                            Seven-segment display in a [] block. keys:
+#                            hght=expr; (default boxht)
+#                            wdth=expr; (default hght*3.3/5.85) 
+#                            slant=fraction; top is skewed slant fraction of ht
+#                            segwid=expr; segment width (0.75/3.2*wdth)
+#                            gap=expr; gap between segments (0.12/3.2*wdth)
+#                            bevel=fraction; corner truncation (0.4)
+#                            on=attributes; "on" segment attributes
+#                            off=attributes; "off" segment attributes
+#                            code=[0-9][.]; displayed number .=decimal point
+#                               or
+#                            code=Xddddddd[.] where each d=0 or 1 to define
+#                               Segment1 to Segment7 off or on 
+#                            Segments are labeled Seg1 Seg2 ... Seg7
+#                            and the decimal point is Seg8'
+                            
+define(`sevensegment', # hght, wdth, slant, segwid, gap, bevel, on, off, code
+ `[ pushkeys_(`$1',`hght:boxht; wdth:m4`'hght*3.3/5.85; slant:0;
+      segwid:0.75/3.2*m4`'wdth; gap:0.12/3.2*m4`'wdth; bevel:0.4;
+      on:outlined "red" shaded "red":N; off:outlined "lightgray":N;
+      code:00000010:N;')
+  gapch = m4gap/2*sqrt(2)
+  ifinstr(m4code,.,`define(`m4tmp',substr(m4code,0,decr(len(m4code))))dnl
+    pushdef(`dodp',1)poppushdef(`m4code',m4tmp)')dnl
+  ifinstr(m4code,X,`pushdef(`opcode',substr(m4code,1))',
+   `foreach_(`m4cd',`pushdef(`Cd'decr(m4Lx),m4cd)',1111110,0110000,1101101,
+      1111001,0110011,1011011,1011111,1110000,1111111,1111011)dnl
+    pushdef(`opcode',Cd`'m4code)')dnl
+  for_(1,7,1,`pushdef(`attrib'm4x,
+   ifelse(substr(opcode,decr(m4x),1),1,`m4on',`m4off'))')dnl
+  Seg1: m4segment(R,m4bevel,m4bevel,attrib1) \
+    with .S at m4slu(0,m4hght-m4segwid)
+  inner = distance(Seg1.SW,Seg1.SE) + gapch*2
+  Seg2: m4segment(D,0.5,m4bevel,attrib2) with .S at \
+    m4slu(m4wdth/2-m4segwid,m4hght-m4segwid-inner/2)
+  Seg3: m4segment(D,m4bevel,0.5,attrib3) with .S at \
+    m4slu(m4wdth/2-m4segwid,m4segwid+inner/2)
+  Seg4: m4segment(L,m4bevel,m4bevel,attrib4) with .S at m4slu(0,m4segwid)
+  Seg5: m4segment(U,0.5,m4bevel,attrib5) with .S at \
+    m4slu(-m4wdth/2+m4segwid,m4segwid+inner/2)
+  Seg6: m4segment(U,m4bevel,0.5,attrib6) with .S at \
+    m4slu(-m4wdth/2+m4segwid,m4hght-m4segwid-inner/2)
+  Seg7: m4segment(R,0.5,0.5,attrib7) with .c at m4slu(0,m4hght/2)
+  ifelse(dodp,1,`Seg8: circle diam m4segwid m4on \
+      at m4slu(Seg3.e.x+m4segwid/2+m4gap,Seg4.s.y+m4segwid/2)') popdef(`dodp')
+  popdef(`m4hght',`m4wdth',`m4slant',`m4segwid',`m4gap',`m4bevel',
+   `m4on',`m4off',`m4code',`opcode')dnl
+  for_(1,7,1,`popdef(`attrib'm4x)') for_(0,9,1,`popdef(`Cd'm4x)')dnl
+  ]')
+define(`m4segment',`[ setdir_(`$1')
+  m4seven_pos(SE,E,NE,,`$2'); m4seven_pos(SW,W,NW,-,`$3')
+  resetdir_
+  S: 1/2 between SW and SE
+  Line: line from m4slu(S.x,S.y) to m4slu(SE.x,SE.y) then to m4slu(E.x,E.y) \
+    then to m4slu(NE.x,NE.y) then to m4slu(NW.x,NW.y) then to m4slu(W.x,W.y) \
+    then to m4slu(SW.x,SW.y) then to m4slu(S.x,S.y) `$4' ] ')
+define(`m4seven_pos',
+ `AA: (`$4'(m4wdth/2-m4segwid-gapch),0); `$1': rot_(AA.x,AA.y,rp_ang)
+  BA: AA + (`$4'1,1)*m4segwid*(1-`$5');  `$2': rot_(BA.x,BA.y,rp_ang)
+  CA: BA - (`$4'1,-1)*m4segwid*`$5';     `$3': rot_(CA.x,CA.y,rp_ang) ')
+define(`m4slu',`(`$1'+(`$2')*m4slant,`$2')')
+
+#divert(0)dnl
+ 
+#-----------------------------------------------------------------------
+
+define(`IC74HC595', `[
+  BX: box wid 2 ht 12*lg_pinsep;
+
+      lg_pin(BX.ne - (0, 1*lg_pinsep),  VDD, Pin16, e,16,0.5 );
+      lg_pin(BX.ne - (0, 2*lg_pinsep),  lg_bartxt(RST), Pin10, e,10,0.5 );
+      lg_pin(BX.ne - (0, 3*lg_pinsep),  QA, Pin15, e,15,0.5 );
+      lg_pin(BX.ne - (0, 4*lg_pinsep),  QB, Pin1, e,1,0.5 );
+      lg_pin(BX.ne - (0, 5*lg_pinsep),  QC, Pin2, e,2,0.5 );
+      lg_pin(BX.ne - (0, 6*lg_pinsep),  QD, Pin3, e,3,0.5 );
+      lg_pin(BX.ne - (0, 7*lg_pinsep),  QE, Pin4, e,4,0.5 );
+      lg_pin(BX.ne - (0, 8*lg_pinsep),  QF, Pin5, e,5,0.5 );
+      lg_pin(BX.ne - (0, 9*lg_pinsep),  QG, Pin6, e,6,0.5 );
+      lg_pin(BX.ne - (0,10*lg_pinsep),  QH, Pin7, e,7,0.5 );
+      lg_pin(BX.ne - (0,11*lg_pinsep), SDO, Pin9, e,9,0.5 );
+      
+      lg_pin(BX.nw - (0, 2*lg_pinsep), SDI, Pin14, w, 14, 0.5);
+      lg_pin(BX.nw - (0, 4*lg_pinsep), CLK, Pin11, w, 11, 0.5);
+      lg_pin(BX.nw - (0, 6*lg_pinsep), LATCH, Pin12, w, 12, 0.5);
+      lg_pin(BX.nw - (0,10*lg_pinsep), lg_bartxt(OE), Pin13, w,13,0.5 );
+      lg_pin(BX.nw - (0,11*lg_pinsep), GND, Pin8, w, 8, 0.5);
+]')
+
+
+#-----------------------------------------------------------------------
+
+#Grid(10,10)
+m4gap=1/16;
+
+move to (0.5, 8)
+IC1: IC74HC595;
+
+move to (0.5, 2.0)
+IC2: IC74HC595;
+
+move to (5,8.5)
+BX: box wid 4.85 ht 1.75;
+move to BX.w + (0.1,0); 
+  S1: sevensegment(code=4. ;hght=1.5; slant=1/8; segwid=1/7; gap=0; bevel=1/4)
+  move right 0.05;
+  S2: sevensegment(code=2.;hght=1.5; slant=1/8; segwid=1/7)
+  move right 0.05;
+  S3: sevensegment(code=3.;hght=1.5; slant=1/8; segwid=1/7)
+  move right 0.05;
+  S3: sevensegment(code=8.;hght=1.5; slant=1/8; segwid=1/7)
+ 
+line from IC1.Pin15 to (BX.w, IC1.Pin15);  "a1" at last line.end - (0.1,0) rjust above;
+line from IC1.Pin1 to (BX.w, IC1.Pin1); "a2" at last line.end  - (0.1,0) rjust above;
+line from IC1.Pin2 to (BX.w, IC1.Pin2); "a3" at last line.end  - (0.1,0) rjust above;
+line from IC1.Pin3 to (BX.w, IC1.Pin3); "a4" at last line.end  - (0.1,0) rjust above;
+
+dx = lg_pinsep
+line from IC2.Pin15 to ( BX.s-(4*dx,0), IC2.Pin15 ) then to BX.s-(4*dx,0); "a" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin1  to ( BX.s-(3*dx,0), IC2.Pin1  ) then to BX.s-(3*dx,0); "b" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin2  to ( BX.s-(2*dx,0), IC2.Pin2  ) then to BX.s-(2*dx,0); "c" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin3  to ( BX.s-(1*dx,0), IC2.Pin3  ) then to BX.s-(1*dx,0); "d" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin4  to ( BX.s-(0*dx,0), IC2.Pin4  ) then to BX.s-(0*dx,0); "e" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin5  to ( BX.s+(1*dx,0), IC2.Pin5  ) then to BX.s+(1*dx,0); "f" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin6  to ( BX.s+(2*dx,0), IC2.Pin6  ) then to BX.s+(2*dx,0); "g" at last line.end + (0,-0.45) ljust above;
+line from IC2.Pin7  to ( BX.s+(3*dx,0), IC2.Pin7  ) then to BX.s+(3*dx,0); "d\\ot" at last line.end + (0,-0.45) ljust above;
+
+line from IC1.Pin10 right_ 0.5;  line to (Here, IC1.Pin16); dot; {line to IC1.Pin16}; line up_ 0.25; power(); "+5V" above;
+line from IC2.Pin10 right_ 0.5;  line to (Here, IC2.Pin16); dot; {line to IC2.Pin16}; line up_ 0.25; power(); "+5V" above;
+
+line from IC1.Pin13 left_ 0.5; line to (Here, IC1.Pin8);  dot; {line to IC1.Pin8}; line down_ 0.25; gnd();
+line from IC2.Pin13 left_ 0.5; line to (Here, IC2.Pin8);  dot; {line to IC2.Pin8}; line down_ 0.25; gnd();
+
+line from IC1.Pin9 right_ 0.5 then down 0.85; line to (IC2.Pin14+(-0.5,0), Here); line to (Here, IC2.Pin14) then to IC2.Pin14;
+
+line from IC2.Pin11 left_ 1; line to (Here, IC1.Pin11); dot; {line to IC1.Pin11;}; line left_ 1; TC: tbox(D4,1,, <)
+line from IC2.Pin12 left_ 1.25; line to (Here, IC1.Pin12); dot; {line to IC1.Pin12;}; line left_ to (TC.e, Here); tbox(D7,1,, <);
+
+line from IC1.Pin14  to (TC.e,  IC1.Pin14); tbox(D8,1,, <);
+'''
+
+_ = cm_compile('img_0507v', data,  dpi=600, path='../src')   
+```
+
+```{figure} ../src/img_0507v.png
+:width: 500px
+:name: img_0507v
+
+Zapojenie displeja.
+```
+
+| Display           | Nucleo-64 | Arduino 
+| :---              | :--       | :--         
+| LATCH             | PB5       | D4          
+| CLOCK             | PA8       | D7          
+| DATA              | PA9       | D8          
+
+Pri použití modulu ako nadstavby pre Arduino je displej riadený programovým generovaním signálov na prislušných pinoch. Pre elegantnejšie riadenie displeja môžeme využiť rozhranie SPI, toto ale nie je možné v Nucleo-64 premapovať tak, aby mohlo priamo obsluhovať piny displeja. Musíme si preto pre použitie rozhrania SPI2 pomôcť prepojkami na konektore modulu Nucleo-64, ktorými spojíme piny 30-23 a 26-21.
+
+```{figure} ./img/display_spi2.png
+:width: 380px
+:name: mp_0507c
+
+Pripojenie rozhrania SPI2 k displeju.
+```
+
+##  <font color='#547792'> Programovanie </font>
+
+Pre obsluhu displeja použijeme sériové rozhranie SPI2. Pre rozsvietenie znaku displeja musíme najskôr vyslať do sériového rozhrania informáciu o segmentoch displeja, ktoré chceme rozsvietiť a potom informáciu o príslušnom znaku. Vyber znaku je určený stavom L na príslušnej anóde displeja, segmenty sa rozsvietia v stave L na príslušnom vystupe registra.
+
+
+**Priradenie segmentov pre zobrazenie znakov**
+
+                   0    1    2    3    4    5    6    7    8    9
+    num_code = [0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90]
+
+**Priradenie pozícii znakov** 
+
+                   0    1    2    3
+    num_pos  = [0x01,0x02,0x04,0x08]
+
+### <font color='#E37434'> Príklady </font>
+    
+:::{dropdown} <font color='#84B179'> Rozsvietenie jedneho znaku displeja </font>
+
+```{code-block} python
+from pyb import SPI, Pin
+
+# kodova tabulka segmentov pre zobrazenie cislic
+#              0    1    2    3    4    5    6    7    8    9
+num_code = [0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90]
+
+# kodova tabulka pozicie znakov 
+#              0    1    2    3
+num_pos  = [0xF1,0xF2,0xF4,0xF8]
+
+pin = Pin('PB5', Pin.OUT)
+spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=0, phase=0, crc=None)
+
+pin.value(False)
+spi.send(num_code[3])    # kod znaku  
+spi.send(num_pos[2])     # poloha na displeji
+pin.value(True)
+```
+
+:::
+
+
+:::{dropdown} <font color='#84B179'> Zobrazenia dát na displeja v programovej slučke</font>
+
+Pomocou cyklu *for ...* rozsvietime postupne všetky segmenty displeja, programová slučka je ale blokujúca pre iné aktivity.
+
+```{code-block} python
+from pyb import SPI, Pin
+
+# kodova tabulka segmentov
+num_code = [0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90]
+
+# kodova tabulka znakov 
+num_pos  = [0xF1,0xF2,0xF4,0xF8]
+
+# obsah displeja
+num_disp = [4,3,7,9]
+
+# chip select
+pin = Pin('PB5', Pin.OUT)
+spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=0, phase=0, crc=None)
+
+for j in range(4000):
+    for i in range(4):
+        pin.value(False)
+        spi.send(num_code[num_disp[i]])    # kod znaku  
+        spi.send(num_pos[i])     # poloha na displeji
+        pin.value(True)
+```
+:::
+
+
+:::{dropdown} <font color='#84B179'> Zobrazenia dát na displeja pomocou prerušenia časovača </font>
+
+Cyklus obnovenia stavu displeja je riadený prerušením od časovača. Pri vyvolaní prerušenia je volaná funkcia *update_display()*, ktorá zobrazí znaky z poľa *num_disp[]*, hodnoty v tomto poli a ich zobrazenie na dispelji je možné počas behu programu meniť.
+
+```{code-block} python
+from pyb import SPI, Pin, Timer
+import time
+
+def update_display(timer):
+    for j in range(16):
+        for i in range(4):
+            c = num_disp[i]
+            pin.value(False)
+            spi.send(num_code[c])
+            spi.send(num_pos[i])
+            pin.value(True)
+            
+        # zhasnutie poslednej cislice v pauze, aby vsetky svietli rovnako
+        pin.value(False) 
+        spi.send(0xFF)
+        spi.send(0xF8)
+        pin.value(True)
+
+
+def display_int(x):
+    # zobrazenie cisla 0...9999
+    if x in range(0, 10000):
+        global num_disp
+        a = int(x/1000)
+        b = int( (x-a*1000) / 100 )
+        c = int( (x-a*1000-b*100)/10)
+        d = int( (x-a*1000-b*100 - c*10))
+        num_disp=[a,b,c,d]
+
+
+num_code = [0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90]
+num_pos  = [0x01,0x02,0x04,0x08]
+num_disp = [1,2,3,4]
+
+# chip select
+pin = Pin('PB5', Pin.OUT)
+spi = SPI(2, SPI.CONTROLLER, baudrate=100000, polarity=0, phase=0, crc=None)
+tim = Timer(4) 
+
+tim.init(freq = 50)
+pin.value(True)
+
+# dynamicka obnova stavu displeja v preruseni casovaca 
+tim.callback(update_display)
+
+```
+:::
+
+
+
+
+
+    

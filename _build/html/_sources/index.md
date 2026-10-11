@@ -8,8 +8,16 @@
 
 
 ### <center> <font color='brown'>  <b> LAB - 411 Production </b> </font>  </center>   
-### <center> <font color='brown'>  <b> Verzia 0.22, Október 2026 </b> </font>  </center>  
- 
+### <center> <font color='brown'>  <b> Verzia 0.23, Október 2026 </b> </font>  </center>  
+
+%<div align="center">
+%
+%![Static Badge](https://img.shields.io/badge/Licencia-MIT-blue)
+%![Static Badge](https://img.shields.io/badge/Language-Python-red)
+%![Static Badge](https://img.shields.io/badge/Platform-STM32-cyan)
+%![Linux](https://img.shields.io/badge/Ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white)
+%
+%</div>
 
 ----------------
 
@@ -28,87 +36,88 @@
 0014_pouzitie.md
 ```
 
-```{toctree}
-:titlesonly: True
-:caption: Elektronika
-0020_terminologia.md
-0022_zaklady.md
-0024_signaly.md
-0030_analog.md
-0050_digital.md
-```
+%```{toctree}
+%:titlesonly: True
+%:caption: Elektronika
+%0020_terminologia.md
+%0022_zaklady.md
+%0024_signaly.md
+%0030_analog.md
+%0050_digital.md
+%```
 
-```{toctree}
-:titlesonly: True
-:caption: Mikrokontrolér
-0400_architektura.md
-0410_programovanie.md
-0420_filesystem.md
-0440_library.md
-```
+%```{toctree}
+%:titlesonly: True
+%:caption: Mikrokontrolér
+%0400_architektura.md
+%0410_programovanie.md
+%0420_filesystem.md
+%0440_library.md
+%```
 
 
 ```{toctree}
 :titlesonly: True
 :caption: Paralelný vstup a výstup
-0100_gpio.md
+./dev_gpio/0100_gpio.md
 ```
 
 ```{toctree}
 :titlesonly: True
 :caption: Sériové zbernice
-0200_usart.md
-0250_spi.md
-0150_i2c.md
+%0200_usart.md
+./dev_spi/0251_spi_basic.md
+%0150_i2c.md
 ```
 
-```{toctree}
-:titlesonly: True
-:caption: Časovače
-0300_timer.md
-```
+%```{toctree}
+%:titlesonly: True
+%:caption: Časovače
+%0300_timer.md
+%```
 
 ```{toctree}
 :titlesonly: True
 :caption: Displeje
 ./app_displej/0500_led_matrix.md
-0255_spi_display_7219.md
-0257_spi_display_12864.md
-0158_i2c_display.md
+./app_displej/0255_spi_display_7219.md
+./app_displej/0257_spi_display_12864.md
+./app_displej/0158_i2c_display.md
 ```
 
-```{toctree}
-:titlesonly: True
-:caption: Senzory
-0156_i2c_lm92.md
-0160_i2c_mems.md
-```
+%```{toctree}
+%:titlesonly: True
+%:caption: Senzory
+%0156_i2c_lm92.md
+%0160_i2c_mems.md
+%```
 
 ```{toctree}
 :titlesonly: True
 :caption: Moduly
-0505_funduino_01.md
-0510_funduino_02.md
-0590_prototyp.md
+./app_shield/0505_shield_01.md
+%0510_shield_02.md
+%0590_prototyp.md
 ```
 
-```{toctree}
-:titlesonly: True
-:caption: Platformy
-0862_nucleo32.md
-0860_nucleo64.md
-0864_nucleo144.md
-```
+%```{toctree}
+%:titlesonly: True
+%:caption: Platformy
+%0862_nucleo32.md
+%0860_nucleo64.md
+%0864_nucleo144.md
+%```
 
 
 ```{toctree}
 :titlesonly: True
 :caption: Prílohy
-0710_install.md
-0714_firmware.md
-0716_editor.md
-0720_jednotky_si.md
-0730_znacky.md
+./dev_utils/0860_nucleo64.md
+%0710_install.md
+%0714_firmware.md
+%0716_editor.md
+50720_jednotky_si.md
+%0730_znacky.md
 ```
 
 
@@ -122,6 +131,8 @@
     
 
 ### <font color='brown'> Citovanie / How to cite</font>
+
+    ZENODO
 
 
 ## Licencie 

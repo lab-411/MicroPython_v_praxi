@@ -19,7 +19,6 @@ kernelspec:
 
 # <font color='#4B9DA9'> Použitie  </font>
 
-
 Mikrokontrolér s inštalovaným *MicroPython-om* komunikuje s nadradeným počítačom prostredníctvom sériového rozhrania USART. Pre komunikáciu je možné použiť niektorú z terminálových [aplikácií](https://github.com/cdleon/awesome-terminals).
 
 ## <font color='#547792'> picocom </font>
@@ -96,19 +95,23 @@ Pre prácu so zariadením s inštalovaným  *MicroPython-om* môžeme využiť a
                       [files [files ...]]
 
 
+                    
 Doplňujúce argumenty pre *-f (--filesystem)*  
 
+    TODO
     ls
-    ls ./adresar
-    cp ./file ./
-    rm ./file
-    rmdir addr
-    mkdir addr
-    cat ./subor   vypis suboru na terminal resp
+    ls ./adresar                 - vyois adresaru
+    cp ./file ./                 - kopirovanie suboru
+    rm ./file                    - odstranenie suboru
+    rmdir addr                   - odstranenie prazdbeho adresaru
+    mkdir addr                   - vytvorenie adresaru
+    cat ./subor                  - vypis suboru na terminal 
     cat./subor > lokalny.txt
     
 Príklad použitia   
     
+    TODO
+    python pyboard.py -d PORT LOKALNY_SUBOR :REMOTE_SUBOR
     python pyboard.py -f ls
     python pyboard.py -f cp ./test.py :
     

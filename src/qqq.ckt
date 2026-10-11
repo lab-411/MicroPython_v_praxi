@@ -6,20 +6,44 @@ arrowwid  = 0.127       # parametre sipok - sirka
 arrowht = 0.254         # dlzka
 
 include(lib_base.ckt)
+include(lib_stm32.ckt)
 include(lib_user.ckt)
 
-Origin: Here 
+log_init
 
-right_;
-circle rad 0.09; {"\it a" at last circle.n above;}
-line 0.65; r_current(I, above, 0.85 );
-right_; 
-resistor(1.75, E); rlabel(,R_1,); larrow(U_{1}, ->, 0.25)
-resistor(1.75, E); rlabel(,R_2,); larrow(U_{2}, ->, 0.25)
-resistor(1.75, E); rlabel(,R_3,); larrow(U_{3}, ->, 0.25)
-line 0.5 dotted;
-resistor(1.75, E); rlabel(,R_N,); larrow(U_{N}, ->, 0.25)
-line 0.65;
-circle rad 0.09; "\it b" at last circle.n above;
+command "\sf"
 
+define(`IC74HC595', `[
+  BX: box wid 2.5 ht 12*lg_pinsep;
+
+      lg_pin(BX.ne - (0, 1*lg_pinsep),  VDD, Pin16, e,16,0.5 );
+      lg_pin(BX.ne - (0, 2*lg_pinsep),  lg_bartxt(RST), Pin10, e,10,0.5 );
+      lg_pin(BX.ne - (0, 3*lg_pinsep),  QA, Pin15, e,15,0.5 );
+      lg_pin(BX.ne - (0, 4*lg_pinsep),  QB, Pin1, e,1,0.5 );
+      lg_pin(BX.ne - (0, 5*lg_pinsep),  QC, Pin2, e,2,0.5 );
+      lg_pin(BX.ne - (0, 6*lg_pinsep),  QD, Pin3, e,3,0.5 );
+      lg_pin(BX.ne - (0, 7*lg_pinsep),  QE, Pin4, e,4,0.5 );
+      lg_pin(BX.ne - (0, 8*lg_pinsep),  QF, Pin5, e,5,0.5 );
+      lg_pin(BX.ne - (0, 9*lg_pinsep),  QG, Pin6, e,6,0.5 );
+      lg_pin(BX.ne - (0,10*lg_pinsep),  QH, Pin7, e,7,0.5 );
+      lg_pin(BX.ne - (0,11*lg_pinsep), SDO, Pin9, e,9,0.5 );
+      
+      lg_pin(BX.nw - (0, 2*lg_pinsep), SDI, Pin14, w, 14, 0.5);
+      lg_pin(BX.nw - (0, 4*lg_pinsep), CLK, Pin11, w, 11, 0.5);
+      lg_pin(BX.nw - (0, 5*lg_pinsep), LATCH, Pin11, w, 12, 0.5);
+      lg_pin(BX.nw - (0,10*lg_pinsep), lg_bartxt(OE), Pin13, w,13,0.5 );
+      lg_pin(BX.nw - (0,11*lg_pinsep), GND, Pin8, w, 8, 0.5);
+]')
+
+
+IC74HC595
+
+    
+#    line -> from M.Pin7 to S1.Pin2;
+#    line <-from M.Pin6 to S1.Pin3;
+#    line -> from M.Pin5 to S1.Pin4
+
+
+
+   
 .PE
