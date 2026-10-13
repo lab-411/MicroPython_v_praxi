@@ -11,39 +11,56 @@ include(lib_user.ckt)
 
 log_init
 
+#Grid(10,5);
+
 command "\sf"
 
-define(`IC74HC595', `[
-  BX: box wid 2.5 ht 12*lg_pinsep;
+move to (4.25,2.5);
 
-      lg_pin(BX.ne - (0, 1*lg_pinsep),  VDD, Pin16, e,16,0.5 );
-      lg_pin(BX.ne - (0, 2*lg_pinsep),  lg_bartxt(RST), Pin10, e,10,0.5 );
-      lg_pin(BX.ne - (0, 3*lg_pinsep),  QA, Pin15, e,15,0.5 );
-      lg_pin(BX.ne - (0, 4*lg_pinsep),  QB, Pin1, e,1,0.5 );
-      lg_pin(BX.ne - (0, 5*lg_pinsep),  QC, Pin2, e,2,0.5 );
-      lg_pin(BX.ne - (0, 6*lg_pinsep),  QD, Pin3, e,3,0.5 );
-      lg_pin(BX.ne - (0, 7*lg_pinsep),  QE, Pin4, e,4,0.5 );
-      lg_pin(BX.ne - (0, 8*lg_pinsep),  QF, Pin5, e,5,0.5 );
-      lg_pin(BX.ne - (0, 9*lg_pinsep),  QG, Pin6, e,6,0.5 );
-      lg_pin(BX.ne - (0,10*lg_pinsep),  QH, Pin7, e,7,0.5 );
-      lg_pin(BX.ne - (0,11*lg_pinsep), SDO, Pin9, e,9,0.5 );
-      
-      lg_pin(BX.nw - (0, 2*lg_pinsep), SDI, Pin14, w, 14, 0.5);
-      lg_pin(BX.nw - (0, 4*lg_pinsep), CLK, Pin11, w, 11, 0.5);
-      lg_pin(BX.nw - (0, 5*lg_pinsep), LATCH, Pin11, w, 12, 0.5);
-      lg_pin(BX.nw - (0,10*lg_pinsep), lg_bartxt(OE), Pin13, w,13,0.5 );
-      lg_pin(BX.nw - (0,11*lg_pinsep), GND, Pin8, w, 8, 0.5);
-]')
+down_;
+T1: tstrip(R,3,DU); {"1" at T1.w rjust;}; 
+T2: tstrip(R,3,DU); 
+T3: tstrip(R,3,DU); 
+T4: tstrip(R,3,DU); {"1" at T4.w rjust;}; 
 
-
-IC74HC595
+line from T4.T1 up_ 2.75; circle rad 0.1; "+5V" above;
+line from T4.T2 up_ 2.75 then right_ 0.5; down_; gnd; 
+line from T1.T3 right_ 1;  tbox(\sf D5); 
+line from T2.T3 right_ 1;  tbox(\sf D6); 
+line from T3.T3 right_ 1;  tbox(\sf D9); 
+line from T4.T3 right_ 1;  tbox(\sf A5); 
+    "A6" at (T2.w + T3.w)/2 rjust; 
+   
+   
+move to (4.25,5.25);
+U4: tstrip(R,3,DU); {"1" at U4.w rjust;};
+    line from U4.T1 down 0.75 then left 0.5;  tbox(\sf D5,,, <);
+    line from U4.T2 down_ 0.75; gnd();
+    line from U4.T3 down 0.75 then right_ 0.5; circle rad 0.1; "+5V" ljust;
+    "U4" at U4.n above;
+    
+move to (7.5,5.25);
+U5: tstrip(R,3,DU); {"1" at U5.w rjust;};
+    line from U5.T1 down_ 0.75; gnd();
+    line from U5.T2 down_ 1.5; dot(); {line down_ 0.5 then left_ 0.5; tbox(\sf A4,,, >); } 
+    right_; resistor(,E); rlabel(,\sf 10k,);
+    H1: Header(2,1,,,);{ "J1" at H1.n above;}; circle rad 0.1; "+5V" ljust;
 
     
-#    line -> from M.Pin7 to S1.Pin2;
-#    line <-from M.Pin6 to S1.Pin3;
-#    line -> from M.Pin5 to S1.Pin4
+    line from U5.T3 down 0.75 then right_ 0.5; circle rad 0.1; "+5V" ljust;
+    "U5" at U5.n above;
+ 
+       
+    move to (0.5, 2.5);   
+B1: tstrip(U,7,DU);
+    line from B1.T1 right 1 then down 0.5; gnd();
+    line from B1.T2 right 1; circle rad 0.1; "+5V" ljust;
+    line from B1.T3 right 0.5;
+    line from B1.T4 right 1; tbox(\sf D1,,0.38, >); 
+    line from B1.T5 right 1; tbox(\sf D0,,0.38, >); 
+    line from B1.T6 right 0.5;
+    line from B1.T7 right 0.5;
+    "J6" at B1.n above;
 
 
-
-   
 .PE

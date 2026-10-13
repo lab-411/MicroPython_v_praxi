@@ -126,7 +126,7 @@ Program rozsvietenia a postupného zhasnutia LED
 
 ##  <font color='#547792'> Tlačítka </font>
 
-Na module sa nachádzajú tri tlačítka A1..A3 pre všeobecné použitie a resetovacie tlačitko mikrokontroléra.
+Na module sa nachádzajú tri tlačítka A1..A3 pre všeobecné použitie a resetovacie tlačitko mikrokontroléra. Prostredníctvom spojky *J2* na doske modulu sú *pull-up* rezistory pripojené k napájaciemu napätiu, pri odpojení ich môžeme nahradiť internými rezistormi mikrokontréra v konfigurácii vstupného pinu.
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]

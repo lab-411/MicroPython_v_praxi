@@ -36,15 +36,15 @@
 0014_pouzitie.md
 ```
 
-%```{toctree}
-%:titlesonly: True
-%:caption: Elektronika
-%0020_terminologia.md
-%0022_zaklady.md
+```{toctree}
+:titlesonly: True
+:caption: Základy elektroniky
+./basic_analog/0020_terminologia.md
+./basic_analog/0022_prud_napetie.md
 %0024_signaly.md
-%0030_analog.md
+./basic_analog/0030_analog.md
 %0050_digital.md
-%```
+```
 
 %```{toctree}
 %:titlesonly: True
@@ -97,16 +97,8 @@
 :caption: Moduly
 ./app_shield/0505_shield_01.md
 %0510_shield_02.md
-%0590_prototyp.md
+./app_shield/0590_prototyp.md
 ```
-
-%```{toctree}
-%:titlesonly: True
-%:caption: Platformy
-%0862_nucleo32.md
-%0860_nucleo64.md
-%0864_nucleo144.md
-%```
 
 
 ```{toctree}

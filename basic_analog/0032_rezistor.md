@@ -25,6 +25,10 @@ V elektronických obvodoch je elektrický odpor reprezentovaný pasívnym prvkom
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
+
+import sys
+sys.path.append('../')
+
 from src.utils import *
 
 data = r'''
@@ -41,10 +45,10 @@ C2: circle rad 0.08; "$-$" rjust;
     line -> from C1.s+(0,-.1) to C2.n+(0,0.1); "$U$" at last line.center rjust;
 '''
 
-_ = cm_compile('img_0032a', data,  dpi=600)   
+_ = cm_compile('img_0032a', data,  dpi=600, path='../src')   
 ```
 
-```{figure} ./src/img_0032a.png
+```{figure} ../src/img_0032a.png
 :width: 150px
 :name: img_0032a
 
@@ -141,10 +145,10 @@ include(lib_user.ckt)
     R4: vres_v(1.5,T); line from R4.S down_ 0.35; "$R_4$" at R4.c+(-0.15,0) rjust; 
 '''
 
-_ = cm_compile('img_0076t', data,  dpi=600)   
+_ = cm_compile('img_0076t', data,  dpi=600, path='../src') 
 ```
 
-```{figure} ./src/img_0076t.png
+```{figure} ../src/img_0076t.png
 :width: 400px
 :name: img_0076t
 
@@ -253,10 +257,10 @@ line 0.65;
 circle rad 0.09; "\it b" at last circle.n above;
 '''
 
-_ = cm_compile('img_0032s', data,  dpi=600)   
+_ = cm_compile('img_0032s', data,  dpi=600, path='../src')    
 ```
 
-```{figure} ./src/img_0032s.png
+```{figure} ../src/img_0032s.png
 :width: 460px
 :name: img_0032s
 
@@ -317,10 +321,10 @@ Q2: 0.5 between R3.end and R2.end;
     circle rad 0.09; "b" at last circle.n above;
 '''
 
-_ = cm_compile('img_0032q', data,  dpi=600)   
+_ = cm_compile('img_0032q', data,  dpi=600, path='../src')    
 ```
 
-```{figure} ./src/img_0032q.png
+```{figure} ../src/img_0032q.png
 :width: 300px
 :name: img_0032q
 

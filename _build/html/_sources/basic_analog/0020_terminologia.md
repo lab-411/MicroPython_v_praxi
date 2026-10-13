@@ -36,6 +36,8 @@ kernelspec:
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
+import sys
+sys.path.append('../')
 from src.utils import *
 
 data = r'''
@@ -87,11 +89,11 @@ x=6.5; y=1
 A2: opamp(1.3,,,0.9,R); "Operačný zosilovač" at Here+(0.1,0) ljust;
 '''
 
-_ = cm_compile('img_0020a', data,  dpi=600)   
+_ = cm_compile('img_0020a', data,  dpi=600, path='../src')     
 ```
 
 
-```{figure} ./src/img_0020a.png
+```{figure} ../src/img_0020a.png
 :width: 600px
 :name: img_0020a
 ```

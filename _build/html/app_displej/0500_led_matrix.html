@@ -164,14 +164,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../0012_zaciname.html"><font color="#4B9DA9"> Inštalácia  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../0014_pouzitie.html"><font color="#4B9DA9"> Použitie  </font></a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Základy elektroniky</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dev_gpio/0100_gpio.html">GPIO</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dev_gpio/0101_gpio_basic.html">Vlastnosti</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev_gpio/0102_gpio_pyb.html">Knižnica pyb.Pin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dev_gpio/0105_gpio_onboard.html">LED / Tlačítko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_analog/0020_terminologia.html"><font color="#4B9DA9"> Terminológia</font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_analog/0022_prud_napetie.html"><font color="#4B9DA9"> Základné pojmy  </font></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic_analog/0030_analog.html"><font color="#4B9DA9"> Analogová elektronika </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_analog/0032_rezistor.html"><font color="#4B9DA9"> Rezistor  </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_analog/0042_opamp.html"><font color="#4B9DA9"> Operačný zosilovač </font></a></li>
 </ul>
 </details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paralelný vstup a výstup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dev_gpio/0100_gpio.html"><font color="#4B9DA9"> GPIO </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
 <ul class="nav bd-sidenav">
@@ -192,6 +197,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../app_shield/0508_shield_01_konektory.html"><font color="#4B9DA9"> Konektory </font></a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="../app_shield/0590_prototyp.html"><font color="#4B9DA9"> Prototypy modulov </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prílohy</span></p>
 <ul class="nav bd-sidenav">
@@ -372,7 +378,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/led_ws812.jpg"><img alt="../_images/led_ws812.jpg" src="../_images/led_ws812.jpg" style="width: 320px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 15 </span><span class="caption-text">LED modul WS2812-64.</span><a class="headerlink" href="#mp-0500a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 33 </span><span class="caption-text">LED modul WS2812-64.</span><a class="headerlink" href="#mp-0500a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -383,7 +389,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500f.png"><img alt="../_images/img_0500f.png" src="../_images/img_0500f.png" style="width: 800px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Sériové zapojenie v LED module.</span><a class="headerlink" href="#mp-0500d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 34 </span><span class="caption-text">Sériové zapojenie v LED module.</span><a class="headerlink" href="#mp-0500d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Komunikácia s obvodmi WS2812 je sériová, po jednovodičovej zbernici, s pevným časovaním stavov L a H, tieto sa odlišujú dĺžkou impulzu na zbernici. Jednotlivé pakety sú oddelené časovým intervalom reprezentujúcim reset zbernice.</p>
@@ -391,7 +397,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500k.png"><img alt="../_images/img_0500k.png" src="../_images/img_0500k.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Časovanie logických stavov L,H a RESET.</span><a class="headerlink" href="#img-0500k" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 35 </span><span class="caption-text">Časovanie logických stavov L,H a RESET.</span><a class="headerlink" href="#img-0500k" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -430,7 +436,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/ws2812_nucleo.png"><img alt="../_images/ws2812_nucleo.png" src="../_images/ws2812_nucleo.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.</span><a class="headerlink" href="#mp-0500f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 36 </span><span class="caption-text">Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.</span><a class="headerlink" href="#mp-0500f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -441,7 +447,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500c.png"><img alt="../_images/img_0500c.png" src="../_images/img_0500c.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Kódovanie farebnej informácie.</span><a class="headerlink" href="#img-0500c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 37 </span><span class="caption-text">Kódovanie farebnej informácie.</span><a class="headerlink" href="#img-0500c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>LED sú zpojené v sérii, každý riadiaci obvod si z dátového reťazca ponechá 24 bite o stave LED a zbytok reťazca prepošle k nasledujúcej LED. Informácie o stave LED sú za sebou bez medzier, po ukončení vysielania je medzi jednotlivými reťazcami časový interval dlhší ako <span class="math notranslate nohighlight">\(300 \mu s\)</span>, ktorý je interpretovaný ako reset komunikácie.</p>
@@ -449,7 +455,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500e.png"><img alt="../_images/img_0500e.png" src="../_images/img_0500e.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Princíp komunikácie na sériovej zbernici.</span><a class="headerlink" href="#mp-0500e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 38 </span><span class="caption-text">Princíp komunikácie na sériovej zbernici.</span><a class="headerlink" href="#mp-0500e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="kniznica">
@@ -519,7 +525,7 @@ t_{64} &amp;= 64 \cdot t_1 = 64 \cdot 24 = 1536 \mu s = 1.536 ms\\
 <a class="reference internal image-reference" href="../_images/ws2512_editor.png"><img alt="../_images/ws2512_editor.png" src="../_images/ws2512_editor.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Online <a class="reference external" href="https://yomotherboard.com/ws2812-pattern-editor/">editor</a> dát pre LED maticu.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 39 </span><span class="caption-text">Online <a class="reference external" href="https://yomotherboard.com/ws2812-pattern-editor/">editor</a> dát pre LED maticu.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p class="sd-card-text">Zobrazenie dat vytvorených editorom.</p>

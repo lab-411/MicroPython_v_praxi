@@ -25,6 +25,10 @@ Operačný zosilovač je univerzálne elektronické zariadenie, v súčasnej dob
 
 ```{code-cell} ipython3  
 :tags: ["remove-cell"]
+
+import sys
+sys.path.append('../')
+
 from src.utils import *
 
 data = r'''
@@ -54,10 +58,10 @@ A2: opamp(,,,,P);
     "b)" at A2.se below;
 '''
 
-_ = cm_compile('img_0080a', data,  dpi=600)   
+_ = cm_compile('img_0080a', data,  dpi=600, path='../src')      
 ```
 
-```{figure} ./src/img_0080a.png
+```{figure} ../src/img_0080a.png
 :width: 400px
 :name: img_0076s
 
@@ -107,10 +111,10 @@ line from LP.end left_ 0.75;
 C2: circle rad 0.075; "\textit{in}" at C2.n above;
 '''
 
-_ = cm_compile('img_0080b', data,  dpi=600)   
+_ = cm_compile('img_0080b', data,  dpi=600, path='../src') 
 ```
 
-```{figure} ./src/img_0080b.png
+```{figure} ../src/img_0080b.png
 :width: 250px
 :name: img_0080b
 
@@ -163,10 +167,10 @@ DO: dot;
     line from OP.In2 left_ 0.5 then down_ 0.5; gnd; 
 '''
 
-_ = cm_compile('img_0080c', data,  dpi=600)   
+_ = cm_compile('img_0080c', data,  dpi=600, path='../src') 
 ```
 
-```{figure} ./src/img_0080c.png
+```{figure} ../src/img_0080c.png
 :width: 300px
 :name: img_0080c
 
@@ -209,10 +213,10 @@ PP: opamp(,,,,R)
     circle rad 0.1; "\textit{Out}" at last circle.n above;
 '''
 
-_ = cm_compile('img_0080d', data,  dpi=600)   
+_ = cm_compile('img_0080d', data,  dpi=600, path='../src')   
 ```
 
-```{figure} ./src/img_0080d.png
+```{figure} ../src/img_0080d.png
 :width: 300px
 :name: img_0080d
 

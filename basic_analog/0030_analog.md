@@ -31,14 +31,14 @@ na vstupe. Typickými aktívnymi komponentmi sú tranzistory, operačné zosilov
 :titlesonly: True
 :caption: Pasívne komponenty
 0032_rezistor.md
-0035_kondenzator.md
+%0035_kondenzator.md
 ```
 
 ```{toctree}
 :titlesonly: True
 :caption: Aktívne komponenty
-0038_dioda.md
-0040_transistor.md
+%0038_dioda.md
+%0040_transistor.md
 0042_opamp.md
 ```
 
