@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
@@ -59,6 +59,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'app_sensor/0156_i2c_lm92';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multifunkčný shied 1.0" href="../app_shield/0505_shield_01.html" />
+    <link rel="prev" title="LCD Display PCF8547T" href="../app_displej/0158_i2c_display.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -109,8 +111,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -179,6 +179,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dev_spi/0251_spi_basic.html"><font color="#4B9DA9"> Zbernica SPI </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_i2c/0152_i2c_basic.html"><font color="#4B9DA9"> Zbernica I2C </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
 <ul class="nav bd-sidenav">
@@ -186,6 +187,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../app_displej/0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app_displej/0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app_displej/0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Senzory</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
 <ul class="nav bd-sidenav">
@@ -345,6 +350,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><font color="#547792"> Zapojenie </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a></li>
 </ul>
             </nav>
@@ -359,47 +367,53 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="teplomer-lm92">
 <h1><font color='#4B9DA9'> Teplomer LM92 </font><a class="headerlink" href="#teplomer-lm92" title="Link to this heading">#</a></h1>
-<p><a class="reference internal" href="#./doc/lm92.pdf"><span class="xref myst">LM92</span></a> je 12-bitový teplotný senzor pre teplotný rozsah -25 … +150°C s rozlíšením 0.0625°C. Komunikácia s teplomerom je po zbernici I2C. Teplomer má možnosť nastavenie kritických teplôt a výstup pre vyvolanie prerušenia pri prekročení stanovených teplôt.</p>
+<section id="popis">
+<h2><font color='#547792'> Popis </font><a class="headerlink" href="#popis" title="Link to this heading">#</a></h2>
+<p><a class="reference download internal" download="" href="../_downloads/4c98bee0a8f5e0dbd978a830fa683968/lm92.pdf"><span class="xref download myst">LM92</span></a> je 12-bitový teplotný senzor pre teplotný rozsah -25 … +150°C s rozlíšením 0.0625°C. Komunikácia s teplomerom je po zbernici I2C. Teplomer má možnosť nastavenie kritických teplôt a výstup pre vyvolanie prerušenia pri prekročení stanovených teplôt.</p>
 <figure class="align-default" id="mp-156a">
 <a class="reference internal image-reference" href="../_images/lm92_block.png"><img alt="../_images/lm92_block.png" src="../_images/lm92_block.png" style="width: 550px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Blokové zapojenie digitálneho teplomera LM92.</span><a class="headerlink" href="#mp-156a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 52 </span><span class="caption-text">Blokové zapojenie digitálneho teplomera LM92.</span><a class="headerlink" href="#mp-156a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="zapojenie">
+<h2><font color='#547792'> Zapojenie </font><a class="headerlink" href="#zapojenie" title="Link to this heading">#</a></h2>
 <p>Vývody A1 a A0 sú určené pre nastavenie adresy teplomera na zbernici. Kódovanie adresy je 7-bitové podľa obrázku</p>
 <figure class="align-default" id="mp-156b">
 <a class="reference internal image-reference" href="../_images/lm92_addr.png"><img alt="../_images/lm92_addr.png" src="../_images/lm92_addr.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Adresácia teplomera LM92 na zbernici.</span><a class="headerlink" href="#mp-156b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 53 </span><span class="caption-text">Adresácia teplomera LM92 na zbernici.</span><a class="headerlink" href="#mp-156b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Rozsah adries</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>01001000
-01001001
-01001010
-01001011
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>010010XX 
+01001000 - 
+01001001 -
+01001010 -
+01001011 -
 </pre></div>
 </div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text"><font color='#84B179'> Pripojenie teplomera LM92 k Nucleo-64  </font></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MICROPY_HW_I2C1_SCL         -&gt; pin_PB8  (STM)
+</section>
+<section id="id1">
+<h2><font color='#547792'> Zapojenie </font><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MICROPY_HW_I2C1_SCL         -&gt; pin_PB8  
 MICROPY_HW_I2C1_SDA         -&gt; pin_PB9  (STM)
 +5V
 GND
 </pre></div>
 </div>
 <figure class="align-default" id="mp-0205f">
-<a class="reference internal image-reference" href="app_sensor/img/stm32_i2c1.png"><img alt="app_sensor/img/stm32_i2c1.png" src="app_sensor/img/stm32_i2c1.png" style="width: 350px;" />
+<a class="reference internal image-reference" href="../_images/stm32_i2c1.png"><img alt="../_images/stm32_i2c1.png" src="../_images/stm32_i2c1.png" style="width: 350px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Pripojenie teplomera LM92</span><a class="headerlink" href="#mp-0205f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 54 </span><span class="caption-text">Pripojenie teplomera LM92</span><a class="headerlink" href="#mp-0205f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-</div>
-</details><section id="programovanie">
+</section>
+<section id="programovanie">
 <h2><font color='#547792'> Programovanie </font><a class="headerlink" href="#programovanie" title="Link to this heading">#</a></h2>
 <p>Funkcia pre načítanie dát z teplomera:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_LM92</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
@@ -447,6 +461,24 @@ GND
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../app_displej/0158_i2c_display.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> LCD Display PCF8547T </font></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../app_shield/0505_shield_01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Multifunkčný shied 1.0  </font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -465,6 +497,9 @@ GND
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><font color="#547792"> Zapojenie </font></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a></li>
 </ul>
   </nav></div>

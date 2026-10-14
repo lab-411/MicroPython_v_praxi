@@ -67,7 +67,7 @@
 :caption: Sériové zbernice
 %0200_usart.md
 ./dev_spi/0251_spi_basic.md
-%0150_i2c.md
+./dev_i2c/0152_i2c_basic.md
 ```
 
 %```{toctree}
@@ -85,12 +85,12 @@
 ./app_displej/0158_i2c_display.md
 ```
 
-%```{toctree}
-%:titlesonly: True
-%:caption: Senzory
-%0156_i2c_lm92.md
+```{toctree}
+:titlesonly: True
+:caption: Senzory
+./app_sensor/0156_i2c_lm92.md
 %0160_i2c_mems.md
-%```
+```
 
 ```{toctree}
 :titlesonly: True

@@ -1,0 +1,66 @@
+
+.PS
+pi=3.14159265359
+                        # parametre z PIC (resp. GNU PIC)
+scale = 2.54            # cm - jednotka pre obrazok
+maxpswid = 30           # rozmery obrazku
+maxpsht = 30            # 30 x 30cm, default je 8.5x11 inch
+cct_init                # inicializacia lokalnych premennych
+
+arrowwid  = 0.127       # parametre sipok - sirka
+arrowht = 0.254         # dlzka
+
+
+include(lib_base.ckt)
+include(lib_stm32.ckt)
+include(lib_user.ckt)
+include(lib_color.ckt)
+
+command "\sf";
+
+command "\sf";
+
+    move to (0,2);
+    tbox(SDA, 1.5); line 0.5; dot;
+    line right_ 1.5; 
+    dot; {up_; R1:resistor(2,E); llabel(,4k7,); right_;}
+    line 2;
+D1: dot; 
+    line 3;
+D4: dot; 
+LD: line 3;
+
+    move to (0,1.5);
+    tbox(SCL, 1.5); line 0.5; dot;
+    line right_ 2.5; 
+    dot; {up_; line 0.5; R2:resistor(2,E); rlabel(,4k7,); right_;}
+    line 2;
+D2: dot; line 3;
+D3: dot; 
+LC: line 2;
+
+L1: line from R1.end to R2.end;
+    move to L1.c; dot; {up_; tconn(0.75,O); "$\sf Vdd$" at Here above;}
+
+    move to D1; line down_ 1.5;
+    move to D2; line down_ 1;
+    move to (D1+D2)/2 + (0,-1.25);
+    box wid 2 ht 1.5; "SLAVE" at last box.c above; "$\sf \#1$" at last box.c below;
+
+    move to D4; line down_ 1.5;
+    move to D3; line down_ 1;
+    move to (D3+D4)/2 + (0,-1.25);
+    box wid 2 ht 1.5; "SLAVE" at last box.c above; "$\sf \#2$" at last box.c below;
+
+    color_blue();
+    line from (0,4) right 2 then down 4.5 then left 2 dashed;
+    "STM32" at (1,4) below;
+    "MASTER" at (1,4) above;
+
+    color_black();
+    line from LD.end right 1 dashed; LX: line 1.5 then down_ 1.5;
+    line from LC.end right 1 dashed; LY: line 0.5 then down_ 1;
+    move to (LX.end + LY.end)/2 + (0,0);
+    box wid 2 ht 1.5; "SLAVE" at last box.c above; "$\sf \#N$" at last box.c below;
+
+.PE

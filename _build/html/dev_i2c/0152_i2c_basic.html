@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Vlastnosti &#8212; Micro_Python  documentation</title>
+    <title>Zbernica I2C &#8212; Micro_Python  documentation</title>
   
   
   
@@ -59,6 +59,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dev_i2c/0152_i2c_basic';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LED modul WS2812" href="../app_displej/0500_led_matrix.html" />
+    <link rel="prev" title="Zbernica SPI" href="../dev_spi/0251_spi_basic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -175,8 +177,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../dev_gpio/0100_gpio.html"><font color="#4B9DA9"> GPIO </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dev_spi/0251_spi_basic.html"><font color="#4B9DA9"> Zbernica SPI </font></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><font color="#4B9DA9"> Zbernica I2C </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
 <ul class="nav bd-sidenav">
@@ -184,6 +187,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../app_displej/0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app_displej/0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app_displej/0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Senzory</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../app_sensor/0156_i2c_lm92.html"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
 <ul class="nav bd-sidenav">
@@ -333,7 +340,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><font color='#4B9DA9'> Vlastnosti </font></h1>
+    <h1><font color='#4B9DA9'> Zbernica I2C </font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -343,7 +350,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casovanie-zbernice"><font color="#547792"> Časovanie zbernice  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casovanie-zbernice"><font color="#E37434"> Časovanie zbernice </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><font color="#E37434"> API </font></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -355,26 +370,97 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="vlastnosti">
-<h1><font color='#4B9DA9'> Vlastnosti </font><a class="headerlink" href="#vlastnosti" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="zbernica-i2c">
+<h1><font color='#4B9DA9'> Zbernica I2C </font><a class="headerlink" href="#zbernica-i2c" title="Link to this heading">#</a></h1>
+<section id="popis">
+<h2><font color='#547792'> Popis </font><a class="headerlink" href="#popis" title="Link to this heading">#</a></h2>
 <p>I2C (Inter-Integrated Circuit) rozhranie je dvojvodičové obojsmerné synchrónne sériové periférne rozhranie (zbernica), primárne využívané v rámci vstavaných systémov pre komunikáciu na krátke vzdialenosti medzi riadiacimi mikrokontrolérmi a ostatnými integrovanými obvodmi resp. modulmi (EEPROM, A/D prevodníky, pamäťové karty, displeje, a pod.). Rozhranie bolo patentované firmou Philips v roku 1981 a prvá verzia špecifikácie bola vydaná v roku 1982.</p>
+</section>
+<section id="zapojenie">
+<h2><font color='#547792'> Zapojenie </font><a class="headerlink" href="#zapojenie" title="Link to this heading">#</a></h2>
 <p>Zbernica umožňuje, v závislosti od pripojených zariadení, komunikáciu prenosovými rýchlosťami od 100 kbps (standard mode) až po 5 Mbps (ultra-fast mode) a zariadenia sú adresované 7-bitovými (27 = 128 adries) prípadne 10-bitovými (210 = 1 024 adries) adresami.</p>
-<figure class="align-default" id="img-0201a">
-<a class="reference internal image-reference" href="../_images/i2c_01.png"><img alt="../_images/i2c_01.png" src="../_images/i2c_01.png" style="width: 550px;" />
+<figure class="align-default" id="img-0152a">
+<a class="reference internal image-reference" href="../_images/img_0152a.png"><img alt="../_images/img_0152a.png" src="../_images/img_0152a.png" style="width: 600px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Zapojenie zariadení na zbernici <em>I2C</em>.</span><a class="headerlink" href="#img-0201a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 33 </span><span class="caption-text">Zapojenie zariadení na zbernici <em>I2C</em>.</span><a class="headerlink" href="#img-0152a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="casovanie-zbernice">
-<h2><font color='#547792'> Časovanie zbernice  </font><a class="headerlink" href="#casovanie-zbernice" title="Link to this heading">#</a></h2>
+<h3><font color='#E37434'> Časovanie zbernice </font><a class="headerlink" href="#casovanie-zbernice" title="Link to this heading">#</a></h3>
 <figure class="align-default" id="img-0201b">
 <a class="reference internal image-reference" href="../_images/i2c_02.png"><img alt="../_images/i2c_02.png" src="../_images/i2c_02.png" style="width: 550px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Časovani zebernice <em>I2C</em>.</span><a class="headerlink" href="#img-0201b" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 34 </span><span class="caption-text">Časovanie zbernice <em>I2C</em>.</span><a class="headerlink" href="#img-0201b" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+</section>
+<section id="programovanie">
+<h2><font color='#547792'> Programovanie </font><a class="headerlink" href="#programovanie" title="Link to this heading">#</a></h2>
+<p>Knižnica <em>pyb</em> obsahuje pre obsluhu sériového rozhrania triedu <em>I2C</em>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Periféria</p></th>
+<th class="head text-left"><p>Nucleo-64</p></th>
+<th class="head text-left"><p>Arduino-UNO</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>I2C1 SCL</p></td>
+<td class="text-left"><p>PB8</p></td>
+<td class="text-left"><p>D18</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>I2C1 SDA</p></td>
+<td class="text-left"><p>PB9</p></td>
+<td class="text-left"><p>D19</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>I2C2 SCL</p></td>
+<td class="text-left"><p>PB10</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>I2C2 SDA</p></td>
+<td class="text-left"><p>PB11</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>I2C3 SCL</p></td>
+<td class="text-left"><p>PC0</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>I2C3 SDA</p></td>
+<td class="text-left"><p>PC1</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="api">
+<h3><font color='#E37434'> API </font><a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
+<p><strong>Konštruktor / deštruktor</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>I2C(mode, addr=0x12, baudrate=400000, gencall=False, dma=False)
+I2C.deinit()
+
+mode
+  I2C.CONTROLLER 
+  I2C.PERIPHERAL
+  
+addr      - 7 bitová adresa v móde I2C.PERIPHERAL 
+baudrate  - prenosová rýchlosť
+gencall
+dma       - povolenie DMA prenosu dát
+</pre></div>
+</div>
+<p><strong>Metódy</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>I2C.is_ready(addr)    - kontrola pripojenia zariadenia s addr
+I2C.scan()            - výpis všetkých zariadení na zbernici
+I2C.send(send, addr=0x00, *, timeout=5000)
+I2C.recv(recv, addr=0x00, *, timeout=5000)
+I2C.mem_read(data, addr, memaddr, *, timeout=5000, addr_size=8)
+I2C.mem_write(data, addr, memaddr, *, timeout=5000, addr_size=8)
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -389,6 +475,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../dev_spi/0251_spi_basic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Zbernica SPI </font></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../app_displej/0500_led_matrix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><font color='#4B9DA9'> LED modul WS2812 </font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -407,7 +511,15 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casovanie-zbernice"><font color="#547792"> Časovanie zbernice  </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popis"><font color="#547792"> Popis </font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zapojenie"><font color="#547792"> Zapojenie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casovanie-zbernice"><font color="#E37434"> Časovanie zbernice </font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programovanie"><font color="#547792"> Programovanie </font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api"><font color="#E37434"> API </font></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="LED Display 7219" href="0255_spi_display_7219.html" />
-    <link rel="prev" title="Zbernica SPI" href="../dev_spi/0251_spi_basic.html" />
+    <link rel="prev" title="Zbernica I2C" href="../dev_i2c/0152_i2c_basic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -181,6 +181,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sériové zbernice</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dev_spi/0251_spi_basic.html"><font color="#4B9DA9"> Zbernica SPI </font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_i2c/0152_i2c_basic.html"><font color="#4B9DA9"> Zbernica I2C </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Displeje</span></p>
 <ul class="current nav bd-sidenav">
@@ -188,6 +189,10 @@
 <li class="toctree-l1"><a class="reference internal" href="0255_spi_display_7219.html"><font color="#4B9DA9">  LED Display 7219  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0257_spi_display_12864.html"><font color="#4B9DA9">  LCD Display 12864  </font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="0158_i2c_display.html"><font color="#4B9DA9"> LCD Display PCF8547T </font></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Senzory</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../app_sensor/0156_i2c_lm92.html"><font color="#4B9DA9"> Teplomer LM92 </font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Moduly</span></p>
 <ul class="nav bd-sidenav">
@@ -378,7 +383,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/led_ws812.jpg"><img alt="../_images/led_ws812.jpg" src="../_images/led_ws812.jpg" style="width: 320px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 33 </span><span class="caption-text">LED modul WS2812-64.</span><a class="headerlink" href="#mp-0500a" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 35 </span><span class="caption-text">LED modul WS2812-64.</span><a class="headerlink" href="#mp-0500a" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -389,7 +394,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500f.png"><img alt="../_images/img_0500f.png" src="../_images/img_0500f.png" style="width: 800px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 34 </span><span class="caption-text">Sériové zapojenie v LED module.</span><a class="headerlink" href="#mp-0500d" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 36 </span><span class="caption-text">Sériové zapojenie v LED module.</span><a class="headerlink" href="#mp-0500d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Komunikácia s obvodmi WS2812 je sériová, po jednovodičovej zbernici, s pevným časovaním stavov L a H, tieto sa odlišujú dĺžkou impulzu na zbernici. Jednotlivé pakety sú oddelené časovým intervalom reprezentujúcim reset zbernice.</p>
@@ -397,7 +402,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500k.png"><img alt="../_images/img_0500k.png" src="../_images/img_0500k.png" style="width: 400px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 35 </span><span class="caption-text">Časovanie logických stavov L,H a RESET.</span><a class="headerlink" href="#img-0500k" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 37 </span><span class="caption-text">Časovanie logických stavov L,H a RESET.</span><a class="headerlink" href="#img-0500k" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -436,7 +441,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/ws2812_nucleo.png"><img alt="../_images/ws2812_nucleo.png" src="../_images/ws2812_nucleo.png" style="width: 450px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 36 </span><span class="caption-text">Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.</span><a class="headerlink" href="#mp-0500f" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 38 </span><span class="caption-text">Pripojenie modulu k Nucleo-64 cez rozhranie SPI1.</span><a class="headerlink" href="#mp-0500f" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -447,7 +452,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500c.png"><img alt="../_images/img_0500c.png" src="../_images/img_0500c.png" style="width: 750px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 37 </span><span class="caption-text">Kódovanie farebnej informácie.</span><a class="headerlink" href="#img-0500c" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 39 </span><span class="caption-text">Kódovanie farebnej informácie.</span><a class="headerlink" href="#img-0500c" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>LED sú zpojené v sérii, každý riadiaci obvod si z dátového reťazca ponechá 24 bite o stave LED a zbytok reťazca prepošle k nasledujúcej LED. Informácie o stave LED sú za sebou bez medzier, po ukončení vysielania je medzi jednotlivými reťazcami časový interval dlhší ako <span class="math notranslate nohighlight">\(300 \mu s\)</span>, ktorý je interpretovaný ako reset komunikácie.</p>
@@ -455,7 +460,7 @@ Moduly je možné zapájať za sebou v sérii, modul obsahuje dva konektory, jed
 <a class="reference internal image-reference" href="../_images/img_0500e.png"><img alt="../_images/img_0500e.png" src="../_images/img_0500e.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 38 </span><span class="caption-text">Princíp komunikácie na sériovej zbernici.</span><a class="headerlink" href="#mp-0500e" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 40 </span><span class="caption-text">Princíp komunikácie na sériovej zbernici.</span><a class="headerlink" href="#mp-0500e" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="kniznica">
@@ -525,7 +530,7 @@ t_{64} &amp;= 64 \cdot t_1 = 64 \cdot 24 = 1536 \mu s = 1.536 ms\\
 <a class="reference internal image-reference" href="../_images/ws2512_editor.png"><img alt="../_images/ws2512_editor.png" src="../_images/ws2512_editor.png" style="width: 650px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Obr. 39 </span><span class="caption-text">Online <a class="reference external" href="https://yomotherboard.com/ws2812-pattern-editor/">editor</a> dát pre LED maticu.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Obr. 41 </span><span class="caption-text">Online <a class="reference external" href="https://yomotherboard.com/ws2812-pattern-editor/">editor</a> dát pre LED maticu.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p class="sd-card-text">Zobrazenie dat vytvorených editorom.</p>
@@ -598,12 +603,12 @@ t_{64} &amp;= 64 \cdot t_1 = 64 \cdot 24 = 1536 \mu s = 1.536 ms\\
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../dev_spi/0251_spi_basic.html"
+       href="../dev_i2c/0152_i2c_basic.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><font color='#4B9DA9'> Zbernica SPI </font></p>
+        <p class="prev-next-title"><font color='#4B9DA9'> Zbernica I2C </font></p>
       </div>
     </a>
     <a class="right-next"
